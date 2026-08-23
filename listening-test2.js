@@ -7,22 +7,22 @@ window.AZ_LISTENING_DATA['cambridge19-test2-listening'] = {
     {
       "num": 1,
       "title": "Guitar Group",
-      "audio": "audio/cambridge19-test2-part1.mp3"
+      "audio": "cambridge19-test2-part1.mp3"
     },
     {
       "num": 2,
       "title": "Working as a lifeboat volunteer",
-      "audio": "audio/cambridge19-test2-part2.mp3"
+      "audio": "cambridge19-test2-part2.mp3"
     },
     {
       "num": 3,
       "title": "Discussion: recycling footwear",
-      "audio": "audio/cambridge19-test2-part3.mp3"
+      "audio": "cambridge19-test2-part3.mp3"
     },
     {
       "num": 4,
       "title": "Tardigrades",
-      "audio": "audio/cambridge19-test2-part4.mp3"
+      "audio": "cambridge19-test2-part4.mp3"
     }
   ],
   "questionGroups": [

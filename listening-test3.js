@@ -7,22 +7,22 @@ window.AZ_LISTENING_DATA['cambridge19-test3-listening'] = {
     {
       "num": 1,
       "title": "Local food shops",
-      "audio": "audio/cambridge19-test3-part1.mp3"
+      "audio": "cambridge19-test3-part1.mp3"
     },
     {
       "num": 2,
       "title": "Community festival workshops / Talk about children's books",
-      "audio": "audio/cambridge19-test3-part2.mp3"
+      "audio": "cambridge19-test3-part2.mp3"
     },
     {
       "num": 3,
       "title": "Science experiment for Year 12 students",
-      "audio": "audio/cambridge19-test3-part3.mp3"
+      "audio": "cambridge19-test3-part3.mp3"
     },
     {
       "num": 4,
       "title": "Microplastics",
-      "audio": "audio/cambridge19-test3-part4.mp3"
+      "audio": "cambridge19-test3-part4.mp3"
     }
   ],
   "questionGroups": [

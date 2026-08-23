@@ -7,22 +7,22 @@ window.AZ_LISTENING_DATA['cambridge19-test1-listening'] = {
     {
       "num": 1,
       "title": "Hinchingbrooke Country Park",
-      "audio": "audio/cambridge19-test1-part1.mp3"
+      "audio": "cambridge19-test1-part1.mp3"
     },
     {
       "num": 2,
       "title": "Stanthorpe Twinning Association / Farley House",
-      "audio": "audio/cambridge19-test1-part2.mp3"
+      "audio": "cambridge19-test1-part2.mp3"
     },
     {
       "num": 3,
       "title": "Discussion: a bread reuse project and food trends",
-      "audio": "audio/cambridge19-test1-part3.mp3"
+      "audio": "cambridge19-test1-part3.mp3"
     },
     {
       "num": 4,
       "title": "Céide Fields",
-      "audio": "audio/cambridge19-test1-part4.mp3"
+      "audio": "cambridge19-test1-part4.mp3"
     }
   ],
   "questionGroups": [
@@ -197,7 +197,7 @@ window.AZ_LISTENING_DATA['cambridge19-test1-listening'] = {
       ],
       "title": "Questions 16–20",
       "instructions": "Label the map below.\nWrite the correct letter, A–H, next to Questions 16–20.",
-      "image": "images/test1-part2-map.png",
+      "image": "test1-part2-map.png",
       "options": [
         {
           "letter": "A"

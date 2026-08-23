@@ -7,22 +7,22 @@ window.AZ_LISTENING_DATA['cambridge19-test4-listening'] = {
     {
       "num": 1,
       "title": "First day at work",
-      "audio": "audio/cambridge19-test4-part1.mp3"
+      "audio": "cambridge19-test4-part1.mp3"
     },
     {
       "num": 2,
       "title": "Compton Park Runners Club",
-      "audio": "audio/cambridge19-test4-part2.mp3"
+      "audio": "cambridge19-test4-part2.mp3"
     },
     {
       "num": 3,
       "title": "Discussion: Jane's grandfather's second-hand bookshop",
-      "audio": "audio/cambridge19-test4-part3.mp3"
+      "audio": "cambridge19-test4-part3.mp3"
     },
     {
       "num": 4,
       "title": "Lecture: tree planting and reforestation projects",
-      "audio": "audio/cambridge19-test4-part4.mp3"
+      "audio": "cambridge19-test4-part4.mp3"
     }
   ],
   "questionGroups": [
