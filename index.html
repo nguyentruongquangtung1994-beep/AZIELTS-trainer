@@ -171,6 +171,29 @@
   .review-body .q{ color:var(--ink-soft); font-size:12.5px; margin:0 0 2px; }
   .review-body .a{ margin:0; }
   .review-body .correct-answer{ color:var(--ink-soft); font-size:12.5px; margin-top:2px; }
+  .review-body .evidence{ color:var(--ink-soft); font-size:12.5px; margin-top:4px; padding:6px 10px; background:var(--paper-2); border-radius:8px; border-left:3px solid var(--amber); }
+
+  /* ---- expert panel ---- */
+  .expert-panel h2{ margin:0 0 14px; }
+  .expert-band{ display:flex; align-items:baseline; gap:10px; margin-bottom:6px; }
+  .expert-band b{ font-family:Georgia,serif; font-weight:800; font-size:38px; color:var(--red); }
+  .expert-band span{ font-size:13px; color:var(--ink-soft); }
+  .expert-note{ font-size:12px; color:var(--ink-soft); font-style:italic; margin:0 0 18px; line-height:1.5; }
+  .expert-panel h3{ font-size:14.5px; margin:18px 0 8px; }
+  .expert-list{ margin:0; padding:0; list-style:none; }
+  .expert-list li{ font-size:13.5px; line-height:1.6; padding:8px 12px; margin-bottom:6px; border-radius:10px; background:var(--paper-2); }
+  .expert-advice{ font-size:13.5px; line-height:1.6; background:var(--green-bg); color:var(--green); padding:12px 14px; border-radius:12px; margin:0; }
+
+  /* ---- full text / transcript with highlighted evidence ---- */
+  .full-text-block{ margin:14px 0 20px; border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  .full-text-block summary{ cursor:pointer; padding:12px 14px; font-weight:700; font-size:13.5px; background:var(--paper-2); list-style:none; }
+  .full-text-block summary::-webkit-details-marker{ display:none; }
+  .full-text-block summary::before{ content:"▸ "; }
+  .full-text-block[open] summary::before{ content:"▾ "; }
+  .full-text-block .part-audio{ display:block; width:100%; margin:12px 14px 0; }
+  .full-text-block .full-text-body{ padding:14px; font-size:13.5px; line-height:1.75; white-space:pre-wrap; }
+  .full-text-block .full-text-body p{ margin:0 0 12px; }
+  mark.hl-evidence{ background:var(--amber-bg); color:var(--amber); padding:0 2px; border-radius:3px; font-weight:700; }
 
   /* ---- vocab flashcards ---- */
   .filter-row{ display:flex; gap:8px; flex-wrap:wrap; }
@@ -745,6 +768,58 @@
     return alts.indexOf(normAns(userVal)) !== -1;
   }
 
+  function evidenceHTML(d, key){
+    var ev = d.evidence && d.evidence[key];
+    if(!ev) return '';
+    return '<p class="evidence">📍 <b>'+esc(ev.loc)+'</b> — '+esc(ev.quote)+'</p>';
+  }
+
+  // ---------- highlight evidence quotes inside a full passage/transcript ----------
+  function evidenceKeysForGroup(g){
+    if(g.type === "multi") return [g.range.join("_")];
+    if(g.type === "fill"){
+      return g.items ? g.items.map(function(it){ return String(it.num); }) : g.summary.filter(function(s){ return s.blank; }).map(function(s){ return String(s.blank); });
+    }
+    if(g.type === "bank_fill"){
+      return g.summary.filter(function(s){ return s.blank; }).map(function(s){ return String(s.blank); });
+    }
+    return (g.items||[]).map(function(it){ return String(it.num); });
+  }
+  function collectEvidenceQuotes(d, groups){
+    var quotes = [];
+    groups.forEach(function(g){
+      evidenceKeysForGroup(g).forEach(function(k){
+        var ev = d.evidence && d.evidence[k];
+        if(ev && ev.quote) quotes.push(ev.quote);
+      });
+    });
+    return quotes;
+  }
+  function highlightSnippetsFromQuote(quote){
+    var out = [];
+    quote.split(/\s*—\s*/).forEach(function(part){
+      part.split(/\.\.\.|…/).forEach(function(seg){
+        seg = seg.replace(/^[A-Z]\s*[-:]\s*/, "").trim();
+        if(seg.length > 6 && /[A-Za-z]{3}/.test(seg)) out.push(seg);
+      });
+    });
+    return out;
+  }
+  function escRegex(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
+  function highlightFullText(rawText, quotes){
+    var html = esc(rawText);
+    var snippets = [];
+    quotes.forEach(function(q){ snippets = snippets.concat(highlightSnippetsFromQuote(q)); });
+    snippets.sort(function(a,b){ return b.length - a.length; });
+    snippets.forEach(function(seg){
+      try{
+        var re = new RegExp(escRegex(esc(seg)), "i");
+        html = html.replace(re, function(m){ return '<mark class="hl-evidence">'+m+'</mark>'; });
+      }catch(e){}
+    });
+    return html;
+  }
+
   function reviewLine(num, d){
     var correct = d.answerKey[num];
     var user = takeCtx.answers[num];
@@ -755,6 +830,7 @@
       '<div class="review-body"><p class="q">Câu '+num+'</p>' +
       '<p class="a">Bạn chọn: <b>'+esc(user||"(bỏ trống)")+'</b></p>' +
       (ok? '' : '<p class="correct-answer">Đáp án đúng: '+esc(correct.replace("/", " / "))+'</p>') +
+      evidenceHTML(d, String(num)) +
       '</div>';
     return row;
   }
@@ -769,6 +845,7 @@
       '<div class="review-body"><p class="q">Câu '+g.range[0]+' &amp; '+g.range[1]+'</p>' +
       '<p class="a">Bạn chọn: <b>'+esc(user.join(", ")||"(bỏ trống)")+'</b></p>' +
       (full? '' : '<p class="correct-answer">Đáp án đúng: '+correct.join(" &amp; ")+'</p>') +
+      evidenceHTML(d, key) +
       '</div>';
     return row;
   }
@@ -798,6 +875,99 @@
       }
     });
     return score;
+  }
+
+  // ---------- expert band score + strength/weakness analysis ----------
+  var BAND_TABLE_READING = [[39,40,9],[37,38,8.5],[35,36,8],[33,34,7.5],[30,32,7],[27,29,6.5],[23,26,6],[19,22,5.5],[15,18,5],[13,14,4.5],[10,12,4],[8,9,3.5],[6,7,3],[4,5,2.5],[0,3,2]];
+  var BAND_TABLE_LISTENING = [[39,40,9],[37,38,8.5],[35,36,8],[32,34,7.5],[30,31,7],[26,29,6.5],[23,25,6],[18,22,5.5],[16,17,5],[13,15,4.5],[11,12,4],[9,10,3.5],[6,8,3],[4,5,2.5],[0,3,2]];
+  function scoreToBand(score, total, table){
+    var scaled = (total && total !== 40) ? Math.round(score / total * 40) : score;
+    for(var i=0;i<table.length;i++){ if(scaled>=table[i][0] && scaled<=table[i][1]) return table[i][2]; }
+    return 0;
+  }
+  function fmtBand(b){ return b.toFixed(1); }
+
+  var TYPE_INFO = {
+    tfng: { label:"True/False/Not Given", advice:"tránh suy diễn ngoài bài, để ý từ phủ định và từ giới hạn tuyệt đối (only, always, never, all...)" },
+    fill: { label:"Điền từ/số vào chỗ trống", advice:"kiểm tra chính tả, số ít/số nhiều, và tuân thủ đúng giới hạn số từ đề cho" },
+    bank_fill: { label:"Điền từ trong ngân hàng từ", advice:"xác định từ loại cần điền (danh từ/động từ/tính từ) trước khi chọn từ trong bảng" },
+    multi: { label:"Chọn nhiều đáp án (2 trong nhiều lựa chọn)", advice:"đọc/nghe hết toàn bộ các lựa chọn trước khi chốt, tránh chọn vội đáp án đầu tiên có vẻ đúng" },
+    match_single: { label:"Nối thông tin (tiêu đề/đặc điểm/người nói)", advice:"nắm ý chính của cả đoạn thay vì chỉ khớp từ khoá bề mặt, cẩn thận các đoạn có từ giống nhau nhưng ý khác" },
+    mcq: { label:"Trắc nghiệm 1 đáp án", advice:"loại trừ dần đáp án sai rõ ràng, cẩn thận đáp án đúng một phần (paraphrase gần đúng nhưng sai chi tiết)" }
+  };
+
+  function analyzeByType(d, answers){
+    var stats = {};
+    function bump(type, ok){
+      if(!stats[type]) stats[type] = {correct:0, total:0};
+      stats[type].total++;
+      if(ok) stats[type].correct++;
+    }
+    d.questionGroups.forEach(function(g){
+      if(g.type === "multi"){
+        var key = g.range.join("_");
+        var correct = d.answerKey[key] || [];
+        var user = answers[key] || [];
+        correct.forEach(function(c){ bump("multi", user.indexOf(c) !== -1); });
+      } else if(g.type==="tfng" || g.type==="match_single" || g.type==="mcq"){
+        (g.items||[]).forEach(function(it){
+          bump(g.type, normAns(answers[it.num]) === normAns(d.answerKey[it.num]));
+        });
+      } else if(g.type==="fill"){
+        var nums = g.items ? g.items.map(function(it){return it.num;}) : g.summary.filter(function(s){return s.blank;}).map(function(s){return s.blank;});
+        nums.forEach(function(num){ bump("fill", fillCorrect(answers[num], d.answerKey[num])); });
+      } else if(g.type==="bank_fill"){
+        g.summary.forEach(function(seg){
+          if(seg.blank){ bump("bank_fill", normAns(answers[seg.blank]) === normAns(d.answerKey[seg.blank])); }
+        });
+      }
+    });
+    return stats;
+  }
+
+  function overallAdviceForBand(band){
+    if(band >= 7.5) return "Nền tảng đã rất tốt — tập trung luyện đề với đồng hồ bấm giờ sát thi thật, làm quen các bẫy khó và kiểm soát thời gian để không mất điểm đáng tiếc ở những câu cuối.";
+    if(band >= 6.5) return "Đã đạt mức khá — nên luyện sâu đúng dạng câu còn yếu bên dưới thay vì làm tràn lan đề mới, kết hợp mở rộng vốn từ học thuật theo chủ đề hay gặp.";
+    if(band >= 5.5) return "Ở mức trung bình — nên ưu tiên luyện kỹ thuật làm từng dạng câu hỏi một cách bài bản trước, sau đó mới tăng tốc độ đọc/nghe hiểu ý chính.";
+    return "Cần xây nền tảng từ vựng và kỹ năng đọc/nghe hiểu cơ bản trước — chưa nên luyện đề tốc độ cao ở giai đoạn này, dễ nản vì mất gốc.";
+  }
+
+  function buildExpertPanelHTML(d, attempt, skillLabel, bandTable){
+    var band = scoreToBand(attempt.score, attempt.total, bandTable);
+    var stats = analyzeByType(d, attempt.answers);
+    var rows = Object.keys(stats).map(function(type){
+      var s = stats[type];
+      var pct = s.total ? Math.round(s.correct/s.total*100) : 0;
+      return {type:type, pct:pct, correct:s.correct, total:s.total};
+    }).sort(function(a,b){ return a.pct - b.pct; });
+
+    var weaknesses = rows.filter(function(r){ return r.pct < 60; });
+    var strengths = rows.filter(function(r){ return r.pct >= 80; });
+    if(weaknesses.length === 0 && rows.length > 1) weaknesses = [rows[0]];
+    if(strengths.length === 0 && rows.length > 1) strengths = [rows[rows.length-1]];
+
+    var html = '<h2>🎓 Nhận xét từ chuyên gia IELTS</h2>' +
+      '<div class="expert-band"><b>' + fmtBand(band) + '</b><span>Band ước tính (' + esc(skillLabel) + ')</span></div>' +
+      '<p class="expert-note">*Band là ước tính theo thang quy đổi phổ biến — IELTS không công bố thang quy đổi cố định cho từng đề, band thật khi thi có thể lệch khoảng ±0.5.</p>';
+
+    if(weaknesses.length){
+      html += '<h3>📍 Điểm cần cải thiện</h3><ul class="expert-list">';
+      weaknesses.forEach(function(r){
+        var info = TYPE_INFO[r.type] || {label:r.type, advice:""};
+        html += '<li><b>' + esc(info.label) + '</b> — đúng ' + r.correct + '/' + r.total + ' (' + r.pct + '%). ' + esc(info.advice) + '.</li>';
+      });
+      html += '</ul>';
+    }
+    if(strengths.length){
+      html += '<h3>✅ Điểm mạnh</h3><ul class="expert-list">';
+      strengths.forEach(function(r){
+        var info = TYPE_INFO[r.type] || {label:r.type};
+        html += '<li><b>' + esc(info.label) + '</b> — đúng ' + r.correct + '/' + r.total + ' (' + r.pct + '%). Duy trì phong độ này.</li>';
+      });
+      html += '</ul>';
+    }
+    html += '<h3>💡 Lộ trình gợi ý</h3><p class="expert-advice">' + esc(overallAdviceForBand(band)) + '</p>';
+    return html;
   }
 
   function submitTest(){
@@ -835,10 +1005,23 @@
     app.appendChild(top);
     document.getElementById("vocabBtn").addEventListener("click", function(){ location.hash = "#/vocab/" + testId; });
 
+    var expertPanel = el("div", "panel expert-panel", buildExpertPanelHTML(d, attempt, "Reading", BAND_TABLE_READING));
+    app.appendChild(expertPanel);
+
     d.passages.forEach(function(passage){
       var sec = el("div","panel");
       sec.appendChild(el("h2", null, "Passage " + passage.num + " — " + esc(passage.title)));
-      d.questionGroups.filter(function(g){ return groupPassageNum(g)===passage.num; }).forEach(function(g){
+      var passageGroups = d.questionGroups.filter(function(g){ return groupPassageNum(g)===passage.num; });
+      var passageQuotes = collectEvidenceQuotes(d, passageGroups);
+      var fullTextDetails = el("details","full-text-block");
+      var bodyHTML = passage.paragraphs.map(function(para){
+        var text = typeof para === "string" ? para : (para.letter + ". " + para.text);
+        return "<p>" + highlightFullText(text, passageQuotes) + "</p>";
+      }).join("");
+      fullTextDetails.innerHTML = '<summary>📖 Xem toàn bộ bài đọc (đã tô sáng vị trí đáp án)</summary>' +
+        '<div class="full-text-body">' + bodyHTML + '</div>';
+      sec.appendChild(fullTextDetails);
+      passageGroups.forEach(function(g){
         var block = el("div","qgroup");
         block.appendChild(el("p","qgroup-title", esc(g.title)));
         if(g.type === "multi"){
@@ -983,10 +1166,24 @@
       '</div>';
     app.appendChild(top);
 
+    var expertPanel = el("div", "panel expert-panel", buildExpertPanelHTML(d, attempt, "Listening", BAND_TABLE_LISTENING));
+    app.appendChild(expertPanel);
+
     d.parts.forEach(function(part){
       var sec = el("div","panel");
       sec.appendChild(el("h2", null, "Part " + part.num + (part.title ? " — " + esc(part.title) : "")));
-      d.questionGroups.filter(function(g){ return groupPartNum(g)===part.num; }).forEach(function(g){
+      var partGroups = d.questionGroups.filter(function(g){ return groupPartNum(g)===part.num; });
+      var partTranscript = d.transcripts && d.transcripts[String(part.num)];
+      if(partTranscript){
+        var partQuotes = collectEvidenceQuotes(d, partGroups);
+        var transcriptDetails = el("details","full-text-block");
+        var audioHTML = part.audio ? '<audio class="part-audio" controls preload="none" src="'+esc(part.audio)+'"></audio>' : '';
+        transcriptDetails.innerHTML = '<summary>🎧 Nghe lại &amp; xem transcript đầy đủ (đã tô sáng vị trí đáp án)</summary>' +
+          audioHTML +
+          '<div class="full-text-body">' + highlightFullText(partTranscript, partQuotes) + '</div>';
+        sec.appendChild(transcriptDetails);
+      }
+      partGroups.forEach(function(g){
         var block = el("div","qgroup");
         block.appendChild(el("p","qgroup-title", esc(g.title)));
         if(g.type === "multi"){
