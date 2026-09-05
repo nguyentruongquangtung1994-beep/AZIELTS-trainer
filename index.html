@@ -273,6 +273,14 @@
 <script src="./listening21-test2.js"></script>
 <script src="./listening21-test3.js"></script>
 <script src="./listening21-test4.js"></script>
+<script src="./cambridge20-test1.js"></script>
+<script src="./cambridge20-test2.js"></script>
+<script src="./cambridge20-test3.js"></script>
+<script src="./cambridge20-test4.js"></script>
+<script src="./listening20-test1.js"></script>
+<script src="./listening20-test2.js"></script>
+<script src="./listening20-test3.js"></script>
+<script src="./listening20-test4.js"></script>
 <script>
 (function(){
   "use strict";
@@ -304,6 +312,20 @@
     {id:"cambridge21-test2-listening", label:"Test 2", available:true},
     {id:"cambridge21-test3-listening", label:"Test 3", available:true},
     {id:"cambridge21-test4-listening", label:"Test 4", available:true},
+  ];
+
+  var TESTS_REGISTRY_20 = [
+    {id:"cambridge20-test1", available:true},
+    {id:"cambridge20-test2", available:true},
+    {id:"cambridge20-test3", available:true},
+    {id:"cambridge20-test4", available:true},
+  ];
+
+  var LISTEN_TESTS_REGISTRY_20 = [
+    {id:"cambridge20-test1-listening", label:"Test 1", available:true},
+    {id:"cambridge20-test2-listening", label:"Test 2", available:true},
+    {id:"cambridge20-test3-listening", label:"Test 3", available:true},
+    {id:"cambridge20-test4-listening", label:"Test 4", available:true},
   ];
 
   function getData(id){ return (window.AZ_READING_DATA || {})[id]; }
@@ -507,6 +529,60 @@
       listenGrid21.appendChild(tile);
     });
     app.appendChild(listenBook21);
+
+    var readingBook20 = el("a", "book-card");
+    readingBook20.href = "#/test/cambridge20-test1/intro";
+    readingBook20.innerHTML =
+      '<div class="book-badge">C20</div>' +
+      '<div class="book-body">' +
+        '<div class="book-title">Cambridge IELTS 20 — Reading</div>' +
+        '<p class="book-desc">4 test, mỗi test 3 bài đọc / 40 câu hỏi.</p>' +
+        '<div class="test-grid" style="margin-top:14px"></div>' +
+      '</div>';
+    var readGrid20 = readingBook20.querySelector(".test-grid");
+    TESTS_REGISTRY_20.forEach(function(t){
+      var d = getData(t.id);
+      var tile = document.createElement(t.available ? "a" : "div");
+      tile.className = "test-tile";
+      if(t.available){
+        tile.href = "#/test/" + t.id + "/intro";
+        var attempt = STATE.attempts[t.id];
+        tile.innerHTML = "<b>" + esc(d.test) + "</b><span>" + d.passages.length + " bài đọc &middot; " + totalQuestions(d) + " câu &middot; " + d.durationMin + " phút</span>" +
+          (attempt && attempt.score !== undefined ? '<div class="soon-chip" style="background:var(--green-bg);color:var(--green)">Đã làm: ' + attempt.score + '/40</div>' : "");
+      } else {
+        tile.setAttribute("disabled","disabled");
+        tile.innerHTML = "<b>" + (t.label||t.id) + "</b><span>3 bài đọc &middot; 40 câu &middot; 60 phút</span><div class='soon-chip'>Sắp có</div>";
+      }
+      readGrid20.appendChild(tile);
+    });
+    app.appendChild(readingBook20);
+
+    var listenBook20 = el("a", "book-card");
+    listenBook20.href = "#/listen/cambridge20-test1-listening/intro";
+    listenBook20.innerHTML =
+      '<div class="book-badge">C20</div>' +
+      '<div class="book-body">' +
+        '<div class="book-title">Cambridge IELTS 20 — Listening</div>' +
+        '<p class="book-desc">4 test, mỗi test 4 part / 40 câu hỏi, nghe audio gốc.</p>' +
+        '<div class="test-grid" style="margin-top:14px"></div>' +
+      '</div>';
+    var listenGrid20 = listenBook20.querySelector(".test-grid");
+    LISTEN_TESTS_REGISTRY_20.forEach(function(t){
+      var ld = getListenData(t.id);
+      var tile = document.createElement(t.available ? "a" : "div");
+      tile.className = "test-tile";
+      if(t.available && ld){
+        tile.href = "#/listen/" + t.id + "/intro";
+        var attempt = STATE.attempts[t.id];
+        tile.innerHTML = "<b>" + esc(ld.test) + "</b><span>" + ld.parts.length + " part &middot; " + totalQuestions(ld) + " câu &middot; nghe audio</span>" +
+          (attempt && attempt.score !== undefined ? '<div class="soon-chip" style="background:var(--green-bg);color:var(--green)">Đã làm: ' + attempt.score + '/40</div>' : "");
+      } else {
+        tile.setAttribute("disabled","disabled");
+        tile.innerHTML = "<b>" + (t.label||t.id) + "</b><span>4 part &middot; 40 câu &middot; nghe audio</span><div class='soon-chip'>Sắp có</div>";
+      }
+      listenGrid20.appendChild(tile);
+    });
+    app.appendChild(listenBook20);
   }
 
   // ---------- STRATEGY (chiến lược làm bài — đọc trước khi luyện đề) ----------
@@ -692,6 +768,8 @@
     app.innerHTML = "";
     var panel = el("div", "panel");
     var totalQ = totalQuestions(d);
+    var existing = STATE.attempts[testId];
+    var hasResult = existing && existing.score !== undefined;
     panel.innerHTML =
       '<h2>' + esc(d.test) + ' &middot; Reading</h2>' +
       '<p class="desc" style="color:var(--ink-soft);font-size:13.5px;line-height:1.6;margin:0 0 4px">Làm 3 bài đọc theo đúng cấu trúc đề thi thật. Mỗi bài có nhiều dạng câu hỏi khác nhau (Đúng/Sai/Không có thông tin, điền từ, nối đoạn, chọn đáp án&hellip;). Nộp bài để xem điểm và đáp án ngay, sau đó có thể ôn lại từ vựng của 3 bài vừa đọc.</p>' +
@@ -699,10 +777,12 @@
         '<span class="meta-chip">' + d.passages.length + ' bài đọc</span>' +
         '<span class="meta-chip">' + totalQ + ' câu hỏi</span>' +
         '<span class="meta-chip">' + d.durationMin + ' phút</span>' +
+        (hasResult ? '<span class="meta-chip" style="background:var(--green-bg);color:var(--green)">Đã làm: ' + existing.score + '/' + existing.total + '</span>' : '') +
       '</div>' +
       '<label class="check-row" style="margin-bottom:16px"><input type="checkbox" id="timerToggle" checked/> Tính giờ ' + d.durationMin + ' phút khi làm bài</label>' +
       '<div class="btn-row">' +
-        '<button class="btn btn-primary" id="startBtn">Bắt đầu làm bài</button>' +
+        (hasResult ? '<a class="btn btn-primary" href="#/test/' + testId + '/result" style="text-decoration:none;display:inline-flex;align-items:center">Xem lại kết quả</a>' : '') +
+        '<button class="btn ' + (hasResult ? 'btn-ghost' : 'btn-primary') + '" id="startBtn">' + (hasResult ? 'Làm lại từ đầu' : 'Bắt đầu làm bài') + '</button>' +
         '<a class="btn btn-ghost" href="#/home" style="text-decoration:none;display:inline-flex;align-items:center">Về trang chủ</a>' +
       '</div>';
     app.appendChild(panel);
@@ -1338,15 +1418,19 @@
     app.innerHTML = "";
     var panel = el("div", "panel");
     var totalQ = totalQuestions(d);
+    var existing = STATE.attempts[testId];
+    var hasResult = existing && existing.score !== undefined;
     panel.innerHTML =
       '<h2>' + esc(d.test) + ' &middot; Listening</h2>' +
       '<p class="desc" style="color:var(--ink-soft);font-size:13.5px;line-height:1.6;margin:0 0 4px">Nghe audio gốc của từng Part rồi trả lời câu hỏi ngay bên dưới — có thể tua lại, nghe nhiều lần tuỳ ý (khác với thi thật). Nộp bài để xem điểm và đáp án đúng ngay.</p>' +
       '<div class="meta-row">' +
         '<span class="meta-chip">' + d.parts.length + ' part</span>' +
         '<span class="meta-chip">' + totalQ + ' câu hỏi</span>' +
+        (hasResult ? '<span class="meta-chip" style="background:var(--green-bg);color:var(--green)">Đã làm: ' + existing.score + '/' + existing.total + '</span>' : '') +
       '</div>' +
       '<div class="btn-row">' +
-        '<button class="btn btn-primary" id="startBtn">Bắt đầu làm bài</button>' +
+        (hasResult ? '<a class="btn btn-primary" href="#/listen/' + testId + '/result" style="text-decoration:none;display:inline-flex;align-items:center">Xem lại kết quả</a>' : '') +
+        '<button class="btn ' + (hasResult ? 'btn-ghost' : 'btn-primary') + '" id="startBtn">' + (hasResult ? 'Làm lại từ đầu' : 'Bắt đầu làm bài') + '</button>' +
         '<a class="btn btn-ghost" href="#/home" style="text-decoration:none;display:inline-flex;align-items:center">Về trang chủ</a>' +
       '</div>';
     app.appendChild(panel);
