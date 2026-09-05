@@ -218,6 +218,27 @@
   .footer-note{ text-align:center; font-size:11.5px; color:var(--ink-soft); line-height:1.6; }
   .hidden{ display:none !important; }
   .crumb{ background:none; border:none; color:var(--ink-soft); font-size:13px; cursor:pointer; padding:0; text-decoration:underline; }
+
+  /* ---- strategy page ---- */
+  .time-table{ width:100%; border-collapse:collapse; font-size:13.5px; margin-top:10px; }
+  .time-table th, .time-table td{ text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); }
+  .time-table th{ color:var(--ink-soft); font-size:12px; text-transform:uppercase; letter-spacing:.04em; }
+  .time-table td.num{ text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .strategy-part{ border:1px solid var(--line); border-radius:12px; margin-bottom:10px; overflow:hidden; }
+  .strategy-part summary{ padding:12px 16px; cursor:pointer; font-weight:700; font-size:14.5px; list-style:none; }
+  .strategy-part summary::-webkit-details-marker{ display:none; }
+  .strategy-part summary::before{ content:"▸ "; color:var(--ink-soft); }
+  .strategy-part[open] summary::before{ content:"▾ "; }
+  .strategy-part .strategy-body{ padding:0 16px 16px; }
+  .strategy-part .strategy-body ul{ margin:0; padding-left:20px; }
+  .strategy-part .strategy-body li{ font-size:13.5px; line-height:1.7; margin-bottom:6px; }
+  .strategy-part .strategy-time{ display:inline-block; font-size:11.5px; font-weight:700; color:var(--red-ink); background:var(--amber-bg); border-radius:99px; padding:3px 10px; margin-bottom:10px; }
+  .strategy-section-label{ font-size:11px; font-weight:800; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.05em; margin:18px 0 8px; }
+  .strategy-section-label:first-child{ margin-top:0; }
+  .strategy-example{ background:var(--paper-2); border-left:3px solid var(--red); border-radius:8px; padding:10px 12px; margin-top:10px; font-size:13px; line-height:1.65; }
+  .strategy-example + .strategy-example{ margin-top:8px; }
+  .strategy-example .ex-label{ font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; color:var(--red-ink); display:block; margin-bottom:4px; }
+  .strategy-example .ex-quote{ font-style:italic; color:var(--ink-soft); }
 </style>
 </head>
 <body>
@@ -330,6 +351,7 @@
   function render(){
     var parts = parseHash();
     if(parts.length === 0 || parts[0] === "home"){ pageTitle.textContent = "Luyện Reading & Listening theo sách Cambridge IELTS"; return renderHome(); }
+    if(parts[0] === "strategy"){ pageTitle.textContent = "Chiến lược làm bài IELTS"; return renderStrategy(); }
     if(parts[0] === "test" && parts[1] && parts[2] === "intro"){ return renderIntro(parts[1]); }
     if(parts[0] === "test" && parts[1] && parts[2] === "take"){ return renderTake(parts[1]); }
     if(parts[0] === "test" && parts[1] && parts[2] === "result"){ return renderResult(parts[1]); }
@@ -345,6 +367,16 @@
     app.innerHTML = "";
     var lede = el("p", "lede", "Chọn Test để luyện Reading hoặc Listening — tự chấm điểm ngay khi nộp bài, Reading có thêm ôn từ vựng lấy đúng trong bài vừa làm.");
     app.appendChild(lede);
+
+    var strategyLink = el("a", "book-card");
+    strategyLink.href = "#/strategy";
+    strategyLink.innerHTML =
+      '<div class="book-badge">📋</div>' +
+      '<div class="book-body">' +
+        '<div class="book-title">Chiến lược làm bài IELTS</div>' +
+        '<p class="book-desc">Cách phân bổ thời gian và mẹo xử lý từng dạng câu hỏi Reading &amp; Listening — đọc trước khi luyện đề.</p>' +
+      '</div>';
+    app.appendChild(strategyLink);
 
     var readingBook = el("a", "book-card");
     readingBook.href = "#/test/cambridge19-test1/intro";
@@ -399,6 +431,181 @@
       listenGrid.appendChild(tile);
     });
     app.appendChild(listenBook);
+  }
+
+  // ---------- STRATEGY (chiến lược làm bài — đọc trước khi luyện đề) ----------
+  var STRATEGY_META = [
+    "IELTS không trừ điểm câu sai — điền/tô đáp án cho MỌI câu trước khi hết giờ, kể cả khi phải đoán.",
+    "Kỹ năng quyết định band điểm không phải là biết nhiều từ, mà là nhận ra được từ/cụm đồng nghĩa (paraphrase): đề thi gần như không bao giờ lặp lại đúng từ trong bài, luôn diễn đạt lại theo cách khác. Học viên bị kẹt band vì cứ tìm từ giống hệt thay vì tìm ý giống nhau.",
+    "Luôn tuân thủ đúng giới hạn số từ (vd. NO MORE THAN THREE WORDS) — viết thừa từ bị tính sai dù đúng ý, kể cả khi đã hiểu đúng bài.",
+    "Khi điền từ vào chỗ trống (completion), điền xong luôn đọc lại cả câu để tự kiểm tra ngữ pháp (số ít/nhiều, thì động từ, từ loại) có khớp không — đây là cách tự phát hiện đáp án sai nhanh nhất.",
+    "Nghe/đọc lướt để nắm ý chính trước, sau đó mới quay lại tìm chi tiết theo đúng câu hỏi — không cố hiểu tuyệt đối từng chữ ngay từ đầu, sẽ hết giờ.",
+  ];
+  var STRATEGY_TIME_READING = [
+    { label: "Bài đọc 1", minutes: "~15–17 phút", note: "Thường dễ nhất — làm nhanh để dành thời gian cho bài 3." },
+    { label: "Bài đọc 2", minutes: "~18–20 phút", note: "Độ khó trung bình, bắt đầu xuất hiện câu suy luận." },
+    { label: "Bài đọc 3", minutes: "~23–25 phút", note: "Khó nhất, nhiều câu suy luận và từ vựng học thuật." },
+  ];
+  var STRATEGY_TIME_LISTENING = [
+    { label: "Section 1 — Hội thoại đời thường", note: "Dễ nhất — tập trung chính tả tên riêng, số điện thoại, địa chỉ." },
+    { label: "Section 2 — 1 người nói (hướng dẫn/giới thiệu)", note: "Hay có dạng điền bản đồ/sơ đồ." },
+    { label: "Section 3 — 2–4 người thảo luận học thuật", note: "Khó hơn vì nhiều giọng, nhiều ý kiến trái chiều." },
+    { label: "Section 4 — Bài giảng học thuật (1 người nói)", note: "Khó nhất — không nghỉ giữa câu, từ vựng chuyên ngành." },
+  ];
+  // Mỗi dạng khớp đúng với 1 "type" trong TYPE_INFO (dùng chung phân loại với trang kết quả),
+  // và mỗi ví dụ lấy nguyên văn câu hỏi/đáp án/trích đoạn thật từ Cambridge 19 – Test 1
+  // (xem cambridge19-test1.js / listening-test1.js) — không dựng ví dụ hư cấu.
+  var STRATEGY_READING_TIPS = [
+    { label: "Trắc nghiệm 1 đáp án (Multiple Choice)", tips: [
+      "Đọc câu hỏi trước, gạch chân từ khoá, tìm đúng đoạn chứa thông tin liên quan rồi mới đọc kỹ 4 đáp án.",
+      "Không đọc đáp án trước khi xác định được đoạn liên quan — dễ bị nhiễu bởi các đáp án cố tình gây \"na ná đúng\".",
+    ], examples: [
+      { q: "Test 1, Câu 27: \"What point does the writer make about misinformation in the first paragraph?\" — đáp án đúng: D. There may be a number of reasons for the spread of misinformation.",
+        quote: "Đoạn 1: “people deceive others to gain a strategic advantage, to motivate others to action, or to protect interpersonal bonds.”",
+        why: "Bài liệt kê 3 lý do cụ thể (lợi thế chiến lược, thúc đẩy hành động, bảo vệ mối quan hệ) — không hề dùng cụm \"a number of reasons\". Đáp án D chính là cách diễn đạt lại (paraphrase) 3 lý do đó thành 1 ý khái quát. Đáp án A (\"gần đây mới có\") và B (\"dễ nhận biết\") đều bị loại ngay vì đoạn 1 không nói vậy." },
+    ]},
+    { label: "True/False/Not Given & Yes/No/Not Given", tips: [
+      "Phân biệt rõ FALSE/NO (bài nói ngược lại với câu hỏi) và NOT GIVEN (bài không hề đề cập) — đây là lỗi phổ biến nhất khiến band bị kẹt ở 6.0–6.5.",
+      "Đã đọc kỹ đúng đoạn liên quan mà vẫn không thấy thông tin khớp hay ngược lại → chọn NOT GIVEN, đừng tự suy diễn thêm.",
+    ], examples: [
+      { q: "Test 1, Câu 1 (FALSE): \"People had expected Andy Murray to become the world's top tennis player for at least five years before 2016.\"",
+        quote: "Đoạn 1: “he had been regarded as a talented outsider who entered but never won the major tournaments.”",
+        why: "Bài nói NGƯỢC LẠI: trước 2016 Murray chỉ được xem là \"kẻ ngoài cuộc tài năng nhưng chưa từng vô địch\", không phải được kỳ vọng thành số 1 thế giới suốt 5 năm → FALSE, không phải NOT GIVEN." },
+      { q: "Test 1, Câu 3 (NOT GIVEN): \"Most of the world's top players take a professional racket stringer on tour with them.\"",
+        quote: "Đoạn 3: “Touring professionals have their rackets customised to their specific needs.”",
+        why: "Bài chỉ nói vợt được tuỳ chỉnh theo nhu cầu, KHÔNG hề nhắc ai làm việc đó hay có mang thợ riêng đi cùng không — đừng tự suy ra, đáp án là NOT GIVEN." },
+    ]},
+    { label: "Nối thông tin theo đoạn (Matching Information / Features)", tips: [
+      "Câu hỏi dạng này KHÔNG theo thứ tự bài đọc (khác Multiple Choice hay T/F/NG) — phải quét toàn bài, không đọc tuần tự.",
+      "Tìm tên riêng, số liệu, năm tháng cụ thể được nhắc trong câu hỏi để định vị nhanh đoạn chứa thông tin, rồi mới đọc kỹ đoạn đó.",
+    ], examples: [
+      { q: "Test 1, Câu 14: \"Which paragraph contains information about... the king of Alashiya denying responsibility for the raids?\" — đáp án đúng: D.",
+        quote: "Đoạn D: “the king of Alashiya... rejected any connection to, or responsibility for, the raids.”",
+        why: "Câu hỏi có tên riêng \"Alashiya\" — quét nhanh 7 đoạn A–G tìm tên này thay vì đọc tuần tự từng đoạn, sẽ định vị được đáp án trong vài giây." },
+    ]},
+    { label: "Chọn 2 đáp án (Choose TWO letters)", tips: [
+      "Đọc hết cả 5 lựa chọn trước khi chốt 2 đáp án — tránh chọn vội đáp án đầu tiên \"nghe có vẻ đúng\" rồi bỏ sót đáp án còn lại.",
+      "2 đáp án đúng thường nằm rải rác ở 2 vị trí khác nhau trong bài, không nằm cạnh nhau.",
+    ], examples: [
+      { q: "Test 1, Câu 20–21: \"Which TWO... statements does the writer make about inhabitants of the Mediterranean?\" — đáp án đúng: B và D.",
+        quote: "B — “local knowledge helped pirates evade capture”; D — người dân Địa Trung Hải phụ thuộc vào nguồn lợi biển do đất canh tác hạn chế.",
+        why: "2 ý này nằm ở 2 đoạn khác nhau trong bài, không liền kề nhau — phải đọc và ghi nhớ nhiều đoạn cùng lúc thay vì tìm cả 2 đáp án ở cùng 1 chỗ." },
+    ]},
+    { label: "Điền từ trực tiếp từ bài (Completion)", tips: [
+      "Xác định từ loại cần điền (danh từ/động từ/tính từ) dựa vào ngữ pháp của câu, trước khi đi tìm từ trong bài.",
+      "Luôn tuân thủ đúng giới hạn số từ ghi trong đề (vd. ONE WORD ONLY) — đây là lỗi mất điểm oan phổ biến nhất dù hiểu đúng bài.",
+    ], examples: [
+      { q: "Test 1, Câu 8: \"Mike and Bob Bryan made changes to the types of ___ used on their racket frames.\" — đáp án: paint.",
+        quote: "Đoạn 3: “they experimented with paint, using it to add or remove weight from certain parts of the racket head.”",
+        why: "Chỗ trống đứng sau \"types of\" nên chắc chắn cần một DANH TỪ số ít — bài dùng đúng từ \"paint\", chỉ cần khớp đúng từ loại và đúng giới hạn 1 từ." },
+    ]},
+    { label: "Điền từ trong ngân hàng từ (Bank Fill)", tips: [
+      "Khác với Completion thường, ở đây các lựa chọn A–J thường bị diễn đạt lại so với bài — phải hiểu nghĩa, không tìm từ giống hệt.",
+      "Xác định từ loại cần điền trước (danh từ/cụm danh từ...) để loại bớt các lựa chọn sai từ loại trong ngân hàng.",
+    ], examples: [
+      { q: "Test 1, Câu 31: \"Although people have ___ to misinformation...\" (chọn 1 cụm trong ngân hàng A–J) — đáp án: G. frequent exposure.",
+        quote: "Đoạn 5: “it is fairly routine for individuals to come across information that is false.”",
+        why: "Bài không hề dùng cụm \"frequent exposure\" — đó là cách diễn đạt lại của \"fairly routine... come across\". Khác hẳn ví dụ Câu 8 ở trên (từ giống hệt), đây bắt buộc phải hiểu NGHĨA mới chọn đúng." },
+    ]},
+  ];
+  var STRATEGY_LISTENING_TIPS = [
+    { label: "Section 1 — Hội thoại đời thường", tips: [
+      "Tập trung cao độ vào chính tả tên riêng, số điện thoại, mã bưu điện, ngày tháng — đây thường là nơi mất điểm oan nhất dù nghe hiểu tốt nội dung.",
+      "Dùng thời gian đọc trước câu hỏi (trước khi audio bắt đầu) để đoán loại thông tin cần điền (tên người, số, địa chỉ...).",
+    ], examples: [
+      { q: "Test 1, Câu 1: \"Area: ___ hectares\" — đáp án: 69.",
+        quote: "Transcript Part 1: “the park covers 170 acres, that's 69 hectares.”",
+        why: "Bẫy kinh điển: người nói nhắc liền 2 con số (170 acres và 69 hectares). Câu hỏi ghi rõ đơn vị \"hectares\" nên phải chọn đúng số đi kèm đơn vị đó (69), không phải số nghe được trước tiên (170)." },
+      { q: "Test 1, Câu 9: \"Cost per child: £___\" — đáp án: 4.95.",
+        quote: "Transcript Part 1: “if there are over 30, it costs £4.95 for each child who attends on the day.”",
+        why: "Con số đi kèm điều kiện (\"nếu trên 30 trẻ\") — phải nghe trọn câu chứ không chỉ chăm chăm bắt số, nếu không sẽ ghi nhầm giá áp dụng cho trường hợp khác." },
+    ]},
+    { label: "Section 2 — 1 người nói (hướng dẫn/giới thiệu)", tips: [
+      "Nếu là dạng bản đồ/sơ đồ: nghe kỹ các từ chỉ hướng (next to, opposite, between, at the end of...) và xác định điểm mốc (landmark) được nhắc để định vị.",
+      "Bài nói thường đi theo trình tự cố định trên bản đồ — bám sát trình tự đó khi điền đáp án, đừng nhảy cóc.",
+    ], examples: [
+      { q: "Test 1, Câu 18: xác định vị trí \"the adventure playground\" trên bản đồ — đáp án: điểm B (phía bắc hồ lớn).",
+        quote: "Transcript Part 2: “the adventure playground — that's at the northern end of the larger lake, in a bend on the path.”",
+        why: "Minh hoạ đúng kỹ thuật: nghe từ chỉ hướng (\"northern end\") + mốc cụ thể (\"the larger lake\") để định vị chính xác trên bản đồ, thay vì đoán theo cảm tính." },
+    ]},
+    { label: "Section 3 — 2–4 người thảo luận học thuật", tips: [
+      "Chú ý các từ thể hiện đồng ý/phản đối/đổi ý (actually, but, I disagree...) — đáp án đúng thường nằm ở Ý KẾT LUẬN sau cùng về chủ đề đó, không phải câu mở đầu.",
+      "Nhiều giọng nói xen kẽ nên dễ mất tập trung — bám sát đúng chủ đề đang được hỏi trong câu hỏi hiện tại.",
+    ], examples: [
+      { q: "Test 1, Câu 29: ý kiến về \"Development of 'ghost kitchens' for takeaway food\" — đáp án: F. Most people know little about this.",
+        quote: "Transcript Part 3: Marie giải thích ghost kitchen là gì, rồi kết luận: “But people aren't aware of that — it's all kept very quiet.”",
+        why: "Đáp án nằm ở CÂU KẾT LUẬN sau khi giải thích khái niệm, không phải ở câu đầu tiên nhắc đến chủ đề — đúng như nguyên tắc \"bắt ý sau cùng\"." },
+    ]},
+    { label: "Section 4 — Bài giảng học thuật (1 người nói)", tips: [
+      "Không có điểm dừng giữa câu để nghỉ — nếu lỡ 1–2 câu, bỏ ngay và bắt kịp bằng từ khoá của câu tiếp theo, đừng cố nhớ lại vì sẽ mất luôn cả cụm câu sau.",
+      "Từ vựng chuyên ngành xuất hiện nhiều — nếu nghe không rõ 1 từ, vẫn có thể suy ra đáp án từ ngữ cảnh xung quanh và ngữ pháp của chỗ trống.",
+    ], examples: [
+      { q: "Test 1, Câu 31: \"...stones beneath the bog surface were once ___.\" — đáp án: walls.",
+        quote: "Transcript Part 4: “he was constantly hitting against what seemed to be rows of stones. He realised that these must be walls.”",
+        why: "Đáp án xuất hiện NGAY SAU từ khoá \"stones\" đã có trong đề — phải bắt đúng thời điểm đó vì bài giảng trôi liên tục không dừng lại chờ." },
+    ]},
+  ];
+
+  function renderStrategy(){
+    app.innerHTML = "";
+
+    var metaPanel = el("div", "panel");
+    metaPanel.innerHTML = '<h2 style="margin:0 0 10px">📋 Chiến lược làm bài IELTS</h2>' +
+      '<p class="desc" style="color:var(--ink-soft);font-size:13.5px;line-height:1.6;margin:0 0 12px">Đúc kết từ kinh nghiệm luyện thi IELTS band cao — đọc qua trước khi luyện đề để biết cách phân bổ thời gian và né các lỗi mất điểm phổ biến nhất.</p>';
+    var metaList = el("ul", "expert-list");
+    STRATEGY_META.forEach(function(m){ metaList.appendChild(el("li", null, esc(m))); });
+    metaPanel.appendChild(metaList);
+    app.appendChild(metaPanel);
+
+    var timePanel = el("div", "panel");
+    timePanel.innerHTML = '<h2 style="margin:0 0 4px">⏱ Phân bổ thời gian</h2>';
+    timePanel.appendChild(el("div", "strategy-section-label", "Reading — 60 phút / 3 bài / 40 câu"));
+    var readingTableHtml = '<table class="time-table"><thead><tr><th>Phần</th><th>Thời gian</th><th>Ghi chú</th></tr></thead><tbody>';
+    STRATEGY_TIME_READING.forEach(function(row){
+      readingTableHtml += '<tr><td>' + esc(row.label) + '</td><td class="num">' + esc(row.minutes) + '</td><td>' + esc(row.note) + '</td></tr>';
+    });
+    readingTableHtml += '</tbody></table>';
+    timePanel.appendChild(el("div", null, readingTableHtml));
+    timePanel.appendChild(el("div", "strategy-section-label", "Listening — 4 section / 40 câu / nghe 1 lần duy nhất"));
+    var listenTableHtml = '<table class="time-table"><thead><tr><th>Phần</th><th>Ghi chú</th></tr></thead><tbody>';
+    STRATEGY_TIME_LISTENING.forEach(function(row){
+      listenTableHtml += '<tr><td>' + esc(row.label) + '</td><td>' + esc(row.note) + '</td></tr>';
+    });
+    listenTableHtml += '</tbody></table>';
+    timePanel.appendChild(el("div", null, listenTableHtml));
+    app.appendChild(timePanel);
+
+    function buildAccordionPanel(title, groups){
+      var panel = el("div", "panel");
+      panel.appendChild(el("h2", null, title));
+      groups.forEach(function(g){
+        var details = el("details", "strategy-part");
+        details.appendChild(el("summary", null, esc(g.label)));
+        var body = el("div", "strategy-body");
+        var ul = el("ul");
+        g.tips.forEach(function(t){ ul.appendChild(el("li", null, esc(t))); });
+        body.appendChild(ul);
+        (g.examples || []).forEach(function(ex){
+          var box = el("div", "strategy-example");
+          box.innerHTML = '<span class="ex-label">📌 Ví dụ thật từ Test 1</span>' +
+            '<div>' + esc(ex.q) + '</div>' +
+            '<div class="ex-quote">' + esc(ex.quote) + '</div>' +
+            '<div style="margin-top:4px"><b>Vì sao:</b> ' + esc(ex.why) + '</div>';
+          body.appendChild(box);
+        });
+        details.appendChild(body);
+        panel.appendChild(details);
+      });
+      return panel;
+    }
+    app.appendChild(buildAccordionPanel("🎯 Mẹo Reading theo từng dạng câu hỏi", STRATEGY_READING_TIPS));
+    app.appendChild(buildAccordionPanel("🎧 Mẹo Listening theo từng Section", STRATEGY_LISTENING_TIPS));
+
+    var btnPanel = el("div", "panel");
+    btnPanel.innerHTML = '<div class="btn-row">' +
+      '<a class="btn btn-primary" href="#/home" style="text-decoration:none;display:inline-flex;align-items:center">Về trang chủ luyện đề</a>' +
+      '</div>';
+    app.appendChild(btnPanel);
   }
 
   // ---------- TEST INTRO ----------
