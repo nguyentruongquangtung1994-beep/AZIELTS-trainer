@@ -1606,3 +1606,158 @@ window.AZ_READING_DATA['cambridge19-test2'] = {
     }
   ]
 };
+
+window.AZ_READING_DATA['cambridge19-test2'].evidence = {
+  "1": {
+    "loc": "Đoạn 2",
+    "quote": "driven by both the forward and backward strokes of the piston, while the gear mechanism it was connected to produced rotary motion"
+  },
+  "2": {
+    "loc": "Đoạn 3",
+    "quote": "The demand for coal, which was a relatively cheap energy source, grew rapidly during the Industrial Revolution"
+  },
+  "3": {
+    "loc": "Đoạn 4",
+    "quote": "the work performed in small workshops or even homes by individual spinners, weavers and dyers"
+  },
+  "4": {
+    "loc": "Đoạn 4",
+    "quote": "relatively little labour was required to produce cloth"
+  },
+  "5": {
+    "loc": "Đoạn 5",
+    "quote": "This method was cheaper and produced metals that were of a higher quality"
+  },
+  "6": {
+    "loc": "Đoạn 5",
+    "quote": "the expansion of the railways from the 1830s"
+  },
+  "7": {
+    "loc": "Đoạn 7",
+    "quote": "overcrowded cities suffered from pollution and inadequate sanitation"
+  },
+  "8": {
+    "loc": "Đoạn 3",
+    "quote": "steam-powered boats and ships were widely used to carry goods along Britain’s canals — không nói tốc độ tăng trưởng của mạng lưới kênh đào"
+  },
+  "9": {
+    "loc": "Đoạn 5",
+    "quote": "This method was cheaper and produced metals that were of a higher quality — ngược lại với \"chi phí tăng\""
+  },
+  "10": {
+    "loc": "Đoạn 6",
+    "quote": "Samuel Morse and other inventors worked on their own versions in the United States — không so sánh độ tin cậy"
+  },
+  "11": {
+    "loc": "Đoạn 8",
+    "quote": "improved the standard of living for the middle and upper classes, many poor people continued to struggle"
+  },
+  "12": {
+    "loc": "Đoạn 8",
+    "quote": "they feared that unskilled machine operators were robbing them of their livelihood"
+  },
+  "13": {
+    "loc": "Đoạn 9",
+    "quote": "other Luddites were arrested, and dozens were hanged or transported to Australia — không đề cập sự cảm thông của người dân địa phương"
+  },
+  "14": {
+    "loc": "Đoạn D",
+    "quote": "both affect the production of adrenaline and cortisol"
+  },
+  "15": {
+    "loc": "Đoạn F",
+    "quote": "there are many ways athletes can ensure they respond positively under pressure"
+  },
+  "16": {
+    "loc": "Đoạn A",
+    "quote": "which she later attributed to ‘the accumulation of the excitement and the buzz’"
+  },
+  "17": {
+    "loc": "Đoạn C",
+    "quote": "Research shows that the challenge states lead to good performance, while threat states lead to poorer performance"
+  },
+  "18": {
+    "loc": "Đoạn F",
+    "quote": "the language that they and others – such as coaches or parents – use"
+  },
+  "19": {
+    "loc": "Đoạn B",
+    "quote": "any potential dangers such as injury"
+  },
+  "20": {
+    "loc": "Đoạn D",
+    "quote": "cortisol has been associated with more unsuccessful serves and greater anxiety"
+  },
+  "21": {
+    "loc": "Đoạn F",
+    "quote": "helping them see a higher heart rate as excitement, rather than nerves"
+  },
+  "22": {
+    "loc": "Đoạn F",
+    "quote": "Developing psychological skills, such as visualisation, can also help decrease physiological responses to threat"
+  },
+  "23_24": {
+    "loc": "Đoạn A, C",
+    "quote": "she began having difficulty regulating her breathing and heart rate during a match ... a much larger audience, higher expectations and facing a more skilful opponent, may all have led her to feel there were greater demands being placed on her at Wimbledon"
+  },
+  "25_26": {
+    "loc": "Đoạn E",
+    "quote": "The intensity with which a person experiences anxiety depends on the demands and resources they have ... repeated episodes of anxiety coupled with negative responses can increase risk of heart disease and depression"
+  },
+  "27": {
+    "loc": "Đoạn 1",
+    "quote": "She was the only woman to win the Fields Medal – the mathematical equivalent of a Nobel prize"
+  },
+  "28": {
+    "loc": "Đoạn 1",
+    "quote": "maths wasn’t her interest – reading was"
+  },
+  "29": {
+    "loc": "Đoạn 1",
+    "quote": "He shared a famous maths problem from a magazine that fascinated her – and she was hooked"
+  },
+  "30": {
+    "loc": "Đoạn 2",
+    "quote": "resolute in the face of setbacks"
+  },
+  "31": {
+    "loc": "Đoạn 2",
+    "quote": "the most rewarding part is the “Aha” moment, the excitement of discovery and enjoyment of understanding something new"
+  },
+  "32": {
+    "loc": "Đoạn 2",
+    "quote": "That trail took her to the heights of original research into mathematics"
+  },
+  "33": {
+    "loc": "Đoạn 3",
+    "quote": "Most Nobel prize winners were unexceptional in childhood"
+  },
+  "34": {
+    "loc": "Đoạn 3",
+    "quote": "He struggled at work initially, but he kept plugging away — không nói do thiếu tự tin"
+  },
+  "35": {
+    "loc": "Đoạn 5",
+    "quote": "the jury is out on giftedness being innate"
+  },
+  "36": {
+    "loc": "Đoạn 10",
+    "quote": "Most people say it is the intellect which makes a great scientist. They are wrong: it is character — không nói ông thất vọng"
+  },
+  "37": {
+    "loc": "Đoạn 10",
+    "quote": "it’s just that I stay with problems longer"
+  },
+  "38": {
+    "loc": "Đoạn 6",
+    "quote": "develop the attributes of high performers – curiosity, persistence and hard work"
+  },
+  "39": {
+    "loc": "Đoạn 7",
+    "quote": "he doesn’t think unique and innate talents are at the heart of performance"
+  },
+  "40": {
+    "loc": "Đoạn 9",
+    "quote": "an adult or adults in the child’s life who valued and supported education"
+  }
+};
