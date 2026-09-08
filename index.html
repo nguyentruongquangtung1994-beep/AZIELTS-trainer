@@ -321,6 +321,14 @@
 <script src="./listening18-test2.js"></script>
 <script src="./listening18-test3.js"></script>
 <script src="./listening18-test4.js"></script>
+<script src="./cambridge16-test1.js"></script>
+<script src="./cambridge16-test2.js"></script>
+<script src="./cambridge16-test3.js"></script>
+<script src="./cambridge16-test4.js"></script>
+<script src="./listening16-test1.js"></script>
+<script src="./listening16-test2.js"></script>
+<script src="./listening16-test3.js"></script>
+<script src="./listening16-test4.js"></script>
 <script>
 (function(){
   "use strict";
@@ -373,6 +381,20 @@
     {id:"cambridge18-test2", available:true},
     {id:"cambridge18-test3", available:true},
     {id:"cambridge18-test4", available:true},
+  ];
+
+  var TESTS_REGISTRY_16 = [
+    {id:"cambridge16-test1", available:true},
+    {id:"cambridge16-test2", available:true},
+    {id:"cambridge16-test3", available:true},
+    {id:"cambridge16-test4", available:true},
+  ];
+
+  var LISTEN_TESTS_REGISTRY_16 = [
+    {id:"cambridge16-test1-listening", label:"Test 1", available:true},
+    {id:"cambridge16-test2-listening", label:"Test 2", available:true},
+    {id:"cambridge16-test3-listening", label:"Test 3", available:true},
+    {id:"cambridge16-test4-listening", label:"Test 4", available:true},
   ];
 
   var LISTEN_TESTS_REGISTRY_18 = [
@@ -691,6 +713,60 @@
       listenGrid18.appendChild(tile);
     });
     app.appendChild(listenBook18);
+
+    var readingBook16 = el("a", "book-card");
+    readingBook16.href = "#/test/cambridge16-test1/intro";
+    readingBook16.innerHTML =
+      '<div class="book-badge">C16</div>' +
+      '<div class="book-body">' +
+        '<div class="book-title">Cambridge IELTS 16 — Reading</div>' +
+        '<p class="book-desc">4 test, mỗi test 3 bài đọc / 40 câu hỏi.</p>' +
+        '<div class="test-grid" style="margin-top:14px"></div>' +
+      '</div>';
+    var readGrid16 = readingBook16.querySelector(".test-grid");
+    TESTS_REGISTRY_16.forEach(function(t){
+      var d = getData(t.id);
+      var tile = document.createElement(t.available ? "a" : "div");
+      tile.className = "test-tile";
+      if(t.available){
+        tile.href = "#/test/" + t.id + "/intro";
+        var attempt = STATE.attempts[t.id];
+        tile.innerHTML = "<b>" + esc(d.test) + "</b><span>" + d.passages.length + " bài đọc &middot; " + totalQuestions(d) + " câu &middot; " + d.durationMin + " phút</span>" +
+          (attempt && attempt.score !== undefined ? '<div class="soon-chip" style="background:var(--green-bg);color:var(--green)">Đã làm: ' + attempt.score + '/40</div>' : "");
+      } else {
+        tile.setAttribute("disabled","disabled");
+        tile.innerHTML = "<b>" + (t.label||t.id) + "</b><span>3 bài đọc &middot; 40 câu &middot; 60 phút</span><div class='soon-chip'>Sắp có</div>";
+      }
+      readGrid16.appendChild(tile);
+    });
+    app.appendChild(readingBook16);
+
+    var listenBook16 = el("a", "book-card");
+    listenBook16.href = "#/listen/cambridge16-test1-listening/intro";
+    listenBook16.innerHTML =
+      '<div class="book-badge">C16</div>' +
+      '<div class="book-body">' +
+        '<div class="book-title">Cambridge IELTS 16 — Listening</div>' +
+        '<p class="book-desc">4 test, mỗi test 4 part / 40 câu hỏi, nghe audio gốc.</p>' +
+        '<div class="test-grid" style="margin-top:14px"></div>' +
+      '</div>';
+    var listenGrid16 = listenBook16.querySelector(".test-grid");
+    LISTEN_TESTS_REGISTRY_16.forEach(function(t){
+      var ld = getListenData(t.id);
+      var tile = document.createElement(t.available ? "a" : "div");
+      tile.className = "test-tile";
+      if(t.available && ld){
+        tile.href = "#/listen/" + t.id + "/intro";
+        var attempt = STATE.attempts[t.id];
+        tile.innerHTML = "<b>" + esc(ld.test) + "</b><span>" + ld.parts.length + " part &middot; " + totalQuestions(ld) + " câu &middot; nghe audio</span>" +
+          (attempt && attempt.score !== undefined ? '<div class="soon-chip" style="background:var(--green-bg);color:var(--green)">Đã làm: ' + attempt.score + '/40</div>' : "");
+      } else {
+        tile.setAttribute("disabled","disabled");
+        tile.innerHTML = "<b>" + (t.label||t.id) + "</b><span>4 part &middot; 40 câu &middot; nghe audio</span><div class='soon-chip'>Sắp có</div>";
+      }
+      listenGrid16.appendChild(tile);
+    });
+    app.appendChild(listenBook16);
   }
 
   // ---------- STRATEGY (chiến lược làm bài — đọc trước khi luyện đề) ----------
