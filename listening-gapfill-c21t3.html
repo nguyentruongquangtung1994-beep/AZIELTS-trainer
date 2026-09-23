@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Cam 21 Test 3 Listening Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Literata:opsz,wght@7..72,400;7..72,600&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+:root{
+  --red:#C8102E; --red-soft:#FBE9EC; --ink:#18110F; --paper:#FFFFFF; --ground:#F8F4F3;
+  --muted:#6E605C; --line:#E8DCD9; --ok:#1C7A4B; --ok-soft:#E3F3EA; --bad:#B8430B; --bad-soft:#FCEBDD;
+  --chip:#FFFFFF; --shadow:0 1px 2px rgba(24,17,15,.06);
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Literata",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  color-scheme:dark; --red:#FF5A6E; --red-soft:#3A1419; --ink:#F3EAE8; --paper:#1E1817; --ground:#141010;
+  --muted:#B3A29E; --line:#3A2E2C; --ok:#5CD39A; --ok-soft:#12301F; --bad:#FF9A5C; --bad-soft:#3A2012; --chip:#261E1D; --shadow:none;}}
+:root[data-theme="dark"]{
+  color-scheme:dark; --red:#FF5A6E; --red-soft:#3A1419; --ink:#F3EAE8; --paper:#1E1817; --ground:#141010;
+  --muted:#B3A29E; --line:#3A2E2C; --ok:#5CD39A; --ok-soft:#12301F; --bad:#FF9A5C; --bad-soft:#3A2012; --chip:#261E1D; --shadow:none;}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.9;padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:860px;margin:0 auto}
+header.top{padding-block:28px 12px}
+.brand{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:700}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,5vw,42px);line-height:1.05;margin:.25em 0 .2em;text-wrap:balance;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:15px;line-height:1.6;margin:0;max-width:62ch}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);display:flex;gap:6px;flex-wrap:wrap;padding-block:12px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.tab{font-family:var(--display);font-weight:700;font-size:14px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.tab .cnt{font-family:var(--mono);font-size:11px;opacity:.7;margin-left:6px}
+.tab:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.panel-head{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:end;justify-content:space-between;margin-bottom:14px}
+.panel-head h2{font-family:var(--display);font-size:24px;line-height:1.15;margin:0;text-wrap:balance}
+.panel-head .kicker{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.1em;text-transform:uppercase}
+.player{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin-bottom:16px;box-shadow:var(--shadow)}
+.player audio{flex:1 1 260px;min-width:0;height:40px}
+.speed{display:flex;gap:4px}
+.speed button{font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:8px;padding:4px 8px;cursor:pointer}
+.speed button.on{background:var(--red);color:#fff;border-color:var(--red)}
+.how{font-size:14px;line-height:1.6;color:var(--muted);margin:0 0 18px}
+.transcript{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px clamp(16px,4vw,32px)}
+.transcript p{margin:0 0 1.1em}
+.spk{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.08em;color:var(--red);margin-right:6px}
+.gap{display:inline-flex;align-items:center;gap:3px;vertical-align:baseline;border:1.5px dashed var(--line);border-radius:10px;padding:1px 4px;margin:1px 1px;line-height:1.4;flex-wrap:wrap}
+.gap .num{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--red);padding:0 3px}
+.opt{font-family:var(--body);font-size:15px;border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:7px;padding:1px 8px;cursor:pointer;line-height:1.5}
+.opt:hover{border-color:var(--ink)}
+.opt .l{font-family:var(--mono);font-size:10px;color:var(--muted);margin-right:4px}
+.opt.sel{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.opt.sel .l{color:inherit;opacity:.7}
+.gap.done{border-style:solid}
+.gap.right{border-color:var(--ok);background:var(--ok-soft)}
+.gap.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.is-ans{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.is-wrong{text-decoration:line-through;background:transparent;color:var(--bad);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.gap.done .opt:not(.is-ans):not(.is-wrong){opacity:.35}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px}
+.btn{font-family:var(--display);font-weight:700;font-size:15px;border-radius:10px;padding:10px 18px;cursor:pointer;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink)}
+.btn.primary{background:var(--red);border-color:var(--red);color:#fff}
+.score{font-family:var(--mono);font-size:14px;font-weight:700;padding:6px 12px;border-radius:999px;background:var(--red-soft);color:var(--red)}
+.progress{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.wgap{display:inline-flex;align-items:center;gap:3px;vertical-align:baseline;border:1.5px dashed var(--red);border-radius:10px;padding:1px 4px;margin:1px;line-height:1.4;flex-wrap:wrap;max-width:100%}
+.wgap .num{font-family:var(--mono);font-size:11px;font-weight:700;color:#fff;background:var(--red);border-radius:5px;padding:0 5px}
+.wgap input{font-family:var(--body);font-size:15px;border:0;border-bottom:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:0 2px;max-width:70vw;outline:none}
+.wgap input:focus{border-bottom-color:var(--red)}
+.wgap .wc{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.wgap.right{border-style:solid;border-color:var(--ok);background:var(--ok-soft)}
+.wgap.wrong{border-style:solid;border-color:var(--bad);background:var(--bad-soft)}
+.wgap.wrong input{text-decoration:line-through;color:var(--bad)}
+.wgap .fix{font-weight:600;color:var(--ok);font-size:15px}
+/* dictation */
+.dgroup{margin-bottom:26px}
+.dgroup h3{font-family:var(--display);font-size:18px;margin:0 0 10px}
+.dcard{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;display:grid;gap:10px}
+.drow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.drow .dn{font-family:var(--mono);font-weight:700;color:var(--red);font-size:13px;min-width:2.2em}
+.sbtn{font-family:var(--display);font-weight:700;font-size:13px;border:1px solid var(--line);background:var(--ground);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer}
+.sbtn:hover{border-color:var(--ink)}
+textarea{width:100%;font-family:var(--body);font-size:16px;line-height:1.6;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--ground);color:var(--ink);resize:vertical;min-height:64px}
+.diff{font-size:15px;line-height:1.9}
+.diff .w-ok{color:var(--ok)}
+.diff .w-bad{color:var(--bad);text-decoration:line-through}
+.diff .w-miss{background:var(--ok-soft);color:var(--ok);border-radius:4px;padding:0 3px;font-weight:600}
+.diff .pct{font-family:var(--mono);font-size:12px;font-weight:700;margin-left:8px;color:var(--muted)}
+.note{font-size:13px;color:var(--muted);line-height:1.6}
+footer{margin-top:40px;font-size:12px;color:var(--muted);font-family:var(--mono)}
+@media (prefers-reduced-motion:no-preference){.gap.done{transition:background .2s}}
+[hidden]{display:none!important}
+body{margin:0}
+.crumb{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.crumb a{font-family:var(--display);font-weight:700;font-size:14px;color:var(--ink);text-decoration:none;border-bottom:1.5px solid var(--red)}
+.nextnav{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.nextnav a{font-family:var(--display);font-weight:700;font-size:15px;color:var(--ink);text-decoration:none;border:1.5px solid var(--line);background:var(--paper);border-radius:10px;padding:10px 16px}
+.nextnav a:hover{border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:22px}
+.card{display:grid;gap:10px;align-content:start;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;text-decoration:none;color:var(--ink)}
+.card:hover{border-color:var(--ink)}
+.card:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.card .tn{font-family:var(--display);font-weight:800;font-size:26px;line-height:1}
+.card ol{margin:0;padding-left:18px;font-size:14px;line-height:1.55;color:var(--muted)}
+.card .meta{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:11px;font-weight:700;border-radius:999px;padding:3px 9px;background:var(--ground);border:1px solid var(--line)}
+.chip.w{color:var(--red);border-color:var(--red)}
+.bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);width:0}
+.card .pg{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.steps{margin:26px 0 0;padding:16px 20px;background:var(--paper);border:1px solid var(--line);border-radius:14px;font-size:14.5px;line-height:1.7}
+.steps b{font-family:var(--display)}
+</style>
+</head>
+<body>
+<div id="gateScreen" style="position:fixed;inset:0;z-index:999;background:var(--ground);display:flex;align-items:center;justify-content:center;padding:20px;">
+  <form id="gateForm" style="max-width:340px;width:100%;text-align:center;font-family:var(--display);">
+    <div class="brand">AZEnglish · Listening Lab</div>
+    <h2 style="font-size:22px;margin:8px 0 6px">Cambridge IELTS 21</h2>
+    <p style="font-size:13px;color:var(--muted);margin:0 0 16px;line-height:1.5">Nhập mật khẩu được cung cấp để vào làm bài.</p>
+    <input id="gatePassword" type="password" placeholder="Mật khẩu" autocomplete="off" style="width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font-size:15px;margin-bottom:10px;background:var(--paper);color:var(--ink)">
+    <button type="submit" class="btn primary" style="width:100%">Vào làm bài</button>
+    <p id="gateError" style="color:var(--red);font-size:13px;margin:10px 0 0" hidden>Sai mật khẩu, thử lại nhé.</p>
+  </form>
+</div>
+<script>
+(function(){
+  var GATE_PASSWORD = "azenglish2026", GATE_KEY = "az_rt_gate_ok", g = document.getElementById("gateScreen");
+  try{ if(localStorage.getItem(GATE_KEY) === "1") g.style.display = "none"; }catch(e){}
+  document.getElementById("gateForm").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    if(document.getElementById("gatePassword").value === GATE_PASSWORD){ try{ localStorage.setItem(GATE_KEY,"1"); }catch(e){} g.style.display="none"; }
+    else document.getElementById("gateError").hidden = false;
+  });
+})();
+</script>
+
+
+<div class="wrap">
+  <header class="top">
+    <div class="crumb"><div class="brand">AZEnglish · Listening Lab · Band 3.0–5.0+</div><a href="listening-gapfill-c21.html">← Tất cả Test</a></div>
+    <h1>Cambridge 21 · Test 3 — Nghe, chọn & viết</h1>
+    <p class="sub">Toàn bộ transcript 4 Part, giống bản in trên lớp: 203 ô chọn A/B/C và 51 ô tự viết. Bài làm được lưu trên trình duyệt của bạn — tải lại trang không mất.</p>
+  </header>
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+  <main id="main"></main>
+  <nav class="nextnav"><a href="listening-gapfill-c21t1.html">Test 1 →</a><a href="listening-gapfill-c21t2.html">Test 2 →</a><a href="listening-gapfill-c21t4.html">Test 4 →</a><a href="listening-gapfill-c21.html">Trang chủ</a></nav>
+  <footer>Nguồn: Cambridge IELTS 21, Test 3 — transcript & audio gốc. Tài liệu lớp học nội bộ AZEnglish.</footer>
+</div>
+
+<script>
+const DATA = {"test": 3, "parts": [{"num": 1, "title": "Ferry to Shetland Islands", "audio": "cambridge21-test3-part1.mp3", "segs": ["TAMMY:   You know when you went to the Shetland ", {"n": 1, "opts": ["Islands", "Hills", "Highlands"], "ans": 0}, " last year, Paul? Did you go by ", {"n": 2, "opts": ["fairy", "ferry", "train"], "ans": 1}, " or did you fly?\n\nPAUL:   We went by ferry, Tammy. I prefer ", {"n": 3, "opts": ["riding", "diving", "driving"], "ans": 2}, " to flying – the journey feels like part of the ", {"n": 4, "opts": ["holiday", "hobby", "holy day"], "ans": 0}, ".\n\nTAMMY:   Mmm. Which ferry company did you use?\n\nPAUL:   There's only one – it's called ", {"n": 5, "opts": ["Southern", "Nordic", "Northern"], "ans": 2}, " Ferries. The ferries all leave from ", {"n": 6, "opts": ["Aberdare", "Aberdeen", "Edinburgh"], "ans": 1}, ".\n\nTAMMY:   How ", {"n": 7, "opts": ["frequent", "frequently", "fresh"], "ans": 0}, " are they?\n\nPAUL:   The service is pretty ", {"n": 8, "opts": ["delighted", "united", "limited"], "ans": 2}, " – there's only one ferry leaving every ", {"n": 9, "opts": ["morning", "evening", "even"], "ans": 1}, " in summer anyway, ", {"n": 10, "opts": ["several", "seven", "eleven"], "ans": 1}, " days a week – I'm not sure about the ", {"n": 11, "opts": ["winter", "winner", "summer"], "ans": 0}, " months. They may only run on ", {"n": 12, "opts": ["fourteen", "forty", "four"], "ans": 2}, " or five days then.\n\nTAMMY:   OK. So it's an ", {"n": 13, "opts": ["overnight", "overseas", "overland"], "ans": 0}, " trip. I quite like that idea. Leaving at night and ", {"n": 14, "opts": ["working", "walking", "waking"], "ans": 2}, " up as you arrive on the island. Can you remember how much you paid for your tickets?\n\nPAUL:   They were really ", {"n": 15, "opts": ["chief", "cheap", "chip"], "ans": 1}, " and four people and a car worked out at just under £", {"n": 16, "opts": ["250", "215", "205"], "ans": 0}, ".\n\nTAMMY:   Really? I was expecting it to be more like £", {"n": 17, "opts": ["14", "400", "40"], "ans": 1}, " during the ", {"n": 18, "opts": ["park", "pick", "peak"], "ans": 2}, " season.\n\nPAUL:   So was I. It's great ", {"n": 19, "opts": ["volume", "value", "valley"], "ans": 1}, ". It's a good idea to book in ", {"n": 20, "opts": ["advance", "a dance", "advice"], "ans": 0}, " because I think they get booked up quite quickly – especially during the ", {"n": 21, "opts": ["skill", "cool", "school"], "ans": 2}, " holidays.\n\nTAMMY:   Yes, I suppose so. ", {"n": 1, "ans": "I'm just not 100% sure", "w": 5, "kind": "write"}, " ", {"n": 2, "ans": "of our plans yet", "w": 4, "kind": "write"}, ". What if I had to ", {"n": 22, "opts": ["cancer", "council", "cancel"], "ans": 2}, "?\n\nPAUL:   ", {"n": 3, "ans": "That could be a problem", "w": 5, "kind": "write"}, ". ", {"n": 4, "ans": "I don't think", "w": 3, "kind": "write"}, " it's their policy to give ", {"n": 23, "opts": ["refunds", "refills", "reforms"], "ans": 0}, " – just a ", {"n": 24, "opts": ["vulture", "voucher", "teacher"], "ans": 1}, " – ", {"n": 5, "ans": "which you can use", "w": 4, "kind": "write"}, " ", {"n": 6, "ans": "at a later date", "w": 4, "kind": "write"}, ". But you have to cancel a ", {"n": 25, "opts": ["month", "mouth", "moment"], "ans": 0}, " in advance ", {"n": 7, "ans": "to get that", "w": 3, "kind": "write"}, ".\n\nTAMMY:   Right. Well we need to ", {"n": 8, "ans": "make up our minds quickly", "w": 5, "kind": "write"}, " then.\n\nPAUL:   You'd want to book a ", {"n": 26, "opts": ["cabinet", "cabin", "cable"], "ans": 1}, " too. We booked too late to get a cabin with a ", {"n": 27, "opts": ["widow", "view", "window"], "ans": 2}, ". They're more expensive but much nicer than the ", {"n": 28, "opts": ["dinner", "outer", "inner"], "ans": 2}, " cabins. You don't have to book a cabin at all but I think it's worth paying for. They also have ", {"n": 29, "opts": ["luxury", "lottery", "lecture"], "ans": 0}, " cabins, which are only for two people and have a ", {"n": 30, "opts": ["tea", "TV", "DVD"], "ans": 1}, " – but I wouldn't bother with those.\n\nTAMMY:   No, I agree.\n\nPAUL:   The only other thing I can think of is to make sure you bring ", {"n": 31, "opts": ["snacks", "sacks", "snakes"], "ans": 0}, " for the kids. The selection on board is quite limited and not that ", {"n": 32, "opts": ["heavy", "healthy", "wealthy"], "ans": 1}, " either.\n\nTAMMY:   Mmm. What about ", {"n": 33, "opts": ["why", "wife", "wifi"], "ans": 2}, " on board? Is that any good?\n\nPAUL:   Not really. So it's best to bring some ", {"n": 34, "opts": ["books", "boots", "games"], "ans": 0}, " for them.\n\nTAMMY:   OK. We may need to bring the ", {"n": 35, "opts": ["doll", "duck", "dog"], "ans": 2}, " if I can't get anyone to look after him.\n\nPAUL:   We brought ours and it was fine. The ", {"n": 36, "opts": ["channels", "kennels", "tunnels"], "ans": 1}, " on board are OK – they're quite big – you just need to provide a ", {"n": 37, "opts": ["blanket", "bucket", "basket"], "ans": 0}, ".\n\nTAMMY:   Uhuh. Sounds good.\n\nPAUL:   It was all very easy really – and it was quite an ", {"n": 38, "opts": ["advantage", "adventure", "venture"], "ans": 1}, " for the kids. They loved being on the sea at night and in the morning keeping a lookout for ", {"n": 39, "opts": ["doctors", "dolls", "dolphins"], "ans": 2}, " – we saw loads.\n\nTAMMY:   Oh, the kids would love that!\n\nPAUL:   One other thing. We arrived in Aberdeen hours before the ferry was due to leave so we decided to go somewhere else rather than hang around at the ", {"n": 40, "opts": ["port", "post", "part"], "ans": 0}, " for so long.\n\nTAMMY:   Where did you go?\n\nPAUL:   ", {"n": 41, "opts": ["Drain", "Dream", "Drum"], "ans": 2}, " Castle.\n\nTAMMY:   I've never heard of it. Is that spelt like the instrument?\n\nPAUL:   Yeah. It's really worth visiting. It's got an impressive ", {"n": 42, "opts": ["power", "tower", "towel"], "ans": 1}, " and beautiful gardens and ancient ", {"n": 43, "opts": ["wetland", "wonderland", "woodland"], "ans": 2}, ".\n\nTAMMY:   Sounds lovely. Does it have a restaurant?\n\nPAUL:   It's only got a ", {"n": 44, "opts": ["coffee", "copy", "gift"], "ans": 0}, " shop – no restaurant. We looked up restaurants in the area and found an ", {"n": 45, "opts": ["Indian", "Italian", "Iranian"], "ans": 1}, " one in a village nearby. I can check the name of it for you if you're interested.\n\nTAMMY:   Oh thanks Paul that would be ...."]}, {"num": 2, "title": "Street Food Businesses", "audio": "cambridge21-test3-part2.mp3", "segs": ["Good evening everyone. My name's Jon and I run ", {"n": 46, "opts": ["Web", "Veg", "Vet"], "ans": 1}, " Out, a street food business selling ", {"n": 47, "opts": ["vegan", "vegetable", "vague"], "ans": 0}, " food. Since ", {"n": 48, "opts": ["2002", "2020", "2012"], "ans": 2}, " I've been travelling all around the country cooking vegan food in my converted ", {"n": 49, "opts": ["bus", "fan", "van"], "ans": 2}, " and selling it at all kinds of ", {"n": 50, "opts": ["outdoor", "indoor", "outer"], "ans": 0}, " events. I'm here to give you some ", {"n": 51, "opts": ["device", "advice", "advise"], "ans": 1}, " based on my experience.\n\nThe good news is that there's never been a better time to start your own street food business. Street food continues to grow in ", {"n": 52, "opts": ["population", "popularity", "possibility"], "ans": 1}, ". I think there are a couple of reasons for this. The first is that street food is a ", {"n": 53, "opts": ["reason", "relation", "reaction"], "ans": 2}, " against fast food. Street food ranges from high quality ", {"n": 54, "opts": ["burgers", "burglars", "bakers"], "ans": 0}, " to vegan ", {"n": 55, "opts": ["curries", "carries", "cherries"], "ans": 0}, " and everything in between. But while fast food is cheap and ", {"n": 56, "opts": ["cheesy", "easy", "busy"], "ans": 1}, " to find, it's not particularly good for you. It's also the ", {"n": 57, "opts": ["shame", "game", "same"], "ans": 2}, " everywhere. What you get with street food on the other hand is something different. People like the idea of trying something they can't get anywhere else. They also like seeing food prepared in front of them and which hasn't come straight out of a ", {"n": 58, "opts": ["freezer", "freezing", "fridge"], "ans": 0}, ".\n\nYou need to think about the best place to sell your street food. People always think music ", {"n": 59, "opts": ["fashions", "festivals", "carnivals"], "ans": 1}, " are an obvious place to start but the cost of ", {"n": 60, "opts": ["painting", "reading", "renting"], "ans": 2}, " a space can be huge. And there's always a lot of ", {"n": 61, "opts": ["composition", "completion", "competition"], "ans": 2}, ". Food markets, on the other hand, are great because customers are always really interested in food and give great ", {"n": 62, "opts": ["feedback", "backpack", "feed"], "ans": 0}, ". And if you can get a spot in your local ", {"n": 63, "opts": ["pack", "park", "bar"], "ans": 1}, " – fantastic. Usually very ", {"n": 64, "opts": ["relaxed", "related", "relaxing"], "ans": 0}, " but with lots of customers passing by. Once you get established you'll start getting asked to do parties – which can be really ", {"n": 65, "opts": ["changing", "challenging", "charming"], "ans": 1}, " but lots of fun. Having street food at ", {"n": 66, "opts": ["birthdays", "meetings", "weddings"], "ans": 2}, " has become quite fashionable too – but you need to really know what you're doing as everything needs to be ", {"n": 67, "opts": ["perfume", "perfect", "prefect"], "ans": 1}, ".\n\nSetting up a street food business costs a lot less than opening a restaurant or café but you'll have to buy some basic ", {"n": 68, "opts": ["equipment", "environment", "requirement"], "ans": 0}, ". I'd try to get things like hobs and ", {"n": 69, "opts": ["fringes", "bridges", "fridges"], "ans": 2}, " ", {"n": 70, "opts": ["sick", "second", "secret"], "ans": 1}, " hand if you can. You can replace them with better ", {"n": 71, "opts": ["quantity", "equality", "quality"], "ans": 2}, " stuff if your business takes off. Renting is another option but you'll end up spending more money rather than saving it.\n\n", {"n": 9, "ans": "You've probably got", "w": 3, "kind": "write"}, " a good idea about the food ", {"n": 10, "ans": "you're planning to sell", "w": 4, "kind": "write"}, ". ", {"n": 11, "ans": "I expect you've done", "w": 4, "kind": "write"}, " some ", {"n": 72, "opts": ["research", "reach", "resource"], "ans": 0}, " ", {"n": 12, "ans": "to find out if anyone else", "w": 6, "kind": "write"}, " is selling a ", {"n": 73, "opts": ["similar", "simple", "signal"], "ans": 0}, " product. And ", {"n": 13, "ans": "you'll have thought about", "w": 4, "kind": "write"}, " ", {"n": 14, "ans": "any possible", "w": 2, "kind": "write"}, " allergies to ", {"n": 74, "opts": ["notes", "nuts", "nets"], "ans": 1}, " ", {"n": 15, "ans": "or eggs", "w": 2, "kind": "write"}, " etc. But ", {"n": 16, "ans": "there's one thing", "w": 3, "kind": "write"}, " people ", {"n": 17, "ans": "don't always think about", "w": 4, "kind": "write"}, " and that's ", {"n": 18, "ans": "how you're going to serve it", "w": 6, "kind": "write"}, ". On a ", {"n": 75, "opts": ["plane", "place", "plate"], "ans": 2}, "? ", {"n": 19, "ans": "In a bag", "w": 3, "kind": "write"}, "? ", {"n": 20, "ans": "Will you", "w": 2, "kind": "write"}, " provide a ", {"n": 76, "opts": ["fork", "folk", "fox"], "ans": 0}, "? ", {"n": 21, "ans": "Will it all be", "w": 4, "kind": "write"}, " easily ", {"n": 77, "opts": ["reliable", "recycled", "recyclable"], "ans": 2}, " ", {"n": 22, "ans": "or reusable", "w": 2, "kind": "write"}, "? ", {"n": 23, "ans": "It's got to be", "w": 4, "kind": "write"}, " easy to eat and look ", {"n": 78, "opts": ["active", "attractive", "interactive"], "ans": 1}, " or customers won't come back.\n\nOnce you get started, you should be prepared for things to go wrong. Every business faces problems and here are a few examples from street food businesses that I know.\n\nMy friends who run Thai ", {"n": 79, "opts": ["Basil", "Basin", "Brazil"], "ans": 0}, " started by ", {"n": 80, "opts": ["struggling", "juggling", "jogging"], "ans": 1}, " their street food business with their day jobs in a restaurant. Their work-life ", {"n": 81, "opts": ["ballot", "valance", "balance"], "ans": 2}, " was non-existent as they were working til ", {"n": 82, "opts": ["midnight", "middle", "midday"], "ans": 0}, " in the restaurant all week and then took their food ", {"n": 83, "opts": ["track", "truck", "trunk"], "ans": 1}, " to markets on their days off.\n\nThe owners of Basque found it was hard to make a ", {"n": 84, "opts": ["product", "project", "profit"], "ans": 2}, " because the price of ", {"n": 85, "opts": ["fish", "fees", "fresh"], "ans": 0}, " – essential for some of their dishes – was so high. And it was hard to charge customers a lot more for those dishes. So they had to stop focussing on fish dishes and include more ", {"n": 86, "opts": ["veterinary", "vegetarian", "Victorian"], "ans": 1}, " food.\n\nThe owners of Lou's kitchen were making ", {"n": 87, "opts": ["sandals", "salaries", "salads"], "ans": 2}, " to order from their van and some of their dishes were quite complicated. At one of their first events they ended up with people standing in a long ", {"n": 88, "opts": ["cue", "queue", "key"], "ans": 1}, " for more than ", {"n": 89, "opts": ["15", "5", "50"], "ans": 0}, " minutes – and many of them lost ", {"n": 90, "opts": ["passion", "patients", "patience"], "ans": 2}, ". So make sure whatever you offer can be served quickly and efficiently.\n\nThe owners of Chip Chop had found a perfect ", {"n": 91, "opts": ["venue", "avenue", "menu"], "ans": 0}, " near a ", {"n": 92, "opts": ["bench", "beach", "bridge"], "ans": 1}, " where there weren't any other street food trucks. But what they hadn't realised was that they'd need a special ", {"n": 93, "opts": ["lesson", "lease", "licence"], "ans": 2}, " – which individual businesses don't need at markets or festivals. It was a complicated process and in the end they gave up.\n\nSo I hope that's given you a flavour of ...."]}, {"num": 3, "title": "Discussion: Ethical and Sustainable Fashion", "audio": "cambridge21-test3-part3.mp3", "segs": ["MADDY:   Shall we go through our research for our sustainable fashion ", {"n": 94, "opts": ["protest", "project", "product"], "ans": 1}, "?\n\nRYAN:   Good idea. I think I've done enough ", {"n": 95, "opts": ["reading", "meeting", "writing"], "ans": 0}, " now.\n\nMADDY:   Me too. I've learnt such a lot about what sustainability actually means.\n\nRYAN:   Mmm, same for me with ", {"n": 96, "opts": ["electrical", "ethnical", "ethical"], "ans": 2}, " fashion. I didn't really ", {"n": 97, "opts": ["associate", "appreciate", "approach"], "ans": 1}, " the difference between that and sustainable fashion before doing this research.\n\nMADDY:   I know – most people use these terms ", {"n": 98, "opts": ["independently", "interestingly", "interchangeably"], "ans": 2}, " – but in fact the difference is quite ", {"n": 99, "opts": ["distinct", "distant", "instinct"], "ans": 0}, " when you think about it. Sustainable relates to the ", {"n": 100, "opts": ["equipment", "environment", "employment"], "ans": 1}, " and ethical relates more to the way workers or ", {"n": 101, "opts": ["animals", "animators", "annuals"], "ans": 0}, " are treated.\n\nRYAN:   I totally understand why people get ", {"n": 102, "opts": ["confined", "confessed", "confused"], "ans": 2}, ", though. There are so many other terms used – like 'eco-friendly', which is actually quite ", {"n": 103, "opts": ["meaningful", "meaningless", "endless"], "ans": 1}, ".\n\nMADDY:   And the way companies use these terms when describing their products doesn't help. They're often deliberately ", {"n": 104, "opts": ["vegan", "vogue", "vague"], "ans": 2}, ", I think, and don't provide enough information about how their products are made.\n\nRYAN:   Yes.\n\nMADDY:   It was interesting to read about the ", {"n": 105, "opts": ["debates", "details", "dates"], "ans": 0}, " surrounding ", {"n": 106, "opts": ["wool", "wood", "wall"], "ans": 0}, " production and how ethical and sustainable that is. It's generally considered to be sustainable because it's a ", {"n": 107, "opts": ["neutral", "national", "natural"], "ans": 2}, " product.\n\nRYAN:   And it also ", {"n": 108, "opts": ["last", "lasts", "loses"], "ans": 1}, " a long time and can be recycled. All very positive. But I wasn't ", {"n": 109, "opts": ["confined", "convicted", "convinced"], "ans": 2}, " by the argument that wool production is sustainable because it doesn't use many ", {"n": 110, "opts": ["chemists", "chemicals", "comicals"], "ans": 1}, " – what about all the fungicides and ", {"n": 111, "opts": ["insecticides", "insects", "pesticides"], "ans": 0}, " used in ", {"n": 112, "opts": ["ship", "cheap", "sheep"], "ans": 2}, " farming?\n\nMADDY:   Good point. And I couldn't find any ", {"n": 113, "opts": ["evidence", "residence", "evident"], "ans": 0}, " for the claim about sheep farming being better for the environment than ", {"n": 114, "opts": ["kettle", "cattle", "castle"], "ans": 1}, " farming.\n\nRYAN:   No – they're both really bad. I read different reports about how unethical it is to even ", {"n": 115, "opts": ["shear", "share", "shave"], "ans": 0}, " sheep. Some people say it's ", {"n": 116, "opts": ["crude", "cruel", "cool"], "ans": 1}, " but as long as the sheep are kept in good ", {"n": 117, "opts": ["position", "tradition", "condition"], "ans": 2}, " I can't see anything wrong with it.\n\nMADDY:   Me neither.\n\nRYAN:   ", {"n": 24, "ans": "Shall we talk about", "w": 4, "kind": "write"}, " some of the ", {"n": 25, "ans": "semi-synthetic", "w": 1, "kind": "write"}, " new ", {"n": 118, "opts": ["fabricates", "factories", "fabrics"], "ans": 2}, " now?\n\nMADDY:   OK, ", {"n": 26, "ans": "let's do that", "w": 3, "kind": "write"}, ".\n\nRYAN:   ", {"n": 27, "ans": "Let's start with", "w": 3, "kind": "write"}, " Lyocell, ", {"n": 28, "ans": "I've been", "w": 2, "kind": "write"}, " reading about that.\n\nMADDY:   Yeah, ", {"n": 29, "ans": "that's the one produced", "w": 4, "kind": "write"}, " from the ", {"n": 119, "opts": ["pump", "pulp", "pub"], "ans": 1}, " of eucalyptus trees, ", {"n": 30, "ans": "isn't it", "w": 2, "kind": "write"}, "?\n\nRYAN:   Yes, and ", {"n": 31, "ans": "what happens with that", "w": 4, "kind": "write"}, " is really ", {"n": 120, "opts": ["impressive", "impressed", "expressive"], "ans": 0}, ". Over ", {"n": 121, "opts": ["19", "99", "90"], "ans": 1}, "% of dissolving ", {"n": 122, "opts": ["angels", "agendas", "agents"], "ans": 2}, " ", {"n": 32, "ans": "used in the manufacturing process", "w": 5, "kind": "write"}, " ", {"n": 33, "ans": "are used again", "w": 3, "kind": "write"}, ".\n\nMADDY:   Yeah. Now, ", {"n": 34, "ans": "there are a few", "w": 4, "kind": "write"}, " semi-synthetic fabrics that ", {"n": 35, "ans": "I'd never heard of", "w": 4, "kind": "write"}, ". Like Cupro, for example.\n\nRYAN:   Made from byproducts of the ", {"n": 123, "opts": ["cotton", "cutting", "carton"], "ans": 0}, " industry to create a kind of vegan ", {"n": 124, "opts": ["silk", "milk", "silver"], "ans": 0}, ". But I'm not sure how sustainable this really is as there are so many reports of ", {"n": 125, "opts": ["solution", "population", "pollution"], "ans": 2}, " caused by the manufacturing process.\n\nMADDY:   Mmm. It doesn't compare ", {"n": 126, "opts": ["fairly", "favourably", "famously"], "ans": 1}, " with all the other sustainable fabrics we've looked at, no.\n\nRYAN:   Bamboo is one fabric we're all familiar with. But I didn't know that it was only ", {"n": 127, "opts": ["original", "orange", "organic"], "ans": 2}, " bamboo that's truly sustainable.\n\nMADDY:   Me neither. Apparently, the manufacturing process for a significant proportion of bamboo is chemically quite ", {"n": 128, "opts": ["extensive", "intensive", "expensive"], "ans": 1}, " – which obviously can be quite damaging.\n\nRYAN:   EcoVero is an example of a semi-synthetic fabric which is becoming really ", {"n": 129, "opts": ["popular", "polar", "regular"], "ans": 0}, ".\n\nMADDY:   Probably because manufacturing causes ", {"n": 130, "opts": ["50", "15", "5"], "ans": 0}, " percent fewer emissions and takes up half as much ", {"n": 131, "opts": ["enemy", "energetic", "energy"], "ans": 2}, " as ", {"n": 132, "opts": ["convenient", "conventional", "international"], "ans": 1}, " fabrics. That saves production costs as well as being better for the environment.\n\nRYAN:   That's true. I think demand for ", {"n": 133, "opts": ["cook", "cork", "cake"], "ans": 1}, " will continue to grow. It works really well in vegan ", {"n": 134, "opts": ["shows", "shirts", "shoes"], "ans": 2}, " and bags.\n\nMADDY:   Mmm and it's the only fabric that's fundamentally sustainable – the cork trees it comes from are ", {"n": 135, "opts": ["renewable", "removable", "reliable"], "ans": 0}, " and the product itself is both recyclable and ", {"n": 136, "opts": ["biodegradable", "degradable", "breakable"], "ans": 0}, " – which is unique.\n\nRYAN:   And the ", {"n": 137, "opts": ["heating", "harvesting", "harassing"], "ans": 1}, " process is actually good for the trees. There are no ", {"n": 138, "opts": ["outsides", "upsides", "downsides"], "ans": 2}, " to using this source at all.\n\nMADDY:   ", {"n": 139, "opts": ["Hamp", "Help", "Hemp"], "ans": 2}, " is another really good sustainable fabric from a natural source.\n\nRYAN:   Yes. Did you know that clothes made from hemp protect the wearer from the ", {"n": 140, "opts": ["sun", "sea", "son"], "ans": 0}, " and it's also ", {"n": 141, "opts": ["bacterial", "antibacterial", "antibiotic"], "ans": 1}, "?\n\nMADDY:   No, I didn't. But I did read that it's quite hard to ", {"n": 142, "opts": ["glow", "go", "grow"], "ans": 2}, ", so perhaps that's why it's not as common as you'd think.\n\nRYAN:   I'm sure that'll change."]}, {"num": 4, "title": "Invasive Species", "audio": "cambridge21-test3-part4.mp3", "segs": ["Today I'm going to talk about ", {"n": 143, "opts": ["invasive", "expensive", "invisible"], "ans": 0}, " species. Let me start by saying what an invasive species is and what it's not. Invasive species are any animal or plant that is ", {"n": 144, "opts": ["produced", "introduced", "reduced"], "ans": 1}, " into an environment by humans, and which is then ", {"n": 145, "opts": ["helpful", "harmful", "harmless"], "ans": 1}, " to that environment. It's important to be clear that not all introduced species are invasive. Many introduced – or non-native – species ", {"n": 146, "opts": ["arrive", "drive", "thrive"], "ans": 2}, " in new areas without posing any threat.\n\nIn some cases, invasive species have changed the natural world beyond ", {"n": 147, "opts": ["recognition", "decision", "reception"], "ans": 0}, ", so let's look at the different ways they can be problematic. First of all, invasive species may eat native species, or sometimes they may bring a ", {"n": 148, "opts": ["disease", "decrease", "disguise"], "ans": 0}, " with them, which native species have never faced before and therefore have no ", {"n": 149, "opts": ["fences", "defences", "differences"], "ans": 1}, " against. Often the invasive species ", {"n": 150, "opts": ["bread", "bleed", "breed"], "ans": 2}, " very quickly – which further adds to the problem of native species losing their ", {"n": 151, "opts": ["sauces", "courses", "sources"], "ans": 2}, " of food. Species invasions are one of the biggest causes of damage in an ", {"n": 152, "opts": ["ecosystem", "economy", "system"], "ans": 0}, ", actually putting its ", {"n": 153, "opts": ["arrival", "survival", "revival"], "ans": 1}, " at risk.\n\nSo, ", {"n": 36, "ans": "how do", "w": 2, "kind": "write"}, " invasive species spread? ", {"n": 37, "ans": "Without a doubt", "w": 3, "kind": "write"}, ", ", {"n": 38, "ans": "the biggest cause", "w": 3, "kind": "write"}, " is human ", {"n": 154, "opts": ["captivity", "activist", "activity"], "ans": 2}, ". ", {"n": 39, "ans": "This could be", "w": 3, "kind": "write"}, " ", {"n": 155, "opts": ["international", "intentional", "emotional"], "ans": 1}, ", or it could be ", {"n": 156, "opts": ["accidental", "occidental", "incidental"], "ans": 0}, ", ", {"n": 40, "ans": "such as when people", "w": 4, "kind": "write"}, " who've been ", {"n": 41, "ans": "on holiday in another country", "w": 5, "kind": "write"}, " ", {"n": 42, "ans": "come back with", "w": 3, "kind": "write"}, ", say, the ", {"n": 157, "opts": ["seats", "seeds", "weeds"], "ans": 1}, " of plants ", {"n": 43, "ans": "on their clothes or shoes", "w": 5, "kind": "write"}, ". ", {"n": 44, "ans": "Plants and animals", "w": 3, "kind": "write"}, ", especially ", {"n": 158, "opts": ["insects", "inspects", "incense"], "ans": 0}, ", ", {"n": 45, "ans": "arrive in or on", "w": 4, "kind": "write"}, " the ", {"n": 159, "opts": ["car", "carpet", "cargo"], "ans": 2}, " of ships, ", {"n": 46, "ans": "and then escape into", "w": 4, "kind": "write"}, " their new 'home'. But ", {"n": 47, "ans": "sometimes humans deliberately", "w": 3, "kind": "write"}, " move animals and plants ", {"n": 48, "ans": "around the world", "w": 3, "kind": "write"}, ", for example to use them to control ", {"n": 160, "opts": ["pests", "tests", "pets"], "ans": 0}, " on farms, or to be ", {"n": 161, "opts": ["bets", "pets", "pests"], "ans": 1}, ". ", {"n": 49, "ans": "This can go very wrong", "w": 5, "kind": "write"}, " if those animals and plants move into ", {"n": 162, "opts": ["wide", "mild", "wild"], "ans": 2}, " settings and ", {"n": 50, "ans": "start breeding", "w": 2, "kind": "write"}, " or ", {"n": 51, "ans": "begin growing", "w": 2, "kind": "write"}, " in ways that weren't predicted.\n\nLet's now look at an example of an invasive species here in Australia: Rhinella marina is a species of ", {"n": 163, "opts": ["toe", "road", "toad"], "ans": 2}, " that was deliberately introduced from ", {"n": 164, "opts": ["Hanoi", "Hawaii", "Haiti"], "ans": 1}, " in ", {"n": 165, "opts": ["1935", "1925", "1953"], "ans": 0}, " as a form of ", {"n": 166, "opts": ["logical", "biographical", "biological"], "ans": 2}, " control. It was hoped that the toads would eat the grey-backed ", {"n": 167, "opts": ["needles", "beetles", "bottles"], "ans": 1}, " responsible for destroying crops of ", {"n": 168, "opts": ["sugar", "salt", "soya"], "ans": 0}, " on many of the plantations. At first, just a handful of toads were released by ", {"n": 169, "opts": ["scientists", "sciences", "specialists"], "ans": 0}, " into ", {"n": 170, "opts": ["Greenland", "Queensland", "Queenstown"], "ans": 1}, ", but this number soon grew as other states followed suit. Within two years, ", {"n": 171, "opts": ["26,000", "6,200", "62,000"], "ans": 2}, " young toads had been released into the wild. The toads did nothing to protect the plantations, but they did reproduce ", {"n": 172, "opts": ["rapidly", "rarely", "readily"], "ans": 0}, " and could soon be found all over the ", {"n": 173, "opts": ["southern", "northern", "eastern"], "ans": 1}, " half of the country. The toads are ", {"n": 174, "opts": ["famous", "prisoners", "poisonous"], "ans": 2}, " at every stage of their life ", {"n": 175, "opts": ["cycle", "circle", "style"], "ans": 0}, ", and anything that eats them will die.\n\nMy second example regarding invasive species is the United Kingdom. Actually, there are more than ", {"n": 176, "opts": ["tree", "thirty", "three"], "ans": 2}, "-thousand invasive species there, including some that are extremely ", {"n": 177, "opts": ["commons", "common", "comment"], "ans": 1}, ". Some invasive plants, such as Japanese ", {"n": 178, "opts": ["seaweed", "nutmeg", "knotweed"], "ans": 2}, ", have had a ", {"n": 179, "opts": ["dominating", "devastating", "decorating"], "ans": 1}, " impact on parts of the UK. Gardeners in the nineteenth century considered it a beautiful ", {"n": 180, "opts": ["ornamental", "orange", "environmental"], "ans": 0}, " plant – which it is, when it's kept under control – but it soon spread into the ", {"n": 181, "opts": ["countryside", "coastline", "country"], "ans": 0}, " and remains a problem even to this day as it's so hard to ", {"n": 182, "opts": ["educate", "eradicate", "radiate"], "ans": 1}, ". Another invasive plant is rhododendrons, which can be found in UK parks and ", {"n": 183, "opts": ["wonderlands", "wetlands", "woodlands"], "ans": 2}, ". Their introduction dates back to ", {"n": 184, "opts": ["1763", "1736", "1673"], "ans": 0}, ", but they're now seen as harmful because they block out so much ", {"n": 185, "opts": ["life", "night", "light"], "ans": 2}, " that native wild flowers can't grow beneath them.\n\nAnd then there are grey ", {"n": 186, "opts": ["squares", "squirrels", "squids"], "ans": 1}, ", which are one invasive species almost everyone in the UK will have come across. They were brought to the UK from ", {"n": 187, "opts": ["South", "Central", "North"], "ans": 2}, " America and introduced to private ", {"n": 188, "opts": ["estimates", "estates", "states"], "ans": 1}, " around the ", {"n": 189, "opts": ["1870s", "1817s", "1780s"], "ans": 0}, " but are now found everywhere, from forests to city ", {"n": 190, "opts": ["squares", "streets", "squirrels"], "ans": 0}, ". Grey squirrels have ", {"n": 191, "opts": ["competed", "outcompeted", "outnumbered"], "ans": 1}, " the smaller, native red squirrels. They both eat the same food, and the grey squirrels carry a type of ", {"n": 192, "opts": ["iris", "fungus", "virus"], "ans": 2}, " that is deadly to the red squirrels. Red squirrel populations have ", {"n": 193, "opts": ["collapsed", "collected", "collapse"], "ans": 0}, ", and there are only a handful of sites left in the UK where they're found.\n\nAn important question for ", {"n": 194, "opts": ["biologists", "ecologists", "economists"], "ans": 1}, " worldwide is, what can we do to tackle the problem of invasive species? The first step in controlling invasive species is learning about the ", {"n": 195, "opts": ["behalf", "habit", "behaviour"], "ans": 2}, " of new species coming into the country. ", {"n": 196, "opts": ["Manufacturing", "Mentoring", "Monitoring"], "ans": 2}, " is an important part of this, so that we can know if the new species begins to have a ", {"n": 197, "opts": ["narrative", "negative", "native"], "ans": 1}, " impact in its new environment. One effective way to keep track of invasive species is to create a ", {"n": 198, "opts": ["database", "data bank", "debate"], "ans": 0}, " for the whole country. That way, all relevant ", {"n": 199, "opts": ["authorities", "authors", "activities"], "ans": 0}, " and agencies can share important information and take whatever action's needed. But the public also have a ", {"n": 200, "opts": ["visual", "virtual", "vital"], "ans": 2}, " role to play in this process. They should be encouraged to ", {"n": 201, "opts": ["paragraph", "photograph", "photocopy"], "ans": 1}, " harmful species – because this helps with ", {"n": 202, "opts": ["identity", "education", "identification"], "ans": 2}, " – and then to report when and where these were observed. But it's important to tell people not to ", {"n": 203, "opts": ["display", "destroy", "disturb"], "ans": 1}, " or even touch what they've found.\n\nNow, I'm going to move on to ..."]}], "mc": 203, "wr": 51};
+const $ = (s, r=document) => r.querySelector(s);
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const L = ["A","B","C"];
+const state = {};   // n -> chosen index
+const checked = {}; // part -> bool
+
+function storeGet(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}}
+function storeSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+Object.assign(state, storeGet(`c21t${DATA.test}-choices`)||{});
+
+function renderTabs(active){
+  const t = $("#tabs"); t.innerHTML = "";
+  DATA.parts.forEach(p => t.append(tab("p"+p.num, `Part ${p.num}`, 0, active)));
+}
+function tab(id, label, cnt, active){
+  const b = document.createElement("button");
+  b.className = "tab"; b.role = "tab"; b.setAttribute("aria-selected", id===active);
+  b.innerHTML = label;
+  b.onclick = () => show(id); return b;
+}
+
+function textToHTML(s){
+  return esc(s).replace(/(^|\n\n)(MAN|WOMAN|TUTOR|NADIA|FERGUS|PHIL|LUCY|TAMMY|PAUL|MADDY|RYAN|MIA|LEO):/g, (m,a,b)=>`${a}<span class="spk">${b}</span>`);
+}
+function renderPart(p){
+  // ráp segments thành HTML, tách đoạn theo \n\n
+  let html = "";
+  p.segs.forEach(s => {
+    if (typeof s === "string") { html += textToHTML(s); return; }
+    if (s.kind === "write") { html += `<span class="wgap" data-d="${s.n}"><span class="num">D${s.n}</span><input id="w${s.n}" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:${Math.max(5, s.ans.length*0.62+1)}em" aria-label="Ô D${s.n}, ${s.w} từ"><span class="wc">${s.w}</span><span class="fix" hidden></span></span>`; return; }
+    html += `<span class="gap" data-n="${s.n}"><span class="num">${s.n}</span>` +
+      s.opts.map((o,i)=>`<button class="opt" data-i="${i}"><span class="l">${L[i]}</span>${esc(o)}</button>`).join("") + `</span>`;
+  });
+  html = "<p>" + html.split("\n\n").join("</p><p>") + "</p>";
+  const mc = p.segs.filter(s=>typeof s!=="string"&&s.opts), wr = p.segs.filter(s=>typeof s!=="string"&&s.kind==="write");
+  const first = mc[0].n;
+  $("#main").innerHTML = `
+    <div class="panel-head"><div><div class="kicker">Part ${p.num} · Trắc nghiệm ${first}–${first+mc.length-1} · Tự viết D${wr[0].n}–D${wr[wr.length-1].n}</div><h2>${esc(p.title)}</h2></div>
+      <span class="progress" id="prog"></span></div>
+    <div class="player"><audio id="aud" controls preload="none" src="cambridge21-test${DATA.test}-part${p.num}.mp3"></audio>
+      <div class="speed" id="spd">${[0.75,0.9,1].map(r=>`<button data-r="${r}" class="${r===1?"on":""}">${r}×</button>`).join("")}</div></div>
+    <p class="how">Hai dạng ô: <b>ô số đen</b> — bấm chọn A, B hoặc C; <b>ô D đỏ</b> — tự gõ cụm từ nghe được (số nhỏ là số từ cần viết). Mẹo: lần 1 nghe 0.9×, lần 2 tốc độ thường rồi bấm <b>Chấm bài</b>.</p>
+    <article class="transcript" id="tx">${html}</article>
+    <div class="actions"><button class="btn primary" id="chk">Chấm bài</button><button class="btn" id="rst">Làm lại</button><span class="score" id="sc" hidden></span></div>`;
+  const aud = $("#aud");
+  $("#spd").onclick = e => { const b=e.target.closest("button"); if(!b) return; aud.playbackRate=+b.dataset.r; $("#spd").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b)); };
+  $("#tx").onclick = e => {
+    const b = e.target.closest(".opt"); if(!b || b.disabled) return;
+    const g = b.closest(".gap"); state[g.dataset.n] = +b.dataset.i; storeSet(`c21t${DATA.test}-choices`, state); paint(p);
+  };
+  $("#tx").oninput = e => { if(e.target.tagName==="INPUT"){ state[e.target.id] = e.target.value; storeSet(`c21t${DATA.test}-choices`, state); paint(p);} };
+  $("#tx").querySelectorAll("input").forEach(i => i.value = state[i.id] || "");
+  $("#chk").onclick = () => { checked[p.num]=true; paint(p); $("#sc").scrollIntoView({block:"nearest"}); };
+  $("#rst").onclick = () => { p.segs.forEach(s=>{ if(typeof s!=="string") delete state[s.kind==="write" ? "w"+s.n : s.n]; }); $("#tx").querySelectorAll("input").forEach(i=>i.value=""); storeSet(`c21t${DATA.test}-choices`, state); checked[p.num]=false; paint(p); };
+  paint(p);
+}
+const normW = s => (s||"").toLowerCase().replace(/[’‘]/g,"'").replace(/[^a-z0-9'£ -]/g," ").replace(/\s+/g," ").trim();
+function paint(p){
+  let done=0, right=0, wd=0, wr=0; const isC = !!checked[p.num];
+  const gaps = p.segs.filter(s=>typeof s!=="string" && s.opts), writes = p.segs.filter(s=>typeof s!=="string" && s.kind==="write");
+  gaps.forEach(s => {
+    const g = $(`.gap[data-n="${s.n}"]`); const ch = state[s.n];
+    if (ch!==undefined) done++; if (ch===s.ans) right++;
+    g.classList.toggle("done", isC); g.classList.toggle("right", isC && ch===s.ans); g.classList.toggle("wrong", isC && ch!==s.ans);
+    g.querySelectorAll(".opt").forEach((b,i) => {
+      b.classList.toggle("sel", !isC && ch===i);
+      b.classList.toggle("is-ans", isC && i===s.ans);
+      b.classList.toggle("is-wrong", isC && ch===i && i!==s.ans);
+      b.disabled = isC;
+    });
+  });
+  writes.forEach(s => {
+    const g = $(`.wgap[data-d="${s.n}"]`), inp = g.querySelector("input"), fix = g.querySelector(".fix");
+    const v = state["w"+s.n]||""; if (v.trim()) wd++; const ok = normW(v)===normW(s.ans); if (ok) wr++;
+    g.classList.toggle("right", isC && ok); g.classList.toggle("wrong", isC && !ok);
+    inp.readOnly = isC; fix.hidden = !(isC && !ok); fix.textContent = s.ans;
+  });
+  $("#prog").textContent = `Đã làm ${done}/${gaps.length} trắc nghiệm · ${wd}/${writes.length} tự viết`;
+  const sc = $("#sc"); sc.hidden = !isC;
+  if (isC) sc.textContent = `Trắc nghiệm ${right}/${gaps.length} · Tự viết ${wr}/${writes.length} · Tổng ${Math.round((right+wr)/(gaps.length+writes.length)*100)}%`;
+}
+
+/* ---------- Chép chính tả ---------- */
+const norm = s => s.toLowerCase().replace(/[’']/g,"'").replace(/[^a-z0-9'£\s-]/g," ").split(/\s+/).filter(Boolean);
+function lcsDiff(target, typed){
+  const a=norm(target), b=norm(typed), m=a.length, n=b.length;
+  const dp=Array.from({length:m+1},()=>Array(n+1).fill(0));
+  for(let i=m-1;i>=0;i--) for(let j=n-1;j>=0;j--) dp[i][j]= a[i]===b[j]? dp[i+1][j+1]+1 : Math.max(dp[i+1][j],dp[i][j+1]);
+  const out=[]; let i=0,j=0;
+  while(i<m||j<n){
+    if(i<m&&j<n&&a[i]===b[j]){out.push(["ok",b[j]]);i++;j++}
+    else if(j<n&&(i===m||dp[i][j+1]>=dp[i+1][j])){out.push(["bad",b[j]]);j++}
+    else {out.push(["miss",a[i]]);i++}
+  }
+  return {out, pct: m? Math.round(dp[0][0]/m*100):0};
+}
+let voice=null;
+function pickVoice(){ const vs=speechSynthesis.getVoices(); voice = vs.find(v=>/en-GB/i.test(v.lang)) || vs.find(v=>/^en/i.test(v.lang)) || null; }
+if ("speechSynthesis" in window){ pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+function speak(text, rate){
+  if(!("speechSynthesis" in window)) return false;
+  speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.lang="en-GB"; u.rate=rate; if(voice) u.voice=voice; speechSynthesis.speak(u); return true;
+}
+function renderDict(){
+  const drafts = storeGet(`c21t${DATA.test}-dict`)||{};
+  let k=0, html = `<div class="panel-head"><div><div class="kicker">Writing · Dictation</div><h2>Chép chính tả — 20 câu từ transcript</h2></div></div>
+  <p class="how">Bấm <b>▶ Nghe</b> (hoặc <b>🐢 Chậm</b>), gõ lại đúng câu nghe được, rồi bấm <b>Kiểm tra</b>. Từ xanh = đúng, gạch cam = sai/thừa, ô xanh nhạt = từ bị thiếu. Không phân biệt hoa/thường và dấu câu.</p>`;
+  Object.entries(DATA.dictation).forEach(([pn, ss]) => {
+    html += `<section class="dgroup"><h3>Part ${pn} · ${esc(DATA.parts[pn-1].title)}</h3>`;
+    ss.forEach(s => { k++; html += `<div class="dcard" data-k="${k}">
+      <div class="drow"><span class="dn">D${k}</span><button class="sbtn" data-act="n">▶ Nghe</button><button class="sbtn" data-act="s">🐢 Chậm</button><button class="sbtn" data-act="c">Kiểm tra</button><button class="sbtn" data-act="a">Xem đáp án</button></div>
+      <textarea id="d${k}" rows="2" placeholder="Gõ câu bạn nghe được…" spellcheck="false">${esc(drafts[k]||"")}</textarea>
+      <div class="diff" hidden></div></div>`; });
+    html += `</section>`;
+  });
+  html += `<p class="note">Giọng đọc dùng giọng Anh-Anh của trình duyệt (text-to-speech — giọng máy đọc văn bản). Muốn nghe giọng gốc, quay lại tab Part tương ứng và phát audio.</p>`;
+  $("#main").innerHTML = html;
+  const all = Object.values(DATA.dictation).flat();
+  $("#main").onclick = e => {
+    const b=e.target.closest(".sbtn"); if(!b) return;
+    const card=b.closest(".dcard"), k=+card.dataset.k, s=all[k-1], d=card.querySelector(".diff");
+    if(b.dataset.act==="n"||b.dataset.act==="s"){ if(!speak(s, b.dataset.act==="n"?0.9:0.6)){ d.hidden=false; d.textContent="Trình duyệt này không hỗ trợ đọc giọng nói."; } }
+    if(b.dataset.act==="c"){ const r=lcsDiff(s, card.querySelector("textarea").value); d.hidden=false;
+      d.innerHTML = r.out.map(([t,w])=>`<span class="w-${t}">${esc(w)}</span>`).join(" ") + `<span class="pct">${r.pct}% đúng</span>`; }
+    if(b.dataset.act==="a"){ d.hidden=false; d.innerHTML = `<b>Đáp án:</b> ${esc(s)}`; }
+  };
+  $("#main").oninput = e => { if(e.target.tagName==="TEXTAREA"){ drafts[e.target.id.slice(1)]=e.target.value; storeSet(`c21t${DATA.test}-dict`,drafts);} };
+}
+
+function show(id){
+  renderTabs(id); $("#main").onclick=null; $("#main").oninput=null;
+  if ("speechSynthesis" in window) speechSynthesis.cancel();
+  if (id==="dict") renderDict(); else renderPart(DATA.parts[+id.slice(1)-1]);
+  try{ localStorage.setItem(`c21t${DATA.test}-tab`, id) }catch(e){}
+}
+let start="p1"; try{ start = localStorage.getItem(`c21t${DATA.test}-tab`) || "p1" }catch(e){}
+if (!/^p[1-4]$/.test(start)) start="p1";
+show(start);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Cam 21 Test 1 Listening Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Literata:opsz,wght@7..72,400;7..72,600&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+:root{
+  --red:#C8102E; --red-soft:#FBE9EC; --ink:#18110F; --paper:#FFFFFF; --ground:#F8F4F3;
+  --muted:#6E605C; --line:#E8DCD9; --ok:#1C7A4B; --ok-soft:#E3F3EA; --bad:#B8430B; --bad-soft:#FCEBDD;
+  --chip:#FFFFFF; --shadow:0 1px 2px rgba(24,17,15,.06);
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Literata",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  color-scheme:dark; --red:#FF5A6E; --red-soft:#3A1419; --ink:#F3EAE8; --paper:#1E1817; --ground:#141010;
+  --muted:#B3A29E; --line:#3A2E2C; --ok:#5CD39A; --ok-soft:#12301F; --bad:#FF9A5C; --bad-soft:#3A2012; --chip:#261E1D; --shadow:none;}}
+:root[data-theme="dark"]{
+  color-scheme:dark; --red:#FF5A6E; --red-soft:#3A1419; --ink:#F3EAE8; --paper:#1E1817; --ground:#141010;
+  --muted:#B3A29E; --line:#3A2E2C; --ok:#5CD39A; --ok-soft:#12301F; --bad:#FF9A5C; --bad-soft:#3A2012; --chip:#261E1D; --shadow:none;}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.9;padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:860px;margin:0 auto}
+header.top{padding-block:28px 12px}
+.brand{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:700}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,5vw,42px);line-height:1.05;margin:.25em 0 .2em;text-wrap:balance;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:15px;line-height:1.6;margin:0;max-width:62ch}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);display:flex;gap:6px;flex-wrap:wrap;padding-block:12px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.tab{font-family:var(--display);font-weight:700;font-size:14px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.tab .cnt{font-family:var(--mono);font-size:11px;opacity:.7;margin-left:6px}
+.tab:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.panel-head{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:end;justify-content:space-between;margin-bottom:14px}
+.panel-head h2{font-family:var(--display);font-size:24px;line-height:1.15;margin:0;text-wrap:balance}
+.panel-head .kicker{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.1em;text-transform:uppercase}
+.player{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin-bottom:16px;box-shadow:var(--shadow)}
+.player audio{flex:1 1 260px;min-width:0;height:40px}
+.speed{display:flex;gap:4px}
+.speed button{font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:8px;padding:4px 8px;cursor:pointer}
+.speed button.on{background:var(--red);color:#fff;border-color:var(--red)}
+.how{font-size:14px;line-height:1.6;color:var(--muted);margin:0 0 18px}
+.transcript{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px clamp(16px,4vw,32px)}
+.transcript p{margin:0 0 1.1em}
+.spk{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.08em;color:var(--red);margin-right:6px}
+.gap{display:inline-flex;align-items:center;gap:3px;vertical-align:baseline;border:1.5px dashed var(--line);border-radius:10px;padding:1px 4px;margin:1px 1px;line-height:1.4;flex-wrap:wrap}
+.gap .num{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--red);padding:0 3px}
+.opt{font-family:var(--body);font-size:15px;border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:7px;padding:1px 8px;cursor:pointer;line-height:1.5}
+.opt:hover{border-color:var(--ink)}
+.opt .l{font-family:var(--mono);font-size:10px;color:var(--muted);margin-right:4px}
+.opt.sel{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.opt.sel .l{color:inherit;opacity:.7}
+.gap.done{border-style:solid}
+.gap.right{border-color:var(--ok);background:var(--ok-soft)}
+.gap.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.is-ans{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.is-wrong{text-decoration:line-through;background:transparent;color:var(--bad);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.gap.done .opt:not(.is-ans):not(.is-wrong){opacity:.35}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px}
+.btn{font-family:var(--display);font-weight:700;font-size:15px;border-radius:10px;padding:10px 18px;cursor:pointer;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink)}
+.btn.primary{background:var(--red);border-color:var(--red);color:#fff}
+.score{font-family:var(--mono);font-size:14px;font-weight:700;padding:6px 12px;border-radius:999px;background:var(--red-soft);color:var(--red)}
+.progress{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.wgap{display:inline-flex;align-items:center;gap:3px;vertical-align:baseline;border:1.5px dashed var(--red);border-radius:10px;padding:1px 4px;margin:1px;line-height:1.4;flex-wrap:wrap;max-width:100%}
+.wgap .num{font-family:var(--mono);font-size:11px;font-weight:700;color:#fff;background:var(--red);border-radius:5px;padding:0 5px}
+.wgap input{font-family:var(--body);font-size:15px;border:0;border-bottom:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:0 2px;max-width:70vw;outline:none}
+.wgap input:focus{border-bottom-color:var(--red)}
+.wgap .wc{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.wgap.right{border-style:solid;border-color:var(--ok);background:var(--ok-soft)}
+.wgap.wrong{border-style:solid;border-color:var(--bad);background:var(--bad-soft)}
+.wgap.wrong input{text-decoration:line-through;color:var(--bad)}
+.wgap .fix{font-weight:600;color:var(--ok);font-size:15px}
+/* dictation */
+.dgroup{margin-bottom:26px}
+.dgroup h3{font-family:var(--display);font-size:18px;margin:0 0 10px}
+.dcard{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;display:grid;gap:10px}
+.drow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.drow .dn{font-family:var(--mono);font-weight:700;color:var(--red);font-size:13px;min-width:2.2em}
+.sbtn{font-family:var(--display);font-weight:700;font-size:13px;border:1px solid var(--line);background:var(--ground);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer}
+.sbtn:hover{border-color:var(--ink)}
+textarea{width:100%;font-family:var(--body);font-size:16px;line-height:1.6;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--ground);color:var(--ink);resize:vertical;min-height:64px}
+.diff{font-size:15px;line-height:1.9}
+.diff .w-ok{color:var(--ok)}
+.diff .w-bad{color:var(--bad);text-decoration:line-through}
+.diff .w-miss{background:var(--ok-soft);color:var(--ok);border-radius:4px;padding:0 3px;font-weight:600}
+.diff .pct{font-family:var(--mono);font-size:12px;font-weight:700;margin-left:8px;color:var(--muted)}
+.note{font-size:13px;color:var(--muted);line-height:1.6}
+footer{margin-top:40px;font-size:12px;color:var(--muted);font-family:var(--mono)}
+@media (prefers-reduced-motion:no-preference){.gap.done{transition:background .2s}}
+[hidden]{display:none!important}
+body{margin:0}
+.crumb{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.crumb a{font-family:var(--display);font-weight:700;font-size:14px;color:var(--ink);text-decoration:none;border-bottom:1.5px solid var(--red)}
+.nextnav{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.nextnav a{font-family:var(--display);font-weight:700;font-size:15px;color:var(--ink);text-decoration:none;border:1.5px solid var(--line);background:var(--paper);border-radius:10px;padding:10px 16px}
+.nextnav a:hover{border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:22px}
+.card{display:grid;gap:10px;align-content:start;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;text-decoration:none;color:var(--ink)}
+.card:hover{border-color:var(--ink)}
+.card:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.card .tn{font-family:var(--display);font-weight:800;font-size:26px;line-height:1}
+.card ol{margin:0;padding-left:18px;font-size:14px;line-height:1.55;color:var(--muted)}
+.card .meta{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:11px;font-weight:700;border-radius:999px;padding:3px 9px;background:var(--ground);border:1px solid var(--line)}
+.chip.w{color:var(--red);border-color:var(--red)}
+.bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);width:0}
+.card .pg{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.steps{margin:26px 0 0;padding:16px 20px;background:var(--paper);border:1px solid var(--line);border-radius:14px;font-size:14.5px;line-height:1.7}
+.steps b{font-family:var(--display)}
+</style>
+</head>
+<body>
+<div id="gateScreen" style="position:fixed;inset:0;z-index:999;background:var(--ground);display:flex;align-items:center;justify-content:center;padding:20px;">
+  <form id="gateForm" style="max-width:340px;width:100%;text-align:center;font-family:var(--display);">
+    <div class="brand">AZEnglish · Listening Lab</div>
+    <h2 style="font-size:22px;margin:8px 0 6px">Cambridge IELTS 21</h2>
+    <p style="font-size:13px;color:var(--muted);margin:0 0 16px;line-height:1.5">Nhập mật khẩu được cung cấp để vào làm bài.</p>
+    <input id="gatePassword" type="password" placeholder="Mật khẩu" autocomplete="off" style="width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font-size:15px;margin-bottom:10px;background:var(--paper);color:var(--ink)">
+    <button type="submit" class="btn primary" style="width:100%">Vào làm bài</button>
+    <p id="gateError" style="color:var(--red);font-size:13px;margin:10px 0 0" hidden>Sai mật khẩu, thử lại nhé.</p>
+  </form>
+</div>
+<script>
+(function(){
+  var GATE_PASSWORD = "azenglish2026", GATE_KEY = "az_rt_gate_ok", g = document.getElementById("gateScreen");
+  try{ if(localStorage.getItem(GATE_KEY) === "1") g.style.display = "none"; }catch(e){}
+  document.getElementById("gateForm").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    if(document.getElementById("gatePassword").value === GATE_PASSWORD){ try{ localStorage.setItem(GATE_KEY,"1"); }catch(e){} g.style.display="none"; }
+    else document.getElementById("gateError").hidden = false;
+  });
+})();
+</script>
+
+
+<div class="wrap">
+  <header class="top">
+    <div class="crumb"><div class="brand">AZEnglish · Listening Lab · Band 3.0–5.0+</div><a href="listening-gapfill-c21.html">← Tất cả Test</a></div>
+    <h1>Cambridge 21 · Test 1 — Nghe, chọn & viết</h1>
+    <p class="sub">Toàn bộ transcript 4 Part, giống bản in trên lớp: 183 ô chọn A/B/C và 46 ô tự viết. Bài làm được lưu trên trình duyệt của bạn — tải lại trang không mất.</p>
+  </header>
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+  <main id="main"></main>
+  <nav class="nextnav"><a href="listening-gapfill-c21t2.html">Test 2 →</a><a href="listening-gapfill-c21t3.html">Test 3 →</a><a href="listening-gapfill-c21t4.html">Test 4 →</a><a href="listening-gapfill-c21.html">Trang chủ</a></nav>
+  <footer>Nguồn: Cambridge IELTS 21, Test 1 — transcript & audio gốc. Tài liệu lớp học nội bộ AZEnglish.</footer>
+</div>
+
+<script>
+const DATA = {"test": 1, "parts": [{"num": 1, "title": "Oyster Bay Sailing Club Courses", "audio": "cambridge21-test1-part1.mp3", "segs": ["WOMAN: Hello, Oyster Bay ", {"n": 1, "opts": ["Sailor", "Sailing", "Swimming"], "ans": 1}, " Club. How can I help you?\n\nMAN: Oh hi. I'd like to find out about sailing courses for ", {"n": 2, "opts": ["children", "builders", "beginners"], "ans": 2}, ".\n\nWOMAN: No problem. Is it for yourself?\n\nMAN: Yes. I had a look ", {"n": 3, "opts": ["online", "inline", "outside"], "ans": 0}, " but I'm not sure which course would be best.\n\nWOMAN: OK. Well you might be interested in our ", {"n": 4, "opts": ["Tester", "Taster", "Faster"], "ans": 1}, " Days?\n\nMAN: Possibly.\n\nWOMAN: So these are for people who've ", {"n": 5, "opts": ["never", "ever", "nearly"], "ans": 0}, " sailed before – it's basically an ", {"n": 6, "opts": ["invitation", "instruction", "introduction"], "ans": 2}, " to sailing to find out whether you enjoy it and want to carry on with it.\n\nMAN: And how much is that?\n\nWOMAN: It's £", {"n": 7, "opts": ["112", "120", "210"], "ans": 1}, " for the day - but it's reduced to £", {"n": 8, "opts": ["101", "100", "110"], "ans": 2}, " each if there are two of you.\n\nMAN: No, it would just be me.\n\nWOMAN: Oh that's fine. You'd be in a ", {"n": 9, "opts": ["small", "smart", "tall"], "ans": 0}, " group, usually about ", {"n": 10, "opts": ["eight", "hate", "eighty"], "ans": 0}, " people but no more than ", {"n": 11, "opts": ["tent", "then", "ten"], "ans": 2}, " – and everyone's always very ", {"n": 12, "opts": ["frankly", "friendly", "free"], "ans": 1}, ".\n\nMAN: Uh huh. And are there any other suitable courses?\n\nWOMAN: The other option is the Level 1 course. These are two-day ", {"n": 13, "opts": ["weekend", "weekday", "week-long"], "ans": 0}, " courses and we run those all year ", {"n": 14, "opts": ["ground", "around", "round"], "ans": 2}, ".\n\nMAN: OK. And what do you learn on that course?\n\nWOMAN: This is a mix of ", {"n": 15, "opts": ["therapy", "theory", "history"], "ans": 1}, " and practical skills. So you learn about things like the ", {"n": 16, "opts": ["water", "whether", "weather"], "ans": 2}, ", which is obviously really important and also the ", {"n": 17, "opts": ["tides", "times", "tiles"], "ans": 0}, ", as well as learning basic sailing skills. You go out into the ", {"n": 18, "opts": ["hotel", "harbour", "harvest"], "ans": 1}, " in special training ", {"n": 19, "opts": ["donkeys", "dinghies", "dinners"], "ans": 1}, " for beginners, two people in each dinghy and an ", {"n": 20, "opts": ["investor", "inspector", "instructor"], "ans": 2}, ". He or she will make sure you understand everything you need to know about ", {"n": 21, "opts": ["safety", "society", "salary"], "ans": 0}, ".\n\nMAN: It sounds like ", {"n": 22, "opts": ["hard", "hot", "heart"], "ans": 0}, " work!\n\nWOMAN: Yes, but you'll have a lot of fun too.\n\nMAN: And the cost of that one is... ?\n\nWOMAN: £", {"n": 23, "opts": ["2,000", "20", "200"], "ans": 2}, ". But it's a bit cheaper if you decide to join the club. There's a ", {"n": 24, "opts": ["discussion", "discount", "district"], "ans": 1}, " for members.\n\nMAN: Well, I'm not sure about that yet.\n\nWOMAN: You've got ", {"n": 25, "opts": ["plenty", "twenty", "plan"], "ans": 0}, " of time to decide.\n\nMAN: And does the cost include everything?\n\nWOMAN: Yes, everything's included and you also get a really good ", {"n": 26, "opts": ["directory", "dictionary", "diary"], "ans": 1}, " explaining all the sailing ", {"n": 27, "opts": ["technology", "terminal", "terminology"], "ans": 2}, ". A lot of people struggle with this at first. It's got lots of ", {"n": 28, "opts": ["patterns", "pitchers", "pictures"], "ans": 2}, ", so I'm sure you'd find it really helpful. And on completion of the course you get a ", {"n": 29, "opts": ["certificate", "card", "contract"], "ans": 0}, ". Then you're ready to move on to the Level 2 course.\n\nMAN: Sounds good.\n\nWOMAN: I think that's all the info you need for now. Just a couple of general things. For example, it's really important that you know how to ", {"n": 30, "opts": ["sing", "swim", "sail"], "ans": 1}, ".\n\nMAN: Yes, I'm pretty ", {"n": 31, "opts": ["confused", "confident", "comfortable"], "ans": 1}, " in the water.\n\nWOMAN: Great. ", {"n": 1, "ans": "The other thing I should tell you", "w": 7, "kind": "write"}, " is that we provide ", {"n": 32, "opts": ["white suits", "wet seats", "wetsuits"], "ans": 2}, " and life ", {"n": 33, "opts": ["jackets", "rackets", "jackpots"], "ans": 0}, " but you need to ", {"n": 2, "ans": "bring swimming trunks", "w": 3, "kind": "write"}, " and some old ", {"n": 34, "opts": ["trainers", "trainees", "drainers"], "ans": 0}, ".\n\nMAN: And a ", {"n": 35, "opts": ["tower", "towel", "trowel"], "ans": 1}, "?\n\nWOMAN: ", {"n": 3, "ans": "Yes definitely", "w": 2, "kind": "write"}, ". And you might want to bring ", {"n": 4, "ans": "your own toiletries", "w": 3, "kind": "write"}, ", things like ", {"n": 36, "opts": ["shower gel", "soap", "shampoo"], "ans": 2}, ".\n\nMAN: OK. ", {"n": 5, "ans": "What about food and drink", "w": 5, "kind": "write"}, "? ", {"n": 6, "ans": "Do I need to bring that", "w": 6, "kind": "write"}, " or ", {"n": 7, "ans": "is there a café", "w": 4, "kind": "write"}, " at the club?\n\nWOMAN: Yes, ", {"n": 8, "ans": "you can get sandwiches, cakes", "w": 5, "kind": "write"}, " and ", {"n": 37, "opts": ["snacks", "stacks", "snakes"], "ans": 0}, " there. The food's pretty ", {"n": 38, "opts": ["seasonal", "reasonable", "responsible"], "ans": 1}, ".\n\nMAN: OK good. Well I think I'm interested in the Level 1 course. But I know absolutely nothing about sailing so is there anything I can do to prepare myself a bit?\n\nWOMAN: I recommend you watch some ", {"n": 39, "opts": ["voices", "visits", "videos"], "ans": 2}, " we use for training. They're available online. I can send you the ", {"n": 40, "opts": ["list", "link", "ink"], "ans": 1}, ". They'll give you an idea of what to expect.\n\nMAN: Perfect, thanks. That would be very helpful. Oh and just one other thing - I'll be ", {"n": 41, "opts": ["sailing", "circling", "cycling"], "ans": 2}, " to the club and will need somewhere to put ", {"n": 42, "opts": ["valuables", "variables", "vegetables"], "ans": 0}, ". I'm just wondering if there are ", {"n": 43, "opts": ["rockers", "lockets", "lockers"], "ans": 2}, " for people to use?\n\nWOMAN: Yes, there are plenty in the ", {"n": 44, "opts": ["charging", "changing", "chatting"], "ans": 1}, " rooms.\n\nMAN: Great. OK well could you book me onto..."]}, {"num": 2, "title": "Working as a Makeup Trainee", "audio": "cambridge21-test1-part2.mp3", "segs": ["MAN: Hello and welcome to the film making ", {"n": 45, "opts": ["podcast", "broadcast", "postcard"], "ans": 0}, ". In this week's episode, Claire Lemarre talks to us about how to become a makeup ", {"n": 46, "opts": ["tourist", "artist", "artistic"], "ans": 1}, ". Claire's been working as a makeup artist in the film industry for over ", {"n": 47, "opts": ["20", "12", "30"], "ans": 0}, " years and has lots of useful ", {"n": 48, "opts": ["advise", "device", "advice"], "ans": 2}, " about how to get started.\n\nWOMAN: Thanks Ian. Well, before you can become a makeup artist on films you have to spend about ", {"n": 49, "opts": ["3", "2", "10"], "ans": 1}, " years working as a makeup trainee.\n\nA good place to get your first job would be on a low ", {"n": 50, "opts": ["bucket", "badge", "budget"], "ans": 2}, " short film. Of course, this means that you'll be working for ", {"n": 51, "opts": ["free", "three", "fee"], "ans": 0}, ". But it's often worth it for the experience. Make sure your ", {"n": 52, "opts": ["transport", "transfer", "passport"], "ans": 0}, " costs are covered – and remember, there's very unlikely to be any ", {"n": 53, "opts": ["cutting", "catering", "cleaning"], "ans": 1}, " provided, so bring plenty of food.\n\nIf you're lucky, you might start out on a big budget film where you'll get the most useful ", {"n": 54, "opts": ["expertise", "experiment", "experience"], "ans": 2}, ". On productions like this, makeup and hair ", {"n": 55, "opts": ["stealing", "style", "styling"], "ans": 2}, " are separate departments – so you won't need to bring your ", {"n": 56, "opts": ["calling", "curling", "cooling"], "ans": 1}, " tongs! But you're likely to get the opportunity to work with a range of ", {"n": 57, "opts": ["age", "page", "edge"], "ans": 0}, " groups, as well as different ", {"n": 58, "opts": ["identities", "electricities", "ethnicities"], "ans": 2}, ". Doing makeup for special ", {"n": 59, "opts": ["defects", "effects", "affects"], "ans": 1}, " is highly specialised, so don't expect to be offered any practical experience in that.\n\n", {"n": 9, "ans": "One problem with", "w": 3, "kind": "write"}, " working in ", {"n": 10, "ans": "the makeup department", "w": 3, "kind": "write"}, " is that it's a high-", {"n": 60, "opts": ["pressure", "pleasure", "precious"], "ans": 0}, " environment. There are ", {"n": 11, "ans": "very few times", "w": 3, "kind": "write"}, " when ", {"n": 12, "ans": "you'll be bored", "w": 3, "kind": "write"}, " or have ", {"n": 13, "ans": "nothing to do", "w": 3, "kind": "write"}, ". ", {"n": 14, "ans": "It can be stressful", "w": 4, "kind": "write"}, " but you'll see that the top makeup artists are very ", {"n": 61, "opts": ["personal", "professional", "provisional"], "ans": 1}, " – ", {"n": 15, "ans": "even when they're having to work", "w": 6, "kind": "write"}, " with directors who are ", {"n": 62, "opts": ["patient", "important", "impatient"], "ans": 2}, ", or ", {"n": 16, "ans": "unhappy with", "w": 2, "kind": "write"}, " the makeup artist's work. ", {"n": 17, "ans": "Follow your supervisor's lead", "w": 4, "kind": "write"}, " and try to remain ", {"n": 63, "opts": ["calm", "come", "clean"], "ans": 0}, " ", {"n": 18, "ans": "at all times", "w": 3, "kind": "write"}, ".\n\nI've worked with many very ", {"n": 64, "opts": ["famine", "furious", "famous"], "ans": 2}, " actors ", {"n": 19, "ans": "over the years", "w": 3, "kind": "write"}, ". ", {"n": 20, "ans": "At first", "w": 2, "kind": "write"}, ", I found it ", {"n": 65, "opts": ["overflowing", "overwhelming", "welcoming"], "ans": 1}, " and ", {"n": 21, "ans": "could hardly speak", "w": 3, "kind": "write"}, ", I was so in ", {"n": 66, "opts": ["awe", "owe", "or"], "ans": 0}, ". ", {"n": 22, "ans": "That's preferable", "w": 2, "kind": "write"}, ", by the way, to becoming ", {"n": 23, "ans": "too excited", "w": 2, "kind": "write"}, " and asking for ", {"n": 67, "opts": ["sofas", "salaries", "selfies"], "ans": 2}, ". Now ", {"n": 24, "ans": "meeting the talent", "w": 3, "kind": "write"}, " is just ", {"n": 25, "ans": "a normal part of the job", "w": 6, "kind": "write"}, " and ", {"n": 26, "ans": "to be honest", "w": 3, "kind": "write"}, " most actors don't look that special without all the makeup!\n\nEvery makeup trainee will need a makeup ", {"n": 68, "opts": ["cat", "kit", "kid"], "ans": 1}, ", which they'll be expected to have with them at all times. Just the ", {"n": 69, "opts": ["essentials", "potentials", "essays"], "ans": 0}, " will do for the kinds of tasks you'll be given – it won't be anything ", {"n": 70, "opts": ["complicated", "communicated", "complete"], "ans": 0}, ". It's worth looking at what the other makeup artists have in their kits – but whatever you do, don't ", {"n": 71, "opts": ["bother", "borrow", "buy"], "ans": 1}, " anything without asking first.\n\nIt's very important to build your ", {"n": 72, "opts": ["folder", "portrait", "portfolio"], "ans": 2}, ". You should take photos of all the work you do and ideally show the different ", {"n": 73, "opts": ["states", "stations", "stages"], "ans": 2}, " of makeup application if you can. But remember you'll need to get ", {"n": 74, "opts": ["approach", "approval", "arrival"], "ans": 1}, " from the makeup designer in charge of the department. As you'll be sending your portfolio ", {"n": 75, "opts": ["digitally", "directly", "digital"], "ans": 0}, ", you won't need to get photos printed.\n\nWOMAN: So what does a makeup trainee actually do? You need to think about whether you're the right kind of person to do the job and whether you'd enjoy it. So, to give you some idea, here are some of the things you might be required to do.\n\nYou may be asked to help ", {"n": 76, "opts": ["pay", "pick", "prep"], "ans": 2}, " an actor ready for makeup. Some actors will arrive having already cleansed and ", {"n": 77, "opts": ["moisturized", "measured", "memorized"], "ans": 0}, " their skin. But sometimes you'll need to step in and get this done without wasting any time, otherwise the makeup artist will get behind ", {"n": 78, "opts": ["scandal", "schedule", "school"], "ans": 1}, ".\n\nTrainees play a useful role in ", {"n": 79, "opts": ["comedy", "continuity", "community"], "ans": 1}, ". It will be your responsibility to take photos, log them digitally and print out a hard ", {"n": 80, "opts": ["coffee", "cup", "copy"], "ans": 2}, " to put in each actor's file. This information needs to be kept in good ", {"n": 81, "opts": ["order", "older", "odour"], "ans": 0}, " as a ", {"n": 82, "opts": ["resort", "reshoot", "research"], "ans": 1}, " can mean replicating makeup months later.\n\nGeneral duties mean doing anything from getting the teas and coffees to putting on a ", {"n": 83, "opts": ["watch", "wish", "wash"], "ans": 2}, ". Having a positive ", {"n": 84, "opts": ["attitude", "altitude", "aptitude"], "ans": 0}, " and being willing to do whatever is asked of you will help you get your next film job.\n\nYou won't be asked to apply makeup to any of the principal cast, only the ", {"n": 85, "opts": ["experts", "extras", "actors"], "ans": 1}, ". If there are ", {"n": 86, "opts": ["cousins", "doors", "dozens"], "ans": 2}, " of extras involved you'll need to keep up a ", {"n": 87, "opts": ["swift", "shift", "soft"], "ans": 0}, " pace and not spend too long on each person. It takes quite a lot of ", {"n": 88, "opts": ["conference", "confidence", "confusion"], "ans": 1}, " to be able to do this well.\n\nOK now about terms and conditions...."]}, {"num": 3, "title": "Discussion: Ocean Biodiversity Lecture and Research Project", "audio": "cambridge21-test1-part3.mp3", "segs": ["PHIL: That lecture from the visiting ", {"n": 89, "opts": ["speaker", "spider", "sneaker"], "ans": 0}, " yesterday was good, wasn't it?\n\nLUCY: Yeah. I learned a lot from her about ocean ", {"n": 90, "opts": ["diversity", "biology", "biodiversity"], "ans": 2}, ". I've already done some reading on it, and I did an ", {"n": 91, "opts": ["agreement", "argument", "assignment"], "ans": 2}, " on some of the problems associated with it last year, but I especially liked the way her lecture focused on more ", {"n": 92, "opts": ["long-term", "short-term", "long-time"], "ans": 0}, " issues.\n\nPHIL: Yes, things that aren't currently receiving ", {"n": 93, "opts": ["worldwide", "widespread", "wide-ranging"], "ans": 1}, " attention but are likely to be important in the future. That impressed me too. It wasn't exactly a feel-good ", {"n": 94, "opts": ["conclusion", "collection", "confusion"], "ans": 0}, " because it's hard to see any real ", {"n": 95, "opts": ["situation", "pollution", "solution"], "ans": 2}, " for a lot of the problems.\n\nLUCY: No, though she did point to where ", {"n": 96, "opts": ["police", "policy", "polish"], "ans": 1}, " changes could be made to protect our marine and ", {"n": 97, "opts": ["cultural", "costly", "coastal"], "ans": 2}, " environments.\n\nPHIL: Mm. But that's just at a ", {"n": 98, "opts": ["natural", "national", "rational"], "ans": 1}, " level. The examples she gave were at a more ", {"n": 99, "opts": ["global", "local", "general"], "ans": 0}, " level, and they really made it clear to me just how wide-ranging the threats to ocean biodiversity are.\n\nLUCY: Yes, me too.\n\nPHIL: The research ", {"n": 100, "opts": ["project", "protest", "product"], "ans": 0}, " she described was impressive, wasn't it? I'd have thought it was quite unusual to have so many ", {"n": 101, "opts": ["experiments", "exports", "experts"], "ans": 2}, " working together.\n\nLUCY: Yeah, and from such different ", {"n": 102, "opts": ["campgrounds", "backgrounds", "playgrounds"], "ans": 1}, ". Must have been a really exciting team to work with. I'd heard of a couple of them before – they were involved in research way back in ", {"n": 103, "opts": ["2019", "1990", "2009"], "ans": 2}, " warning about the dangers of ocean ", {"n": 104, "opts": ["solution", "pollution", "population"], "ans": 1}, ".\n\nPHIL: But now people are much more aware of that, aren't they?\n\nLUCY: I suppose so.\n\nPHIL: Another thing about the research is that the team members came from all round the world. Though I suppose that's not unusual nowadays, now everyone can work ", {"n": 105, "opts": ["remotely", "recently", "rarely"], "ans": 0}, ".\n\nLUCY: Right. ", {"n": 27, "ans": "I liked the way", "w": 4, "kind": "write"}, " she didn't bombard us with ", {"n": 106, "opts": ["figures", "fingers", "features"], "ans": 0}, " – I mean, ", {"n": 28, "ans": "they were available", "w": 3, "kind": "write"}, ", but ", {"n": 29, "ans": "she focused more on", "w": 4, "kind": "write"}, " ", {"n": 30, "ans": "the general points", "w": 3, "kind": "write"}, " they indicated.\n\nPHIL: Mm. And ", {"n": 31, "ans": "the description of improvements", "w": 4, "kind": "write"}, " in systems used for ", {"n": 107, "opts": ["trading", "trekking", "tracking"], "ans": 2}, " marine animals and things like ", {"n": 108, "opts": ["rockets", "robots", "rabbits"], "ans": 1}, " were ", {"n": 32, "ans": "really interesting", "w": 2, "kind": "write"}, ".\n\nLUCY: Yes, and ", {"n": 33, "ans": "her description of", "w": 3, "kind": "write"}, " how ", {"n": 109, "opts": ["robots", "robotics", "rhetoric"], "ans": 1}, " can be used to ", {"n": 34, "ans": "investigate threats", "w": 2, "kind": "write"}, " to biodiversity.\n\nPHIL: Absolutely.\n\nPHIL: While you're here, can we talk about the list of resources we have to evaluate for the ", {"n": 110, "opts": ["cinema", "similar", "seminar"], "ans": 2}, " tomorrow. I've had a look at them all, but it's been a bit of a ", {"n": 111, "opts": ["rush", "brush", "rash"], "ans": 0}, ".\n\nLUCY: Yeah. What did you think of that article on invasive ", {"n": 112, "opts": ["lion", "jellyfish", "lionfish"], "ans": 2}, "? The one claiming they were expanding their ", {"n": 113, "opts": ["hobbit", "habitat", "habit"], "ans": 1}, " throughout the ", {"n": 114, "opts": ["Mediterranean", "Atlantic", "Caribbean"], "ans": 0}, " Sea.\n\nPHIL: Well, the writer went on about how dangerous they were in environmental terms, which is probably true, but he didn't really provide much information to explain why.\n\nLUCY: I know what you mean.\n\nPHIL: I watched the ", {"n": 115, "opts": ["document", "documentary", "dormitory"], "ans": 1}, " on microplastics, at least I started to, but then I found it was made ", {"n": 116, "opts": ["two", "twenty", "ten"], "ans": 2}, " years ago so I gave up.\n\nLUCY: I watched to the end but you're right, it was showing its ", {"n": 117, "opts": ["age", "page", "edge"], "ans": 0}, ". People had hardly heard of microplastics then, whereas now everyone knows about them and how dangerous they are.\n\nPHIL: Yeah. Did you listen to the podcast on ocean pollution?\n\nLUCY: Mm. I didn't get anything out of it though. Most of it was stating the ", {"n": 118, "opts": ["obvious", "various", "previous"], "ans": 0}, ".\n\nPHIL: Yes, it mentioned ", {"n": 119, "opts": ["pests", "pesticides", "peptides"], "ans": 1}, " and plastic and things, and it clearly made the point that they were a bad thing, but everybody knows that anyway. Did you read that book on coastal ", {"n": 120, "opts": ["systems", "economies", "ecosystems"], "ans": 2}, "?\n\nLUCY: The one by John ", {"n": 121, "opts": ["Happer", "Harper", "Harbour"], "ans": 1}, "? Yes, I found it ", {"n": 122, "opts": ["hot", "heart", "hard"], "ans": 2}, " going at first, it went into a lot of detail about things like the effects of offshore ", {"n": 123, "opts": ["windfarms", "farms", "windows"], "ans": 0}, " and ", {"n": 124, "opts": ["fresh", "flesh", "fish"], "ans": 2}, " farms, but actually I ended up with a much better understanding of the issues.\n\nPHIL: Yes, I agree and I thought it was a well-written ", {"n": 125, "opts": ["salary", "summary", "summer"], "ans": 1}, " of those. And the ", {"n": 126, "opts": ["diagrams", "grams", "programs"], "ans": 0}, " helped a lot too.\n\nLUCY: The article on metal ", {"n": 127, "opts": ["toxicity", "electricity", "taxis"], "ans": 0}, " was way above my head, I didn't know anything about how metals from industrial ", {"n": 128, "opts": ["admissions", "missions", "emissions"], "ans": 2}, " react in the ocean... and I still don't understand it.\n\nPHIL: I gave up reading after the first ", {"n": 129, "opts": ["chatter", "chapter", "charter"], "ans": 1}, " – I just couldn't follow it.\n\nLUCY: That podcast on ", {"n": 130, "opts": ["flooding", "flying", "floating"], "ans": 2}, " marine cities was interesting, though it presented a rather ", {"n": 131, "opts": ["one-sided", "one-sized", "two-sided"], "ans": 0}, " picture, I thought.\n\nPHIL: Yes, it focused on how this would benefit people and ignored the effects on the environment.\n\nLUCY: But anyway, shall we ..."]}, {"num": 4, "title": "Sources of Rubber", "audio": "cambridge21-test1-part4.mp3", "segs": ["Much of the world now lives in an industrial ", {"n": 132, "opts": ["civilian", "civilisation", "organisation"], "ans": 1}, ". But this has only become possible because we have the necessary natural ", {"n": 133, "opts": ["sources", "researches", "resources"], "ans": 2}, ". There are three types of natural resource without which industry could not exist. One of these is ", {"n": 134, "opts": ["medal", "metal", "middle"], "ans": 1}, " – without that we'd have no machines and no ", {"n": 135, "opts": ["transportation", "translation", "transformation"], "ans": 0}, ". Another is fossil ", {"n": 136, "opts": ["foods", "fuels", "fields"], "ans": 1}, ", which we need to power those machines. But there's a third resource that's essential to connect the different parts of a machine together with ", {"n": 137, "opts": ["bolts", "bells", "belts"], "ans": 2}, " and pipes and shock ", {"n": 138, "opts": ["absorbers", "absorbents", "observers"], "ans": 0}, ", and that is rubber. It's now used in over ", {"n": 139, "opts": ["40,000", "400,000", "14,000"], "ans": 0}, " products, from waterproof ", {"n": 140, "opts": ["firewood", "footwear", "footway"], "ans": 1}, " to surgical ", {"n": 141, "opts": ["clothes", "globes", "gloves"], "ans": 2}, ".\n\nAt present, we have two types of rubber in common use. One is natural rubber, which nearly all comes from the Pará rubber tree. This was originally native to ", {"n": 142, "opts": ["Brazil", "Britain", "Bali"], "ans": 0}, ", but is now cultivated on ", {"n": 143, "opts": ["populations", "plantations", "planets"], "ans": 1}, " in South-East Asia. Recently, however, concern's been growing that supplies may soon be ", {"n": 144, "opts": ["efficient", "sufficient", "insufficient"], "ans": 2}, " for the world's needs. So what exactly is limiting the supply of natural rubber?\n\nWell, for one thing, rubber trees don't just spring up ", {"n": 145, "opts": ["overweight", "over there", "overnight"], "ans": 2}, ". It can take ", {"n": 146, "opts": ["eight", "eighty", "eighteen"], "ans": 0}, " to ten years for a tree to start producing rubber, so cultivating them's a ", {"n": 147, "opts": ["show", "slow", "low"], "ans": 1}, " process. And this leads to another problem. With most crops, farmers don't have to think very far ahead, so they can easily change what crop they produce, or how much of a crop they produce, if they find the ", {"n": 148, "opts": ["diamond", "demand", "command"], "ans": 1}, " for that crop is rising or falling. But if you have to plant eight or ten years ahead, that's much harder. And also the rubber tree's very ", {"n": 149, "opts": ["choosy", "chosen", "cheesy"], "ans": 0}, " about where it grows. It needs the right temperature, the right amount of ", {"n": 150, "opts": ["rainbow", "waterfall", "rainfall"], "ans": 2}, ", and the right ", {"n": 151, "opts": ["attitude", "altitude", "latitude"], "ans": 1}, " – not too high and not too low. The result is that it can't be grown in the northern or southern parts of the globe, only around the ", {"n": 152, "opts": ["elevator", "educator", "equator"], "ans": 2}, ". Another problem is that the rubber is basically extracted in the same way as it's been done for hundreds of years, and that's by hand, by making small cuts in the ", {"n": 153, "opts": ["trunk", "track", "truck"], "ans": 0}, " of the tree, and putting a little ", {"n": 154, "opts": ["cup", "cop", "cap"], "ans": 0}, " there to catch the ", {"n": 155, "opts": ["latest", "latex", "lettuce"], "ans": 1}, ", as the rubber is called. It's very ", {"n": 156, "opts": ["labour-saving", "low-intensive", "labour-intensive"], "ans": 2}, ". And it's not just the initial production that's limiting supplies. With other resources such as water and ", {"n": 157, "opts": ["grass", "glass", "gas"], "ans": 1}, ", when we've finished using them we can ", {"n": 158, "opts": ["recite", "reuse", "recycle"], "ans": 2}, " them, but although this is also possible with rubber, it's very difficult, so that also reduces the amount we have available.\n\nAnd in the last few years, there have been new threats to the supply of natural rubber. One problem is linked to the fact that nearly all the rubber trees in South-East Asia are descended from just a small number of ", {"n": 159, "opts": ["seeds", "sheets", "trees"], "ans": 0}, " brought from Brazil in the ", {"n": 160, "opts": ["nineteenth", "ninth", "ninetieth"], "ans": 0}, " century. This means that there's very little ", {"n": 161, "opts": ["general", "genetic", "generic"], "ans": 1}, " diversity among the trees, which in turn makes them very ", {"n": 162, "opts": ["variable", "valuable", "vulnerable"], "ans": 2}, " to disease. The most dangerous threat is a ", {"n": 163, "opts": ["fungus", "famous", "virus"], "ans": 0}, ", which destroyed large numbers of rubber trees in Brazil, and which could cause ", {"n": 164, "opts": ["destination", "devastation", "decoration"], "ans": 1}, " to plantations worldwide. Another problem is that farmers in South-East Asia are increasingly turning to the cultivation of ", {"n": 165, "opts": ["farm", "pan", "palm"], "ans": 2}, " oil, which is easier and more ", {"n": 166, "opts": ["profitable", "predictable", "portable"], "ans": 0}, " for them. And finally, in recent years South-East Asia, like other parts of the world, has been repeatedly hit by ", {"n": 167, "opts": ["external", "extra", "extreme"], "ans": 2}, " types of weather, and this looks likely to continue in the future.\n\nHowever, ", {"n": 35, "ans": "as well as using", "w": 4, "kind": "write"}, " natural rubber, ", {"n": 36, "ans": "it's also possible", "w": 3, "kind": "write"}, " to make rubber ", {"n": 168, "opts": ["symmetrically", "synthetically", "sympathetically"], "ans": 1}, ". ", {"n": 37, "ans": "This works very well", "w": 4, "kind": "write"}, " ", {"n": 38, "ans": "for some purposes", "w": 3, "kind": "write"}, ", for example, making ", {"n": 169, "opts": ["engineer", "engage", "engine"], "ans": 2}, " parts, or ", {"n": 170, "opts": ["silk", "silicone", "silver"], "ans": 1}, " pots and pans ", {"n": 39, "ans": "used for cooking", "w": 3, "kind": "write"}, ". But ", {"n": 40, "ans": "compared with natural rubber", "w": 4, "kind": "write"}, ", it's not anything like as ", {"n": 171, "opts": ["strong", "long", "wrong"], "ans": 0}, ", and ", {"n": 41, "ans": "this means it can't replace", "w": 5, "kind": "write"}, " natural rubber ", {"n": 42, "ans": "in other products", "w": 3, "kind": "write"}, ". ", {"n": 43, "ans": "For example, while", "w": 3, "kind": "write"}, " ", {"n": 44, "ans": "a mixture of", "w": 3, "kind": "write"}, " natural rubber and synthetic rubber works well in ", {"n": 172, "opts": ["car", "cart", "cow"], "ans": 0}, " tyres, ", {"n": 45, "ans": "only natural rubber can", "w": 4, "kind": "write"}, " ", {"n": 46, "ans": "stand up to", "w": 3, "kind": "write"}, " the extreme speeds of ", {"n": 173, "opts": ["airport", "aircrew", "aircraft"], "ans": 2}, " tyres during take-off and ", {"n": 174, "opts": ["loading", "landing", "lending"], "ans": 1}, ".\n\nSo for some time, scientists have been looking for ", {"n": 175, "opts": ["alternating", "alternative", "attractive"], "ans": 1}, " sources of natural rubber. One that's been known about for some time seems initially to be a rather unlikely source. It's a wild plant with ", {"n": 176, "opts": ["yellow", "yell", "hollow"], "ans": 0}, " flowers that we normally regard as a ", {"n": 177, "opts": ["wood", "seed", "weed"], "ans": 2}, " when we see it in our gardens. But when it's pulled up and its ", {"n": 178, "opts": ["roots", "roofs", "routes"], "ans": 0}, " cut open, they're found to contain rubber.\n\nNow, compared to the rubber tree, ", {"n": 179, "opts": ["dandruff", "daffodils", "dandelions"], "ans": 2}, " produce relatively small amounts of rubber, but unlike rubber trees, they're very ", {"n": 180, "opts": ["affordable", "adaptable", "acceptable"], "ans": 1}, ". They'll grow in all sorts of places, and they don't need rich ", {"n": 181, "opts": ["soul", "soil", "oil"], "ans": 1}, ". So at present there are several projects underway investigating the possibility of using dandelions as a source of rubber.\n\nAnother possibility is a ", {"n": 182, "opts": ["desert", "dessert", "distant"], "ans": 0}, " shrub grown in ", {"n": 183, "opts": ["Monaco", "Morocco", "Mexico"], "ans": 2}, " and Texas ..."]}], "mc": 183, "wr": 46};
+const $ = (s, r=document) => r.querySelector(s);
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const L = ["A","B","C"];
+const state = {};   // n -> chosen index
+const checked = {}; // part -> bool
+
+function storeGet(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}}
+function storeSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+Object.assign(state, storeGet(`c21t${DATA.test}-choices`)||{});
+
+function renderTabs(active){
+  const t = $("#tabs"); t.innerHTML = "";
+  DATA.parts.forEach(p => t.append(tab("p"+p.num, `Part ${p.num}`, 0, active)));
+}
+function tab(id, label, cnt, active){
+  const b = document.createElement("button");
+  b.className = "tab"; b.role = "tab"; b.setAttribute("aria-selected", id===active);
+  b.innerHTML = label;
+  b.onclick = () => show(id); return b;
+}
+
+function textToHTML(s){
+  return esc(s).replace(/(^|\n\n)(MAN|WOMAN|TUTOR|NADIA|FERGUS|PHIL|LUCY|TAMMY|PAUL|MADDY|RYAN|MIA|LEO):/g, (m,a,b)=>`${a}<span class="spk">${b}</span>`);
+}
+function renderPart(p){
+  // ráp segments thành HTML, tách đoạn theo \n\n
+  let html = "";
+  p.segs.forEach(s => {
+    if (typeof s === "string") { html += textToHTML(s); return; }
+    if (s.kind === "write") { html += `<span class="wgap" data-d="${s.n}"><span class="num">D${s.n}</span><input id="w${s.n}" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:${Math.max(5, s.ans.length*0.62+1)}em" aria-label="Ô D${s.n}, ${s.w} từ"><span class="wc">${s.w}</span><span class="fix" hidden></span></span>`; return; }
+    html += `<span class="gap" data-n="${s.n}"><span class="num">${s.n}</span>` +
+      s.opts.map((o,i)=>`<button class="opt" data-i="${i}"><span class="l">${L[i]}</span>${esc(o)}</button>`).join("") + `</span>`;
+  });
+  html = "<p>" + html.split("\n\n").join("</p><p>") + "</p>";
+  const mc = p.segs.filter(s=>typeof s!=="string"&&s.opts), wr = p.segs.filter(s=>typeof s!=="string"&&s.kind==="write");
+  const first = mc[0].n;
+  $("#main").innerHTML = `
+    <div class="panel-head"><div><div class="kicker">Part ${p.num} · Trắc nghiệm ${first}–${first+mc.length-1} · Tự viết D${wr[0].n}–D${wr[wr.length-1].n}</div><h2>${esc(p.title)}</h2></div>
+      <span class="progress" id="prog"></span></div>
+    <div class="player"><audio id="aud" controls preload="none" src="cambridge21-test${DATA.test}-part${p.num}.mp3"></audio>
+      <div class="speed" id="spd">${[0.75,0.9,1].map(r=>`<button data-r="${r}" class="${r===1?"on":""}">${r}×</button>`).join("")}</div></div>
+    <p class="how">Hai dạng ô: <b>ô số đen</b> — bấm chọn A, B hoặc C; <b>ô D đỏ</b> — tự gõ cụm từ nghe được (số nhỏ là số từ cần viết). Mẹo: lần 1 nghe 0.9×, lần 2 tốc độ thường rồi bấm <b>Chấm bài</b>.</p>
+    <article class="transcript" id="tx">${html}</article>
+    <div class="actions"><button class="btn primary" id="chk">Chấm bài</button><button class="btn" id="rst">Làm lại</button><span class="score" id="sc" hidden></span></div>`;
+  const aud = $("#aud");
+  $("#spd").onclick = e => { const b=e.target.closest("button"); if(!b) return; aud.playbackRate=+b.dataset.r; $("#spd").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b)); };
+  $("#tx").onclick = e => {
+    const b = e.target.closest(".opt"); if(!b || b.disabled) return;
+    const g = b.closest(".gap"); state[g.dataset.n] = +b.dataset.i; storeSet(`c21t${DATA.test}-choices`, state); paint(p);
+  };
+  $("#tx").oninput = e => { if(e.target.tagName==="INPUT"){ state[e.target.id] = e.target.value; storeSet(`c21t${DATA.test}-choices`, state); paint(p);} };
+  $("#tx").querySelectorAll("input").forEach(i => i.value = state[i.id] || "");
+  $("#chk").onclick = () => { checked[p.num]=true; paint(p); $("#sc").scrollIntoView({block:"nearest"}); };
+  $("#rst").onclick = () => { p.segs.forEach(s=>{ if(typeof s!=="string") delete state[s.kind==="write" ? "w"+s.n : s.n]; }); $("#tx").querySelectorAll("input").forEach(i=>i.value=""); storeSet(`c21t${DATA.test}-choices`, state); checked[p.num]=false; paint(p); };
+  paint(p);
+}
+const normW = s => (s||"").toLowerCase().replace(/[’‘]/g,"'").replace(/[^a-z0-9'£ -]/g," ").replace(/\s+/g," ").trim();
+function paint(p){
+  let done=0, right=0, wd=0, wr=0; const isC = !!checked[p.num];
+  const gaps = p.segs.filter(s=>typeof s!=="string" && s.opts), writes = p.segs.filter(s=>typeof s!=="string" && s.kind==="write");
+  gaps.forEach(s => {
+    const g = $(`.gap[data-n="${s.n}"]`); const ch = state[s.n];
+    if (ch!==undefined) done++; if (ch===s.ans) right++;
+    g.classList.toggle("done", isC); g.classList.toggle("right", isC && ch===s.ans); g.classList.toggle("wrong", isC && ch!==s.ans);
+    g.querySelectorAll(".opt").forEach((b,i) => {
+      b.classList.toggle("sel", !isC && ch===i);
+      b.classList.toggle("is-ans", isC && i===s.ans);
+      b.classList.toggle("is-wrong", isC && ch===i && i!==s.ans);
+      b.disabled = isC;
+    });
+  });
+  writes.forEach(s => {
+    const g = $(`.wgap[data-d="${s.n}"]`), inp = g.querySelector("input"), fix = g.querySelector(".fix");
+    const v = state["w"+s.n]||""; if (v.trim()) wd++; const ok = normW(v)===normW(s.ans); if (ok) wr++;
+    g.classList.toggle("right", isC && ok); g.classList.toggle("wrong", isC && !ok);
+    inp.readOnly = isC; fix.hidden = !(isC && !ok); fix.textContent = s.ans;
+  });
+  $("#prog").textContent = `Đã làm ${done}/${gaps.length} trắc nghiệm · ${wd}/${writes.length} tự viết`;
+  const sc = $("#sc"); sc.hidden = !isC;
+  if (isC) sc.textContent = `Trắc nghiệm ${right}/${gaps.length} · Tự viết ${wr}/${writes.length} · Tổng ${Math.round((right+wr)/(gaps.length+writes.length)*100)}%`;
+}
+
+/* ---------- Chép chính tả ---------- */
+const norm = s => s.toLowerCase().replace(/[’']/g,"'").replace(/[^a-z0-9'£\s-]/g," ").split(/\s+/).filter(Boolean);
+function lcsDiff(target, typed){
+  const a=norm(target), b=norm(typed), m=a.length, n=b.length;
+  const dp=Array.from({length:m+1},()=>Array(n+1).fill(0));
+  for(let i=m-1;i>=0;i--) for(let j=n-1;j>=0;j--) dp[i][j]= a[i]===b[j]? dp[i+1][j+1]+1 : Math.max(dp[i+1][j],dp[i][j+1]);
+  const out=[]; let i=0,j=0;
+  while(i<m||j<n){
+    if(i<m&&j<n&&a[i]===b[j]){out.push(["ok",b[j]]);i++;j++}
+    else if(j<n&&(i===m||dp[i][j+1]>=dp[i+1][j])){out.push(["bad",b[j]]);j++}
+    else {out.push(["miss",a[i]]);i++}
+  }
+  return {out, pct: m? Math.round(dp[0][0]/m*100):0};
+}
+let voice=null;
+function pickVoice(){ const vs=speechSynthesis.getVoices(); voice = vs.find(v=>/en-GB/i.test(v.lang)) || vs.find(v=>/^en/i.test(v.lang)) || null; }
+if ("speechSynthesis" in window){ pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+function speak(text, rate){
+  if(!("speechSynthesis" in window)) return false;
+  speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.lang="en-GB"; u.rate=rate; if(voice) u.voice=voice; speechSynthesis.speak(u); return true;
+}
+function renderDict(){
+  const drafts = storeGet(`c21t${DATA.test}-dict`)||{};
+  let k=0, html = `<div class="panel-head"><div><div class="kicker">Writing · Dictation</div><h2>Chép chính tả — 20 câu từ transcript</h2></div></div>
+  <p class="how">Bấm <b>▶ Nghe</b> (hoặc <b>🐢 Chậm</b>), gõ lại đúng câu nghe được, rồi bấm <b>Kiểm tra</b>. Từ xanh = đúng, gạch cam = sai/thừa, ô xanh nhạt = từ bị thiếu. Không phân biệt hoa/thường và dấu câu.</p>`;
+  Object.entries(DATA.dictation).forEach(([pn, ss]) => {
+    html += `<section class="dgroup"><h3>Part ${pn} · ${esc(DATA.parts[pn-1].title)}</h3>`;
+    ss.forEach(s => { k++; html += `<div class="dcard" data-k="${k}">
+      <div class="drow"><span class="dn">D${k}</span><button class="sbtn" data-act="n">▶ Nghe</button><button class="sbtn" data-act="s">🐢 Chậm</button><button class="sbtn" data-act="c">Kiểm tra</button><button class="sbtn" data-act="a">Xem đáp án</button></div>
+      <textarea id="d${k}" rows="2" placeholder="Gõ câu bạn nghe được…" spellcheck="false">${esc(drafts[k]||"")}</textarea>
+      <div class="diff" hidden></div></div>`; });
+    html += `</section>`;
+  });
+  html += `<p class="note">Giọng đọc dùng giọng Anh-Anh của trình duyệt (text-to-speech — giọng máy đọc văn bản). Muốn nghe giọng gốc, quay lại tab Part tương ứng và phát audio.</p>`;
+  $("#main").innerHTML = html;
+  const all = Object.values(DATA.dictation).flat();
+  $("#main").onclick = e => {
+    const b=e.target.closest(".sbtn"); if(!b) return;
+    const card=b.closest(".dcard"), k=+card.dataset.k, s=all[k-1], d=card.querySelector(".diff");
+    if(b.dataset.act==="n"||b.dataset.act==="s"){ if(!speak(s, b.dataset.act==="n"?0.9:0.6)){ d.hidden=false; d.textContent="Trình duyệt này không hỗ trợ đọc giọng nói."; } }
+    if(b.dataset.act==="c"){ const r=lcsDiff(s, card.querySelector("textarea").value); d.hidden=false;
+      d.innerHTML = r.out.map(([t,w])=>`<span class="w-${t}">${esc(w)}</span>`).join(" ") + `<span class="pct">${r.pct}% đúng</span>`; }
+    if(b.dataset.act==="a"){ d.hidden=false; d.innerHTML = `<b>Đáp án:</b> ${esc(s)}`; }
+  };
+  $("#main").oninput = e => { if(e.target.tagName==="TEXTAREA"){ drafts[e.target.id.slice(1)]=e.target.value; storeSet(`c21t${DATA.test}-dict`,drafts);} };
+}
+
+function show(id){
+  renderTabs(id); $("#main").onclick=null; $("#main").oninput=null;
+  if ("speechSynthesis" in window) speechSynthesis.cancel();
+  if (id==="dict") renderDict(); else renderPart(DATA.parts[+id.slice(1)-1]);
+  try{ localStorage.setItem(`c21t${DATA.test}-tab`, id) }catch(e){}
+}
+let start="p1"; try{ start = localStorage.getItem(`c21t${DATA.test}-tab`) || "p1" }catch(e){}
+if (!/^p[1-4]$/.test(start)) start="p1";
+show(start);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Cam 21 Listening Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Literata:opsz,wght@7..72,400;7..72,600&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+:root{
+  --red:#C8102E; --red-soft:#FBE9EC; --ink:#18110F; --paper:#FFFFFF; --ground:#F8F4F3;
+  --muted:#6E605C; --line:#E8DCD9; --ok:#1C7A4B; --ok-soft:#E3F3EA; --bad:#B8430B; --bad-soft:#FCEBDD;
+  --chip:#FFFFFF; --shadow:0 1px 2px rgba(24,17,15,.06);
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Literata",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  color-scheme:dark; --red:#FF5A6E; --red-soft:#3A1419; --ink:#F3EAE8; --paper:#1E1817; --ground:#141010;
+  --muted:#B3A29E; --line:#3A2E2C; --ok:#5CD39A; --ok-soft:#12301F; --bad:#FF9A5C; --bad-soft:#3A2012; --chip:#261E1D; --shadow:none;}}
+:root[data-theme="dark"]{
+  color-scheme:dark; --red:#FF5A6E; --red-soft:#3A1419; --ink:#F3EAE8; --paper:#1E1817; --ground:#141010;
+  --muted:#B3A29E; --line:#3A2E2C; --ok:#5CD39A; --ok-soft:#12301F; --bad:#FF9A5C; --bad-soft:#3A2012; --chip:#261E1D; --shadow:none;}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.9;padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:860px;margin:0 auto}
+header.top{padding-block:28px 12px}
+.brand{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:700}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,5vw,42px);line-height:1.05;margin:.25em 0 .2em;text-wrap:balance;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:15px;line-height:1.6;margin:0;max-width:62ch}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);display:flex;gap:6px;flex-wrap:wrap;padding-block:12px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.tab{font-family:var(--display);font-weight:700;font-size:14px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.tab .cnt{font-family:var(--mono);font-size:11px;opacity:.7;margin-left:6px}
+.tab:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.panel-head{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:end;justify-content:space-between;margin-bottom:14px}
+.panel-head h2{font-family:var(--display);font-size:24px;line-height:1.15;margin:0;text-wrap:balance}
+.panel-head .kicker{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.1em;text-transform:uppercase}
+.player{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin-bottom:16px;box-shadow:var(--shadow)}
+.player audio{flex:1 1 260px;min-width:0;height:40px}
+.speed{display:flex;gap:4px}
+.speed button{font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:8px;padding:4px 8px;cursor:pointer}
+.speed button.on{background:var(--red);color:#fff;border-color:var(--red)}
+.how{font-size:14px;line-height:1.6;color:var(--muted);margin:0 0 18px}
+.transcript{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px clamp(16px,4vw,32px)}
+.transcript p{margin:0 0 1.1em}
+.spk{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.08em;color:var(--red);margin-right:6px}
+.gap{display:inline-flex;align-items:center;gap:3px;vertical-align:baseline;border:1.5px dashed var(--line);border-radius:10px;padding:1px 4px;margin:1px 1px;line-height:1.4;flex-wrap:wrap}
+.gap .num{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--red);padding:0 3px}
+.opt{font-family:var(--body);font-size:15px;border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:7px;padding:1px 8px;cursor:pointer;line-height:1.5}
+.opt:hover{border-color:var(--ink)}
+.opt .l{font-family:var(--mono);font-size:10px;color:var(--muted);margin-right:4px}
+.opt.sel{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.opt.sel .l{color:inherit;opacity:.7}
+.gap.done{border-style:solid}
+.gap.right{border-color:var(--ok);background:var(--ok-soft)}
+.gap.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.is-ans{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.is-wrong{text-decoration:line-through;background:transparent;color:var(--bad);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.gap.done .opt:not(.is-ans):not(.is-wrong){opacity:.35}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px}
+.btn{font-family:var(--display);font-weight:700;font-size:15px;border-radius:10px;padding:10px 18px;cursor:pointer;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink)}
+.btn.primary{background:var(--red);border-color:var(--red);color:#fff}
+.score{font-family:var(--mono);font-size:14px;font-weight:700;padding:6px 12px;border-radius:999px;background:var(--red-soft);color:var(--red)}
+.progress{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.wgap{display:inline-flex;align-items:center;gap:3px;vertical-align:baseline;border:1.5px dashed var(--red);border-radius:10px;padding:1px 4px;margin:1px;line-height:1.4;flex-wrap:wrap;max-width:100%}
+.wgap .num{font-family:var(--mono);font-size:11px;font-weight:700;color:#fff;background:var(--red);border-radius:5px;padding:0 5px}
+.wgap input{font-family:var(--body);font-size:15px;border:0;border-bottom:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:0 2px;max-width:70vw;outline:none}
+.wgap input:focus{border-bottom-color:var(--red)}
+.wgap .wc{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.wgap.right{border-style:solid;border-color:var(--ok);background:var(--ok-soft)}
+.wgap.wrong{border-style:solid;border-color:var(--bad);background:var(--bad-soft)}
+.wgap.wrong input{text-decoration:line-through;color:var(--bad)}
+.wgap .fix{font-weight:600;color:var(--ok);font-size:15px}
+/* dictation */
+.dgroup{margin-bottom:26px}
+.dgroup h3{font-family:var(--display);font-size:18px;margin:0 0 10px}
+.dcard{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;display:grid;gap:10px}
+.drow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.drow .dn{font-family:var(--mono);font-weight:700;color:var(--red);font-size:13px;min-width:2.2em}
+.sbtn{font-family:var(--display);font-weight:700;font-size:13px;border:1px solid var(--line);background:var(--ground);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer}
+.sbtn:hover{border-color:var(--ink)}
+textarea{width:100%;font-family:var(--body);font-size:16px;line-height:1.6;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--ground);color:var(--ink);resize:vertical;min-height:64px}
+.diff{font-size:15px;line-height:1.9}
+.diff .w-ok{color:var(--ok)}
+.diff .w-bad{color:var(--bad);text-decoration:line-through}
+.diff .w-miss{background:var(--ok-soft);color:var(--ok);border-radius:4px;padding:0 3px;font-weight:600}
+.diff .pct{font-family:var(--mono);font-size:12px;font-weight:700;margin-left:8px;color:var(--muted)}
+.note{font-size:13px;color:var(--muted);line-height:1.6}
+footer{margin-top:40px;font-size:12px;color:var(--muted);font-family:var(--mono)}
+@media (prefers-reduced-motion:no-preference){.gap.done{transition:background .2s}}
+[hidden]{display:none!important}
+body{margin:0}
+.crumb{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.crumb a{font-family:var(--display);font-weight:700;font-size:14px;color:var(--ink);text-decoration:none;border-bottom:1.5px solid var(--red)}
+.nextnav{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.nextnav a{font-family:var(--display);font-weight:700;font-size:15px;color:var(--ink);text-decoration:none;border:1.5px solid var(--line);background:var(--paper);border-radius:10px;padding:10px 16px}
+.nextnav a:hover{border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:22px}
+.card{display:grid;gap:10px;align-content:start;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;text-decoration:none;color:var(--ink)}
+.card:hover{border-color:var(--ink)}
+.card:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.card .tn{font-family:var(--display);font-weight:800;font-size:26px;line-height:1}
+.card ol{margin:0;padding-left:18px;font-size:14px;line-height:1.55;color:var(--muted)}
+.card .meta{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:11px;font-weight:700;border-radius:999px;padding:3px 9px;background:var(--ground);border:1px solid var(--line)}
+.chip.w{color:var(--red);border-color:var(--red)}
+.bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);width:0}
+.card .pg{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.steps{margin:26px 0 0;padding:16px 20px;background:var(--paper);border:1px solid var(--line);border-radius:14px;font-size:14.5px;line-height:1.7}
+.steps b{font-family:var(--display)}
+</style>
+</head>
+<body>
+<div id="gateScreen" style="position:fixed;inset:0;z-index:999;background:var(--ground);display:flex;align-items:center;justify-content:center;padding:20px;">
+  <form id="gateForm" style="max-width:340px;width:100%;text-align:center;font-family:var(--display);">
+    <div class="brand">AZEnglish · Listening Lab</div>
+    <h2 style="font-size:22px;margin:8px 0 6px">Cambridge IELTS 21</h2>
+    <p style="font-size:13px;color:var(--muted);margin:0 0 16px;line-height:1.5">Nhập mật khẩu được cung cấp để vào làm bài.</p>
+    <input id="gatePassword" type="password" placeholder="Mật khẩu" autocomplete="off" style="width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font-size:15px;margin-bottom:10px;background:var(--paper);color:var(--ink)">
+    <button type="submit" class="btn primary" style="width:100%">Vào làm bài</button>
+    <p id="gateError" style="color:var(--red);font-size:13px;margin:10px 0 0" hidden>Sai mật khẩu, thử lại nhé.</p>
+  </form>
+</div>
+<script>
+(function(){
+  var GATE_PASSWORD = "azenglish2026", GATE_KEY = "az_rt_gate_ok", g = document.getElementById("gateScreen");
+  try{ if(localStorage.getItem(GATE_KEY) === "1") g.style.display = "none"; }catch(e){}
+  document.getElementById("gateForm").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    if(document.getElementById("gatePassword").value === GATE_PASSWORD){ try{ localStorage.setItem(GATE_KEY,"1"); }catch(e){} g.style.display="none"; }
+    else document.getElementById("gateError").hidden = false;
+  });
+})();
+</script>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">AZEnglish · Listening Lab · Band 3.0–5.0+</div>
+    <h1>Cambridge IELTS 21 — Nghe, chọn &amp; viết</h1>
+    <p class="sub">Trọn bộ 4 Test Listening của Cambridge 21. Mỗi bài là toàn bộ transcript đã khoét lỗ: ô số đen chọn A/B/C, ô D đỏ tự viết. Có audio gốc và tự chấm điểm.</p>
+  </header>
+  <div class="grid"><a class="card" href="listening-gapfill-c21t1.html" data-t="1" data-total="229">
+  <span class="tn">Test 1</span><ol><li>Oyster Bay Sailing Club Courses</li><li>Working as a Makeup Trainee</li><li>Discussion: Ocean Biodiversity Lecture and Research Project</li><li>Sources of Rubber</li></ol>
+  <span class="meta"><span class="chip">183 trắc nghiệm</span><span class="chip w">46 tự viết</span></span>
+  <span class="bar"><i></i></span><span class="pg">Chưa làm</span></a><a class="card" href="listening-gapfill-c21t2.html" data-t="2" data-total="237">
+  <span class="tn">Test 2</span><ol><li>One-day Classes at Steynford College</li><li>Coastal Walks and Melby Coal Mine</li><li>Discussion: Food Safety and a New Food Product Project</li><li>Challenges Facing the Cruise Ship Industry</li></ol>
+  <span class="meta"><span class="chip">177 trắc nghiệm</span><span class="chip w">60 tự viết</span></span>
+  <span class="bar"><i></i></span><span class="pg">Chưa làm</span></a><a class="card" href="listening-gapfill-c21t3.html" data-t="3" data-total="254">
+  <span class="tn">Test 3</span><ol><li>Ferry to Shetland Islands</li><li>Street Food Businesses</li><li>Discussion: Ethical and Sustainable Fashion</li><li>Invasive Species</li></ol>
+  <span class="meta"><span class="chip">203 trắc nghiệm</span><span class="chip w">51 tự viết</span></span>
+  <span class="bar"><i></i></span><span class="pg">Chưa làm</span></a><a class="card" href="listening-gapfill-c21t4.html" data-t="4" data-total="255">
+  <span class="tn">Test 4</span><ol><li>Survey about Shopping in Broadbeach</li><li>Business Exhibition and Conference Speakers</li><li>Presentation on Houses of the Future</li><li>Music Therapy for Surgical Patients</li></ol>
+  <span class="meta"><span class="chip">196 trắc nghiệm</span><span class="chip w">59 tự viết</span></span>
+  <span class="bar"><i></i></span><span class="pg">Chưa làm</span></a></div>
+  <div class="steps"><b>Cách luyện hiệu quả:</b> Lần 1 nghe tốc độ 0.9× và làm nhanh · Lần 2 nghe tốc độ thường để soát · Bấm <b>Chấm bài</b> · Ô sai: tua lại đúng đoạn đó nghe thêm 2–3 lần rồi mới sang Part tiếp theo.</div>
+  <footer>Nguồn: Cambridge IELTS 21 — transcript &amp; audio gốc. Tài liệu lớp học nội bộ AZEnglish. Tiến độ lưu trên trình duyệt này.</footer>
+</div>
+<script>
+document.querySelectorAll(".card").forEach(c => {
+  let st = {}; try { st = JSON.parse(localStorage.getItem("c21t" + c.dataset.t + "-choices") || "{}") } catch(e) {}
+  const done = Object.values(st).filter(v => v !== "" && v !== null && v !== undefined).length, tot = +c.dataset.total;
+  if (done) { c.querySelector(".bar i").style.width = Math.min(100, done / tot * 100) + "%"; c.querySelector(".pg").textContent = `Đã làm ${done}/${tot} ô`; }
+});
+</script>
+</body>
+</html>
