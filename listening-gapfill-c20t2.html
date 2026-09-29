@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Cam 20 Test 2 Listening Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Literata:opsz,wght@7..72,400;7..72,600&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+:root{
+  --red:#C8102E; --red-soft:#FBE9EC; --ink:#18110F; --paper:#FFFFFF; --ground:#F8F4F3;
+  --muted:#6E605C; --line:#E8DCD9; --ok:#1C7A4B; --ok-soft:#E3F3EA; --bad:#B8430B; --bad-soft:#FCEBDD;
+  --chip:#FFFFFF; --shadow:0 1px 2px rgba(24,17,15,.06);
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Literata",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  color-scheme:dark; --red:#FF5A6E; --red-soft:#3A1419; --ink:#F3EAE8; --paper:#1E1817; --ground:#141010;
+  --muted:#B3A29E; --line:#3A2E2C; --ok:#5CD39A; --ok-soft:#12301F; --bad:#FF9A5C; --bad-soft:#3A2012; --chip:#261E1D; --shadow:none;}}
+:root[data-theme="dark"]{
+  color-scheme:dark; --red:#FF5A6E; --red-soft:#3A1419; --ink:#F3EAE8; --paper:#1E1817; --ground:#141010;
+  --muted:#B3A29E; --line:#3A2E2C; --ok:#5CD39A; --ok-soft:#12301F; --bad:#FF9A5C; --bad-soft:#3A2012; --chip:#261E1D; --shadow:none;}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.9;padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:860px;margin:0 auto}
+header.top{padding-block:28px 12px}
+.brand{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:700}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,5vw,42px);line-height:1.05;margin:.25em 0 .2em;text-wrap:balance;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:15px;line-height:1.6;margin:0;max-width:62ch}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);display:flex;gap:6px;flex-wrap:wrap;padding-block:12px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.tab{font-family:var(--display);font-weight:700;font-size:14px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.tab .cnt{font-family:var(--mono);font-size:11px;opacity:.7;margin-left:6px}
+.tab:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.panel-head{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:end;justify-content:space-between;margin-bottom:14px}
+.panel-head h2{font-family:var(--display);font-size:24px;line-height:1.15;margin:0;text-wrap:balance}
+.panel-head .kicker{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.1em;text-transform:uppercase}
+.player{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin-bottom:16px;box-shadow:var(--shadow)}
+.player audio{flex:1 1 260px;min-width:0;height:40px}
+.speed{display:flex;gap:4px}
+.speed button{font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:8px;padding:4px 8px;cursor:pointer}
+.speed button.on{background:var(--red);color:#fff;border-color:var(--red)}
+.how{font-size:14px;line-height:1.6;color:var(--muted);margin:0 0 18px}
+.transcript{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px clamp(16px,4vw,32px)}
+.transcript p{margin:0 0 1.1em}
+.spk{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.08em;color:var(--red);margin-right:6px}
+.gap{display:inline-flex;align-items:center;gap:3px;vertical-align:baseline;border:1.5px dashed var(--line);border-radius:10px;padding:1px 4px;margin:1px 1px;line-height:1.4;flex-wrap:wrap}
+.gap .num{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--red);padding:0 3px}
+.opt{font-family:var(--body);font-size:15px;border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:7px;padding:1px 8px;cursor:pointer;line-height:1.5}
+.opt:hover{border-color:var(--ink)}
+.opt .l{font-family:var(--mono);font-size:10px;color:var(--muted);margin-right:4px}
+.opt.sel{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.opt.sel .l{color:inherit;opacity:.7}
+.gap.done{border-style:solid}
+.gap.right{border-color:var(--ok);background:var(--ok-soft)}
+.gap.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.is-ans{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.is-wrong{text-decoration:line-through;background:transparent;color:var(--bad);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.gap.done .opt:not(.is-ans):not(.is-wrong){opacity:.35}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px}
+.btn{font-family:var(--display);font-weight:700;font-size:15px;border-radius:10px;padding:10px 18px;cursor:pointer;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink)}
+.btn.primary{background:var(--red);border-color:var(--red);color:#fff}
+.score{font-family:var(--mono);font-size:14px;font-weight:700;padding:6px 12px;border-radius:999px;background:var(--red-soft);color:var(--red)}
+.progress{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.wgap{display:inline-flex;align-items:center;gap:3px;vertical-align:baseline;border:1.5px dashed var(--red);border-radius:10px;padding:1px 4px;margin:1px;line-height:1.4;flex-wrap:wrap;max-width:100%}
+.wgap .num{font-family:var(--mono);font-size:11px;font-weight:700;color:#fff;background:var(--red);border-radius:5px;padding:0 5px}
+.wgap input{font-family:var(--body);font-size:15px;border:0;border-bottom:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:0 2px;max-width:70vw;outline:none}
+.wgap input:focus{border-bottom-color:var(--red)}
+.wgap .wc{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.wgap.right{border-style:solid;border-color:var(--ok);background:var(--ok-soft)}
+.wgap.wrong{border-style:solid;border-color:var(--bad);background:var(--bad-soft)}
+.wgap.wrong input{text-decoration:line-through;color:var(--bad)}
+.wgap .fix{font-weight:600;color:var(--ok);font-size:15px}
+/* dictation */
+.dgroup{margin-bottom:26px}
+.dgroup h3{font-family:var(--display);font-size:18px;margin:0 0 10px}
+.dcard{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;display:grid;gap:10px}
+.drow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.drow .dn{font-family:var(--mono);font-weight:700;color:var(--red);font-size:13px;min-width:2.2em}
+.sbtn{font-family:var(--display);font-weight:700;font-size:13px;border:1px solid var(--line);background:var(--ground);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer}
+.sbtn:hover{border-color:var(--ink)}
+textarea{width:100%;font-family:var(--body);font-size:16px;line-height:1.6;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--ground);color:var(--ink);resize:vertical;min-height:64px}
+.diff{font-size:15px;line-height:1.9}
+.diff .w-ok{color:var(--ok)}
+.diff .w-bad{color:var(--bad);text-decoration:line-through}
+.diff .w-miss{background:var(--ok-soft);color:var(--ok);border-radius:4px;padding:0 3px;font-weight:600}
+.diff .pct{font-family:var(--mono);font-size:12px;font-weight:700;margin-left:8px;color:var(--muted)}
+.note{font-size:13px;color:var(--muted);line-height:1.6}
+footer{margin-top:40px;font-size:12px;color:var(--muted);font-family:var(--mono)}
+@media (prefers-reduced-motion:no-preference){.gap.done{transition:background .2s}}
+[hidden]{display:none!important}
+body{margin:0}
+.crumb{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.crumb a{font-family:var(--display);font-weight:700;font-size:14px;color:var(--ink);text-decoration:none;border-bottom:1.5px solid var(--red)}
+.nextnav{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.nextnav a{font-family:var(--display);font-weight:700;font-size:15px;color:var(--ink);text-decoration:none;border:1.5px solid var(--line);background:var(--paper);border-radius:10px;padding:10px 16px}
+.nextnav a:hover{border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:22px}
+.card{display:grid;gap:10px;align-content:start;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;text-decoration:none;color:var(--ink)}
+.card:hover{border-color:var(--ink)}
+.card:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.card .tn{font-family:var(--display);font-weight:800;font-size:26px;line-height:1}
+.card ol{margin:0;padding-left:18px;font-size:14px;line-height:1.55;color:var(--muted)}
+.card .meta{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:11px;font-weight:700;border-radius:999px;padding:3px 9px;background:var(--ground);border:1px solid var(--line)}
+.chip.w{color:var(--red);border-color:var(--red)}
+.bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);width:0}
+.card .pg{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.steps{margin:26px 0 0;padding:16px 20px;background:var(--paper);border:1px solid var(--line);border-radius:14px;font-size:14.5px;line-height:1.7}
+.steps b{font-family:var(--display)}
+</style>
+</head>
+<body>
+<div id="gateScreen" style="position:fixed;inset:0;z-index:999;background:var(--ground);display:flex;align-items:center;justify-content:center;padding:20px;">
+  <form id="gateForm" style="max-width:340px;width:100%;text-align:center;font-family:var(--display);">
+    <div class="brand">AZEnglish · Listening Lab</div>
+    <h2 style="font-size:22px;margin:8px 0 6px">Cambridge IELTS 20</h2>
+    <p style="font-size:13px;color:var(--muted);margin:0 0 16px;line-height:1.5">Nhập mật khẩu được cung cấp để vào làm bài.</p>
+    <input id="gatePassword" type="password" placeholder="Mật khẩu" autocomplete="off" style="width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font-size:15px;margin-bottom:10px;background:var(--paper);color:var(--ink)">
+    <button type="submit" class="btn primary" style="width:100%">Vào làm bài</button>
+    <p id="gateError" style="color:var(--red);font-size:13px;margin:10px 0 0" hidden>Sai mật khẩu, thử lại nhé.</p>
+  </form>
+</div>
+<script>
+(function(){
+  var GATE_PASSWORD = "azenglish2026", GATE_KEY = "az_rt_gate_ok", g = document.getElementById("gateScreen");
+  try{ if(localStorage.getItem(GATE_KEY) === "1") g.style.display = "none"; }catch(e){}
+  document.getElementById("gateForm").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    if(document.getElementById("gatePassword").value === GATE_PASSWORD){ try{ localStorage.setItem(GATE_KEY,"1"); }catch(e){} g.style.display="none"; }
+    else document.getElementById("gateError").hidden = false;
+  });
+})();
+</script>
+
+
+<div class="wrap">
+  <header class="top">
+    <div class="crumb"><div class="brand">AZEnglish · Listening Lab · Band 3.0–5.0+</div><a href="listening-gapfill-c20.html">← Tất cả Test</a></div>
+    <h1>Cambridge 20 · Test 2 — Nghe, chọn & viết</h1>
+    <p class="sub">Toàn bộ transcript 4 Part, giống bản in trên lớp: 248 ô chọn A/B/C và 54 ô tự viết. Bài làm được lưu trên trình duyệt của bạn — tải lại trang không mất.</p>
+  </header>
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+  <main id="main"></main>
+  <nav class="nextnav"><a href="listening-gapfill-c20t1.html">Test 1 →</a><a href="listening-gapfill-c20t3.html">Test 3 →</a><a href="listening-gapfill-c20t4.html">Test 4 →</a><a href="listening-gapfill-c20.html">Trang chủ</a></nav>
+  <footer>Nguồn: Cambridge IELTS 20, Test 2 — transcript & audio gốc. Tài liệu lớp học nội bộ AZEnglish.</footer>
+</div>
+
+<script>
+const DATA = {"test": 2, "parts": [{"num": 1, "title": "Support for carers of elderly people", "audio": "cambridge20-test2-part1.mp3", "segs": ["WOMAN: It's really good to see you ", {"n": 1, "opts": ["Tom", "Tony", "Tim"], "ans": 0}, ". Since I had to give up ", {"n": 2, "opts": ["weak", "work", "walk"], "ans": 1}, " I feel I'm losing ", {"n": 3, "opts": ["much", "torch", "touch"], "ans": 2}, " with my friends and ", {"n": 4, "opts": ["colleagues", "leagues", "colleges"], "ans": 0}, ".\n\nMAN: We really miss you in the ", {"n": 5, "opts": ["officer", "office", "offer"], "ans": 1}, ". We were all so sorry you had to leave. But you must be ", {"n": 6, "opts": ["released", "relived", "relieved"], "ans": 2}, " to have more time to look after your ", {"n": 7, "opts": ["brother", "matter", "mother"], "ans": 2}, ". How is she?\n\nWOMAN: Well, she's very ", {"n": 8, "opts": ["tearful", "cheerful", "careful"], "ans": 1}, " but she needs a lot of help.\n\nMAN: Have you tried to get any support from the local ", {"n": 9, "opts": ["council", "counsel", "cancel"], "ans": 0}, "?\n\nWOMAN: No, I didn't know I could.\n\nMAN: Yes, they offer different kinds of ", {"n": 10, "opts": ["tactical", "political", "practical"], "ans": 2}, " support. They realise that carers sometimes need time for all the other ", {"n": 11, "opts": ["possibilities", "responsibilities", "responses"], "ans": 1}, " they have apart from the person they're ", {"n": 12, "opts": ["caring", "carrying", "sharing"], "ans": 0}, " for and also that they sometimes need a ", {"n": 13, "opts": ["brake", "bread", "break"], "ans": 2}, ".\n\nWOMAN: Absolutely. Okay, so tell me more. How do I go about getting this support?\n\nMAN: Well, you'd have to have an ", {"n": 14, "opts": ["amusement", "assessment", "assistant"], "ans": 1}, " of your mother's needs. That means someone would come ", {"n": 15, "opts": ["round", "ground", "around"], "ans": 0}, " and talk to you about the situation and what you need. So for a start they'd want to know the amount of ", {"n": 16, "opts": ["time", "tie", "tame"], "ans": 0}, " you spend looking after your mother every day.\n\nWOMAN: Okay.\n\nMAN: Then they'll probably ask you what sorts of ", {"n": 17, "opts": ["tanks", "masks", "tasks"], "ans": 2}, " you do for your mother during the day. Things like if she needs help with getting ", {"n": 18, "opts": ["addressed", "dressed", "stressed"], "ans": 1}, ", for example.\n\nWOMAN: Right, I help her with that. And also I help her get into the ", {"n": 19, "opts": ["flower", "shower", "shore"], "ans": 1}, " in the morning.\n\nMAN: Yes, that sort of thing. They'll probably ask you if you do the ", {"n": 20, "opts": ["shopping", "chopping", "shipping"], "ans": 0}, " for her and help her at ", {"n": 21, "opts": ["mail", "mill", "meal"], "ans": 2}, " times and whether she can cope using ", {"n": 22, "opts": ["monkey", "honey", "money"], "ans": 2}, ".\n\nWOMAN: Yes, that's becoming a bit of a problem. She used to be very good at it, but not anymore.\n\nMAN: ", {"n": 1, "ans": "And be ready to tell them about anything", "w": 8, "kind": "write"}, " ", {"n": 2, "ans": "you find particularly", "w": 3, "kind": "write"}, " ", {"n": 23, "opts": ["difficult", "different", "dutiful"], "ans": 0}, " about caring for your mother.\n\nWOMAN: ", {"n": 3, "ans": "So recently I've noticed", "w": 4, "kind": "write"}, " ", {"n": 4, "ans": "she started to have quite bad problems with her", "w": 9, "kind": "write"}, " ", {"n": 24, "opts": ["mummy", "memory", "melody"], "ans": 1}, ". ", {"n": 5, "ans": "If I wasn't there", "w": 4, "kind": "write"}, ", ", {"n": 6, "ans": "I think she'd forget to", "w": 5, "kind": "write"}, " ", {"n": 25, "opts": ["eight", "heat", "eat"], "ans": 2}, ", for example. ", {"n": 7, "ans": "And often she doesn't seem quite sure", "w": 7, "kind": "write"}, " what ", {"n": 26, "opts": ["they", "day", "date"], "ans": 1}, " it is.\n\nMAN: ", {"n": 8, "ans": "Yes, tell them about that", "w": 5, "kind": "write"}, ". ", {"n": 9, "ans": "And are there any", "w": 4, "kind": "write"}, " ", {"n": 27, "opts": ["physical", "musical", "physics"], "ans": 0}, " ", {"n": 10, "ans": "difficulties you have", "w": 3, "kind": "write"}, " caring for her? ", {"n": 11, "ans": "Lifting her, for example", "w": 4, "kind": "write"}, ".\n\nWOMAN: Yes, she's quite ", {"n": 28, "opts": ["heavy", "healthy", "happy"], "ans": 0}, ", and ", {"n": 12, "ans": "I'm afraid of hurting my", "w": 5, "kind": "write"}, " ", {"n": 29, "opts": ["black", "back", "bag"], "ans": 1}, ". ", {"n": 13, "ans": "I'd be in", "w": 3, "kind": "write"}, " real ", {"n": 30, "opts": ["travel", "double", "trouble"], "ans": 2}, " ", {"n": 14, "ans": "if that happened", "w": 3, "kind": "write"}, ".\n\nMAN: ", {"n": 15, "ans": "They can give you advice about that", "w": 7, "kind": "write"}, ", and also about ", {"n": 16, "ans": "how to avoid the possibility of", "w": 6, "kind": "write"}, " your mum having a ", {"n": 31, "opts": ["full", "fall", "fault"], "ans": 1}, ".\n\nWOMAN: Great. So once they've done this assessment, if I'm ", {"n": 32, "opts": ["illegible", "legible", "eligible"], "ans": 2}, ", what happens next?\n\nMAN: Well, they might support you ", {"n": 33, "opts": ["financially", "finally", "physically"], "ans": 0}, ". So they might help you with ", {"n": 34, "opts": ["transplant", "transport", "passport"], "ans": 1}, " costs, like if you have to get a ", {"n": 35, "opts": ["taxi", "tax", "taxis"], "ans": 0}, " to take your mother for an ", {"n": 36, "opts": ["apartment", "department", "appointment"], "ans": 2}, ", for example.\n\nWOMAN: I usually ", {"n": 37, "opts": ["arrive", "drive", "dive"], "ans": 1}, " her myself, actually. So, could I claim for the ", {"n": 38, "opts": ["patrol", "pedal", "petrol"], "ans": 2}, "?\n\nMAN: You could. And you can claim for the ", {"n": 39, "opts": ["insurance", "entrance", "assurance"], "ans": 0}, ", too.\n\nWOMAN: Oh, right.\n\nMAN: And if you need help with the ", {"n": 40, "opts": ["homework", "housework", "household"], "ans": 1}, ", they can arrange for someone to come along once or ", {"n": 41, "opts": ["twelve", "trice", "twice"], "ans": 2}, " a week. And one other thing. I hope you don't mind me saying this, but it's important you look after ", {"n": 42, "opts": ["yourself", "herself", "yourselves"], "ans": 0}, ". And it seems to me you're under quite a bit of ", {"n": 43, "opts": ["stress", "stretch", "dress"], "ans": 0}, ".\n\nWOMAN: I am, yes.\n\nMAN: Well, tell the council, because they may be able to give you some advice on how to ", {"n": 44, "opts": ["maximise", "minimise", "memorise"], "ans": 1}, " it.\n\nWOMAN: Really? Though, actually, I feel so much ", {"n": 45, "opts": ["bitter", "butter", "better"], "ans": 2}, " having talked to you. I'll get in touch with the council ", {"n": 46, "opts": ["straight", "street", "strait"], "ans": 0}, " away. Now, shall we go for ", {"n": 47, "opts": ["copy", "toffee", "coffee"], "ans": 2}, " or something?"]}, {"num": 2, "title": "Volunteering for the local council", "audio": "cambridge20-test2-part2.mp3", "segs": ["Good morning everyone. I'm Steve Wainwright from Elmley Town ", {"n": 48, "opts": ["Counsel", "Council", "Cancel"], "ans": 1}, " and I organise the town's volunteer ", {"n": 49, "opts": ["seem", "schema", "scheme"], "ans": 2}, ". I'm ", {"n": 50, "opts": ["delighted", "delegated", "lighted"], "ans": 0}, " you're all interested in joining the scheme. Our volunteers help to create a sense of ", {"n": 51, "opts": ["comedy", "community", "commodity"], "ans": 1}, " among the many people who live in our ", {"n": 52, "opts": ["historic", "hysteric", "historical"], "ans": 0}, " town of Elmley and make ", {"n": 53, "opts": ["residence", "presidents", "residents"], "ans": 2}, " and visitors feel welcome at local events.\n\nFirst, I'll mention just a few of the activities that volunteers carry out. One is to walk around the town centre ", {"n": 54, "opts": ["streams", "streets", "sweets"], "ans": 1}, " wearing our volunteer ", {"n": 55, "opts": ["t-shirt", "sweatshirt", "tea shirt"], "ans": 0}, ". ", {"n": 56, "opts": ["Tours", "Terraces", "Tourists"], "ans": 2}, " often ask how to get to a ", {"n": 57, "opts": ["particle", "particular", "popular"], "ans": 1}, " shop and they might also be ", {"n": 58, "opts": ["greatful", "grateful", "graceful"], "ans": 1}, " for recommendations about what to visit.\n\nThe town holds a large number of ", {"n": 59, "opts": ["concerts", "consorts", "concepts"], "ans": 0}, " each year and part of the volunteers' role is to get everyone in the ", {"n": 60, "opts": ["audio", "obedience", "audience"], "ans": 2}, " to the right place as ", {"n": 61, "opts": ["smoothly", "smartly", "slowly"], "ans": 0}, " as possible. You'd be surprised how many people buy ", {"n": 62, "opts": ["pockets", "tickets", "tickles"], "ans": 1}, ", then don't check them and head for the wrong section of the ", {"n": 63, "opts": ["hole", "hill", "hall"], "ans": 2}, ".\n\nVolunteers may get involved with community ", {"n": 64, "opts": ["grapes", "troops", "groups"], "ans": 2}, " such as ", {"n": 65, "opts": ["spots", "sports", "ports"], "ans": 1}, " clubs or gardeners' ", {"n": 66, "opts": ["associations", "situations", "assassinations"], "ans": 0}, ". Here the volunteers talk about how groups can help each other. For instance, a ", {"n": 67, "opts": ["waiting", "riding", "writing"], "ans": 2}, " group might want to travel to another town to hear a talk by a well-known ", {"n": 68, "opts": ["other", "author", "anchor"], "ans": 1}, " but may not know that another club has a ", {"n": 69, "opts": ["coach", "coat", "couch"], "ans": 0}, " they could travel in.\n\n", {"n": 17, "ans": "The town produces a", "w": 4, "kind": "write"}, " ", {"n": 70, "opts": ["month", "mostly", "monthly"], "ans": 2}, " magazine and ", {"n": 18, "ans": "anyone who lives in the town can", "w": 7, "kind": "write"}, " send in ", {"n": 71, "opts": ["articles", "particles", "artists"], "ans": 0}, ". It's ", {"n": 72, "opts": ["tree", "free", "three"], "ans": 1}, " to residents ", {"n": 19, "ans": "and is paid for by", "w": 5, "kind": "write"}, " local ", {"n": 73, "opts": ["businesses", "buses", "bosses"], "ans": 0}, ". ", {"n": 20, "ans": "That's the responsibility of the", "w": 5, "kind": "write"}, " council's ", {"n": 74, "opts": ["advising", "advertising", "adventuring"], "ans": 1}, " department. We ", {"n": 75, "opts": ["defend", "spend", "depend"], "ans": 2}, " on volunteers ", {"n": 21, "ans": "though to find out what people think of", "w": 8, "kind": "write"}, " ", {"n": 22, "ans": "events they've attended", "w": 3, "kind": "write"}, " and any ", {"n": 76, "opts": ["questions", "digestions", "suggestions"], "ans": 2}, " ", {"n": 23, "ans": "they have for the future", "w": 5, "kind": "write"}, ". ", {"n": 24, "ans": "The volunteers then send a", "w": 5, "kind": "write"}, " ", {"n": 77, "opts": ["summary", "summer", "salary"], "ans": 0}, " to the editors.\n\nThere are a number of clubs for ", {"n": 78, "opts": ["retried", "retired", "tired"], "ans": 1}, " people and every year the council arranges ", {"n": 79, "opts": ["lunch", "bunch", "launch"], "ans": 0}, " for all the members. The volunteers welcome the ", {"n": 80, "opts": ["guesses", "guests", "gusts"], "ans": 1}, " and when everyone's sitting down and relaxing after the ", {"n": 81, "opts": ["mill", "mail", "meal"], "ans": 2}, " some volunteers put on a ", {"n": 82, "opts": ["show", "snow", "shoe"], "ans": 0}, ". Usually around half an hour of ", {"n": 83, "opts": ["sons", "sounds", "songs"], "ans": 2}, " and short ", {"n": 84, "opts": ["places", "plays", "plates"], "ans": 1}, ", the club members really welcome the chance to chat to the volunteers at these events.\n\nThe town council has a ", {"n": 85, "opts": ["workshop", "website", "webinar"], "ans": 1}, " of course and volunteers are asked to help by making sure residents know about it. It's ", {"n": 86, "opts": ["uploaded", "upgraded", "updated"], "ans": 2}, " every day with information about future activities and we want as many people as possible to use it.\n\nOkay now you know some of the things our volunteers do. I'll go on to some practical matters. As you probably know the town arranges three major ", {"n": 87, "opts": ["festivals", "vestibules", "festivities"], "ans": 0}, " every year and they all depend on a large number of volunteers. The book festival lasts ", {"n": 88, "opts": ["free", "three", "tree"], "ans": 1}, " days and uses several ", {"n": 89, "opts": ["avenues", "venous", "venues"], "ans": 2}, " which all need volunteers.\n\nMore are needed for the ", {"n": 90, "opts": ["music", "mosaic", "magic"], "ans": 0}, " festival because that lasts a ", {"n": 91, "opts": ["hold", "whole", "hole"], "ans": 1}, " week and even more help is required for the ", {"n": 92, "opts": ["science", "silence", "sciences"], "ans": 0}, " festival even though it's only ", {"n": 93, "opts": ["ten", "twelve", "two"], "ans": 2}, " days long. It involves quite a lot of venues though.\n\nIt's a good idea to help at the festival you're most interested in because you can attend most of the events for ", {"n": 94, "opts": ["free", "fee", "three"], "ans": 0}, ". We try to use volunteers who are ", {"n": 95, "opts": ["feasible", "flexing", "flexible"], "ans": 2}, " though because some festival events are held ", {"n": 96, "opts": ["indoors", "outdoors", "out doors"], "ans": 1}, " and the ", {"n": 97, "opts": ["feather", "whether", "weather"], "ans": 2}, " may affect the size of the audience and even whether the event can take place so there can be changes at short ", {"n": 98, "opts": ["notes", "notice", "novice"], "ans": 1}, ".\n\nWhat's essential though is being able to get on ", {"n": 99, "opts": ["well", "wall", "will"], "ans": 0}, " with other people and also to deal with someone who's behaving ", {"n": 100, "opts": ["badly", "boldly", "baldly"], "ans": 0}, " as occasionally happens.\n\nOur plan is to get you all working in ", {"n": 101, "opts": ["December", "September", "November"], "ans": 1}, " after a week's ", {"n": 102, "opts": ["raining", "trading", "training"], "ans": 2}, " starting on the second so we'll be timetabling you for ", {"n": 103, "opts": ["beauties", "duties", "dudes"], "ans": 1}, " the following week from the 9th onward. Later in the week beginning September ", {"n": 104, "opts": ["23rd", "13th", "22nd"], "ans": 0}, " we have a chat with each of you to find out how you feel about being a volunteer and what ", {"n": 105, "opts": ["extract", "exit", "extra"], "ans": 2}, " support you need.\n\nAs a thank you to the volunteers we arrange an ", {"n": 106, "opts": ["animal", "manual", "annual"], "ans": 2}, " event. In recent years we've had a ", {"n": 107, "opts": ["party", "pity", "pastry"], "ans": 0}, " in the town hall and last year a ", {"n": 108, "opts": ["rescue", "barbecue", "barber"], "ans": 1}, " in Chamber Park. Our forthcoming event is a trip along the ", {"n": 109, "opts": ["canal", "channel", "canoe"], "ans": 0}, " from here to ", {"n": 110, "opts": ["Dewhirst", "Duhurst", "Dewhurst"], "ans": 2}, " and back. It's on Saturday September ", {"n": 111, "opts": ["20th", "28th", "18th"], "ans": 1}, " and if you'd like to attend you can ", {"n": 112, "opts": ["sing", "sign", "sigh"], "ans": 1}, " up once you start work. Now, this is the volunteers' T-shirt."]}, {"num": 3, "title": "Discussion: a human geography reading list", "audio": "cambridge20-test2-part3.mp3", "segs": ["ROSIE: Colin, I'm really struggling to think of a ", {"n": 113, "opts": ["topic", "topping", "tropic"], "ans": 0}, " for our human geography ", {"n": 114, "opts": ["alignment", "assessment", "assignment"], "ans": 2}, ".\n\nCOLIN: Me too, Rosie. I'll tell you what. Let's think about the different ", {"n": 115, "opts": ["expects", "aspects", "suspects"], "ans": 1}, " of human geography and see if we can ", {"n": 116, "opts": ["narrow", "arrow", "marrow"], "ans": 0}, " the topic down a bit to help us decide.\n\nROSIE: Okay, so one aspect is ", {"n": 117, "opts": ["popularity", "pollution", "population"], "ans": 2}, ". That would be all about population ", {"n": 118, "opts": ["density", "dentist", "destiny"], "ans": 0}, " and ", {"n": 119, "opts": ["immigration", "migration", "irrigation"], "ans": 1}, " and so on. Lots of facts and ", {"n": 120, "opts": ["stylistics", "statics", "statistics"], "ans": 2}, ". Maybe a bit ", {"n": 121, "opts": ["burning", "boring", "bowling"], "ans": 1}, "?\n\nCOLIN: Yeah, but quite straightforward to find on the ", {"n": 122, "opts": ["internet", "intranet", "interest"], "ans": 0}, ".\n\nROSIE: Suppose so. How about ", {"n": 123, "opts": ["help", "wealth", "health"], "ans": 2}, "? I'd never thought about the links between that and geography until Professor Lee gave us that lecture on ", {"n": 124, "opts": ["collar", "colour", "cholera"], "ans": 2}, ". How in the ", {"n": 125, "opts": ["90th", "19th", "9th"], "ans": 1}, " century, a ", {"n": 126, "opts": ["physician", "musician", "physicist"], "ans": 0}, " used ", {"n": 127, "opts": ["streak", "street", "straight"], "ans": 1}, " plans and plans of water ", {"n": 128, "opts": ["supplier", "surprises", "supplies"], "ans": 2}, " to find the ", {"n": 129, "opts": ["source", "sauce", "course"], "ans": 0}, " of a cholera ", {"n": 130, "opts": ["academic", "epidermis", "epidemic"], "ans": 2}, ".\n\nCOLIN: Yes, ", {"n": 131, "opts": ["fascinating", "fashioning", "frustrating"], "ans": 0}, ", wasn't it? Or we could do something more general, like ", {"n": 132, "opts": ["economics", "economies", "enemies"], "ans": 1}, ".\n\nROSIE: So how financial and ", {"n": 133, "opts": ["commercial", "commercials", "chemical"], "ans": 0}, " factors are linked to the ", {"n": 134, "opts": ["physics", "physical", "musical"], "ans": 1}, " environment?\n\nCOLIN: Yeah.\n\nROSIE: I thought that had been taken off the ", {"n": 135, "opts": ["syllable", "cyclists", "syllabus"], "ans": 2}, " for this year.\n\nCOLIN: Has it?\n\nROSIE: I'm not sure, but it might be best to ", {"n": 136, "opts": ["afford", "void", "avoid"], "ans": 2}, " it.\n\nCOLIN: Okay. ", {"n": 25, "ans": "Maybe we could do something on", "w": 6, "kind": "write"}, " ", {"n": 137, "opts": ["culture", "sculpture", "vulture"], "ans": 0}, ". ", {"n": 26, "ans": "We had that lecture about", "w": 5, "kind": "write"}, " culture ", {"n": 27, "ans": "and geography last week", "w": 4, "kind": "write"}, ".\n\nROSIE: ", {"n": 28, "ans": "I didn't get much out of that", "w": 7, "kind": "write"}, ". ", {"n": 29, "ans": "It was all so general", "w": 5, "kind": "write"}, ", ", {"n": 30, "ans": "and the lecturer didn't give any", "w": 6, "kind": "write"}, " useful ", {"n": 138, "opts": ["exams", "examples", "samples"], "ans": 1}, ".\n\nCOLIN: Yeah, I hardly took any ", {"n": 139, "opts": ["nets", "nuts", "notes"], "ans": 2}, ". ", {"n": 31, "ans": "It didn't seem worth it", "w": 5, "kind": "write"}, ".\n\nROSIE: ", {"n": 32, "ans": "Me neither", "w": 2, "kind": "write"}, ".\n\nCOLIN: ", {"n": 33, "ans": "We could focus on", "w": 4, "kind": "write"}, " ", {"n": 140, "opts": ["poverty", "poetry", "property"], "ans": 0}, ". ", {"n": 34, "ans": "That's something that's a", "w": 4, "kind": "write"}, " ", {"n": 141, "opts": ["local", "global", "glorious"], "ans": 1}, " problem.\n\nROSIE: ", {"n": 35, "ans": "The trouble is", "w": 3, "kind": "write"}, ", Dr. Lee was saying, that ", {"n": 36, "ans": "you have to be careful with some of the", "w": 9, "kind": "write"}, " ", {"n": 142, "opts": ["fingers", "features", "figures"], "ans": 2}, " relating to poverty. ", {"n": 37, "ans": "They're sometimes", "w": 2, "kind": "write"}, " deliberately ", {"n": 143, "opts": ["manipulated", "manufactured", "populated"], "ans": 0}, ".\n\nCOLIN: ", {"n": 38, "ans": "You mean the information gets changed for", "w": 7, "kind": "write"}, " ", {"n": 144, "opts": ["practical", "political", "polite"], "ans": 1}, " reasons?\n\nROSIE: That sort of thing, yes.\n\nROSIE: So what are we going to do our assignment on? I'll tell you what. One of the possibilities we haven't discussed is ", {"n": 145, "opts": ["urbanisation", "organisation", "urbanism"], "ans": 0}, ". And now over ", {"n": 146, "opts": ["have", "half", "hall"], "ans": 1}, " the world's population lives in cities. That's really important.\n\nCOLIN: Okay. Good idea, Rosie. Let's do that.\n\nROSIE: I love living in a big city, but of course there are problems.\n\nCOLIN: Things like theft and ", {"n": 147, "opts": ["lobby", "rubbery", "robbery"], "ans": 2}, "?\n\nROSIE: Yes, but where I come from, that's linked to another more serious issue, which is that a lot of people don't have ", {"n": 148, "opts": ["jabs", "jobs", "sobs"], "ans": 1}, ". That's getting worse and worse. And we also still have quite a lot of people who are ", {"n": 149, "opts": ["homeless", "helpless", "hopeless"], "ans": 0}, ", though that's not quite so bad as it was.\n\nCOLIN: It'd be nice to talk about some ", {"n": 150, "opts": ["possessive", "passive", "positive"], "ans": 2}, " developments, like some of the new developments on the ", {"n": 151, "opts": ["outskirt", "outskirts", "shirts"], "ans": 1}, " of cities.\n\nROSIE: Yeah, they've opened some ", {"n": 152, "opts": ["passive", "missive", "massive"], "ans": 2}, " new shopping centres outside my city.\n\nCOLIN: Yeah, the same with mine, but it's meant a lot of the shops in the city centre are closing down. But the outskirts are ideal for buildings that need a lot of space, like for ", {"n": 153, "opts": ["conferences", "confidences", "references"], "ans": 0}, ". They've opened a couple of big ones.\n\nROSIE: Yes, we've got some too. It'd be nicer to have more facilities for things like ", {"n": 154, "opts": ["netball", "football", "footpath"], "ans": 1}, " too, but that's not happening where I live.\n\nCOLIN: Same in my area.\n\nROSIE: We could include something about developing ", {"n": 155, "opts": ["disused", "discussed", "diffused"], "ans": 0}, " industrial sites. It seems like a good idea, because you're not doing any harm to the ", {"n": 156, "opts": ["neutral", "national", "natural"], "ans": 2}, " environment.\n\nCOLIN: Yeah, but aren't the buildings architecturally ", {"n": 157, "opts": ["significant", "sufficient", "magnificent"], "ans": 0}, "?\n\nROSIE: Not really. And what people forget is that they often used quite ", {"n": 158, "opts": ["dangers", "generous", "dangerous"], "ans": 2}, " materials, chemicals and things, which haven't been properly ", {"n": 159, "opts": ["cleaned", "cleared", "clear"], "ans": 1}, " away, so the whole site has to be made ", {"n": 160, "opts": ["safe", "self", "save"], "ans": 0}, ".\n\nCOLIN: Mmm, that can't be cheap, and I bet it's often not ", {"n": 161, "opts": ["bugged", "budgeted", "badgered"], "ans": 1}, " for.\n\nROSIE: You're right.\n\nCOLIN: Have you read about Masdar City?\n\nROSIE: In Abu ", {"n": 162, "opts": ["Daddy", "Dubai", "Dhabi"], "ans": 2}, "? Yes. It was designed to be a ", {"n": 163, "opts": ["great", "grown", "green"], "ans": 2}, " city, wasn't it? That might be a good example of a city which set out to depend entirely on ", {"n": 164, "opts": ["reliable", "renewable", "removable"], "ans": 1}, " energy.\n\nCOLIN: Yes, we should say something about that. It was designed to be totally ", {"n": 165, "opts": ["pedestrianised", "patronised", "pedestrians"], "ans": 0}, " too, wasn't it, with the transport ", {"n": 166, "opts": ["background", "underground", "undergrowth"], "ans": 1}, "?\n\nROSIE: Yes, and they had big plans for recycling to reduce ", {"n": 167, "opts": ["west", "waist", "waste"], "ans": 2}, " to the lowest possible level. But let's stick to talking about ", {"n": 168, "opts": ["power", "poor", "tower"], "ans": 0}, " sources.\n\nCOLIN: Then there's that ", {"n": 169, "opts": ["echo-town", "eco-tone", "eco-town"], "ans": 2}, " in England, Greenhill Abbots. It set out to conform to the usual ", {"n": 170, "opts": ["principles", "principals", "princes"], "ans": 0}, ", ", {"n": 171, "opts": ["suitability", "sustainability", "sustenance"], "ans": 1}, " and so on. A lot of people were against it at first. They said the plans were ", {"n": 172, "opts": ["unreliable", "realistic", "unrealistic"], "ans": 2}, ". I'm not sure how far they've got with it. I'll check.\n\nROSIE: Right. So it looks as if we have a sort of plan."]}, {"num": 4, "title": "Developing food trends", "audio": "cambridge20-test2-part4.mp3", "segs": ["There are ", {"n": 173, "opts": ["friends", "trends", "trains"], "ans": 1}, " in food, much as there are trends in ", {"n": 174, "opts": ["clothing", "cloth", "closing"], "ans": 0}, ". Interest in food fashions has risen ", {"n": 175, "opts": ["rabidly", "readily", "rapidly"], "ans": 2}, " since the birth of the ", {"n": 176, "opts": ["smartphone", "microphone", "smart home"], "ans": 0}, " when people first began taking ", {"n": 177, "opts": ["potatoes", "photos", "photons"], "ans": 1}, " of their food and instantly ", {"n": 178, "opts": ["sharking", "sharing", "shaving"], "ans": 1}, " them with their friends.\n\nThe food industry in the UK in particular is ", {"n": 179, "opts": ["possessed", "assessed", "obsessed"], "ans": 2}, " with finding and ", {"n": 180, "opts": ["exploiting", "exporting", "exploring"], "ans": 0}, " the next big food trend. ", {"n": 181, "opts": ["Marketeers", "Musketeers", "Marketers"], "ans": 0}, " aim to create a huge ", {"n": 182, "opts": ["diamond", "command", "demand"], "ans": 2}, " for a food item which was previously ", {"n": 183, "opts": ["well-known", "unknown", "unknowing"], "ans": 1}, " or not needed.\n\nOne of the most effective ways of ", {"n": 184, "opts": ["protecting", "promoting", "producing"], "ans": 1}, " a new food product is by using social media ", {"n": 185, "opts": ["influencers", "influenza", "influences"], "ans": 0}, " as brand ", {"n": 186, "opts": ["embassies", "amateurs", "ambassadors"], "ans": 2}, ". In return for free ", {"n": 187, "opts": ["samples", "simples", "examples"], "ans": 0}, ", many influencers will post ", {"n": 188, "opts": ["comment", "contest", "content"], "ans": 2}, " about a product, although there are influencers with hundreds of thousands of ", {"n": 189, "opts": ["flowers", "followers", "fellows"], "ans": 1}, " who can command large ", {"n": 190, "opts": ["fields", "fleas", "fees"], "ans": 2}, " for their services. Companies which sell ", {"n": 191, "opts": ["Vegas", "vegan", "vegetable"], "ans": 1}, " produce were ", {"n": 192, "opts": ["pioneers", "engineers", "pioneer"], "ans": 0}, " in being able to increase sales really quickly in this way.\n\nFor a food item to become really popular, it has to be readily ", {"n": 193, "opts": ["valuable", "avoidable", "available"], "ans": 2}, ", so ", {"n": 194, "opts": ["supermodels", "supermarkets", "superstars"], "ans": 1}, " have a role to play in creating a new food trend. They have ", {"n": 195, "opts": ["dedicated", "decorated", "delicate"], "ans": 0}, " teams closely following which new products or ", {"n": 196, "opts": ["ingredient", "gradients", "ingredients"], "ans": 2}, " are trending on social media and are particularly interested in what well-known ", {"n": 197, "opts": ["chefs", "shelves", "chiefs"], "ans": 0}, " are putting on their ", {"n": 198, "opts": ["venues", "menus", "minus"], "ans": 1}, ". I'd like to look at a few examples of marketing ", {"n": 199, "opts": ["champagnes", "campaigns", "companies"], "ans": 1}, " which were really successful in launching a new fashion trend. Starting in the ", {"n": 200, "opts": ["1900s", "1919", "1990s"], "ans": 2}, " with the avocado.\n\nA ", {"n": 201, "opts": ["British", "Irish", "Brittle"], "ans": 0}, " PR company was hired to raise its ", {"n": 202, "opts": ["profit", "profile", "prophet"], "ans": 1}, " and ", {"n": 203, "opts": ["estimate", "simulate", "stimulate"], "ans": 2}, " demand. They paid for a group of ", {"n": 204, "opts": ["journalists", "journeys", "jewellers"], "ans": 0}, " to travel out to ", {"n": 205, "opts": ["Mouth", "South", "North"], "ans": 1}, " Africa to meet avocado ", {"n": 206, "opts": ["farmers", "formers", "framers"], "ans": 0}, ". Articles written following this visit helped to ", {"n": 207, "opts": ["evacuate", "dedicate", "educate"], "ans": 2}, " the British public about the avocado, which at this time was certainly not the daily ", {"n": 208, "opts": ["stable", "staple", "table"], "ans": 1}, " it's since become.\n\nAdvertisements were designed to promote the avocado as a ", {"n": 209, "opts": ["superfood", "seafood", "super food"], "ans": 0}, ", rich in ", {"n": 210, "opts": ["nutrition", "neutrons", "nutrients"], "ans": 2}, " and therefore ", {"n": 211, "opts": ["beneficial", "artificial", "official"], "ans": 0}, " for health. Avocados became hugely ", {"n": 212, "opts": ["fashioned", "fashionable", "favourable"], "ans": 1}, " and within a few years UK avocado sales had grown from £", {"n": 213, "opts": ["3", "30", "13"], "ans": 2}, " million annually to around £", {"n": 214, "opts": ["115", "150", "50"], "ans": 1}, " million, making it one of the most successful ", {"n": 215, "opts": ["fresh", "flesh", "French"], "ans": 0}, " produce campaigns in UK history.\n\nOat milk is a ", {"n": 216, "opts": ["resent", "decent", "recent"], "ans": 2}, " example of a new product which became fashionable very quickly. Now there are many brands available, but one company which had early success was the ", {"n": 217, "opts": ["Swiss", "Spanish", "Swedish"], "ans": 2}, " brand Oatly. They attracted a lot of ", {"n": 218, "opts": ["attention", "intention", "addition"], "ans": 0}, " with a media campaign which used ", {"n": 219, "opts": ["probation", "provocation", "vocation"], "ans": 1}, " as a way of getting their message across effectively.\n\nThe fact that this campaign ", {"n": 220, "opts": ["activated", "aggravated", "aggregated"], "ans": 1}, " competitors producing milk from ", {"n": 221, "opts": ["dairy", "daily", "diary"], "ans": 0}, " cows was seen as a plus, as it helped to make oat milk seem ", {"n": 222, "opts": ["fool", "cold", "cool"], "ans": 2}, ". In the USA, the brand decided against a big ", {"n": 223, "opts": ["detail", "retell", "retail"], "ans": 2}, " launch in favour of getting the product into coffee ", {"n": 224, "opts": ["chains", "chance", "chairs"], "ans": 0}, ", which removed the need for a big advertising ", {"n": 225, "opts": ["bucket", "budget", "badge"], "ans": 1}, ". This proved far more ", {"n": 226, "opts": ["affective", "defective", "effective"], "ans": 2}, " than offering samples in supermarkets.\n\nOat milk had an ", {"n": 227, "opts": ["advantage", "adventure", "advance"], "ans": 0}, " over ", {"n": 39, "ans": "other alternative milk products", "w": 4, "kind": "write"}, " such as ", {"n": 228, "opts": ["almanac", "almond", "diamond"], "ans": 1}, " milk. ", {"n": 40, "ans": "Many consumers prefer it because", "w": 5, "kind": "write"}, " ", {"n": 41, "ans": "it has less of an", "w": 5, "kind": "write"}, " ", {"n": 229, "opts": ["impact", "compact", "import"], "ans": 0}, " ", {"n": 42, "ans": "on the environment", "w": 3, "kind": "write"}, ". ", {"n": 43, "ans": "It requires significantly less", "w": 4, "kind": "write"}, " ", {"n": 230, "opts": ["winter", "waiter", "water"], "ans": 2}, " to produce ", {"n": 44, "ans": "than other alternative milk products", "w": 5, "kind": "write"}, " ", {"n": 45, "ans": "and it also has a relatively", "w": 6, "kind": "write"}, " low carbon ", {"n": 231, "opts": ["fingerprint", "footprint", "footpath"], "ans": 1}, ".\n\nNorwegian Skrei, ", {"n": 46, "ans": "a rarely", "w": 2, "kind": "write"}, " available seasonal fish ", {"n": 232, "opts": ["diplomacy", "delicacy", "delicate"], "ans": 1}, " ", {"n": 47, "ans": "otherwise known as", "w": 3, "kind": "write"}, " ", {"n": 233, "opts": ["Arctic", "Antarctic", "Atlantic"], "ans": 0}, " Cod, ", {"n": 48, "ans": "is now found on the", "w": 5, "kind": "write"}, " menus of ", {"n": 234, "opts": ["Michelin-started", "Michelin-scarred", "Michelin-starred"], "ans": 2}, " restaurants ", {"n": 49, "ans": "throughout Europe", "w": 2, "kind": "write"}, ". The demand for Skrei ", {"n": 50, "ans": "has been used by", "w": 4, "kind": "write"}, " a food marketing ", {"n": 235, "opts": ["agenda", "agency", "urgency"], "ans": 1}, " ", {"n": 51, "ans": "to build the reputation of", "w": 5, "kind": "write"}, " Norway's ", {"n": 236, "opts": ["fishermen", "fishes", "fisheries"], "ans": 2}, " ", {"n": 52, "ans": "in general", "w": 2, "kind": "write"}, ". ", {"n": 53, "ans": "Marketing surveys have shown that", "w": 5, "kind": "write"}, " ", {"n": 54, "ans": "a significant number of shoppers now associate Norway with", "w": 9, "kind": "write"}, " excellent ", {"n": 237, "opts": ["seafood", "seaweed", "sea view"], "ans": 0}, ".\n\nFood trends can be considered a good thing in some ways, as they can benefit farmers and food producers ", {"n": 238, "opts": ["anonymously", "enormous", "enormously"], "ans": 2}, ". The public can also be encouraged to buy things which are more ", {"n": 239, "opts": ["sustainably", "sustainable", "suitably"], "ans": 0}, " produced. But ", {"n": 240, "opts": ["etiquette", "ethical", "ethnical"], "ans": 1}, " concerns have been raised about the effects a ", {"n": 241, "opts": ["surge", "sergeant", "search"], "ans": 0}, " in demand can cause.\n\nQuinoa is a ", {"n": 242, "opts": ["classical", "classic", "plastic"], "ans": 1}, " example. This plant is native to ", {"n": 243, "opts": ["Perth", "Pearl", "Peru"], "ans": 2}, ". And when demand peaked some years ago, the price ", {"n": 244, "opts": ["sored", "sorted", "soared"], "ans": 2}, ", making it ", {"n": 245, "opts": ["unavoidable", "unaffordable", "affordable"], "ans": 1}, " for local people. While the popularity of quinoa has benefited farmers financially, there have been other ", {"n": 246, "opts": ["negative", "native", "narrative"], "ans": 0}, " consequences.\n\nAs demand grew, farmers began working the land all year round in order to produce more quinoa. One issue has been that the ", {"n": 247, "opts": ["futility", "fertility", "facility"], "ans": 1}, " of the soil decreased dramatically, which could potentially lead to ", {"n": 248, "opts": ["desertification", "certification", "diversification"], "ans": 0}, " in some areas. Another example would be the case of …"]}], "mc": 248, "wr": 54};
+const $ = (s, r=document) => r.querySelector(s);
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const L = ["A","B","C"];
+const state = {};   // n -> chosen index
+const checked = {}; // part -> bool
+
+function storeGet(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}}
+function storeSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+Object.assign(state, storeGet(`c20t${DATA.test}-choices`)||{});
+
+function renderTabs(active){
+  const t = $("#tabs"); t.innerHTML = "";
+  DATA.parts.forEach(p => t.append(tab("p"+p.num, `Part ${p.num}`, 0, active)));
+}
+function tab(id, label, cnt, active){
+  const b = document.createElement("button");
+  b.className = "tab"; b.role = "tab"; b.setAttribute("aria-selected", id===active);
+  b.innerHTML = label;
+  b.onclick = () => show(id); return b;
+}
+
+function textToHTML(s){
+  return esc(s).replace(/(^|\n\n)(COLIN|MAN|ROSIE|WOMAN):/g, (m,a,b)=>`${a}<span class="spk">${b}</span>`);
+}
+function renderPart(p){
+  // ráp segments thành HTML, tách đoạn theo \n\n
+  let html = "";
+  p.segs.forEach(s => {
+    if (typeof s === "string") { html += textToHTML(s); return; }
+    if (s.kind === "write") { html += `<span class="wgap" data-d="${s.n}"><span class="num">D${s.n}</span><input id="w${s.n}" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:${Math.max(5, s.ans.length*0.62+1)}em" aria-label="Ô D${s.n}, ${s.w} từ"><span class="wc">${s.w}</span><span class="fix" hidden></span></span>`; return; }
+    html += `<span class="gap" data-n="${s.n}"><span class="num">${s.n}</span>` +
+      s.opts.map((o,i)=>`<button class="opt" data-i="${i}"><span class="l">${L[i]}</span>${esc(o)}</button>`).join("") + `</span>`;
+  });
+  html = "<p>" + html.split("\n\n").join("</p><p>") + "</p>";
+  const mc = p.segs.filter(s=>typeof s!=="string"&&s.opts), wr = p.segs.filter(s=>typeof s!=="string"&&s.kind==="write");
+  const first = mc[0].n;
+  $("#main").innerHTML = `
+    <div class="panel-head"><div><div class="kicker">Part ${p.num} · Trắc nghiệm ${first}–${first+mc.length-1} · Tự viết D${wr[0].n}–D${wr[wr.length-1].n}</div><h2>${esc(p.title)}</h2></div>
+      <span class="progress" id="prog"></span></div>
+    <div class="player"><audio id="aud" controls preload="none" src="cambridge20-test${DATA.test}-part${p.num}.mp3"></audio>
+      <div class="speed" id="spd">${[0.75,0.9,1].map(r=>`<button data-r="${r}" class="${r===1?"on":""}">${r}×</button>`).join("")}</div></div>
+    <p class="how">Hai dạng ô: <b>ô số đen</b> — bấm chọn A, B hoặc C; <b>ô D đỏ</b> — tự gõ cụm từ nghe được (số nhỏ là số từ cần viết). Mẹo: lần 1 nghe 0.9×, lần 2 tốc độ thường rồi bấm <b>Chấm bài</b>.</p>
+    <article class="transcript" id="tx">${html}</article>
+    <div class="actions"><button class="btn primary" id="chk">Chấm bài</button><button class="btn" id="rst">Làm lại</button><span class="score" id="sc" hidden></span></div>`;
+  const aud = $("#aud");
+  $("#spd").onclick = e => { const b=e.target.closest("button"); if(!b) return; aud.playbackRate=+b.dataset.r; $("#spd").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b)); };
+  $("#tx").onclick = e => {
+    const b = e.target.closest(".opt"); if(!b || b.disabled) return;
+    const g = b.closest(".gap"); state[g.dataset.n] = +b.dataset.i; storeSet(`c20t${DATA.test}-choices`, state); paint(p);
+  };
+  $("#tx").oninput = e => { if(e.target.tagName==="INPUT"){ state[e.target.id] = e.target.value; storeSet(`c20t${DATA.test}-choices`, state); paint(p);} };
+  $("#tx").querySelectorAll("input").forEach(i => i.value = state[i.id] || "");
+  $("#chk").onclick = () => { checked[p.num]=true; paint(p); $("#sc").scrollIntoView({block:"nearest"}); };
+  $("#rst").onclick = () => { p.segs.forEach(s=>{ if(typeof s!=="string") delete state[s.kind==="write" ? "w"+s.n : s.n]; }); $("#tx").querySelectorAll("input").forEach(i=>i.value=""); storeSet(`c20t${DATA.test}-choices`, state); checked[p.num]=false; paint(p); };
+  paint(p);
+}
+const normW = s => (s||"").toLowerCase().replace(/[’‘]/g,"'").replace(/[^a-z0-9'£ -]/g," ").replace(/\s+/g," ").trim();
+function paint(p){
+  let done=0, right=0, wd=0, wr=0; const isC = !!checked[p.num];
+  const gaps = p.segs.filter(s=>typeof s!=="string" && s.opts), writes = p.segs.filter(s=>typeof s!=="string" && s.kind==="write");
+  gaps.forEach(s => {
+    const g = $(`.gap[data-n="${s.n}"]`); const ch = state[s.n];
+    if (ch!==undefined) done++; if (ch===s.ans) right++;
+    g.classList.toggle("done", isC); g.classList.toggle("right", isC && ch===s.ans); g.classList.toggle("wrong", isC && ch!==s.ans);
+    g.querySelectorAll(".opt").forEach((b,i) => {
+      b.classList.toggle("sel", !isC && ch===i);
+      b.classList.toggle("is-ans", isC && i===s.ans);
+      b.classList.toggle("is-wrong", isC && ch===i && i!==s.ans);
+      b.disabled = isC;
+    });
+  });
+  writes.forEach(s => {
+    const g = $(`.wgap[data-d="${s.n}"]`), inp = g.querySelector("input"), fix = g.querySelector(".fix");
+    const v = state["w"+s.n]||""; if (v.trim()) wd++; const ok = normW(v)===normW(s.ans); if (ok) wr++;
+    g.classList.toggle("right", isC && ok); g.classList.toggle("wrong", isC && !ok);
+    inp.readOnly = isC; fix.hidden = !(isC && !ok); fix.textContent = s.ans;
+  });
+  $("#prog").textContent = `Đã làm ${done}/${gaps.length} trắc nghiệm · ${wd}/${writes.length} tự viết`;
+  const sc = $("#sc"); sc.hidden = !isC;
+  if (isC) sc.textContent = `Trắc nghiệm ${right}/${gaps.length} · Tự viết ${wr}/${writes.length} · Tổng ${Math.round((right+wr)/(gaps.length+writes.length)*100)}%`;
+}
+
+/* ---------- Chép chính tả ---------- */
+const norm = s => s.toLowerCase().replace(/[’']/g,"'").replace(/[^a-z0-9'£\s-]/g," ").split(/\s+/).filter(Boolean);
+function lcsDiff(target, typed){
+  const a=norm(target), b=norm(typed), m=a.length, n=b.length;
+  const dp=Array.from({length:m+1},()=>Array(n+1).fill(0));
+  for(let i=m-1;i>=0;i--) for(let j=n-1;j>=0;j--) dp[i][j]= a[i]===b[j]? dp[i+1][j+1]+1 : Math.max(dp[i+1][j],dp[i][j+1]);
+  const out=[]; let i=0,j=0;
+  while(i<m||j<n){
+    if(i<m&&j<n&&a[i]===b[j]){out.push(["ok",b[j]]);i++;j++}
+    else if(j<n&&(i===m||dp[i][j+1]>=dp[i+1][j])){out.push(["bad",b[j]]);j++}
+    else {out.push(["miss",a[i]]);i++}
+  }
+  return {out, pct: m? Math.round(dp[0][0]/m*100):0};
+}
+let voice=null;
+function pickVoice(){ const vs=speechSynthesis.getVoices(); voice = vs.find(v=>/en-GB/i.test(v.lang)) || vs.find(v=>/^en/i.test(v.lang)) || null; }
+if ("speechSynthesis" in window){ pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+function speak(text, rate){
+  if(!("speechSynthesis" in window)) return false;
+  speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.lang="en-GB"; u.rate=rate; if(voice) u.voice=voice; speechSynthesis.speak(u); return true;
+}
+function renderDict(){
+  const drafts = storeGet(`c20t${DATA.test}-dict`)||{};
+  let k=0, html = `<div class="panel-head"><div><div class="kicker">Writing · Dictation</div><h2>Chép chính tả — 20 câu từ transcript</h2></div></div>
+  <p class="how">Bấm <b>▶ Nghe</b> (hoặc <b>🐢 Chậm</b>), gõ lại đúng câu nghe được, rồi bấm <b>Kiểm tra</b>. Từ xanh = đúng, gạch cam = sai/thừa, ô xanh nhạt = từ bị thiếu. Không phân biệt hoa/thường và dấu câu.</p>`;
+  Object.entries(DATA.dictation).forEach(([pn, ss]) => {
+    html += `<section class="dgroup"><h3>Part ${pn} · ${esc(DATA.parts[pn-1].title)}</h3>`;
+    ss.forEach(s => { k++; html += `<div class="dcard" data-k="${k}">
+      <div class="drow"><span class="dn">D${k}</span><button class="sbtn" data-act="n">▶ Nghe</button><button class="sbtn" data-act="s">🐢 Chậm</button><button class="sbtn" data-act="c">Kiểm tra</button><button class="sbtn" data-act="a">Xem đáp án</button></div>
+      <textarea id="d${k}" rows="2" placeholder="Gõ câu bạn nghe được…" spellcheck="false">${esc(drafts[k]||"")}</textarea>
+      <div class="diff" hidden></div></div>`; });
+    html += `</section>`;
+  });
+  html += `<p class="note">Giọng đọc dùng giọng Anh-Anh của trình duyệt (text-to-speech — giọng máy đọc văn bản). Muốn nghe giọng gốc, quay lại tab Part tương ứng và phát audio.</p>`;
+  $("#main").innerHTML = html;
+  const all = Object.values(DATA.dictation).flat();
+  $("#main").onclick = e => {
+    const b=e.target.closest(".sbtn"); if(!b) return;
+    const card=b.closest(".dcard"), k=+card.dataset.k, s=all[k-1], d=card.querySelector(".diff");
+    if(b.dataset.act==="n"||b.dataset.act==="s"){ if(!speak(s, b.dataset.act==="n"?0.9:0.6)){ d.hidden=false; d.textContent="Trình duyệt này không hỗ trợ đọc giọng nói."; } }
+    if(b.dataset.act==="c"){ const r=lcsDiff(s, card.querySelector("textarea").value); d.hidden=false;
+      d.innerHTML = r.out.map(([t,w])=>`<span class="w-${t}">${esc(w)}</span>`).join(" ") + `<span class="pct">${r.pct}% đúng</span>`; }
+    if(b.dataset.act==="a"){ d.hidden=false; d.innerHTML = `<b>Đáp án:</b> ${esc(s)}`; }
+  };
+  $("#main").oninput = e => { if(e.target.tagName==="TEXTAREA"){ drafts[e.target.id.slice(1)]=e.target.value; storeSet(`c20t${DATA.test}-dict`,drafts);} };
+}
+
+function show(id){
+  renderTabs(id); $("#main").onclick=null; $("#main").oninput=null;
+  if ("speechSynthesis" in window) speechSynthesis.cancel();
+  if (id==="dict") renderDict(); else renderPart(DATA.parts[+id.slice(1)-1]);
+  try{ localStorage.setItem(`c20t${DATA.test}-tab`, id) }catch(e){}
+}
+let start="p1"; try{ start = localStorage.getItem(`c20t${DATA.test}-tab`) || "p1" }catch(e){}
+if (!/^p[1-4]$/.test(start)) start="p1";
+show(start);
+</script>
+
+</body>
+</html>
