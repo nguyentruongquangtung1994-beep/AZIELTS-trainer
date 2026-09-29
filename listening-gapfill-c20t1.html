@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Cam 20 Test 1 Listening Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Literata:opsz,wght@7..72,400;7..72,600&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+:root{
+  --red:#C8102E; --red-soft:#FBE9EC; --ink:#18110F; --paper:#FFFFFF; --ground:#F8F4F3;
+  --muted:#6E605C; --line:#E8DCD9; --ok:#1C7A4B; --ok-soft:#E3F3EA; --bad:#B8430B; --bad-soft:#FCEBDD;
+  --chip:#FFFFFF; --shadow:0 1px 2px rgba(24,17,15,.06);
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Literata",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  color-scheme:dark; --red:#FF5A6E; --red-soft:#3A1419; --ink:#F3EAE8; --paper:#1E1817; --ground:#141010;
+  --muted:#B3A29E; --line:#3A2E2C; --ok:#5CD39A; --ok-soft:#12301F; --bad:#FF9A5C; --bad-soft:#3A2012; --chip:#261E1D; --shadow:none;}}
+:root[data-theme="dark"]{
+  color-scheme:dark; --red:#FF5A6E; --red-soft:#3A1419; --ink:#F3EAE8; --paper:#1E1817; --ground:#141010;
+  --muted:#B3A29E; --line:#3A2E2C; --ok:#5CD39A; --ok-soft:#12301F; --bad:#FF9A5C; --bad-soft:#3A2012; --chip:#261E1D; --shadow:none;}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.9;padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:860px;margin:0 auto}
+header.top{padding-block:28px 12px}
+.brand{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:700}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,5vw,42px);line-height:1.05;margin:.25em 0 .2em;text-wrap:balance;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:15px;line-height:1.6;margin:0;max-width:62ch}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);display:flex;gap:6px;flex-wrap:wrap;padding-block:12px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.tab{font-family:var(--display);font-weight:700;font-size:14px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.tab .cnt{font-family:var(--mono);font-size:11px;opacity:.7;margin-left:6px}
+.tab:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.panel-head{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:end;justify-content:space-between;margin-bottom:14px}
+.panel-head h2{font-family:var(--display);font-size:24px;line-height:1.15;margin:0;text-wrap:balance}
+.panel-head .kicker{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.1em;text-transform:uppercase}
+.player{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin-bottom:16px;box-shadow:var(--shadow)}
+.player audio{flex:1 1 260px;min-width:0;height:40px}
+.speed{display:flex;gap:4px}
+.speed button{font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:8px;padding:4px 8px;cursor:pointer}
+.speed button.on{background:var(--red);color:#fff;border-color:var(--red)}
+.how{font-size:14px;line-height:1.6;color:var(--muted);margin:0 0 18px}
+.transcript{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px clamp(16px,4vw,32px)}
+.transcript p{margin:0 0 1.1em}
+.spk{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.08em;color:var(--red);margin-right:6px}
+.gap{display:inline-flex;align-items:center;gap:3px;vertical-align:baseline;border:1.5px dashed var(--line);border-radius:10px;padding:1px 4px;margin:1px 1px;line-height:1.4;flex-wrap:wrap}
+.gap .num{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--red);padding:0 3px}
+.opt{font-family:var(--body);font-size:15px;border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:7px;padding:1px 8px;cursor:pointer;line-height:1.5}
+.opt:hover{border-color:var(--ink)}
+.opt .l{font-family:var(--mono);font-size:10px;color:var(--muted);margin-right:4px}
+.opt.sel{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.opt.sel .l{color:inherit;opacity:.7}
+.gap.done{border-style:solid}
+.gap.right{border-color:var(--ok);background:var(--ok-soft)}
+.gap.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.is-ans{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.is-wrong{text-decoration:line-through;background:transparent;color:var(--bad);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.gap.done .opt:not(.is-ans):not(.is-wrong){opacity:.35}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px}
+.btn{font-family:var(--display);font-weight:700;font-size:15px;border-radius:10px;padding:10px 18px;cursor:pointer;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink)}
+.btn.primary{background:var(--red);border-color:var(--red);color:#fff}
+.score{font-family:var(--mono);font-size:14px;font-weight:700;padding:6px 12px;border-radius:999px;background:var(--red-soft);color:var(--red)}
+.progress{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.wgap{display:inline-flex;align-items:center;gap:3px;vertical-align:baseline;border:1.5px dashed var(--red);border-radius:10px;padding:1px 4px;margin:1px;line-height:1.4;flex-wrap:wrap;max-width:100%}
+.wgap .num{font-family:var(--mono);font-size:11px;font-weight:700;color:#fff;background:var(--red);border-radius:5px;padding:0 5px}
+.wgap input{font-family:var(--body);font-size:15px;border:0;border-bottom:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:0 2px;max-width:70vw;outline:none}
+.wgap input:focus{border-bottom-color:var(--red)}
+.wgap .wc{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.wgap.right{border-style:solid;border-color:var(--ok);background:var(--ok-soft)}
+.wgap.wrong{border-style:solid;border-color:var(--bad);background:var(--bad-soft)}
+.wgap.wrong input{text-decoration:line-through;color:var(--bad)}
+.wgap .fix{font-weight:600;color:var(--ok);font-size:15px}
+/* dictation */
+.dgroup{margin-bottom:26px}
+.dgroup h3{font-family:var(--display);font-size:18px;margin:0 0 10px}
+.dcard{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;display:grid;gap:10px}
+.drow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.drow .dn{font-family:var(--mono);font-weight:700;color:var(--red);font-size:13px;min-width:2.2em}
+.sbtn{font-family:var(--display);font-weight:700;font-size:13px;border:1px solid var(--line);background:var(--ground);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer}
+.sbtn:hover{border-color:var(--ink)}
+textarea{width:100%;font-family:var(--body);font-size:16px;line-height:1.6;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--ground);color:var(--ink);resize:vertical;min-height:64px}
+.diff{font-size:15px;line-height:1.9}
+.diff .w-ok{color:var(--ok)}
+.diff .w-bad{color:var(--bad);text-decoration:line-through}
+.diff .w-miss{background:var(--ok-soft);color:var(--ok);border-radius:4px;padding:0 3px;font-weight:600}
+.diff .pct{font-family:var(--mono);font-size:12px;font-weight:700;margin-left:8px;color:var(--muted)}
+.note{font-size:13px;color:var(--muted);line-height:1.6}
+footer{margin-top:40px;font-size:12px;color:var(--muted);font-family:var(--mono)}
+@media (prefers-reduced-motion:no-preference){.gap.done{transition:background .2s}}
+[hidden]{display:none!important}
+body{margin:0}
+.crumb{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.crumb a{font-family:var(--display);font-weight:700;font-size:14px;color:var(--ink);text-decoration:none;border-bottom:1.5px solid var(--red)}
+.nextnav{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.nextnav a{font-family:var(--display);font-weight:700;font-size:15px;color:var(--ink);text-decoration:none;border:1.5px solid var(--line);background:var(--paper);border-radius:10px;padding:10px 16px}
+.nextnav a:hover{border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:22px}
+.card{display:grid;gap:10px;align-content:start;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;text-decoration:none;color:var(--ink)}
+.card:hover{border-color:var(--ink)}
+.card:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.card .tn{font-family:var(--display);font-weight:800;font-size:26px;line-height:1}
+.card ol{margin:0;padding-left:18px;font-size:14px;line-height:1.55;color:var(--muted)}
+.card .meta{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:11px;font-weight:700;border-radius:999px;padding:3px 9px;background:var(--ground);border:1px solid var(--line)}
+.chip.w{color:var(--red);border-color:var(--red)}
+.bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);width:0}
+.card .pg{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.steps{margin:26px 0 0;padding:16px 20px;background:var(--paper);border:1px solid var(--line);border-radius:14px;font-size:14.5px;line-height:1.7}
+.steps b{font-family:var(--display)}
+</style>
+</head>
+<body>
+<div id="gateScreen" style="position:fixed;inset:0;z-index:999;background:var(--ground);display:flex;align-items:center;justify-content:center;padding:20px;">
+  <form id="gateForm" style="max-width:340px;width:100%;text-align:center;font-family:var(--display);">
+    <div class="brand">AZEnglish · Listening Lab</div>
+    <h2 style="font-size:22px;margin:8px 0 6px">Cambridge IELTS 20</h2>
+    <p style="font-size:13px;color:var(--muted);margin:0 0 16px;line-height:1.5">Nhập mật khẩu được cung cấp để vào làm bài.</p>
+    <input id="gatePassword" type="password" placeholder="Mật khẩu" autocomplete="off" style="width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font-size:15px;margin-bottom:10px;background:var(--paper);color:var(--ink)">
+    <button type="submit" class="btn primary" style="width:100%">Vào làm bài</button>
+    <p id="gateError" style="color:var(--red);font-size:13px;margin:10px 0 0" hidden>Sai mật khẩu, thử lại nhé.</p>
+  </form>
+</div>
+<script>
+(function(){
+  var GATE_PASSWORD = "azenglish2026", GATE_KEY = "az_rt_gate_ok", g = document.getElementById("gateScreen");
+  try{ if(localStorage.getItem(GATE_KEY) === "1") g.style.display = "none"; }catch(e){}
+  document.getElementById("gateForm").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    if(document.getElementById("gatePassword").value === GATE_PASSWORD){ try{ localStorage.setItem(GATE_KEY,"1"); }catch(e){} g.style.display="none"; }
+    else document.getElementById("gateError").hidden = false;
+  });
+})();
+</script>
+
+
+<div class="wrap">
+  <header class="top">
+    <div class="crumb"><div class="brand">AZEnglish · Listening Lab · Band 3.0–5.0+</div><a href="listening-gapfill-c20.html">← Tất cả Test</a></div>
+    <h1>Cambridge 20 · Test 1 — Nghe, chọn & viết</h1>
+    <p class="sub">Toàn bộ transcript 4 Part, giống bản in trên lớp: 236 ô chọn A/B/C và 58 ô tự viết. Bài làm được lưu trên trình duyệt của bạn — tải lại trang không mất.</p>
+  </header>
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+  <main id="main"></main>
+  <nav class="nextnav"><a href="listening-gapfill-c20t2.html">Test 2 →</a><a href="listening-gapfill-c20t3.html">Test 3 →</a><a href="listening-gapfill-c20t4.html">Test 4 →</a><a href="listening-gapfill-c20.html">Trang chủ</a></nav>
+  <footer>Nguồn: Cambridge IELTS 20, Test 1 — transcript & audio gốc. Tài liệu lớp học nội bộ AZEnglish.</footer>
+</div>
+
+<script>
+const DATA = {"test": 1, "parts": [{"num": 1, "title": "Restaurant recommendations", "audio": "cambridge20-test1-part1.mp3", "segs": ["WOMAN: I've been meaning to ask you for some advice about ", {"n": 1, "opts": ["restrooms", "residents", "restaurants"], "ans": 2}, ". I need to book somewhere to celebrate my sister's ", {"n": 2, "opts": ["40th", "30th", "13th"], "ans": 1}, " birthday and I liked the sound of that place you went to for your mum's ", {"n": 3, "opts": ["50th", "60th", "15th"], "ans": 0}, ".\n\nMAN: The ", {"n": 4, "opts": ["Junction", "Junk", "Function"], "ans": 0}, ". Yeah, I'd definitely recommend that for a special ", {"n": 5, "opts": ["location", "vacation", "occasion"], "ans": 2}, ". We had a great time there. Everyone really enjoyed it.\n\nWOMAN: ", {"n": 1, "ans": "Where is it again", "w": 4, "kind": "write"}, "? ", {"n": 2, "ans": "I can't remember", "w": 3, "kind": "write"}, ".\n\nMAN: It's on ", {"n": 6, "opts": ["Grace", "Grayson", "Greyson"], "ans": 1}, " Street. ", {"n": 3, "ans": "Only about a", "w": 3, "kind": "write"}, " ", {"n": 7, "opts": ["ten-minute", "two-minute", "two-mile"], "ans": 1}, " walk from the ", {"n": 8, "opts": ["stadium", "nation", "station"], "ans": 2}, ".\n\nWOMAN: ", {"n": 4, "ans": "Oh, that's good", "w": 3, "kind": "write"}, ". ", {"n": 5, "ans": "I'd prefer not to have to", "w": 6, "kind": "write"}, " ", {"n": 9, "opts": ["drive", "dive", "arrive"], "ans": 0}, " anywhere. ", {"n": 6, "ans": "But I don't want to have to walk too far either", "w": 11, "kind": "write"}, ".\n\nMAN: ", {"n": 7, "ans": "Yes, the", "w": 2, "kind": "write"}, " ", {"n": 10, "opts": ["lotion's", "location's", "vacation's"], "ans": 1}, " perfect. ", {"n": 8, "ans": "But that's not necessarily why I'd recommend it", "w": 8, "kind": "write"}, ". ", {"n": 9, "ans": "The food's amazing", "w": 3, "kind": "write"}, ". If you like ", {"n": 11, "opts": ["fish", "fresh", "dish"], "ans": 0}, ", ", {"n": 10, "ans": "it's probably the best restaurant in town for that", "w": 9, "kind": "write"}, ". ", {"n": 11, "ans": "It's always really", "w": 3, "kind": "write"}, " ", {"n": 12, "opts": ["French", "flesh", "fresh"], "ans": 2}, " and ", {"n": 12, "ans": "there are lots of interesting", "w": 5, "kind": "write"}, " ", {"n": 13, "opts": ["wishes", "dishwashers", "dishes"], "ans": 2}, " ", {"n": 13, "ans": "to choose from", "w": 3, "kind": "write"}, ". ", {"n": 14, "ans": "But all the food is good there", "w": 7, "kind": "write"}, ".\n\nWOMAN: Is it really expensive?\n\nMAN: It's certainly not ", {"n": 14, "opts": ["cheat", "cheap", "chip"], "ans": 1}, ", but for a special occasion I think it's fine. It's got a great ", {"n": 15, "opts": ["atmosphere", "atmospheric", "hemisphere"], "ans": 0}, " and before dinner you can go up on the ", {"n": 16, "opts": ["room", "proof", "roof"], "ans": 2}, " and have a drink. It's really nice up there, but you need to book. It's very popular as the views are ", {"n": 17, "opts": ["spectacle", "spectacular", "speculative"], "ans": 1}, ".\n\nWOMAN: Sounds good. So that's definitely a possibility then. Is there anywhere else you can think of?\n\nMAN: Um, if you want somewhere a bit less ", {"n": 18, "opts": ["formal", "former", "normal"], "ans": 0}, ", then you could try ", {"n": 19, "opts": ["Pamela", "Palermo", "Paloma"], "ans": 2}, ".\n\nWOMAN: Where's that? I haven't heard of it.\n\nMAN: No, it's quite new. It's only been open a few months, but it's got a great ", {"n": 20, "opts": ["reputation", "population", "repetition"], "ans": 0}, " already. It's in a really beautiful old ", {"n": 21, "opts": ["billing", "building", "bullying"], "ans": 1}, " on ", {"n": 22, "opts": ["Bough", "Boat", "Bow"], "ans": 2}, " Street.\n\nWOMAN: Oh, I think I know where you mean. Right beside the ", {"n": 23, "opts": ["cinema", "cinnamon", "seminar"], "ans": 0}, ".\n\nMAN: Yes, that's it. I've only been there a couple of times, but I was really ", {"n": 24, "opts": ["depressed", "impressed", "impressive"], "ans": 1}, ". The ", {"n": 25, "opts": ["chief", "chef", "shelf"], "ans": 1}, " used to work at Don ", {"n": 26, "opts": ["Felipe's", "Felix's", "Philip's"], "ans": 0}, ", apparently. I was really sorry when that ", {"n": 27, "opts": ["close", "clothed", "closed"], "ans": 2}, " down.\n\nWOMAN: So is all the food they serve ", {"n": 28, "opts": ["Swedish", "Spinach", "Spanish"], "ans": 2}, " then?\n\nMAN: Yeah. You can get lots of small dishes to ", {"n": 29, "opts": ["share", "chair", "shave"], "ans": 0}, ", which always works really well if you're in a group.\n\nWOMAN: Hmm. Worth thinking about.\n\nMAN: Yeah. There's a ", {"n": 30, "opts": ["lovely", "lively", "likely"], "ans": 1}, " atmosphere, and the ", {"n": 31, "opts": ["waiters", "waitresses", "writers"], "ans": 0}, " are really friendly. The only thing is that you need to pay a £50 ", {"n": 32, "opts": ["dessert", "deposit", "deposits"], "ans": 1}, " to book a table.\n\nWOMAN: A lot of restaurants are doing that these days. I should have a look at the menu to check there's a good choice of ", {"n": 33, "opts": ["vegetable", "veterinarian", "vegetarian"], "ans": 2}, " dishes. A couple of my friends have stopped eating ", {"n": 34, "opts": ["meet", "meat", "milk"], "ans": 1}, ".\n\nMAN: Not sure. I'd say the selection of those would be quite ", {"n": 35, "opts": ["united", "limitless", "limited"], "ans": 2}, ".\n\nMAN: I've just thought of another ", {"n": 36, "opts": ["idea", "ideal", "India"], "ans": 0}, ". Have you been to the ", {"n": 37, "opts": ["Audrey", "Oddly", "Audley"], "ans": 2}, "?\n\nWOMAN: No. Don't think I've heard of it. How's it spelt?\n\nMAN: A-U-D-L-E-Y. You must have heard of it. There's been a lot about it in the ", {"n": 38, "opts": ["dress", "press", "pressure"], "ans": 1}, ".\n\nWOMAN: I don't tend to pay much attention to that kind of thing. So where is it exactly?\n\nMAN: It's in that ", {"n": 39, "opts": ["hotel", "motel", "hostel"], "ans": 0}, " near Baxter ", {"n": 40, "opts": ["Ridge", "Brigade", "Bridge"], "ans": 2}, ", on the ", {"n": 41, "opts": ["tip", "top", "tall"], "ans": 1}, " floor.\n\nWOMAN: Oh, the views would be ", {"n": 42, "opts": ["incredible", "credible", "incredulous"], "ans": 0}, " from up there.\n\nMAN: Yeah, I'd love to go. I can't think of the chef's name, but she was a ", {"n": 43, "opts": ["judo", "jug", "judge"], "ans": 2}, " on that TV cookery show recently. And she's written a couple of ", {"n": 44, "opts": ["cookery", "crockery", "cookie"], "ans": 0}, " books.\n\nWOMAN: Oh, Angela ", {"n": 45, "opts": ["Fray", "Frayne", "Frame"], "ans": 1}, ".\n\nMAN: That's the one. Anyway, it's had excellent ", {"n": 46, "opts": ["previews", "reviews", "views"], "ans": 1}, " from all the newspapers.\n\nWOMAN: That would be a ", {"n": 47, "opts": ["miserable", "memorial", "memorable"], "ans": 2}, " place for a celebration.\n\nMAN: Definitely. Obviously, it's worth going there just for the view, but the food is supposed to be really special.\n\nWOMAN: She only likes cooking with ", {"n": 48, "opts": ["local", "vocal", "logical"], "ans": 0}, " products, doesn't she?\n\nMAN: Yes. Everything at the restaurant has to be sourced within a short ", {"n": 49, "opts": ["distant", "instance", "distance"], "ans": 2}, " and absolutely nothing flown in from ", {"n": 50, "opts": ["abroad", "a broad", "aboard"], "ans": 0}, ".\n\nWOMAN: I imagine it's really expensive, though.\n\nMAN: Well, you could go for the ", {"n": 51, "opts": ["sad", "set", "sit"], "ans": 1}, " lunch. That's quite reasonable for a ", {"n": 52, "opts": ["top-cast", "first-class", "top-class"], "ans": 2}, " restaurant. £", {"n": 53, "opts": ["30", "40", "13"], "ans": 0}, " a head. In the evening, I think it'd be more like £", {"n": 54, "opts": ["60", "50", "15"], "ans": 1}, ".\n\nWOMAN: At least that, I should think.\n\nMAN: But I'm sure everyone would enjoy it.\n\nWOMAN: It's not the kind of place you leave feeling ", {"n": 55, "opts": ["hungry", "hungrily", "angry"], "ans": 0}, ", though, is it? With tiny ", {"n": 56, "opts": ["positions", "portions", "potions"], "ans": 1}, ".\n\nMAN: No, the reviews I've read didn't mention that. I imagine they'd be ", {"n": 57, "opts": ["overage", "beverage", "average"], "ans": 2}, ".\n\nWOMAN: Well, that's all great."]}, {"num": 2, "title": "Pottery classes with Heather (Edelman Pottery)", "audio": "cambridge20-test1-part2.mp3", "segs": ["Hello and welcome.\n\nMy name's Heather McCallum, and I'm one of the ", {"n": 58, "opts": ["patterns", "porters", "potters"], "ans": 2}, " who work here at Edelman ", {"n": 59, "opts": ["Potato", "Pottery", "Poetry"], "ans": 1}, ". Before we go into the workshop I just want to say a bit about the ", {"n": 60, "opts": ["craft", "crust", "draft"], "ans": 0}, " of pottery. Then we'll have a look at the ", {"n": 61, "opts": ["requirement", "agreement", "equipment"], "ans": 2}, " and you can try making a pot of your own. Like many people I'm sure you know that pottery as an art form is tens of ", {"n": 62, "opts": ["thousand", "thousands", "hundreds"], "ans": 1}, " of years old and we know this because it stands the ", {"n": 63, "opts": ["test", "taste", "text"], "ans": 0}, " of time. Things like ", {"n": 64, "opts": ["biscuits", "buckets", "baskets"], "ans": 2}, " and pictures don't survive in the earth in the same way that pots do and even if ancient pots are found in small ", {"n": 65, "opts": ["places", "pieces", "peaces"], "ans": 1}, " they still provide a lot of information about the past. There's no doubt that pottery has given archaeologists a fascinating ", {"n": 66, "opts": ["insight", "incite", "inside"], "ans": 0}, " into how ancient ", {"n": 67, "opts": ["humans", "houses", "humours"], "ans": 0}, " lived.\n\nThe shape of an ", {"n": 68, "opts": ["artifice", "artist", "artefact"], "ans": 2}, " may have been lost but archaeologists can tell whether the pots were for say ", {"n": 69, "opts": ["stories", "storage", "sausage"], "ans": 1}, " or cooking by examining the ", {"n": 70, "opts": ["impressions", "impression", "expressions"], "ans": 0}, " on the clay, the ", {"n": 71, "opts": ["stretches", "scratches", "scratch"], "ans": 1}, " from tools and the clay itself can reveal where the pots came from. When I ask people why they want to take a pottery class with me they sometimes talk about these things. Like our ", {"n": 72, "opts": ["ancestry", "investors", "ancestors"], "ans": 2}, " they hope that something they create will also last longer than they do, that their work whether it is good or not might say something about ", {"n": 73, "opts": ["humidity", "humanity", "humility"], "ans": 1}, " many years after their death. Of course ", {"n": 15, "ans": "you will all have your own reasons", "w": 7, "kind": "write"}, " ", {"n": 16, "ans": "for coming here", "w": 3, "kind": "write"}, " ", {"n": 17, "ans": "as far as I'm concerned", "w": 5, "kind": "write"}, " ", {"n": 18, "ans": "what I love most is", "w": 5, "kind": "write"}, " the ", {"n": 74, "opts": ["concentration", "consideration", "conversation"], "ans": 0}, " you need to make a good pot.\n\n", {"n": 19, "ans": "That focus takes you away from", "w": 6, "kind": "write"}, " the ", {"n": 75, "opts": ["dresses", "stress", "stresses"], "ans": 2}, " of everyday life. ", {"n": 20, "ans": "If you're elderly", "w": 3, "kind": "write"}, " ", {"n": 21, "ans": "it's also good exercise for", "w": 5, "kind": "write"}, " hands and ", {"n": 76, "opts": ["wrists", "wrist", "rests"], "ans": 0}, " and helps with ", {"n": 77, "opts": ["artists", "arthropods", "arthritis"], "ans": 2}, " and of course it's ", {"n": 22, "ans": "a fun activity for children", "w": 5, "kind": "write"}, " ", {"n": 23, "ans": "because it's so", "w": 3, "kind": "write"}, " ", {"n": 78, "opts": ["massive", "messy", "missy"], "ans": 1}, ". Here at Edelman Pottery ", {"n": 24, "ans": "we show you some of the basic", "w": 7, "kind": "write"}, " pottery ", {"n": 79, "opts": ["technicians", "techniques", "technical"], "ans": 1}, " ", {"n": 25, "ans": "so that you can use these", "w": 6, "kind": "write"}, " ", {"n": 26, "ans": "to create whatever you wish", "w": 5, "kind": "write"}, " a ", {"n": 80, "opts": ["gift", "gist", "lift"], "ans": 0}, " for a friend perhaps. Like nearly everyone who comes here I'm sure this is the first time you will have tried the art so we'll keep things ", {"n": 81, "opts": ["sample", "symbol", "simple"], "ans": 2}, " today. Now before we move on can I just say a word about what you're wearing? As we said in our email please remove any ", {"n": 82, "opts": ["watches", "washes", "witches"], "ans": 0}, ", ", {"n": 83, "opts": ["neckties", "necklaces", "necklines"], "ans": 1}, " etc and put them somewhere safe. If you have long ", {"n": 84, "opts": ["hare", "air", "hair"], "ans": 2}, " do tie it back now. We'll provide ", {"n": 85, "opts": ["patrons", "aprons", "apricots"], "ans": 1}, " later but I trust your clothes are old but ", {"n": 86, "opts": ["comfortable", "comfortless", "compatible"], "ans": 0}, " not your ", {"n": 87, "opts": ["flavour", "favour", "favourite"], "ans": 2}, " t-shirt or jeans.\n\nSo now we're in the workshop. Have a look around. There's a lot going on. To make pottery that will last you need a potter's ", {"n": 88, "opts": ["well", "wheel", "wheat"], "ans": 1}, ", a ", {"n": 89, "opts": ["kiln", "kin", "kill"], "ans": 0}, " which is basically a very hot ", {"n": 90, "opts": ["even", "open", "oven"], "ans": 2}, " where you fire the pottery and some tools. So first the kiln. If you look over in the far ", {"n": 91, "opts": ["cover", "corner", "counter"], "ans": 1}, " you'll see one of ours. Since their invention kilns have changed very little though in the past 20 years a lot of progress has been made in ", {"n": 92, "opts": ["temperature", "temperament", "literature"], "ans": 0}, " control. Basically a kiln removes the water from clay at temperatures of around a ", {"n": 93, "opts": ["thousands", "hundred", "thousand"], "ans": 2}, " degrees celsius. This allows anything you've made to set ", {"n": 94, "opts": ["permanent", "prominently", "permanently"], "ans": 2}, " in shape. It's a pretty ", {"n": 95, "opts": ["ugly", "early", "uglier"], "ans": 0}, " heavy object that's hard to keep in a house or flat so most people don't have one.\n\nYou may think can't I use my oven? Well that's possible but ", {"n": 96, "opts": ["dramatic", "domestic", "democratic"], "ans": 1}, " ovens don't really get hot enough and eventually the clay will ", {"n": 97, "opts": ["crack", "track", "crash"], "ans": 0}, " and fall apart. Some people fire pottery in a fire ", {"n": 98, "opts": ["pot", "pit", "pet"], "ans": 1}, " outside but bear in mind that can be dangerous. You also need to know about ", {"n": 99, "opts": ["salary", "society", "safety"], "ans": 2}, " procedures for kilns as they release ", {"n": 100, "opts": ["tonic", "topic", "toxic"], "ans": 2}, " compounds into the air. Every potter needs a potter's wheel. This machine is used to shape the clay into an object with ", {"n": 101, "opts": ["circular", "secular", "circus"], "ans": 0}, " walls or sides such as a ", {"n": 102, "opts": ["bell", "bowl", "ball"], "ans": 1}, ". Its invention ", {"n": 103, "opts": ["revolved", "revolutionised", "reviewed"], "ans": 1}, " the pottery industry allowing ", {"n": 104, "opts": ["multiple", "simple", "multiply"], "ans": 0}, " items to be produced in a day.\n\nLastly there are a number of different tools that potters use depending on what they want to make. When you start your hands can make all kinds of shapes and ", {"n": 105, "opts": ["curbs", "carves", "curves"], "ans": 2}, " without relying on a ", {"n": 106, "opts": ["sculptor", "sculpting", "scripting"], "ans": 1}, " tool. However there are some basic tools that you will need to handle the clay on the wheel. Some look very strange and have even ", {"n": 107, "opts": ["other", "older", "odder"], "ans": 2}, " names that you may find hard to remember. Rather than go through them all now I'll just name a few tools as we go along. We can provide these and I wouldn't recommend ", {"n": 108, "opts": ["spending", "spend", "sending"], "ans": 0}, " money on them yet. So let's try making a pot of your own. If you sit down..."]}, {"num": 3, "title": "Discussion: loneliness", "audio": "cambridge20-test1-part3.mp3", "segs": ["TAMARA: Shall we go through the notes we've made from our research into ", {"n": 109, "opts": ["loveliness", "lowliness", "loneliness"], "ans": 2}, " now Dev?\n\nDEV: Okay Tamara, it's been a real ", {"n": 110, "opts": ["eye-catcher", "eye-opener", "opener"], "ans": 1}, ". I had no idea that loneliness has been increasing ", {"n": 111, "opts": ["steadily", "readily", "speedily"], "ans": 0}, " for the last ", {"n": 112, "opts": ["12", "30", "20"], "ans": 2}, " years.\n\nTAMARA: I know, and it's the same all over the ", {"n": 113, "opts": ["world", "wild", "word"], "ans": 0}, ", the downside of a modern ", {"n": 114, "opts": ["livestock", "lifestyle", "life cycle"], "ans": 1}, " I guess.\n\nDEV: Did you come to any ", {"n": 115, "opts": ["conclusions", "confusions", "collusions"], "ans": 0}, " about what the reasons for the increase are?\n\nTAMARA: Well, I'd assumed it was mainly an issue for the ", {"n": 116, "opts": ["orderly", "elderly", "early"], "ans": 1}, ", but in fact it's something which affects ", {"n": 117, "opts": ["younger", "yawning", "young"], "ans": 2}, " people just as much.\n\nDEV: ", {"n": 27, "ans": "So nothing really to do with", "w": 6, "kind": "write"}, " longer ", {"n": 118, "opts": ["life plans", "lifespans", "lifelines"], "ans": 1}, ". ", {"n": 28, "ans": "What about", "w": 2, "kind": "write"}, " social ", {"n": 119, "opts": ["media", "meter", "medal"], "ans": 0}, "? ", {"n": 29, "ans": "In my case", "w": 3, "kind": "write"}, ", ", {"n": 30, "ans": "far from making me feel", "w": 5, "kind": "write"}, " ", {"n": 120, "opts": ["illustrated", "insulated", "isolated"], "ans": 2}, ", ", {"n": 31, "ans": "it actually does the", "w": 4, "kind": "write"}, " ", {"n": 121, "opts": ["opposite", "apposite", "composite"], "ans": 0}, ".\n\nTAMARA: ", {"n": 32, "ans": "It definitely does more good than", "w": 6, "kind": "write"}, " ", {"n": 122, "opts": ["farm", "arm", "harm"], "ans": 2}, ". I'd say loneliness ", {"n": 33, "ans": "has a lot to do with", "w": 6, "kind": "write"}, " the way cities are ", {"n": 123, "opts": ["decided", "designed", "assigned"], "ans": 1}, ", ", {"n": 34, "ans": "people living in", "w": 3, "kind": "write"}, " ", {"n": 124, "opts": ["high-rise", "high-price", "high rise"], "ans": 0}, " flats ", {"n": 35, "ans": "with not much opportunity to", "w": 5, "kind": "write"}, " speak to their ", {"n": 125, "opts": ["labours", "neighbours", "neighbourhoods"], "ans": 1}, ".\n\nDEV: ", {"n": 36, "ans": "I think you're right", "w": 4, "kind": "write"}, ".\n\nTAMARA: ", {"n": 37, "ans": "Another possible reason is that", "w": 5, "kind": "write"}, " ", {"n": 38, "ans": "people are having", "w": 3, "kind": "write"}, " ", {"n": 126, "opts": ["fever", "newer", "fewer"], "ans": 2}, " children ", {"n": 39, "ans": "and don't live in", "w": 4, "kind": "write"}, " large ", {"n": 127, "opts": ["expanded", "extensive", "extended"], "ans": 2}, " family groups.\n\nDEV: ", {"n": 40, "ans": "But in this country anyway", "w": 5, "kind": "write"}, ", ", {"n": 41, "ans": "that all changed", "w": 3, "kind": "write"}, " ", {"n": 128, "opts": ["arcades", "decades", "decays"], "ans": 1}, " ago, ", {"n": 42, "ans": "and yet", "w": 2, "kind": "write"}, " loneliness is a more recent problem.\n\nTAMARA: I suppose so. A more ", {"n": 129, "opts": ["plausible", "possible", "passable"], "ans": 0}, " explanation is that people are having to move around for ", {"n": 130, "opts": ["work", "walk", "weak"], "ans": 0}, " and often end up living ", {"n": 131, "opts": ["smiles", "miles", "meals"], "ans": 1}, " away from their family and friends.\n\nDEV: That's true.\n\nTAMARA: Looking at the studies on health ", {"n": 132, "opts": ["rest", "rinks", "risks"], "ans": 2}, " and loneliness, there are claims that loneliness has as much impact as smoking ", {"n": 133, "opts": ["15", "50", "5"], "ans": 0}, " cigarettes a day.\n\nDEV: More similar to the risks caused by ", {"n": 134, "opts": ["obscurity", "obesity", "velocity"], "ans": 1}, ". But I'm not sure there's enough ", {"n": 135, "opts": ["evident", "residence", "evidence"], "ans": 2}, " for some of these claims.\n\nTAMARA: Well, what about that one in ", {"n": 136, "opts": ["Holland", "Finland", "Thailand"], "ans": 1}, " which showed that loneliness increased the risk of ", {"n": 137, "opts": ["cancer", "answer", "cancel"], "ans": 0}, " by about ", {"n": 138, "opts": ["15%", "100%", "10%"], "ans": 2}, "? And those findings have been supported by other studies too.\n\nDEV: You're right about that one. I was actually thinking of the studies on ", {"n": 139, "opts": ["dental", "dementia", "dimension"], "ans": 1}, ". Some found no ", {"n": 140, "opts": ["situation", "assassination", "association"], "ans": 2}, " between loneliness and dementia, and others found the opposite.\n\nTAMARA: Not exactly ", {"n": 141, "opts": ["reliable", "relievable", "reusable"], "ans": 0}, " then. There's been a lot of research on ", {"n": 142, "opts": ["cardiac muscular", "cardiovascular", "vascular"], "ans": 1}, " disease, and whether loneliness contributes to that.\n\nDEV: Yes, I read that it was hard to reach ", {"n": 143, "opts": ["judges", "agreement", "judgement"], "ans": 2}, ", as the definition of loneliness varied quite a lot, and the responses from participants were too ", {"n": 144, "opts": ["subjective", "objective", "subjected"], "ans": 0}, ". But there's no doubt that loneliness contributes to a weakened ", {"n": 145, "opts": ["immune", "immense", "immunise"], "ans": 0}, " system.\n\nTAMARA: Unquestionably, the data on that is ", {"n": 146, "opts": ["sounded", "sound", "found"], "ans": 1}, ".\n\nDEV: What did you think about the ", {"n": 147, "opts": ["evolution", "revolutionary", "evolutionary"], "ans": 2}, " theory of loneliness?\n\nTAMARA: Well, I thought the idea that loneliness evolved because it motivated people to be with other people quite convincing. Survival often depended on group ", {"n": 148, "opts": ["corporation", "operation", "cooperation"], "ans": 2}, ".\n\nDEV: But I don't think there's enough evidence to claim that there must be a group of ", {"n": 149, "opts": ["neurons", "nerves", "neutrons"], "ans": 0}, " in our brains which influence social ", {"n": 150, "opts": ["behalf", "behaviour", "believer"], "ans": 1}, " by making us feel bad when we're alone.\n\nTAMARA: There are a few studies which support the theory, but not ", {"n": 151, "opts": ["conclusively", "exclusively", "conclusive"], "ans": 0}, " enough. More evidence is needed.\n\nDEV: And anyway, this theory's not really useful when it comes to solving the problem of loneliness today.\n\nTAMARA: True.\n\nDEV: Should we look at the relationship between loneliness and ", {"n": 152, "opts": ["metal", "mental", "medal"], "ans": 1}, " health now?\n\nTAMARA: Okay. So, loneliness and ", {"n": 153, "opts": ["impression", "expression", "depression"], "ans": 2}, " are clearly related, and that's been recognised by various ", {"n": 154, "opts": ["government", "governments", "garments"], "ans": 1}, " around the world. But unlike depression, loneliness has no recognised ", {"n": 155, "opts": ["critical", "cynical", "clinical"], "ans": 2}, " form.\n\nDEV: There's no available ", {"n": 156, "opts": ["diagnosis", "diagnoses", "prognosis"], "ans": 0}, " or effective ", {"n": 157, "opts": ["treaties", "treatments", "retreats"], "ans": 1}, ", and that's not likely to change.\n\nTAMARA: I don't think so either. I was thinking we should start our presentation with an example from our own experience. I'd like to talk about how lonely I was when I started ", {"n": 158, "opts": ["unity", "universe", "university"], "ans": 2}, ", being away from home for the first time and all that.\n\nDEV: Good idea. Everyone will be able to relate to that, although a lot of students were probably too ", {"n": 159, "opts": ["embarrassed", "embraced", "harassed"], "ans": 0}, " to admit to it.\n\nTAMARA: We could discuss ways of dealing with loneliness as well, like just talking to ", {"n": 160, "opts": ["stranger", "strangers", "rangers"], "ans": 1}, ".\n\nDEV: Loads of studies have shown that interactions with shop ", {"n": 161, "opts": ["resistance", "assistance", "assistants"], "ans": 2}, " and bar staff make people feel more ", {"n": 162, "opts": ["optimistic", "pessimistic", "optimal"], "ans": 0}, " and relaxed.\n\nTAMARA: I don't know about that, but it must make people feel more connected with their ", {"n": 163, "opts": ["community", "commodity", "comedy"], "ans": 0}, ".\n\nDEV: True. Although you need to be a certain kind of person to be able to just ", {"n": 164, "opts": ["stroke", "strife", "strike"], "ans": 2}, " up a conversation.\n\nTAMARA: Good point. We should say something about ", {"n": 165, "opts": ["solidity", "solitude", "altitude"], "ans": 1}, ", and how being alone and being lonely aren't the same thing. It's strange the way some people can't stand being by themselves, while others love it.\n\nDEV: Yeah, the research shows a certain amount of solitude is beneficial for ", {"n": 166, "opts": ["wedding", "well-known", "wellbeing"], "ans": 2}, ", which I appreciate, but being alone isn't something I actually like. I'd never choose to go on ", {"n": 167, "opts": ["hobby", "holiday", "holy day"], "ans": 1}, " alone, for example.\n\nTAMARA: Me neither.\n\nDEV: Well, let's not..."]}, {"num": 4, "title": "Lecture: regeneration of a waterfront area", "audio": "cambridge20-test1-part4.mp3", "segs": ["It's quite hard to think of a city that doesn't have a big ", {"n": 168, "opts": ["river", "driver", "liver"], "ans": 0}, " running through it. If you think about the major cities in the world – Shanghai, New York, ", {"n": 169, "opts": ["Dubai", "Malibu", "Mumbai"], "ans": 2}, ", London – they're nearly all ", {"n": 170, "opts": ["built", "build", "belt"], "ans": 0}, " on rivers. When these cities were established hundreds or even ", {"n": 171, "opts": ["hundreds", "thousands", "thousand"], "ans": 1}, " of years ago, the rivers were a big part of people's lives. In ", {"n": 172, "opts": ["60th", "6th", "16th"], "ans": 2}, " century London, the ", {"n": 173, "opts": ["quietest", "quickest", "quickly"], "ans": 1}, " way to get from one part of the city to another was by river. But people also used the river for ", {"n": 174, "opts": ["fishing", "washing", "finishing"], "ans": 0}, ", as the water then was relatively ", {"n": 175, "opts": ["clear", "clean", "keen"], "ans": 1}, ", and they would also go on ", {"n": 176, "opts": ["boat", "bought", "boot"], "ans": 0}, " trips up and down the river just for ", {"n": 177, "opts": ["treasure", "pressure", "pleasure"], "ans": 2}, ", as a relaxing ", {"n": 178, "opts": ["estate", "landscape", "escape"], "ans": 2}, " from the noise and ", {"n": 179, "opts": ["bustle", "bushel", "bottle"], "ans": 0}, " of the city streets. But as industries developed and ", {"n": 180, "opts": ["politicians", "populations", "pollutions"], "ans": 1}, " increased, city rivers ", {"n": 181, "opts": ["suffered", "survived", "offered"], "ans": 0}, ". The rising number of people meant there was a huge increase in the amount of ", {"n": 182, "opts": ["sausage", "sewage", "savage"], "ans": 1}, " discharged into the rivers.\n\n", {"n": 43, "ans": "Rivers had always been used for this", "w": 7, "kind": "write"}, " purpose, but when the number of ", {"n": 183, "opts": ["immigrants", "inhibitants", "inhabitants"], "ans": 2}, " was so small ", {"n": 44, "ans": "that wasn't such a problem", "w": 5, "kind": "write"}, ". ", {"n": 45, "ans": "However, as cities grew to over a", "w": 7, "kind": "write"}, " ", {"n": 184, "opts": ["million", "billion", "melon"], "ans": 0}, " inhabitants, ", {"n": 46, "ans": "the impact on the rivers became more serious", "w": 8, "kind": "write"}, ". ", {"n": 47, "ans": "In addition, other types of pollution increased", "w": 7, "kind": "write"}, " as ", {"n": 185, "opts": ["fractions", "factors", "factories"], "ans": 2}, " were built ", {"n": 48, "ans": "beside the", "w": 2, "kind": "write"}, " river ", {"n": 49, "ans": "and discharged their", "w": 3, "kind": "write"}, " ", {"n": 186, "opts": ["waist", "waste", "west"], "ans": 1}, " materials into the water. ", {"n": 50, "ans": "This got worse over time", "w": 5, "kind": "write"}, ". As recently as ", {"n": 187, "opts": ["1957", "1975", "1597"], "ans": 0}, ", scientists at London's Natural History ", {"n": 188, "opts": ["Monument", "Musical", "Museum"], "ans": 2}, " ", {"n": 51, "ans": "declared that", "w": 2, "kind": "write"}, " the River Thames was ", {"n": 189, "opts": ["deaf", "dead", "dared"], "ans": 1}, ", ", {"n": 52, "ans": "in biological terms", "w": 3, "kind": "write"}, ", as the water was too ", {"n": 190, "opts": ["filthy", "healthy", "filling"], "ans": 0}, " ", {"n": 53, "ans": "to support any kind of life", "w": 6, "kind": "write"}, ". ", {"n": 54, "ans": "But in recent years", "w": 4, "kind": "write"}, ", ", {"n": 55, "ans": "as rivers lost their", "w": 4, "kind": "write"}, " industrial ", {"n": 191, "opts": ["fiction", "function", "junction"], "ans": 1}, ", ", {"n": 56, "ans": "cities have begun to recognise", "w": 5, "kind": "write"}, " their true ", {"n": 192, "opts": ["valley", "volume", "value"], "ans": 2}, " ", {"n": 57, "ans": "and to take steps to", "w": 5, "kind": "write"}, " clean them up. ", {"n": 58, "ans": "For example", "w": 2, "kind": "write"}, ", the River Thames is now cleaner than it's been for ", {"n": 193, "opts": ["115", "150", "50"], "ans": 1}, " years.\n\nThese days, you can see ", {"n": 194, "opts": ["seals", "sails", "seats"], "ans": 0}, " swimming in the water, and recently people had to try to rescue a ", {"n": 195, "opts": ["well", "wheel", "whale"], "ans": 2}, ", which had got lost and swam up the river from the sea by mistake. Unfortunately they didn't succeed, but the problem was ", {"n": 196, "opts": ["orientation", "disorganisation", "disorientation"], "ans": 2}, " rather than the quality of the water. Then, all around the world, riverside areas are now seen as ", {"n": 197, "opts": ["crime", "prime", "prim"], "ans": 1}, " sites for development. ", {"n": 198, "opts": ["Warehouses", "Workhouses", "Wardrobes"], "ans": 0}, " that were once used for storing ", {"n": 199, "opts": ["goods", "woods", "gods"], "ans": 0}, " are now being converted into ", {"n": 200, "opts": ["expressive", "expensive", "extensive"], "ans": 1}, " restaurants and also into ", {"n": 201, "opts": ["appointments", "departments", "apartments"], "ans": 2}, " with river views, which are in great demand and sell for ", {"n": 202, "opts": ["astronomical", "economical", "astrological"], "ans": 0}, " prices. In Los ", {"n": 203, "opts": ["Angles", "Angels", "Angeles"], "ans": 2}, ", on the west coast of the USA, an ", {"n": 204, "opts": ["archaeologist", "architect", "architecture"], "ans": 1}, " has plans to revitalize the ", {"n": 205, "opts": ["banners", "banks", "bonds"], "ans": 1}, " of the river and to make a ", {"n": 206, "opts": ["park", "bark", "pack"], "ans": 0}, " there which can provide facilities for ", {"n": 207, "opts": ["sorts", "spots", "sports"], "ans": 2}, " as well as a natural environment for relaxing in.\n\nIt's also hoped that the riverside can be used for other purposes. It's been proposed that facilities could be provided for displaying projects related to various kinds of ", {"n": 208, "opts": ["arm", "art", "heart"], "ans": 1}, " that have been produced by local people, for example. In the city of ", {"n": 209, "opts": ["Paris", "Parish", "Paros"], "ans": 0}, ", during the summer months of July and ", {"n": 210, "opts": ["April", "autumn", "August"], "ans": 2}, ", all the traffic is ", {"n": 211, "opts": ["band", "banned", "planned"], "ans": 1}, " from the roads by the sides of the river, and the banks are transformed into ", {"n": 212, "opts": ["beaches", "benches", "breaches"], "ans": 0}, " where people can relax in ", {"n": 213, "opts": ["dock", "desk", "deck"], "ans": 2}, " chairs under potted ", {"n": 214, "opts": ["palm", "plum", "pine"], "ans": 0}, " trees, sunbathe, or buy a drink or a ", {"n": 215, "opts": ["stack", "snake", "snack"], "ans": 2}, " while enjoying the view. But to make the most of our rivers in our increasingly ", {"n": 216, "opts": ["crowned", "crowded", "clouded"], "ans": 1}, " cities, we need to allow them to regain their original ", {"n": 217, "opts": ["purpose", "porpoise", "purple"], "ans": 0}, " and be used as a means of ", {"n": 218, "opts": ["transplant", "transport", "passport"], "ans": 1}, ", reclaiming our streets from cars and ", {"n": 219, "opts": ["lorry", "lotteries", "lorries"], "ans": 2}, ". To do this, we'll have to shift more traffic back to the river, but this time, cleanly and ", {"n": 220, "opts": ["suddenly", "silently", "slightly"], "ans": 1}, ", making the most of modern ", {"n": 221, "opts": ["technology", "biology", "terminology"], "ans": 0}, ".\n\nAlready more than two ", {"n": 222, "opts": ["trillion", "million", "billion"], "ans": 2}, " passengers use the ", {"n": 223, "opts": ["fairy", "ferry", "furry"], "ans": 1}, " to travel in cities around the world like ", {"n": 224, "opts": ["Estonia", "Ischia", "Istanbul"], "ans": 2}, ", San Francisco and New York and these numbers are set to rise further. Admittedly it's not a fast way of traveling but neither is a car when it's ", {"n": 225, "opts": ["stuck", "struck", "stock"], "ans": 0}, " in traffic. Of course passenger traffic on roads might decrease as more people start working from home. But another recent development, the huge rise in ", {"n": 226, "opts": ["online", "inline", "offline"], "ans": 0}, " shopping, has meant that another form of urban traffic just keeps on growing, and that's ", {"n": 227, "opts": ["discoveries", "deliveries", "delivers"], "ans": 1}, ". Trucks and ", {"n": 228, "opts": ["vines", "fans", "vans"], "ans": 2}, " in the city pollute and double park while dropping off ", {"n": 229, "opts": ["pencils", "parcels", "particles"], "ans": 1}, ". Imagine using the immense ", {"n": 230, "opts": ["city", "capital", "capacity"], "ans": 2}, " of shipping to take these trucks off the road. One freight ", {"n": 231, "opts": ["barge", "bridge", "badge"], "ans": 0}, " can replace ", {"n": 232, "opts": ["44", "14", "40"], "ans": 0}, " large trucks, uses far less ", {"n": 233, "opts": ["allergy", "energy", "enemy"], "ans": 1}, " and causes less pollution. When the barge docks at the riverside the parcels could be taken the last few kilometers to their final destination on cargo ", {"n": 234, "opts": ["bites", "backs", "bikes"], "ans": 2}, ", electric ones of course. This is already happening in the Dutch city of ", {"n": 235, "opts": ["Rotterdam", "Amsterdam", "Amstel"], "ans": 1}, " and in future the final stage could even be carried out by ", {"n": 236, "opts": ["throne", "drain", "drone"], "ans": 2}, " although at present this isn't allowed. Wouldn't it be great to Unblock our city centers in this way looking further ahead"]}], "mc": 236, "wr": 58};
+const $ = (s, r=document) => r.querySelector(s);
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const L = ["A","B","C"];
+const state = {};   // n -> chosen index
+const checked = {}; // part -> bool
+
+function storeGet(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}}
+function storeSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+Object.assign(state, storeGet(`c20t${DATA.test}-choices`)||{});
+
+function renderTabs(active){
+  const t = $("#tabs"); t.innerHTML = "";
+  DATA.parts.forEach(p => t.append(tab("p"+p.num, `Part ${p.num}`, 0, active)));
+}
+function tab(id, label, cnt, active){
+  const b = document.createElement("button");
+  b.className = "tab"; b.role = "tab"; b.setAttribute("aria-selected", id===active);
+  b.innerHTML = label;
+  b.onclick = () => show(id); return b;
+}
+
+function textToHTML(s){
+  return esc(s).replace(/(^|\n\n)(DEV|MAN|TAMARA|WOMAN):/g, (m,a,b)=>`${a}<span class="spk">${b}</span>`);
+}
+function renderPart(p){
+  // ráp segments thành HTML, tách đoạn theo \n\n
+  let html = "";
+  p.segs.forEach(s => {
+    if (typeof s === "string") { html += textToHTML(s); return; }
+    if (s.kind === "write") { html += `<span class="wgap" data-d="${s.n}"><span class="num">D${s.n}</span><input id="w${s.n}" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:${Math.max(5, s.ans.length*0.62+1)}em" aria-label="Ô D${s.n}, ${s.w} từ"><span class="wc">${s.w}</span><span class="fix" hidden></span></span>`; return; }
+    html += `<span class="gap" data-n="${s.n}"><span class="num">${s.n}</span>` +
+      s.opts.map((o,i)=>`<button class="opt" data-i="${i}"><span class="l">${L[i]}</span>${esc(o)}</button>`).join("") + `</span>`;
+  });
+  html = "<p>" + html.split("\n\n").join("</p><p>") + "</p>";
+  const mc = p.segs.filter(s=>typeof s!=="string"&&s.opts), wr = p.segs.filter(s=>typeof s!=="string"&&s.kind==="write");
+  const first = mc[0].n;
+  $("#main").innerHTML = `
+    <div class="panel-head"><div><div class="kicker">Part ${p.num} · Trắc nghiệm ${first}–${first+mc.length-1} · Tự viết D${wr[0].n}–D${wr[wr.length-1].n}</div><h2>${esc(p.title)}</h2></div>
+      <span class="progress" id="prog"></span></div>
+    <div class="player"><audio id="aud" controls preload="none" src="cambridge20-test${DATA.test}-part${p.num}.mp3"></audio>
+      <div class="speed" id="spd">${[0.75,0.9,1].map(r=>`<button data-r="${r}" class="${r===1?"on":""}">${r}×</button>`).join("")}</div></div>
+    <p class="how">Hai dạng ô: <b>ô số đen</b> — bấm chọn A, B hoặc C; <b>ô D đỏ</b> — tự gõ cụm từ nghe được (số nhỏ là số từ cần viết). Mẹo: lần 1 nghe 0.9×, lần 2 tốc độ thường rồi bấm <b>Chấm bài</b>.</p>
+    <article class="transcript" id="tx">${html}</article>
+    <div class="actions"><button class="btn primary" id="chk">Chấm bài</button><button class="btn" id="rst">Làm lại</button><span class="score" id="sc" hidden></span></div>`;
+  const aud = $("#aud");
+  $("#spd").onclick = e => { const b=e.target.closest("button"); if(!b) return; aud.playbackRate=+b.dataset.r; $("#spd").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b)); };
+  $("#tx").onclick = e => {
+    const b = e.target.closest(".opt"); if(!b || b.disabled) return;
+    const g = b.closest(".gap"); state[g.dataset.n] = +b.dataset.i; storeSet(`c20t${DATA.test}-choices`, state); paint(p);
+  };
+  $("#tx").oninput = e => { if(e.target.tagName==="INPUT"){ state[e.target.id] = e.target.value; storeSet(`c20t${DATA.test}-choices`, state); paint(p);} };
+  $("#tx").querySelectorAll("input").forEach(i => i.value = state[i.id] || "");
+  $("#chk").onclick = () => { checked[p.num]=true; paint(p); $("#sc").scrollIntoView({block:"nearest"}); };
+  $("#rst").onclick = () => { p.segs.forEach(s=>{ if(typeof s!=="string") delete state[s.kind==="write" ? "w"+s.n : s.n]; }); $("#tx").querySelectorAll("input").forEach(i=>i.value=""); storeSet(`c20t${DATA.test}-choices`, state); checked[p.num]=false; paint(p); };
+  paint(p);
+}
+const normW = s => (s||"").toLowerCase().replace(/[’‘]/g,"'").replace(/[^a-z0-9'£ -]/g," ").replace(/\s+/g," ").trim();
+function paint(p){
+  let done=0, right=0, wd=0, wr=0; const isC = !!checked[p.num];
+  const gaps = p.segs.filter(s=>typeof s!=="string" && s.opts), writes = p.segs.filter(s=>typeof s!=="string" && s.kind==="write");
+  gaps.forEach(s => {
+    const g = $(`.gap[data-n="${s.n}"]`); const ch = state[s.n];
+    if (ch!==undefined) done++; if (ch===s.ans) right++;
+    g.classList.toggle("done", isC); g.classList.toggle("right", isC && ch===s.ans); g.classList.toggle("wrong", isC && ch!==s.ans);
+    g.querySelectorAll(".opt").forEach((b,i) => {
+      b.classList.toggle("sel", !isC && ch===i);
+      b.classList.toggle("is-ans", isC && i===s.ans);
+      b.classList.toggle("is-wrong", isC && ch===i && i!==s.ans);
+      b.disabled = isC;
+    });
+  });
+  writes.forEach(s => {
+    const g = $(`.wgap[data-d="${s.n}"]`), inp = g.querySelector("input"), fix = g.querySelector(".fix");
+    const v = state["w"+s.n]||""; if (v.trim()) wd++; const ok = normW(v)===normW(s.ans); if (ok) wr++;
+    g.classList.toggle("right", isC && ok); g.classList.toggle("wrong", isC && !ok);
+    inp.readOnly = isC; fix.hidden = !(isC && !ok); fix.textContent = s.ans;
+  });
+  $("#prog").textContent = `Đã làm ${done}/${gaps.length} trắc nghiệm · ${wd}/${writes.length} tự viết`;
+  const sc = $("#sc"); sc.hidden = !isC;
+  if (isC) sc.textContent = `Trắc nghiệm ${right}/${gaps.length} · Tự viết ${wr}/${writes.length} · Tổng ${Math.round((right+wr)/(gaps.length+writes.length)*100)}%`;
+}
+
+/* ---------- Chép chính tả ---------- */
+const norm = s => s.toLowerCase().replace(/[’']/g,"'").replace(/[^a-z0-9'£\s-]/g," ").split(/\s+/).filter(Boolean);
+function lcsDiff(target, typed){
+  const a=norm(target), b=norm(typed), m=a.length, n=b.length;
+  const dp=Array.from({length:m+1},()=>Array(n+1).fill(0));
+  for(let i=m-1;i>=0;i--) for(let j=n-1;j>=0;j--) dp[i][j]= a[i]===b[j]? dp[i+1][j+1]+1 : Math.max(dp[i+1][j],dp[i][j+1]);
+  const out=[]; let i=0,j=0;
+  while(i<m||j<n){
+    if(i<m&&j<n&&a[i]===b[j]){out.push(["ok",b[j]]);i++;j++}
+    else if(j<n&&(i===m||dp[i][j+1]>=dp[i+1][j])){out.push(["bad",b[j]]);j++}
+    else {out.push(["miss",a[i]]);i++}
+  }
+  return {out, pct: m? Math.round(dp[0][0]/m*100):0};
+}
+let voice=null;
+function pickVoice(){ const vs=speechSynthesis.getVoices(); voice = vs.find(v=>/en-GB/i.test(v.lang)) || vs.find(v=>/^en/i.test(v.lang)) || null; }
+if ("speechSynthesis" in window){ pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+function speak(text, rate){
+  if(!("speechSynthesis" in window)) return false;
+  speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.lang="en-GB"; u.rate=rate; if(voice) u.voice=voice; speechSynthesis.speak(u); return true;
+}
+function renderDict(){
+  const drafts = storeGet(`c20t${DATA.test}-dict`)||{};
+  let k=0, html = `<div class="panel-head"><div><div class="kicker">Writing · Dictation</div><h2>Chép chính tả — 20 câu từ transcript</h2></div></div>
+  <p class="how">Bấm <b>▶ Nghe</b> (hoặc <b>🐢 Chậm</b>), gõ lại đúng câu nghe được, rồi bấm <b>Kiểm tra</b>. Từ xanh = đúng, gạch cam = sai/thừa, ô xanh nhạt = từ bị thiếu. Không phân biệt hoa/thường và dấu câu.</p>`;
+  Object.entries(DATA.dictation).forEach(([pn, ss]) => {
+    html += `<section class="dgroup"><h3>Part ${pn} · ${esc(DATA.parts[pn-1].title)}</h3>`;
+    ss.forEach(s => { k++; html += `<div class="dcard" data-k="${k}">
+      <div class="drow"><span class="dn">D${k}</span><button class="sbtn" data-act="n">▶ Nghe</button><button class="sbtn" data-act="s">🐢 Chậm</button><button class="sbtn" data-act="c">Kiểm tra</button><button class="sbtn" data-act="a">Xem đáp án</button></div>
+      <textarea id="d${k}" rows="2" placeholder="Gõ câu bạn nghe được…" spellcheck="false">${esc(drafts[k]||"")}</textarea>
+      <div class="diff" hidden></div></div>`; });
+    html += `</section>`;
+  });
+  html += `<p class="note">Giọng đọc dùng giọng Anh-Anh của trình duyệt (text-to-speech — giọng máy đọc văn bản). Muốn nghe giọng gốc, quay lại tab Part tương ứng và phát audio.</p>`;
+  $("#main").innerHTML = html;
+  const all = Object.values(DATA.dictation).flat();
+  $("#main").onclick = e => {
+    const b=e.target.closest(".sbtn"); if(!b) return;
+    const card=b.closest(".dcard"), k=+card.dataset.k, s=all[k-1], d=card.querySelector(".diff");
+    if(b.dataset.act==="n"||b.dataset.act==="s"){ if(!speak(s, b.dataset.act==="n"?0.9:0.6)){ d.hidden=false; d.textContent="Trình duyệt này không hỗ trợ đọc giọng nói."; } }
+    if(b.dataset.act==="c"){ const r=lcsDiff(s, card.querySelector("textarea").value); d.hidden=false;
+      d.innerHTML = r.out.map(([t,w])=>`<span class="w-${t}">${esc(w)}</span>`).join(" ") + `<span class="pct">${r.pct}% đúng</span>`; }
+    if(b.dataset.act==="a"){ d.hidden=false; d.innerHTML = `<b>Đáp án:</b> ${esc(s)}`; }
+  };
+  $("#main").oninput = e => { if(e.target.tagName==="TEXTAREA"){ drafts[e.target.id.slice(1)]=e.target.value; storeSet(`c20t${DATA.test}-dict`,drafts);} };
+}
+
+function show(id){
+  renderTabs(id); $("#main").onclick=null; $("#main").oninput=null;
+  if ("speechSynthesis" in window) speechSynthesis.cancel();
+  if (id==="dict") renderDict(); else renderPart(DATA.parts[+id.slice(1)-1]);
+  try{ localStorage.setItem(`c20t${DATA.test}-tab`, id) }catch(e){}
+}
+let start="p1"; try{ start = localStorage.getItem(`c20t${DATA.test}-tab`) || "p1" }catch(e){}
+if (!/^p[1-4]$/.test(start)) start="p1";
+show(start);
+</script>
+
+</body>
+</html>
