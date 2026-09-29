@@ -112,13 +112,18 @@ body{margin:0}
 .card .pg{font-family:var(--mono);font-size:11px;color:var(--muted)}
 .steps{margin:26px 0 0;padding:16px 20px;background:var(--paper);border:1px solid var(--line);border-radius:14px;font-size:14.5px;line-height:1.7}
 .steps b{font-family:var(--display)}
+.books{position:sticky;top:0;z-index:5;background:var(--ground);display:flex;gap:8px;flex-wrap:wrap;padding-block:12px;border-bottom:1px solid var(--line)}
+.bk{font-family:var(--display);font-weight:700;font-size:14px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);padding:7px 14px;border-radius:999px;text-decoration:none}
+.bk:hover{border-color:var(--ink)}
+.book{scroll-margin-top:64px;margin-top:26px}
+.book h2{font-family:var(--display);font-weight:800;font-size:24px;margin:0}
 </style>
 </head>
 <body>
 <div id="gateScreen" style="position:fixed;inset:0;z-index:999;background:var(--ground);display:flex;align-items:center;justify-content:center;padding:20px;">
   <form id="gateForm" style="max-width:340px;width:100%;text-align:center;font-family:var(--display);">
     <div class="brand">AZEnglish · Listening Lab</div>
-    <h2 style="font-size:22px;margin:8px 0 6px">Cambridge IELTS 20</h2>
+    <h2 style="font-size:22px;margin:8px 0 6px">Cambridge IELTS Listening</h2>
     <p style="font-size:13px;color:var(--muted);margin:0 0 16px;line-height:1.5">Nhập mật khẩu được cung cấp để vào làm bài.</p>
     <input id="gatePassword" type="password" placeholder="Mật khẩu" autocomplete="off" style="width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font-size:15px;margin-bottom:10px;background:var(--paper);color:var(--ink)">
     <button type="submit" class="btn primary" style="width:100%">Vào làm bài</button>
@@ -140,13 +145,13 @@ body{margin:0}
 
 <div class="wrap">
   <header class="top">
-    <div class="crumb"><div class="brand">AZEnglish · Listening Lab · Band 3.0–5.0+</div><a href="listening-gapfill-c20.html">← Tất cả Test</a></div>
+    <div class="crumb"><div class="brand">AZEnglish · Listening Lab · Band 3.0–5.0+</div><a href="listening-gapfill.html#c20">← Tất cả sách</a></div>
     <h1>Cambridge 20 · Test 3 — Nghe, chọn & viết</h1>
     <p class="sub">Toàn bộ transcript 4 Part, giống bản in trên lớp: 241 ô chọn A/B/C và 53 ô tự viết. Bài làm được lưu trên trình duyệt của bạn — tải lại trang không mất.</p>
   </header>
   <nav class="tabs" role="tablist" id="tabs"></nav>
   <main id="main"></main>
-  <nav class="nextnav"><a href="listening-gapfill-c20t1.html">Test 1 →</a><a href="listening-gapfill-c20t2.html">Test 2 →</a><a href="listening-gapfill-c20t4.html">Test 4 →</a><a href="listening-gapfill-c20.html">Trang chủ</a></nav>
+  <nav class="nextnav"><a href="listening-gapfill-c20t1.html">Test 1 →</a><a href="listening-gapfill-c20t2.html">Test 2 →</a><a href="listening-gapfill-c20t4.html">Test 4 →</a><a href="listening-gapfill.html#c20">Trang chủ</a></nav>
   <footer>Nguồn: Cambridge IELTS 20, Test 3 — transcript & audio gốc. Tài liệu lớp học nội bộ AZEnglish.</footer>
 </div>
 
