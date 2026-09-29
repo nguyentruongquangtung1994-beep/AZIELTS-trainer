@@ -272,7 +272,15 @@
   .o{ stroke:var(--nb-line); } .fl{ fill:var(--nb-line); } .fb{ fill:var(--nb-blush); }
   .nb-blink{ animation:nbBlink 5s infinite; transform-box:fill-box; transform-origin:center; }
   @keyframes nbBlink{ 0%,94%,100%{ transform:scaleY(1); } 96%{ transform:scaleY(.1); } }
-  @media (max-width:760px){ .nb-hero{ grid-template-columns:1fr; } .nb-art{ max-width:260px; } }
+  @media (max-width:760px){
+    .nb-hero{ grid-template-columns:minmax(0,1fr) 96px; gap:14px 10px; padding:12px 0 22px; }
+    .nb-hero-text{ display:contents; }
+    .nb-hero h1{ grid-column:1; grid-row:1; font-size:clamp(30px,8.6vw,44px); }
+    .nb-art{ grid-column:2; grid-row:1; align-self:start; max-width:96px; }
+    .nb-bubble{ display:none; }
+    .nb-hero p.nb-lede{ grid-column:1 / -1; margin:0; }
+    .nb-hero .btn-row{ grid-column:1 / -1; }
+  }
 
   .nb-stats{ display:flex; flex-wrap:wrap; gap:12px 28px; align-items:center; border:4px solid var(--nb-line); border-radius:14px; background:var(--nb-surface); padding:16px 20px; box-shadow:8px 8px 0 var(--nb-line); }
   .nb-stats .k{ font-size:12.5px; color:var(--nb-muted); }
@@ -626,18 +634,31 @@
     }
     var sR = summarize("read"), sL = summarize("listen");
     var pct = Math.round((sR.done + sL.done) / Math.max(1, sR.total + sL.total) * 100);
+    var resume = null;
+    BOOKS.forEach(function(b){
+      [["read", "#/test/", getData, "Reading"], ["listen", "#/listen/", getListenData, "Listening"]].forEach(function(k){
+        b[k[0]].forEach(function(t){
+          var a = STATE.attempts[t.id], d = k[2](t.id);
+          if(!d || !a || a.score !== undefined || !a.inProgress || !Object.keys(a.inProgress).length) return;
+          if(!resume || (a.inProgressAt||0) > (resume.at||0)){
+            resume = {at:a.inProgressAt||0, href:k[1] + t.id + "/take", label:"C" + b.num + " " + d.test + " " + k[3]};
+          }
+        });
+      });
+    });
     function lastTxt(s){ return s.latest ? (s.latest.score + "/" + (s.latest.total||40)) : "Chưa có"; }
 
     var root = el("div", "home");
     root.innerHTML =
       '<section class="nb-hero">' +
-        '<div>' +
-          '<p class="nb-eyebrow">AZEnglish · Reading &amp; Listening Trainer</p>' +
+        '<div class="nb-hero-text">' +
           '<h1>Luyện <span class="hlw">Reading</span> &amp; <span class="hlw">Listening</span><br><em>chuẩn Cambridge</em></h1>' +
-          '<p class="nb-lede">' + (sR.total + sL.total) + ' đề Reading và Listening từ Cambridge IELTS 16 đến 21. Làm bài như thi thật, bôi keyword, tự chấm điểm và xem bằng chứng cho từng câu.</p>' +
+          '<p class="nb-lede">' + (sR.total + sL.total) + ' đề Cambridge 16–21, chấm điểm ngay, có bằng chứng từng câu.</p>' +
           '<div class="btn-row" style="gap:14px">' +
             '<a class="nb-btn" href="#" data-jump="nbBooks">Bắt đầu luyện →</a>' +
-            '<a class="nb-btn ghost" href="#" data-jump="nbKeyword">Thử bôi keyword</a>' +
+            (resume
+              ? '<a class="nb-btn ghost" href="' + resume.href + '">Làm tiếp ' + esc(resume.label) + '</a>'
+              : '<a class="nb-btn ghost" href="#" data-jump="nbKeyword">Thử bôi keyword</a>') +
           '</div>' +
         '</div>' +
         '<div class="nb-art" aria-hidden="true">' +
@@ -1214,7 +1235,7 @@
     });
     takeCtx.progressMini.textContent = "Đã trả lời " + answered + "/" + total;
 
-    STATE.attempts[takeCtx.testId] = Object.assign({}, STATE.attempts[takeCtx.testId], {inProgress: takeCtx.answers});
+    STATE.attempts[takeCtx.testId] = Object.assign({}, STATE.attempts[takeCtx.testId], {inProgress: takeCtx.answers, inProgressAt: Date.now()});
     saveState();
   }
 
