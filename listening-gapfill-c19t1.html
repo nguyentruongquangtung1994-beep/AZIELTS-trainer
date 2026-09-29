@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Cam 19 Test 1 Listening Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Literata:opsz,wght@7..72,400;7..72,600&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+:root{
+  --red:#C8102E; --red-soft:#FBE9EC; --ink:#18110F; --paper:#FFFFFF; --ground:#F8F4F3;
+  --muted:#6E605C; --line:#E8DCD9; --ok:#1C7A4B; --ok-soft:#E3F3EA; --bad:#B8430B; --bad-soft:#FCEBDD;
+  --chip:#FFFFFF; --shadow:0 1px 2px rgba(24,17,15,.06);
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Literata",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  color-scheme:dark; --red:#FF5A6E; --red-soft:#3A1419; --ink:#F3EAE8; --paper:#1E1817; --ground:#141010;
+  --muted:#B3A29E; --line:#3A2E2C; --ok:#5CD39A; --ok-soft:#12301F; --bad:#FF9A5C; --bad-soft:#3A2012; --chip:#261E1D; --shadow:none;}}
+:root[data-theme="dark"]{
+  color-scheme:dark; --red:#FF5A6E; --red-soft:#3A1419; --ink:#F3EAE8; --paper:#1E1817; --ground:#141010;
+  --muted:#B3A29E; --line:#3A2E2C; --ok:#5CD39A; --ok-soft:#12301F; --bad:#FF9A5C; --bad-soft:#3A2012; --chip:#261E1D; --shadow:none;}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.9;padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:860px;margin:0 auto}
+header.top{padding-block:28px 12px}
+.brand{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:700}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,5vw,42px);line-height:1.05;margin:.25em 0 .2em;text-wrap:balance;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:15px;line-height:1.6;margin:0;max-width:62ch}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);display:flex;gap:6px;flex-wrap:wrap;padding-block:12px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.tab{font-family:var(--display);font-weight:700;font-size:14px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.tab .cnt{font-family:var(--mono);font-size:11px;opacity:.7;margin-left:6px}
+.tab:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.panel-head{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:end;justify-content:space-between;margin-bottom:14px}
+.panel-head h2{font-family:var(--display);font-size:24px;line-height:1.15;margin:0;text-wrap:balance}
+.panel-head .kicker{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.1em;text-transform:uppercase}
+.player{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin-bottom:16px;box-shadow:var(--shadow)}
+.player audio{flex:1 1 260px;min-width:0;height:40px}
+.speed{display:flex;gap:4px}
+.speed button{font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:8px;padding:4px 8px;cursor:pointer}
+.speed button.on{background:var(--red);color:#fff;border-color:var(--red)}
+.how{font-size:14px;line-height:1.6;color:var(--muted);margin:0 0 18px}
+.transcript{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px clamp(16px,4vw,32px)}
+.transcript p{margin:0 0 1.1em}
+.spk{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.08em;color:var(--red);margin-right:6px}
+.gap{display:inline-flex;align-items:center;gap:3px;vertical-align:baseline;border:1.5px dashed var(--line);border-radius:10px;padding:1px 4px;margin:1px 1px;line-height:1.4;flex-wrap:wrap}
+.gap .num{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--red);padding:0 3px}
+.opt{font-family:var(--body);font-size:15px;border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:7px;padding:1px 8px;cursor:pointer;line-height:1.5}
+.opt:hover{border-color:var(--ink)}
+.opt .l{font-family:var(--mono);font-size:10px;color:var(--muted);margin-right:4px}
+.opt.sel{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.opt.sel .l{color:inherit;opacity:.7}
+.gap.done{border-style:solid}
+.gap.right{border-color:var(--ok);background:var(--ok-soft)}
+.gap.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.is-ans{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.is-wrong{text-decoration:line-through;background:transparent;color:var(--bad);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.gap.done .opt:not(.is-ans):not(.is-wrong){opacity:.35}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px}
+.btn{font-family:var(--display);font-weight:700;font-size:15px;border-radius:10px;padding:10px 18px;cursor:pointer;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink)}
+.btn.primary{background:var(--red);border-color:var(--red);color:#fff}
+.score{font-family:var(--mono);font-size:14px;font-weight:700;padding:6px 12px;border-radius:999px;background:var(--red-soft);color:var(--red)}
+.progress{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.wgap{display:inline-flex;align-items:center;gap:3px;vertical-align:baseline;border:1.5px dashed var(--red);border-radius:10px;padding:1px 4px;margin:1px;line-height:1.4;flex-wrap:wrap;max-width:100%}
+.wgap .num{font-family:var(--mono);font-size:11px;font-weight:700;color:#fff;background:var(--red);border-radius:5px;padding:0 5px}
+.wgap input{font-family:var(--body);font-size:15px;border:0;border-bottom:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:0 2px;max-width:70vw;outline:none}
+.wgap input:focus{border-bottom-color:var(--red)}
+.wgap .wc{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.wgap.right{border-style:solid;border-color:var(--ok);background:var(--ok-soft)}
+.wgap.wrong{border-style:solid;border-color:var(--bad);background:var(--bad-soft)}
+.wgap.wrong input{text-decoration:line-through;color:var(--bad)}
+.wgap .fix{font-weight:600;color:var(--ok);font-size:15px}
+/* dictation */
+.dgroup{margin-bottom:26px}
+.dgroup h3{font-family:var(--display);font-size:18px;margin:0 0 10px}
+.dcard{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;display:grid;gap:10px}
+.drow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.drow .dn{font-family:var(--mono);font-weight:700;color:var(--red);font-size:13px;min-width:2.2em}
+.sbtn{font-family:var(--display);font-weight:700;font-size:13px;border:1px solid var(--line);background:var(--ground);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer}
+.sbtn:hover{border-color:var(--ink)}
+textarea{width:100%;font-family:var(--body);font-size:16px;line-height:1.6;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--ground);color:var(--ink);resize:vertical;min-height:64px}
+.diff{font-size:15px;line-height:1.9}
+.diff .w-ok{color:var(--ok)}
+.diff .w-bad{color:var(--bad);text-decoration:line-through}
+.diff .w-miss{background:var(--ok-soft);color:var(--ok);border-radius:4px;padding:0 3px;font-weight:600}
+.diff .pct{font-family:var(--mono);font-size:12px;font-weight:700;margin-left:8px;color:var(--muted)}
+.note{font-size:13px;color:var(--muted);line-height:1.6}
+footer{margin-top:40px;font-size:12px;color:var(--muted);font-family:var(--mono)}
+@media (prefers-reduced-motion:no-preference){.gap.done{transition:background .2s}}
+[hidden]{display:none!important}
+body{margin:0}
+.crumb{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.crumb a{font-family:var(--display);font-weight:700;font-size:14px;color:var(--ink);text-decoration:none;border-bottom:1.5px solid var(--red)}
+.nextnav{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.nextnav a{font-family:var(--display);font-weight:700;font-size:15px;color:var(--ink);text-decoration:none;border:1.5px solid var(--line);background:var(--paper);border-radius:10px;padding:10px 16px}
+.nextnav a:hover{border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:22px}
+.card{display:grid;gap:10px;align-content:start;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;text-decoration:none;color:var(--ink)}
+.card:hover{border-color:var(--ink)}
+.card:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.card .tn{font-family:var(--display);font-weight:800;font-size:26px;line-height:1}
+.card ol{margin:0;padding-left:18px;font-size:14px;line-height:1.55;color:var(--muted)}
+.card .meta{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:11px;font-weight:700;border-radius:999px;padding:3px 9px;background:var(--ground);border:1px solid var(--line)}
+.chip.w{color:var(--red);border-color:var(--red)}
+.bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);width:0}
+.card .pg{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.steps{margin:26px 0 0;padding:16px 20px;background:var(--paper);border:1px solid var(--line);border-radius:14px;font-size:14.5px;line-height:1.7}
+.steps b{font-family:var(--display)}
+</style>
+</head>
+<body>
+<div id="gateScreen" style="position:fixed;inset:0;z-index:999;background:var(--ground);display:flex;align-items:center;justify-content:center;padding:20px;">
+  <form id="gateForm" style="max-width:340px;width:100%;text-align:center;font-family:var(--display);">
+    <div class="brand">AZEnglish · Listening Lab</div>
+    <h2 style="font-size:22px;margin:8px 0 6px">Cambridge IELTS 19</h2>
+    <p style="font-size:13px;color:var(--muted);margin:0 0 16px;line-height:1.5">Nhập mật khẩu được cung cấp để vào làm bài.</p>
+    <input id="gatePassword" type="password" placeholder="Mật khẩu" autocomplete="off" style="width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font-size:15px;margin-bottom:10px;background:var(--paper);color:var(--ink)">
+    <button type="submit" class="btn primary" style="width:100%">Vào làm bài</button>
+    <p id="gateError" style="color:var(--red);font-size:13px;margin:10px 0 0" hidden>Sai mật khẩu, thử lại nhé.</p>
+  </form>
+</div>
+<script>
+(function(){
+  var GATE_PASSWORD = "azenglish2026", GATE_KEY = "az_rt_gate_ok", g = document.getElementById("gateScreen");
+  try{ if(localStorage.getItem(GATE_KEY) === "1") g.style.display = "none"; }catch(e){}
+  document.getElementById("gateForm").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    if(document.getElementById("gatePassword").value === GATE_PASSWORD){ try{ localStorage.setItem(GATE_KEY,"1"); }catch(e){} g.style.display="none"; }
+    else document.getElementById("gateError").hidden = false;
+  });
+})();
+</script>
+
+
+<div class="wrap">
+  <header class="top">
+    <div class="crumb"><div class="brand">AZEnglish · Listening Lab · Band 3.0–5.0+</div><a href="listening-gapfill-c19.html">← Tất cả Test</a></div>
+    <h1>Cambridge 19 · Test 1 — Nghe, chọn & viết</h1>
+    <p class="sub">Toàn bộ transcript 4 Part, giống bản in trên lớp: 222 ô chọn A/B/C và 53 ô tự viết. Bài làm được lưu trên trình duyệt của bạn — tải lại trang không mất.</p>
+  </header>
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+  <main id="main"></main>
+  <nav class="nextnav"><a href="listening-gapfill-c19t2.html">Test 2 →</a><a href="listening-gapfill-c19t3.html">Test 3 →</a><a href="listening-gapfill-c19t4.html">Test 4 →</a><a href="listening-gapfill-c19.html">Trang chủ</a></nav>
+  <footer>Nguồn: Cambridge IELTS 19, Test 1 — transcript & audio gốc. Tài liệu lớp học nội bộ AZEnglish.</footer>
+</div>
+
+<script>
+const DATA = {"test": 1, "parts": [{"num": 1, "title": "Hinchingbrooke Country Park", "audio": "cambridge19-test1-part1.mp3", "segs": ["SALLY: Good morning. Hinchingbrooke ", {"n": 1, "opts": ["Counter", "Country", "County"], "ans": 1}, " Park, Sally speaking. I'm one of the ", {"n": 2, "opts": ["dangers", "strangers", "rangers"], "ans": 2}, ".\n\nJOHN: Oh hello. My name's John Chapman, and I'm a teaching ", {"n": 3, "opts": ["assistant", "instant", "assessment"], "ans": 0}, " at a local ", {"n": 4, "opts": ["primer", "primary", "private"], "ans": 1}, " school. I've been asked to arrange a visit to the park for two of our ", {"n": 5, "opts": ["glasses", "classics", "classes"], "ans": 2}, ".\n\nSALLY: OK. What would you like to know?\n\nJOHN: Well, I'm ", {"n": 6, "opts": ["new", "knew", "near"], "ans": 0}, " to this area, so perhaps you could tell me something about the park first, please.\n\nSALLY: Of course. Altogether the park covers ", {"n": 7, "opts": ["170", "117", "700"], "ans": 0}, " acres, that's ", {"n": 8, "opts": ["59", "96", "69"], "ans": 2}, " hectares. There are three main types of ", {"n": 9, "opts": ["habit", "habitat", "rabbit"], "ans": 1}, ": wetland, ", {"n": 10, "opts": ["grasslands", "greenland", "grassland"], "ans": 2}, " and woodland. The woods are well established and varied, with an ", {"n": 11, "opts": ["oak", "oat", "old"], "ans": 0}, " plantation, and other areas of ", {"n": 12, "opts": ["mixing", "mixed", "fixed"], "ans": 1}, " species.\n\nJOHN: Right.\n\nSALLY: The wetland is quite varied, too. The original ", {"n": 13, "opts": ["farmhouse", "parkland", "farmland"], "ans": 2}, " was dug up around ", {"n": 14, "opts": ["40", "400", "14"], "ans": 0}, " years ago to extract ", {"n": 15, "opts": ["gravy", "gravel", "travel"], "ans": 1}, ". Once this work was completed, the gravel pits filled with water, forming the two large ", {"n": 16, "opts": ["lanes", "leaks", "lakes"], "ans": 2}, ". There are also several smaller ones, ponds and a ", {"n": 17, "opts": ["street", "stream", "steam"], "ans": 1}, " that flows through the park.\n\nJOHN: OK, so I suppose with these different habitats there's quite a variety of ", {"n": 18, "opts": ["wildlife", "wildfire", "wide life"], "ans": 0}, ".\n\nSALLY: There certainly is – a lot of different species of birds and insects, and also animals like ", {"n": 19, "opts": ["beer", "dear", "deer"], "ans": 2}, " and rabbits.\n\nJOHN: And I understand you organise ", {"n": 20, "opts": ["educational", "emotional", "occasional"], "ans": 0}, " visits for school parties.\n\nSALLY: That's right. We can organise a wide range of activities and adapt them to suit all ", {"n": 21, "opts": ["cages", "ages", "edges"], "ans": 1}, ".\n\nJOHN: Can you give me some examples of the activities?\n\nSALLY: Well, one focus is on ", {"n": 22, "opts": ["sciences", "science", "silence"], "ans": 1}, ", where we help children to discover and study plants, trees and insects. They also collect and ", {"n": 23, "opts": ["analyse", "advise", "analysis"], "ans": 0}, " data about the things they see.\n\nJOHN: Uhuh.\n\nSALLY: Another focus is on ", {"n": 24, "opts": ["geology", "biography", "geography"], "ans": 2}, ". The park is a great environment to learn and practise reading a ", {"n": 25, "opts": ["map", "mop", "mat"], "ans": 0}, " and using a ", {"n": 26, "opts": ["compost", "compass", "campus"], "ans": 1}, " to navigate around the park.\n\nJOHN: Do you do anything connected with ", {"n": 27, "opts": ["mystery", "hysteria", "history"], "ans": 2}, "?\n\nSALLY: Yes, we do. For instance, the children can explore how the use of the ", {"n": 28, "opts": ["lent", "lamb", "land"], "ans": 2}, " has changed over time. Then there's leisure and ", {"n": 29, "opts": ["tourist", "tourism", "tutorial"], "ans": 1}, ".\n\nJOHN: That focuses on your visitors, I would imagine.\n\nSALLY: Yes, mostly. The children ", {"n": 1, "ans": "find out about them", "w": 4, "kind": "write"}, ", their ", {"n": 30, "opts": ["requirements", "retirements", "equipment"], "ans": 0}, ", ", {"n": 2, "ans": "the problems they may cause", "w": 5, "kind": "write"}, " and ", {"n": 3, "ans": "how we manage these", "w": 4, "kind": "write"}, ". And another subject we cover is ", {"n": 31, "opts": ["mosaic", "magic", "music"], "ans": 2}, ": ", {"n": 4, "ans": "here the children experiment", "w": 4, "kind": "write"}, " with natural ", {"n": 32, "opts": ["materials", "matters", "minerals"], "ans": 0}, " ", {"n": 5, "ans": "to create sounds", "w": 3, "kind": "write"}, " and explore ", {"n": 33, "opts": ["ribbon", "rhythm", "rhyme"], "ans": 1}, " and tempo.\n\nJOHN: ", {"n": 6, "ans": "That must be fun", "w": 4, "kind": "write"}, "!\n\nSALLY: Most children ", {"n": 7, "ans": "really enjoy it", "w": 3, "kind": "write"}, ".\n\nSALLY: And of course, ", {"n": 8, "ans": "all the activities are", "w": 4, "kind": "write"}, " educational, too. ", {"n": 9, "ans": "Learning outside the classroom", "w": 4, "kind": "write"}, " encourages children to be ", {"n": 34, "opts": ["reactive", "creature", "creative"], "ans": 2}, ", and ", {"n": 10, "ans": "to explore and discover", "w": 4, "kind": "write"}, " for themselves.\n\nJOHN: I would imagine they get a sense of ", {"n": 35, "opts": ["friendship", "freedom", "boredom"], "ans": 1}, " that might not be a normal part of their lives.\n\nSALLY: That's right. And very often the children discover that they can do things they didn't know they could do, and they develop new ", {"n": 36, "opts": ["skills", "schools", "skins"], "ans": 0}, ". This gives them greater ", {"n": 37, "opts": ["confidence", "self-conscious", "self-confidence"], "ans": 2}, ".\n\nJOHN: It sounds great. So, what about the practical side of it? How much does it cost for a full-day visit? We would expect to bring between ", {"n": 38, "opts": ["13", "30", "33"], "ans": 1}, " and 40 children.\n\nSALLY: If there are over 30, it costs £", {"n": 39, "opts": ["4.95", "9.45", "4.59"], "ans": 0}, " for each child who attends on the day. We ", {"n": 40, "opts": ["invite", "invoice", "advise"], "ans": 1}, " you afterwards, so you don't pay for children who can't come because of ", {"n": 41, "opts": ["sickness", "thickness", "sadness"], "ans": 0}, ", for example. There's no charge for ", {"n": 42, "opts": ["letters", "readers", "leaders"], "ans": 2}, " and other adults – as many as you want to bring.\n\nJOHN: That sounds very fair. Well, thanks for all the information. I'll need to discuss it with my ", {"n": 43, "opts": ["leagues", "colleagues", "colleges"], "ans": 1}, ", and I hope to get back to you soon to make a ", {"n": 44, "opts": ["booking", "cooking", "bookshop"], "ans": 0}, ".\n\nSALLY: We'll look forward to hearing from you. Goodbye.\n\nJOHN: Goodbye, and thank you."]}, {"num": 2, "title": "Stanthorpe Twinning Association / Farley House", "audio": "cambridge19-test1-part2.mp3", "segs": ["It's great to see so many ", {"n": 45, "opts": ["numbers", "memories", "members"], "ans": 2}, " of the Twinning Association here tonight. Since the twinning link between our two ", {"n": 46, "opts": ["towers", "towns", "tones"], "ans": 1}, ", Stanthorpe here in ", {"n": 47, "opts": ["Ireland", "Holland", "England"], "ans": 2}, " and Malatte in ", {"n": 48, "opts": ["France", "Florence", "Frances"], "ans": 0}, ", was established, the relationship between the towns has gone from ", {"n": 49, "opts": ["strength", "string", "strange"], "ans": 0}, " to strength.\n\nLast month, ", {"n": 50, "opts": ["35", "25", "52"], "ans": 1}, " members of the association from Stanthorpe spent a ", {"n": 51, "opts": ["weekday", "week", "weekend"], "ans": 2}, " in Malatte. Our hosts had arranged a great ", {"n": 52, "opts": ["problem", "promise", "programme"], "ans": 2}, ". We learned how ", {"n": 53, "opts": ["chess", "cheese", "cheeses"], "ans": 1}, " is produced in the region and had the chance to ", {"n": 54, "opts": ["taste", "take", "test"], "ans": 0}, " the products. The ", {"n": 55, "opts": ["time", "theme", "team"], "ans": 1}, " park trip had to be ", {"n": 56, "opts": ["counselled", "cancel", "cancelled"], "ans": 2}, ", but we all had a great time on the final ", {"n": 57, "opts": ["boat", "bought", "boot"], "ans": 0}, " trip down the river – that was the real ", {"n": 58, "opts": ["height", "headlight", "highlight"], "ans": 2}, ".\n\nThis is a ", {"n": 59, "opts": ["social", "special", "spatial"], "ans": 1}, " year for the Association because it's 25 years since we were ", {"n": 60, "opts": ["founded", "found", "funded"], "ans": 0}, ". In Malatte, they're planning to mark this by building a ", {"n": 61, "opts": ["footbridge", "football", "fruit bridge"], "ans": 0}, " in the ", {"n": 62, "opts": ["principal", "municipal", "musical"], "ans": 1}, " park. We've been discussing what to do here and we've decided to plant a ", {"n": 63, "opts": ["popular", "pillar", "poplar"], "ans": 2}, " tree in the ", {"n": 64, "opts": ["museum", "music", "mosque"], "ans": 0}, " gardens. We considered buying a garden ", {"n": 65, "opts": ["sheet", "seat", "set"], "ans": 1}, " to put there, but the ", {"n": 66, "opts": ["activities", "authors", "authorities"], "ans": 2}, " weren't happy with that idea.\n\nIn terms of ", {"n": 67, "opts": ["fundamental", "fundraising", "fun racing"], "ans": 1}, " to support our activities, we've done very well. Our ", {"n": 68, "opts": ["cupcake", "pan cake", "pancake"], "ans": 2}, " evening was well attended and made record ", {"n": 69, "opts": ["profits", "products", "prophets"], "ans": 0}, ". And everyone enjoyed the demonstration of French ", {"n": 70, "opts": ["cookies", "crockery", "cookery"], "ans": 2}, ", which was nearly as successful. Numbers for our ", {"n": 71, "opts": ["film", "farm", "firm"], "ans": 0}, " show were limited because of the ", {"n": 72, "opts": ["avenue", "venue", "menu"], "ans": 1}, " so we're looking for somewhere ", {"n": 73, "opts": ["cheaper", "better", "bigger"], "ans": 2}, " next year.\n\nWe're ", {"n": 11, "ans": "looking forward to welcoming", "w": 4, "kind": "write"}, " our French visitors here ", {"n": 12, "ans": "next week", "w": 2, "kind": "write"}, ", and I know that ", {"n": 13, "ans": "many of you here", "w": 4, "kind": "write"}, " will be hosting individuals or ", {"n": 74, "opts": ["famous", "families", "females"], "ans": 1}, ". The ", {"n": 75, "opts": ["coach", "couch", "coat"], "ans": 0}, " from France will arrive at 5 pm on ", {"n": 76, "opts": ["Sunday", "Monday", "Friday"], "ans": 2}, ". Don't ", {"n": 14, "ans": "try to do too much", "w": 5, "kind": "write"}, " ", {"n": 15, "ans": "that first evening", "w": 3, "kind": "write"}, " as they'll be ", {"n": 77, "opts": ["tied", "tired", "hired"], "ans": 1}, ", so have dinner in the house or ", {"n": 78, "opts": ["garden", "gardens", "garage"], "ans": 0}, " ", {"n": 16, "ans": "rather than eating out", "w": 4, "kind": "write"}, ". ", {"n": 17, "ans": "The weather looks as if", "w": 5, "kind": "write"}, " it'll be OK so you might like to plan a ", {"n": 79, "opts": ["rescue", "barber", "barbecue"], "ans": 2}, ". Then the next morning's ", {"n": 80, "opts": ["market", "marked", "marker"], "ans": 0}, " day in town, and that's ", {"n": 18, "ans": "always a good place", "w": 4, "kind": "write"}, " to ", {"n": 81, "opts": ["scroll", "stroll", "stall"], "ans": 1}, " round.\n\nOn Saturday evening, we'll all meet up at the ", {"n": 82, "opts": ["netball", "football", "basketball"], "ans": 1}, " club, where ", {"n": 19, "ans": "once again", "w": 2, "kind": "write"}, " we'll have Toby Sharp and his ", {"n": 83, "opts": ["band", "bond", "brand"], "ans": 0}, " ", {"n": 20, "ans": "performing English", "w": 2, "kind": "write"}, " and Scottish country ", {"n": 84, "opts": ["sons", "sounds", "songs"], "ans": 2}, ". Toby will ", {"n": 21, "ans": "already be well known", "w": 4, "kind": "write"}, " to many of you as last year ", {"n": 22, "ans": "he organised our", "w": 3, "kind": "write"}, " special ", {"n": 85, "opts": ["quiz", "quiet", "quick"], "ans": 0}, " night and presented the ", {"n": 86, "opts": ["priests", "prizes", "prices"], "ans": 1}, ".\n\nNow on Sunday, we'll be taking our ", {"n": 87, "opts": ["writers", "visions", "visitors"], "ans": 2}, " to Farley House. You may not all be familiar with it, so here's a map to help you. You can see the car park at the bottom of the map. There's an excellent ", {"n": 88, "opts": ["firm", "farm", "form"], "ans": 1}, " shop in the grounds where our visitors can buy local ", {"n": 89, "opts": ["promise", "products", "produce"], "ans": 2}, " — it's in the old ", {"n": 90, "opts": ["stables", "stable", "tables"], "ans": 0}, ", which is the first building you come to. They're built round a ", {"n": 91, "opts": ["backyard", "court", "courtyard"], "ans": 2}, ", and the shop's in the far ", {"n": 92, "opts": ["corner", "counter", "cover"], "ans": 0}, " on the left. There's also a small café on the ", {"n": 93, "opts": ["write", "right", "light"], "ans": 1}, " as you go in. I know that one or two of our visitors may not be all that ", {"n": 94, "opts": ["mobiles", "mobile", "noble"], "ans": 1}, ". The main entrance to the house has a lot of ", {"n": 95, "opts": ["stairs", "stops", "steps"], "ans": 2}, " so you might want to use the ", {"n": 96, "opts": ["disabled", "disable", "delayed"], "ans": 0}, " entry. This is on the far side of the house from the car park.\n\nChildren will probably be most interested in the ", {"n": 97, "opts": ["adventure", "adventures", "advantage"], "ans": 0}, " playground. That's at the ", {"n": 98, "opts": ["southern", "eastern", "northern"], "ans": 2}, " end of the larger lake, in a ", {"n": 99, "opts": ["band", "bend", "bench"], "ans": 1}, " on the path that leads to the lake. There's lots for children to do there.\n\nThere are a number of lovely gardens near the house. The kitchen gardens are ", {"n": 100, "opts": ["regular", "triangular", "rectangular"], "ans": 2}, " and surrounded by a ", {"n": 101, "opts": ["wall", "hall", "well"], "ans": 0}, ". They're to the north-east of the house, quite near the smaller lake. They're still in use and have a great collection of fruit and ", {"n": 102, "opts": ["tables", "vegetables", "vegetarians"], "ans": 1}, ".\n\nThe Temple of the Four ", {"n": 103, "opts": ["Winds", "Wings", "Wines"], "ans": 0}, " is a bit more of a walk – but it's worth it. Take the path from the car park and go past the ", {"n": 104, "opts": ["southern", "western", "eastern"], "ans": 1}, " sides of the stables and the house. Then when the path ", {"n": 105, "opts": ["folks", "works", "forks"], "ans": 2}, ", take the ", {"n": 106, "opts": ["left-hand", "right hand", "right-hand"], "ans": 2}, " path. Go up there with the ", {"n": 107, "opts": ["woods", "walls", "words"], "ans": 0}, " on your left and the temple is right at the end. There are great ", {"n": 108, "opts": ["fees", "views", "news"], "ans": 1}, " over the whole area.\n\nOK, so that's ..."]}, {"num": 3, "title": "Discussion: a bread reuse project and food trends", "audio": "cambridge19-test1-part3.mp3", "segs": ["COLIN: I haven't seen you for a ", {"n": 109, "opts": ["bit", "bet", "bite"], "ans": 0}, ", Marie.\n\nMARIE: No. I've been busy with my ", {"n": 110, "opts": ["product", "protest", "project"], "ans": 2}, ".\n\nCOLIN: You're making a ", {"n": 111, "opts": ["Vegas", "vegan", "vegetable"], "ans": 1}, " alternative to ", {"n": 112, "opts": ["legs", "eggs", "egg"], "ans": 1}, ", aren't you? Something that doesn't use ", {"n": 113, "opts": ["animal", "animated", "annual"], "ans": 0}, " products?\n\nMARIE: Yes. I'm using ", {"n": 114, "opts": ["cheap peas", "chicken", "chickpeas"], "ans": 2}, ". I had two main ", {"n": 115, "opts": ["names", "games", "aims"], "ans": 2}, " when I first started looking for an alternative to eggs, but actually I've found chickpeas have got more ", {"n": 116, "opts": ["advantages", "adventures", "advances"], "ans": 0}, ".\n\nCOLIN: Right.\n\nMARIE: But how about your project on reusing ", {"n": 117, "opts": ["west", "waste", "waist"], "ans": 1}, " food – you were looking at ", {"n": 118, "opts": ["breed", "bread", "bed"], "ans": 1}, ", weren't you?\n\nCOLIN: Yes. It's been ", {"n": 119, "opts": ["hard", "heart", "hardly"], "ans": 0}, " work, but I've enjoyed it. The basic process was quite ", {"n": 120, "opts": ["strangely", "straight forward", "straightforward"], "ans": 2}, " – breaking the ", {"n": 121, "opts": ["stable", "steel", "stale"], "ans": 2}, " bread down to a ", {"n": 122, "opts": ["pasta", "paste", "past"], "ans": 1}, " then reforming it.\n\nMARIE: But you were using 3-D ", {"n": 123, "opts": ["printing", "pointing", "painting"], "ans": 0}, ", weren't you, to make the paste into ", {"n": 124, "opts": ["baskets", "biscuits", "business"], "ans": 1}, "?\n\nCOLIN: Yeah, I'd used that before, but in this project, I had time to play around with different ", {"n": 125, "opts": ["partners", "patients", "patterns"], "ans": 2}, " for the biscuits and finding how I could add ", {"n": 126, "opts": ["fruit", "flute", "fruits"], "ans": 0}, " and vegetables to make them a more appetising ", {"n": 127, "opts": ["cooler", "colour", "collar"], "ans": 1}, ", and I was really ", {"n": 128, "opts": ["pleased", "placed", "please"], "ans": 0}, " with what I managed to produce.\n\nMARIE: It must've been a great feeling to make something appetising out of bits of ", {"n": 129, "opts": ["cold", "hold", "old"], "ans": 2}, " bread that would've been ", {"n": 130, "opts": ["thrown", "throne", "grown"], "ans": 0}, " away otherwise.\n\nCOLIN: It was. And I'm hoping that some of the ", {"n": 131, "opts": ["residents", "restaurants", "restrooms"], "ans": 1}, " in town will be interested in the biscuits. I'm going to send them some ", {"n": 132, "opts": ["simples", "examples", "samples"], "ans": 2}, ".\n\nMARIE: I came across something on the internet yesterday that might interest you. It was a company that's developed touch-sensitive ", {"n": 133, "opts": ["censors", "centres", "sensors"], "ans": 2}, " for food ", {"n": 134, "opts": ["tables", "labels", "levels"], "ans": 1}, ".\n\nCOLIN: Mmm?\n\nMARIE: It's a special sort of label on the food package. When the label's ", {"n": 135, "opts": ["smooth", "smoke", "mouth"], "ans": 0}, ", the food is fresh and then when you can feel ", {"n": 136, "opts": ["bumps", "bombs", "pumps"], "ans": 0}, " on the label, that means the food's gone bad. It started off as a project to help visually ", {"n": 137, "opts": ["imported", "impaired", "repaired"], "ans": 1}, " people know whether food was fit to eat or not.\n\nCOLIN: Interesting. So just solid food?\n\nMARIE: No, things like milk and ", {"n": 138, "opts": ["just", "juicy", "juice"], "ans": 2}, " as well. But actually, I thought it might be really good for drug storage in ", {"n": 139, "opts": ["hotels", "hostels", "hospitals"], "ans": 2}, " and ", {"n": 140, "opts": ["factories", "pharmacies", "farmers"], "ans": 1}, ".\n\nCOLIN: Right. And coming back to food, maybe it'd be possible to use it for other things besides freshness. Like how many kilograms a joint of ", {"n": 141, "opts": ["meat", "milk", "meet"], "ans": 0}, " is, for example.\n\nMARIE: Yes, there's all sorts of possibilities.\n\nCOLIN: I was reading an article about food ", {"n": 142, "opts": ["friends", "trains", "trends"], "ans": 2}, " predicting how eating habits might change in the next few years.\n\nMARIE: Oh – things like more focus on ", {"n": 143, "opts": ["local", "logical", "vocal"], "ans": 0}, " products? That seems so obvious, but the shops are still full of ", {"n": 144, "opts": ["important", "imported", "exported"], "ans": 1}, " foods.\n\nCOLIN: Yes, they need to be more ", {"n": 145, "opts": ["productive", "protective", "proactive"], "ans": 2}, " to address that.\n\nMARIE: And somehow motivate ", {"n": 146, "opts": ["costumes", "consumers", "customers"], "ans": 1}, " to change, yes.\n\nCOLIN: One thing everyone's aware of is the need for a reduction in unnecessary ", {"n": 147, "opts": ["packaging", "package", "packing"], "ans": 0}, " – but just about everything you buy in supermarkets is still covered in ", {"n": 148, "opts": ["elastic", "plastics", "plastic"], "ans": 2}, ". The government needs to do something about it.\n\nMARIE: Absolutely. It's got to change.\n\nCOLIN: Do you think there'll be more interest in gluten- and ", {"n": 149, "opts": ["lactose-free", "lotus-free", "lactose"], "ans": 0}, " food?\n\nMARIE: For people with ", {"n": 150, "opts": ["energies", "allergies", "galleries"], "ans": 1}, " or food intolerances? I don't know. Lots of people I know have been buying that type of food for years now.\n\nCOLIN: Yes, even if they haven't been ", {"n": 151, "opts": ["diagnosed", "designed", "diagnosis"], "ans": 0}, " with an allergy.\n\nMARIE: That's right. ", {"n": 23, "ans": "One thing I've noticed", "w": 4, "kind": "write"}, " is ", {"n": 24, "ans": "the number of branded products", "w": 5, "kind": "write"}, " related to ", {"n": 152, "opts": ["celery", "celebrity", "celebrate"], "ans": 1}, " chefs – ", {"n": 25, "ans": "people watch them cooking on TV", "w": 6, "kind": "write"}, " and then buy things like ", {"n": 153, "opts": ["space", "spicy", "spice"], "ans": 2}, " mixes or ", {"n": 154, "opts": ["dozen", "frozen", "broken"], "ans": 1}, " foods ", {"n": 26, "ans": "with the chef's name on", "w": 5, "kind": "write"}, " ... ", {"n": 27, "ans": "I bought something like that once", "w": 6, "kind": "write"}, ", ", {"n": 28, "ans": "but I won't again", "w": 4, "kind": "write"}, ".\n\nCOLIN: Yeah – I bought a ready-made spice mix for ", {"n": 155, "opts": ["chicken", "kitchen", "chickens"], "ans": 0}, " ", {"n": 29, "ans": "which was supposed to be used by", "w": 7, "kind": "write"}, " a chef ", {"n": 30, "ans": "I'd seen on television", "w": 4, "kind": "write"}, ", and ", {"n": 31, "ans": "it didn't actually", "w": 3, "kind": "write"}, " ", {"n": 156, "opts": ["test", "toast", "taste"], "ans": 2}, " of anything.\n\nMARIE: Mm. ", {"n": 32, "ans": "Did the article mention", "w": 4, "kind": "write"}, " '", {"n": 157, "opts": ["goat", "ghost", "host"], "ans": 1}, " kitchens' used to produce ", {"n": 158, "opts": ["takeaway", "take away", "takeoff"], "ans": 0}, " food?\n\nCOLIN: No. ", {"n": 33, "ans": "What are they", "w": 3, "kind": "write"}, "?\n\nMARIE: Well, ", {"n": 34, "ans": "they might have the name of a restaurant", "w": 8, "kind": "write"}, ", but actually they're ", {"n": 35, "ans": "a cooking facility", "w": 3, "kind": "write"}, " just for ", {"n": 159, "opts": ["discovery", "diversity", "delivery"], "ans": 2}, " meals – ", {"n": 36, "ans": "the public don't ever go there", "w": 6, "kind": "write"}, ". But ", {"n": 37, "ans": "people aren't aware of that", "w": 5, "kind": "write"}, " – it's all kept very ", {"n": 160, "opts": ["quick", "quite", "quiet"], "ans": 2}, ".\n\nCOLIN: So people don't realise the food's not actually from the restaurant?\n\nMARIE: Right.\n\nCOLIN: Did you know more and more people are using all sorts of different ", {"n": 161, "opts": ["mushrooms", "mushroom", "bathrooms"], "ans": 0}, " now, to treat different health concerns? Things like ", {"n": 162, "opts": ["hard", "heart", "hurt"], "ans": 1}, " problems?\n\nMARIE: Hmm. They might be taking a big ", {"n": 163, "opts": ["risk", "rest", "wrist"], "ans": 0}, " there.\n\nCOLIN: Yes, it's hard to know which ", {"n": 164, "opts": ["variety", "varieties", "varies"], "ans": 1}, " are safe to eat. Anyway maybe now ..."]}, {"num": 4, "title": "Céide Fields", "audio": "cambridge19-test1-part4.mp3", "segs": ["For my presentation today, I'm going to talk about the Céide Fields in the ", {"n": 165, "opts": ["southwest", "northeast", "northwest"], "ans": 2}, " of Ireland, one of the ", {"n": 166, "opts": ["longest", "latest", "largest"], "ans": 2}, " Neolithic ", {"n": 167, "opts": ["sites", "sides", "sights"], "ans": 0}, " in the world. I recently visited this site and observed the work that is currently being done by a team of ", {"n": 168, "opts": ["astrologists", "archaeologists", "architects"], "ans": 1}, " there.\n\nThe site was first discovered in the ", {"n": 169, "opts": ["1913", "1930s", "1930"], "ans": 1}, " by a local ", {"n": 170, "opts": ["preacher", "farmer", "teacher"], "ans": 2}, ", Patrick Caulfield. He noticed that when local people were ", {"n": 171, "opts": ["digging", "dining", "dragging"], "ans": 0}, " in the bog, they were constantly hitting against what seemed to be rows of ", {"n": 172, "opts": ["stores", "tones", "stones"], "ans": 2}, ". He realised that these must be ", {"n": 173, "opts": ["wells", "walls", "halls"], "ans": 1}, " and that they must be ", {"n": 174, "opts": ["thousands", "thousand", "hundreds"], "ans": 0}, " of years old for them to predate the bog which subsequently grew over them.\n\nHe wrote to the National Museum in ", {"n": 175, "opts": ["Dublin", "Dover", "Doubling"], "ans": 0}, " to ask them to investigate, but no one took him ", {"n": 176, "opts": ["curiously", "series", "seriously"], "ans": 2}, ". It wasn't until ", {"n": 177, "opts": ["44", "40", "14"], "ans": 1}, " years later, when Patrick Caulfield's son Seamus, who had become an ", {"n": 178, "opts": ["archaeologist", "archivist", "astronaut"], "ans": 0}, " by then, began to explore further. He inserted ", {"n": 179, "opts": ["island", "irony", "iron"], "ans": 2}, " ", {"n": 180, "opts": ["problems", "probes", "robes"], "ans": 1}, " into the bog to map the formation of the stones, a ", {"n": 181, "opts": ["additional", "national", "traditional"], "ans": 2}, " method which local people had always used for finding ", {"n": 182, "opts": ["fool", "fuel", "full"], "ans": 1}, " buried in the bog for thousands of years. ", {"n": 183, "opts": ["Carbon", "Garden", "Cotton"], "ans": 0}, " dating later proved that the site was over ", {"n": 184, "opts": ["5,000", "50,000", "500"], "ans": 0}, " years old and was the largest Neolithic site in Ireland. Thanks to the bog which covers the area, the remains of the settlement at Céide Fields, which is over 5,000 years old, are extremely ", {"n": 185, "opts": ["well-prevented", "well-preserved", "well-prepared"], "ans": 1}, ". A bog is ", {"n": 186, "opts": ["19", "80", "90"], "ans": 2}, " percent water; its soil is so ", {"n": 187, "opts": ["situated", "saturated", "separated"], "ans": 1}, " that when the grasses and ", {"n": 188, "opts": ["heathers", "heaters", "feathers"], "ans": 0}, " that grow on its surface die, they don't fully decay but accumulate in ", {"n": 189, "opts": ["lawyers", "players", "layers"], "ans": 2}, ". Objects remain so well preserved in these conditions because of the acidity of the ", {"n": 190, "opts": ["peat", "pit", "pet"], "ans": 0}, " and the deficiency of ", {"n": 191, "opts": ["origin", "oxide", "oxygen"], "ans": 2}, ". At least ", {"n": 192, "opts": ["157", "175", "75"], "ans": 1}, " days of rain a year are required for this to happen; this part of Ireland gets an average of ", {"n": 193, "opts": ["252", "205", "225"], "ans": 2}, " days.\n\nThe Neolithic farmers at Céide ", {"n": 38, "ans": "would have enjoyed several centuries", "w": 5, "kind": "write"}, " of relative ", {"n": 194, "opts": ["pace", "peace", "piece"], "ans": 1}, " and stability. ", {"n": 39, "ans": "Neolithic farmers generally lived", "w": 4, "kind": "write"}, " in larger ", {"n": 195, "opts": ["communities", "commodities", "committees"], "ans": 0}, " ", {"n": 40, "ans": "than their predecessors", "w": 3, "kind": "write"}, ", with ", {"n": 41, "ans": "a number of houses built around", "w": 6, "kind": "write"}, " a ", {"n": 196, "opts": ["commodity", "common", "community"], "ans": 2}, " building. ", {"n": 42, "ans": "As they lived in", "w": 4, "kind": "write"}, " ", {"n": 197, "opts": ["prominent", "permanent", "pertinent"], "ans": 1}, " settlements, Neolithic farmers ", {"n": 43, "ans": "were able to build bigger houses", "w": 6, "kind": "write"}, ". These weren't ", {"n": 198, "opts": ["round", "ground", "around"], "ans": 0}, " ", {"n": 44, "ans": "as people often assume", "w": 4, "kind": "write"}, ", but ", {"n": 199, "opts": ["triangular", "regular", "rectangular"], "ans": 2}, " with a small hole in the ", {"n": 200, "opts": ["proof", "roof", "room"], "ans": 1}, " ", {"n": 45, "ans": "that allowed", "w": 2, "kind": "write"}, " ", {"n": 201, "opts": ["smoke", "smog", "snake"], "ans": 0}, " to escape. ", {"n": 46, "ans": "This is one of many innovations", "w": 6, "kind": "write"}, " and indicates that the Neolithic farmers were ", {"n": 47, "ans": "the first people to", "w": 4, "kind": "write"}, " cook ", {"n": 202, "opts": ["outdoors", "in doors", "indoors"], "ans": 2}, ". ", {"n": 48, "ans": "Another new technology", "w": 3, "kind": "write"}, " that Neolithic settlers brought to Ireland was ", {"n": 203, "opts": ["potter", "pottery", "poetry"], "ans": 1}, ". ", {"n": 204, "opts": ["Fragments", "Fragrances", "Figments"], "ans": 0}, " of Neolithic pots ", {"n": 49, "ans": "have been found in", "w": 4, "kind": "write"}, " Céide ", {"n": 50, "ans": "and elsewhere in Ireland", "w": 4, "kind": "write"}, ". The pots were used for many things; ", {"n": 51, "ans": "as well as for", "w": 4, "kind": "write"}, " ", {"n": 205, "opts": ["storing", "stirring", "storming"], "ans": 0}, " food, pots ", {"n": 52, "ans": "were filled with", "w": 3, "kind": "write"}, " a small amount of ", {"n": 206, "opts": ["fruit", "fact", "fat"], "ans": 2}, " and ", {"n": 53, "ans": "when this was set alight", "w": 5, "kind": "write"}, ", they served as ", {"n": 207, "opts": ["lumps", "lamps", "lambs"], "ans": 1}, ".\n\nIt's thought that the Céide Fields were mainly used as ", {"n": 208, "opts": ["padlocks", "paddocks", "haddocks"], "ans": 1}, " for animals to ", {"n": 209, "opts": ["graze", "grass", "grace"], "ans": 0}, " in. Evidence from the Céide Fields suggests that each plot of land was of a suitable size to sustain an ", {"n": 210, "opts": ["expanded", "extent", "extended"], "ans": 2}, " family. They may have used a system of ", {"n": 211, "opts": ["national", "rotational", "rational"], "ans": 1}, " grazing in order to prevent over-grazing and to allow for plant ", {"n": 212, "opts": ["recovery", "discovery", "recover"], "ans": 0}, " and regrowth. This must have been a year-round activity as no structures have been found which would have been used to shelter animals in the ", {"n": 213, "opts": ["water", "winner", "winter"], "ans": 2}, ".\n\nHowever, archaeologists believe that this way of life at Céide ceased ", {"n": 214, "opts": ["abruptly", "absolutely", "abundantly"], "ans": 0}, ". Why was this? Well, several ", {"n": 215, "opts": ["features", "factors", "actors"], "ans": 1}, " may have contributed to the changing circumstances. The soil would have become less ", {"n": 216, "opts": ["production", "protective", "productive"], "ans": 2}, " and led to the abandonment of ", {"n": 217, "opts": ["framing", "farming", "warming"], "ans": 1}, ". The crop rotation system was partly responsible for this as it would have been very intensive and was not ", {"n": 218, "opts": ["suitable", "sustained", "sustainable"], "ans": 2}, ". But there were also climatic ", {"n": 219, "opts": ["pressures", "pleasures", "treasures"], "ans": 0}, " too. The farmers at Céide would have enjoyed a relatively ", {"n": 220, "opts": ["wet", "dry", "dirty"], "ans": 1}, " period, but this began to change and the conditions became wetter as there was a lot more ", {"n": 221, "opts": ["rain", "train", "rainy"], "ans": 0}, ". It was these conditions that encouraged the bog to ", {"n": 222, "opts": ["from", "farm", "form"], "ans": 2}, " over the area which survives today.\n\nSo now I'd like to show you some . ."]}], "mc": 222, "wr": 53};
+const $ = (s, r=document) => r.querySelector(s);
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const L = ["A","B","C"];
+const state = {};   // n -> chosen index
+const checked = {}; // part -> bool
+
+function storeGet(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}}
+function storeSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+Object.assign(state, storeGet(`c19t${DATA.test}-choices`)||{});
+
+function renderTabs(active){
+  const t = $("#tabs"); t.innerHTML = "";
+  DATA.parts.forEach(p => t.append(tab("p"+p.num, `Part ${p.num}`, 0, active)));
+}
+function tab(id, label, cnt, active){
+  const b = document.createElement("button");
+  b.className = "tab"; b.role = "tab"; b.setAttribute("aria-selected", id===active);
+  b.innerHTML = label;
+  b.onclick = () => show(id); return b;
+}
+
+function textToHTML(s){
+  return esc(s).replace(/(^|\n\n)(COLIN|JOHN|MARIE|SALLY):/g, (m,a,b)=>`${a}<span class="spk">${b}</span>`);
+}
+function renderPart(p){
+  // ráp segments thành HTML, tách đoạn theo \n\n
+  let html = "";
+  p.segs.forEach(s => {
+    if (typeof s === "string") { html += textToHTML(s); return; }
+    if (s.kind === "write") { html += `<span class="wgap" data-d="${s.n}"><span class="num">D${s.n}</span><input id="w${s.n}" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:${Math.max(5, s.ans.length*0.62+1)}em" aria-label="Ô D${s.n}, ${s.w} từ"><span class="wc">${s.w}</span><span class="fix" hidden></span></span>`; return; }
+    html += `<span class="gap" data-n="${s.n}"><span class="num">${s.n}</span>` +
+      s.opts.map((o,i)=>`<button class="opt" data-i="${i}"><span class="l">${L[i]}</span>${esc(o)}</button>`).join("") + `</span>`;
+  });
+  html = "<p>" + html.split("\n\n").join("</p><p>") + "</p>";
+  const mc = p.segs.filter(s=>typeof s!=="string"&&s.opts), wr = p.segs.filter(s=>typeof s!=="string"&&s.kind==="write");
+  const first = mc[0].n;
+  $("#main").innerHTML = `
+    <div class="panel-head"><div><div class="kicker">Part ${p.num} · Trắc nghiệm ${first}–${first+mc.length-1} · Tự viết D${wr[0].n}–D${wr[wr.length-1].n}</div><h2>${esc(p.title)}</h2></div>
+      <span class="progress" id="prog"></span></div>
+    <div class="player"><audio id="aud" controls preload="none" src="cambridge19-test${DATA.test}-part${p.num}.mp3"></audio>
+      <div class="speed" id="spd">${[0.75,0.9,1].map(r=>`<button data-r="${r}" class="${r===1?"on":""}">${r}×</button>`).join("")}</div></div>
+    <p class="how">Hai dạng ô: <b>ô số đen</b> — bấm chọn A, B hoặc C; <b>ô D đỏ</b> — tự gõ cụm từ nghe được (số nhỏ là số từ cần viết). Mẹo: lần 1 nghe 0.9×, lần 2 tốc độ thường rồi bấm <b>Chấm bài</b>.</p>
+    <article class="transcript" id="tx">${html}</article>
+    <div class="actions"><button class="btn primary" id="chk">Chấm bài</button><button class="btn" id="rst">Làm lại</button><span class="score" id="sc" hidden></span></div>`;
+  const aud = $("#aud");
+  $("#spd").onclick = e => { const b=e.target.closest("button"); if(!b) return; aud.playbackRate=+b.dataset.r; $("#spd").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b)); };
+  $("#tx").onclick = e => {
+    const b = e.target.closest(".opt"); if(!b || b.disabled) return;
+    const g = b.closest(".gap"); state[g.dataset.n] = +b.dataset.i; storeSet(`c19t${DATA.test}-choices`, state); paint(p);
+  };
+  $("#tx").oninput = e => { if(e.target.tagName==="INPUT"){ state[e.target.id] = e.target.value; storeSet(`c19t${DATA.test}-choices`, state); paint(p);} };
+  $("#tx").querySelectorAll("input").forEach(i => i.value = state[i.id] || "");
+  $("#chk").onclick = () => { checked[p.num]=true; paint(p); $("#sc").scrollIntoView({block:"nearest"}); };
+  $("#rst").onclick = () => { p.segs.forEach(s=>{ if(typeof s!=="string") delete state[s.kind==="write" ? "w"+s.n : s.n]; }); $("#tx").querySelectorAll("input").forEach(i=>i.value=""); storeSet(`c19t${DATA.test}-choices`, state); checked[p.num]=false; paint(p); };
+  paint(p);
+}
+const normW = s => (s||"").toLowerCase().replace(/[’‘]/g,"'").replace(/[^a-z0-9'£ -]/g," ").replace(/\s+/g," ").trim();
+function paint(p){
+  let done=0, right=0, wd=0, wr=0; const isC = !!checked[p.num];
+  const gaps = p.segs.filter(s=>typeof s!=="string" && s.opts), writes = p.segs.filter(s=>typeof s!=="string" && s.kind==="write");
+  gaps.forEach(s => {
+    const g = $(`.gap[data-n="${s.n}"]`); const ch = state[s.n];
+    if (ch!==undefined) done++; if (ch===s.ans) right++;
+    g.classList.toggle("done", isC); g.classList.toggle("right", isC && ch===s.ans); g.classList.toggle("wrong", isC && ch!==s.ans);
+    g.querySelectorAll(".opt").forEach((b,i) => {
+      b.classList.toggle("sel", !isC && ch===i);
+      b.classList.toggle("is-ans", isC && i===s.ans);
+      b.classList.toggle("is-wrong", isC && ch===i && i!==s.ans);
+      b.disabled = isC;
+    });
+  });
+  writes.forEach(s => {
+    const g = $(`.wgap[data-d="${s.n}"]`), inp = g.querySelector("input"), fix = g.querySelector(".fix");
+    const v = state["w"+s.n]||""; if (v.trim()) wd++; const ok = normW(v)===normW(s.ans); if (ok) wr++;
+    g.classList.toggle("right", isC && ok); g.classList.toggle("wrong", isC && !ok);
+    inp.readOnly = isC; fix.hidden = !(isC && !ok); fix.textContent = s.ans;
+  });
+  $("#prog").textContent = `Đã làm ${done}/${gaps.length} trắc nghiệm · ${wd}/${writes.length} tự viết`;
+  const sc = $("#sc"); sc.hidden = !isC;
+  if (isC) sc.textContent = `Trắc nghiệm ${right}/${gaps.length} · Tự viết ${wr}/${writes.length} · Tổng ${Math.round((right+wr)/(gaps.length+writes.length)*100)}%`;
+}
+
+/* ---------- Chép chính tả ---------- */
+const norm = s => s.toLowerCase().replace(/[’']/g,"'").replace(/[^a-z0-9'£\s-]/g," ").split(/\s+/).filter(Boolean);
+function lcsDiff(target, typed){
+  const a=norm(target), b=norm(typed), m=a.length, n=b.length;
+  const dp=Array.from({length:m+1},()=>Array(n+1).fill(0));
+  for(let i=m-1;i>=0;i--) for(let j=n-1;j>=0;j--) dp[i][j]= a[i]===b[j]? dp[i+1][j+1]+1 : Math.max(dp[i+1][j],dp[i][j+1]);
+  const out=[]; let i=0,j=0;
+  while(i<m||j<n){
+    if(i<m&&j<n&&a[i]===b[j]){out.push(["ok",b[j]]);i++;j++}
+    else if(j<n&&(i===m||dp[i][j+1]>=dp[i+1][j])){out.push(["bad",b[j]]);j++}
+    else {out.push(["miss",a[i]]);i++}
+  }
+  return {out, pct: m? Math.round(dp[0][0]/m*100):0};
+}
+let voice=null;
+function pickVoice(){ const vs=speechSynthesis.getVoices(); voice = vs.find(v=>/en-GB/i.test(v.lang)) || vs.find(v=>/^en/i.test(v.lang)) || null; }
+if ("speechSynthesis" in window){ pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+function speak(text, rate){
+  if(!("speechSynthesis" in window)) return false;
+  speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.lang="en-GB"; u.rate=rate; if(voice) u.voice=voice; speechSynthesis.speak(u); return true;
+}
+function renderDict(){
+  const drafts = storeGet(`c19t${DATA.test}-dict`)||{};
+  let k=0, html = `<div class="panel-head"><div><div class="kicker">Writing · Dictation</div><h2>Chép chính tả — 20 câu từ transcript</h2></div></div>
+  <p class="how">Bấm <b>▶ Nghe</b> (hoặc <b>🐢 Chậm</b>), gõ lại đúng câu nghe được, rồi bấm <b>Kiểm tra</b>. Từ xanh = đúng, gạch cam = sai/thừa, ô xanh nhạt = từ bị thiếu. Không phân biệt hoa/thường và dấu câu.</p>`;
+  Object.entries(DATA.dictation).forEach(([pn, ss]) => {
+    html += `<section class="dgroup"><h3>Part ${pn} · ${esc(DATA.parts[pn-1].title)}</h3>`;
+    ss.forEach(s => { k++; html += `<div class="dcard" data-k="${k}">
+      <div class="drow"><span class="dn">D${k}</span><button class="sbtn" data-act="n">▶ Nghe</button><button class="sbtn" data-act="s">🐢 Chậm</button><button class="sbtn" data-act="c">Kiểm tra</button><button class="sbtn" data-act="a">Xem đáp án</button></div>
+      <textarea id="d${k}" rows="2" placeholder="Gõ câu bạn nghe được…" spellcheck="false">${esc(drafts[k]||"")}</textarea>
+      <div class="diff" hidden></div></div>`; });
+    html += `</section>`;
+  });
+  html += `<p class="note">Giọng đọc dùng giọng Anh-Anh của trình duyệt (text-to-speech — giọng máy đọc văn bản). Muốn nghe giọng gốc, quay lại tab Part tương ứng và phát audio.</p>`;
+  $("#main").innerHTML = html;
+  const all = Object.values(DATA.dictation).flat();
+  $("#main").onclick = e => {
+    const b=e.target.closest(".sbtn"); if(!b) return;
+    const card=b.closest(".dcard"), k=+card.dataset.k, s=all[k-1], d=card.querySelector(".diff");
+    if(b.dataset.act==="n"||b.dataset.act==="s"){ if(!speak(s, b.dataset.act==="n"?0.9:0.6)){ d.hidden=false; d.textContent="Trình duyệt này không hỗ trợ đọc giọng nói."; } }
+    if(b.dataset.act==="c"){ const r=lcsDiff(s, card.querySelector("textarea").value); d.hidden=false;
+      d.innerHTML = r.out.map(([t,w])=>`<span class="w-${t}">${esc(w)}</span>`).join(" ") + `<span class="pct">${r.pct}% đúng</span>`; }
+    if(b.dataset.act==="a"){ d.hidden=false; d.innerHTML = `<b>Đáp án:</b> ${esc(s)}`; }
+  };
+  $("#main").oninput = e => { if(e.target.tagName==="TEXTAREA"){ drafts[e.target.id.slice(1)]=e.target.value; storeSet(`c19t${DATA.test}-dict`,drafts);} };
+}
+
+function show(id){
+  renderTabs(id); $("#main").onclick=null; $("#main").oninput=null;
+  if ("speechSynthesis" in window) speechSynthesis.cancel();
+  if (id==="dict") renderDict(); else renderPart(DATA.parts[+id.slice(1)-1]);
+  try{ localStorage.setItem(`c19t${DATA.test}-tab`, id) }catch(e){}
+}
+let start="p1"; try{ start = localStorage.getItem(`c19t${DATA.test}-tab`) || "p1" }catch(e){}
+if (!/^p[1-4]$/.test(start)) start="p1";
+show(start);
+</script>
+
+</body>
+</html>
