@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Cam 19 Test 3 Listening Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Literata:opsz,wght@7..72,400;7..72,600&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+:root{
+  --red:#C8102E; --red-soft:#FBE9EC; --ink:#18110F; --paper:#FFFFFF; --ground:#F8F4F3;
+  --muted:#6E605C; --line:#E8DCD9; --ok:#1C7A4B; --ok-soft:#E3F3EA; --bad:#B8430B; --bad-soft:#FCEBDD;
+  --chip:#FFFFFF; --shadow:0 1px 2px rgba(24,17,15,.06);
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Literata",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  color-scheme:dark; --red:#FF5A6E; --red-soft:#3A1419; --ink:#F3EAE8; --paper:#1E1817; --ground:#141010;
+  --muted:#B3A29E; --line:#3A2E2C; --ok:#5CD39A; --ok-soft:#12301F; --bad:#FF9A5C; --bad-soft:#3A2012; --chip:#261E1D; --shadow:none;}}
+:root[data-theme="dark"]{
+  color-scheme:dark; --red:#FF5A6E; --red-soft:#3A1419; --ink:#F3EAE8; --paper:#1E1817; --ground:#141010;
+  --muted:#B3A29E; --line:#3A2E2C; --ok:#5CD39A; --ok-soft:#12301F; --bad:#FF9A5C; --bad-soft:#3A2012; --chip:#261E1D; --shadow:none;}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.9;padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:860px;margin:0 auto}
+header.top{padding-block:28px 12px}
+.brand{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:700}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,5vw,42px);line-height:1.05;margin:.25em 0 .2em;text-wrap:balance;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:15px;line-height:1.6;margin:0;max-width:62ch}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);display:flex;gap:6px;flex-wrap:wrap;padding-block:12px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.tab{font-family:var(--display);font-weight:700;font-size:14px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.tab .cnt{font-family:var(--mono);font-size:11px;opacity:.7;margin-left:6px}
+.tab:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.panel-head{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:end;justify-content:space-between;margin-bottom:14px}
+.panel-head h2{font-family:var(--display);font-size:24px;line-height:1.15;margin:0;text-wrap:balance}
+.panel-head .kicker{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.1em;text-transform:uppercase}
+.player{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin-bottom:16px;box-shadow:var(--shadow)}
+.player audio{flex:1 1 260px;min-width:0;height:40px}
+.speed{display:flex;gap:4px}
+.speed button{font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:8px;padding:4px 8px;cursor:pointer}
+.speed button.on{background:var(--red);color:#fff;border-color:var(--red)}
+.how{font-size:14px;line-height:1.6;color:var(--muted);margin:0 0 18px}
+.transcript{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px clamp(16px,4vw,32px)}
+.transcript p{margin:0 0 1.1em}
+.spk{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.08em;color:var(--red);margin-right:6px}
+.gap{display:inline-flex;align-items:center;gap:3px;vertical-align:baseline;border:1.5px dashed var(--line);border-radius:10px;padding:1px 4px;margin:1px 1px;line-height:1.4;flex-wrap:wrap}
+.gap .num{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--red);padding:0 3px}
+.opt{font-family:var(--body);font-size:15px;border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:7px;padding:1px 8px;cursor:pointer;line-height:1.5}
+.opt:hover{border-color:var(--ink)}
+.opt .l{font-family:var(--mono);font-size:10px;color:var(--muted);margin-right:4px}
+.opt.sel{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.opt.sel .l{color:inherit;opacity:.7}
+.gap.done{border-style:solid}
+.gap.right{border-color:var(--ok);background:var(--ok-soft)}
+.gap.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.is-ans{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.is-wrong{text-decoration:line-through;background:transparent;color:var(--bad);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.gap.done .opt:not(.is-ans):not(.is-wrong){opacity:.35}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px}
+.btn{font-family:var(--display);font-weight:700;font-size:15px;border-radius:10px;padding:10px 18px;cursor:pointer;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink)}
+.btn.primary{background:var(--red);border-color:var(--red);color:#fff}
+.score{font-family:var(--mono);font-size:14px;font-weight:700;padding:6px 12px;border-radius:999px;background:var(--red-soft);color:var(--red)}
+.progress{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.wgap{display:inline-flex;align-items:center;gap:3px;vertical-align:baseline;border:1.5px dashed var(--red);border-radius:10px;padding:1px 4px;margin:1px;line-height:1.4;flex-wrap:wrap;max-width:100%}
+.wgap .num{font-family:var(--mono);font-size:11px;font-weight:700;color:#fff;background:var(--red);border-radius:5px;padding:0 5px}
+.wgap input{font-family:var(--body);font-size:15px;border:0;border-bottom:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:0 2px;max-width:70vw;outline:none}
+.wgap input:focus{border-bottom-color:var(--red)}
+.wgap .wc{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.wgap.right{border-style:solid;border-color:var(--ok);background:var(--ok-soft)}
+.wgap.wrong{border-style:solid;border-color:var(--bad);background:var(--bad-soft)}
+.wgap.wrong input{text-decoration:line-through;color:var(--bad)}
+.wgap .fix{font-weight:600;color:var(--ok);font-size:15px}
+/* dictation */
+.dgroup{margin-bottom:26px}
+.dgroup h3{font-family:var(--display);font-size:18px;margin:0 0 10px}
+.dcard{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;display:grid;gap:10px}
+.drow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.drow .dn{font-family:var(--mono);font-weight:700;color:var(--red);font-size:13px;min-width:2.2em}
+.sbtn{font-family:var(--display);font-weight:700;font-size:13px;border:1px solid var(--line);background:var(--ground);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer}
+.sbtn:hover{border-color:var(--ink)}
+textarea{width:100%;font-family:var(--body);font-size:16px;line-height:1.6;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--ground);color:var(--ink);resize:vertical;min-height:64px}
+.diff{font-size:15px;line-height:1.9}
+.diff .w-ok{color:var(--ok)}
+.diff .w-bad{color:var(--bad);text-decoration:line-through}
+.diff .w-miss{background:var(--ok-soft);color:var(--ok);border-radius:4px;padding:0 3px;font-weight:600}
+.diff .pct{font-family:var(--mono);font-size:12px;font-weight:700;margin-left:8px;color:var(--muted)}
+.note{font-size:13px;color:var(--muted);line-height:1.6}
+footer{margin-top:40px;font-size:12px;color:var(--muted);font-family:var(--mono)}
+@media (prefers-reduced-motion:no-preference){.gap.done{transition:background .2s}}
+[hidden]{display:none!important}
+body{margin:0}
+.crumb{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.crumb a{font-family:var(--display);font-weight:700;font-size:14px;color:var(--ink);text-decoration:none;border-bottom:1.5px solid var(--red)}
+.nextnav{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.nextnav a{font-family:var(--display);font-weight:700;font-size:15px;color:var(--ink);text-decoration:none;border:1.5px solid var(--line);background:var(--paper);border-radius:10px;padding:10px 16px}
+.nextnav a:hover{border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:22px}
+.card{display:grid;gap:10px;align-content:start;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;text-decoration:none;color:var(--ink)}
+.card:hover{border-color:var(--ink)}
+.card:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.card .tn{font-family:var(--display);font-weight:800;font-size:26px;line-height:1}
+.card ol{margin:0;padding-left:18px;font-size:14px;line-height:1.55;color:var(--muted)}
+.card .meta{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:11px;font-weight:700;border-radius:999px;padding:3px 9px;background:var(--ground);border:1px solid var(--line)}
+.chip.w{color:var(--red);border-color:var(--red)}
+.bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);width:0}
+.card .pg{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.steps{margin:26px 0 0;padding:16px 20px;background:var(--paper);border:1px solid var(--line);border-radius:14px;font-size:14.5px;line-height:1.7}
+.steps b{font-family:var(--display)}
+</style>
+</head>
+<body>
+<div id="gateScreen" style="position:fixed;inset:0;z-index:999;background:var(--ground);display:flex;align-items:center;justify-content:center;padding:20px;">
+  <form id="gateForm" style="max-width:340px;width:100%;text-align:center;font-family:var(--display);">
+    <div class="brand">AZEnglish · Listening Lab</div>
+    <h2 style="font-size:22px;margin:8px 0 6px">Cambridge IELTS 19</h2>
+    <p style="font-size:13px;color:var(--muted);margin:0 0 16px;line-height:1.5">Nhập mật khẩu được cung cấp để vào làm bài.</p>
+    <input id="gatePassword" type="password" placeholder="Mật khẩu" autocomplete="off" style="width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font-size:15px;margin-bottom:10px;background:var(--paper);color:var(--ink)">
+    <button type="submit" class="btn primary" style="width:100%">Vào làm bài</button>
+    <p id="gateError" style="color:var(--red);font-size:13px;margin:10px 0 0" hidden>Sai mật khẩu, thử lại nhé.</p>
+  </form>
+</div>
+<script>
+(function(){
+  var GATE_PASSWORD = "azenglish2026", GATE_KEY = "az_rt_gate_ok", g = document.getElementById("gateScreen");
+  try{ if(localStorage.getItem(GATE_KEY) === "1") g.style.display = "none"; }catch(e){}
+  document.getElementById("gateForm").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    if(document.getElementById("gatePassword").value === GATE_PASSWORD){ try{ localStorage.setItem(GATE_KEY,"1"); }catch(e){} g.style.display="none"; }
+    else document.getElementById("gateError").hidden = false;
+  });
+})();
+</script>
+
+
+<div class="wrap">
+  <header class="top">
+    <div class="crumb"><div class="brand">AZEnglish · Listening Lab · Band 3.0–5.0+</div><a href="listening-gapfill-c19.html">← Tất cả Test</a></div>
+    <h1>Cambridge 19 · Test 3 — Nghe, chọn & viết</h1>
+    <p class="sub">Toàn bộ transcript 4 Part, giống bản in trên lớp: 240 ô chọn A/B/C và 45 ô tự viết. Bài làm được lưu trên trình duyệt của bạn — tải lại trang không mất.</p>
+  </header>
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+  <main id="main"></main>
+  <nav class="nextnav"><a href="listening-gapfill-c19t1.html">Test 1 →</a><a href="listening-gapfill-c19t2.html">Test 2 →</a><a href="listening-gapfill-c19t4.html">Test 4 →</a><a href="listening-gapfill-c19.html">Trang chủ</a></nav>
+  <footer>Nguồn: Cambridge IELTS 19, Test 3 — transcript & audio gốc. Tài liệu lớp học nội bộ AZEnglish.</footer>
+</div>
+
+<script>
+const DATA = {"test": 3, "parts": [{"num": 1, "title": "Local food shops", "audio": "cambridge19-test3-part1.mp3", "segs": ["LEON: Hi Shannon – how are you settling into your new ", {"n": 1, "opts": ["flat", "fat", "flag"], "ans": 0}, "?\n\nSHANNON: Really well, thanks.\n\nLEON: You look like you're going ", {"n": 2, "opts": ["chopping", "shipping", "shopping"], "ans": 2}, ".\n\nSHANNON: Yes, I am. My ", {"n": 3, "opts": ["causes", "cousins", "cushions"], "ans": 1}, " are coming to stay for a ", {"n": 4, "opts": ["people", "cupful", "couple"], "ans": 2}, " of days, and I have to ", {"n": 5, "opts": ["cook", "book", "cool"], "ans": 0}, " for them.\n\nLEON: Well, there are plenty of places to buy food in ", {"n": 6, "opts": ["Kit", "Kite", "Kate"], "ans": 1}, " Place – it's the area by the ", {"n": 7, "opts": ["harvest", "hardware", "harbour"], "ans": 2}, ".\n\nSHANNON: Oh, OK, I'll find that on the ", {"n": 8, "opts": ["map", "mat", "mop"], "ans": 0}, ". Thanks.\n\nLEON: What sort of food do you need to get?\n\nSHANNON: Well, neither of them eats ", {"n": 9, "opts": ["meet", "meat", "milk"], "ans": 1}, " but they both like ", {"n": 10, "opts": ["fish", "dish", "fresh"], "ans": 0}, ".\n\nLEON: Well, there's a really good fish ", {"n": 11, "opts": ["marked", "marker", "market"], "ans": 2}, " there.\n\nSHANNON: Oh great – where is it exactly?\n\nLEON: It's at the ", {"n": 12, "opts": ["fair", "far", "four"], "ans": 1}, " end of Kite Place, so you have to go over the ", {"n": 13, "opts": ["bride", "fridge", "bridge"], "ans": 2}, " and then it's on the right.\n\nSHANNON: OK – is it ", {"n": 14, "opts": ["often", "open", "opened"], "ans": 1}, " all day?\n\nLEON: It doesn't close until ", {"n": 15, "opts": ["four", "fourteen", "for"], "ans": 0}, ", but I'd recommend going ", {"n": 16, "opts": ["earlier", "early", "easier"], "ans": 0}, " than that – it does run out of some things.\n\nSHANNON: Oh, I don't want that to happen.\n\nLEON: As long as you get there by ", {"n": 17, "opts": ["3.13", "3.03", "3.30"], "ans": 2}, ", you should be fine. It's only ", {"n": 18, "opts": ["17", "11", "7"], "ans": 1}, " now, so plenty of time.\n\nSHANNON: Right.\n\nLEON: Do you need to buy ", {"n": 19, "opts": ["tables", "vegetarians", "vegetables"], "ans": 2}, " too?\n\nSHANNON: I do, and I want to avoid all the plastic ", {"n": 20, "opts": ["packaging", "package", "packing"], "ans": 0}, " in the supermarket!\n\nLEON: Well, there's a really nice ", {"n": 21, "opts": ["original", "organic", "organised"], "ans": 1}, " shop there. Now what's it called . . . it's the name of a ", {"n": 22, "opts": ["flavour", "flour", "flower"], "ans": 2}, ". I know, it's '", {"n": 23, "opts": ["Rows", "Rose", "Roads"], "ans": 1}, "'.\n\nSHANNON: That's a nice name.\n\nLEON: Yeah – it sells vegetables and quite a lot of other ", {"n": 24, "opts": ["stuff", "staff", "stuck"], "ans": 0}, ".\n\nSHANNON: And where's that?\n\nLEON: Well, as you reach the market, you'll see a big ", {"n": 25, "opts": ["great", "grey", "green"], "ans": 1}, " building on your left – I think it used to be a ", {"n": 26, "opts": ["warehouse", "workhouse", "wardrobe"], "ans": 0}, ". Anyway, now it's a restaurant ", {"n": 27, "opts": ["downstairs", "upsets", "upstairs"], "ans": 2}, ", but the ground floor has two shops either side of the ", {"n": 28, "opts": ["entrance", "entries", "entrants"], "ans": 0}, " and it's the one on the left.\n\nSHANNON: That's ", {"n": 29, "opts": ["easily", "easy", "busy"], "ans": 1}, " enough.\n\nLEON: You can't miss it – there's also a big ", {"n": 30, "opts": ["sin", "sing", "sign"], "ans": 2}, " on the ", {"n": 31, "opts": ["pavement", "basement", "payment"], "ans": 0}, " so you can look for that.\n\nSHANNON: Fine! I guess if I need anything else, I'll have to go to the supermarket.\n\nLEON: Yeah – you should be able to get everything you need, but there's a ", {"n": 32, "opts": ["many buses", "minivan", "minibus"], "ans": 2}, " that goes to the supermarket if you need it. It's ", {"n": 33, "opts": ["purpose", "purple", "people"], "ans": 1}, " and the number is ", {"n": 34, "opts": ["289", "298", "189"], "ans": 0}, ".\n\nSHANNON: Thanks, that's great.\n\nLEON: ", {"n": 1, "ans": "So what do you need to get", "w": 7, "kind": "write"}, " at the fish market? The ", {"n": 35, "opts": ["sermon", "lemon", "salmon"], "ans": 2}, " ", {"n": 2, "ans": "is always very good", "w": 4, "kind": "write"}, " and the ", {"n": 36, "opts": ["selfish", "shellfish", "starfish"], "ans": 1}, ".\n\nSHANNON: ", {"n": 3, "ans": "I'm going to make", "w": 4, "kind": "write"}, " a ", {"n": 37, "opts": ["curry", "cherry", "carry"], "ans": 0}, ", ", {"n": 4, "ans": "I think", "w": 2, "kind": "write"}, ", ", {"n": 5, "ans": "and I need about", "w": 4, "kind": "write"}, " 12 ", {"n": 38, "opts": ["prongs", "pawns", "prawns"], "ans": 2}, " ", {"n": 6, "ans": "for that", "w": 2, "kind": "write"}, ".\n\nLEON: ", {"n": 7, "ans": "They'll have plenty of those", "w": 5, "kind": "write"}, ".\n\nSHANNON: OK.\n\nLEON: ", {"n": 8, "ans": "Have you ever tried", "w": 4, "kind": "write"}, " ", {"n": 39, "opts": ["sunfire", "samphire", "sapphire"], "ans": 1}, "?\n\nSHANNON: No – ", {"n": 9, "ans": "what's that", "w": 2, "kind": "write"}, "?\n\nLEON: It's a type of ", {"n": 40, "opts": ["seabed", "seaweed", "seaside"], "ans": 1}, ". ", {"n": 10, "ans": "I just ask for a handful", "w": 6, "kind": "write"}, " ", {"n": 11, "ans": "and you", "w": 2, "kind": "write"}, " fry it in ", {"n": 41, "opts": ["batter", "better", "butter"], "ans": 2}, ". ", {"n": 12, "ans": "It's delicious", "w": 2, "kind": "write"}, "!\n\nSHANNON: Oh, ", {"n": 13, "ans": "I might try that", "w": 4, "kind": "write"}, " – ", {"n": 14, "ans": "how do you spell it", "w": 5, "kind": "write"}, "?\n\nLEON: It's S-A-M-P-H-I-R-E.\n\nSHANNON: Great – it's always good to try something different.\n\nLEON: Yeah.\n\nSHANNON: I'll see what ", {"n": 42, "opts": ["beans", "beings", "bins"], "ans": 0}, " they have in the organic shop and I think I'll get something for ", {"n": 43, "opts": ["dessert", "dresser", "desert"], "ans": 0}, " there.\n\nLEON: How about a ", {"n": 44, "opts": ["mangos", "mango", "tango"], "ans": 1}, "?\n\nSHANNON: I'm not sure – they're not always ", {"n": 45, "opts": ["right", "rope", "ripe"], "ans": 2}, ". I'd prefer a ", {"n": 46, "opts": ["mellow", "melon", "lemon"], "ans": 1}, " – it's bigger too.\n\nLEON: Good idea. The owner also sells a lot of ", {"n": 47, "opts": ["spaces", "species", "spices"], "ans": 2}, " there that you can put in a curry, and things like ", {"n": 48, "opts": ["coconut", "cocoa", "doughnut"], "ans": 0}, ".\n\nSHANNON: Oh, that's very helpful. I'll have a look.\n\nLEON: No problem.\n\nSHANNON: I know bread doesn't really go with curry but I always like to have some in case.\n\nLEON: As I said – all the bread is ", {"n": 49, "opts": ["home-made", "homely", "hand-made"], "ans": 0}, " and there's lots of variety. I like the ", {"n": 50, "opts": ["bran", "round", "brown"], "ans": 2}, " bread myself.\n\nSHANNON: Mm, sounds good.\n\nLEON: They sell other things there too.\n\nSHANNON: Like cakes? I love ", {"n": 51, "opts": ["chalk", "chocolate", "chocolates"], "ans": 1}, " cake.\n\nLEON: Well – not that, but they have a whole range of ", {"n": 52, "opts": ["tents", "tarts", "carts"], "ans": 1}, " and the best are the ", {"n": 53, "opts": ["strawberry", "blueberry", "straw"], "ans": 0}, " ones.\n\nSHANNON: Perfect – hopefully I won't even have to go to the supermarket!"]}, {"num": 2, "title": "Community festival workshops / Talk about children's books", "audio": "cambridge19-test3-part2.mp3", "segs": ["PRESENTER: The children's book ", {"n": 54, "opts": ["fist", "festive", "festival"], "ans": 2}, " is coming up again soon and here to tell us all about it is the festival's ", {"n": 55, "opts": ["organiser", "organ", "organism"], "ans": 0}, ", Jenny Morgan. So tell us what we can expect this year, Jenny.\n\nJENNY: Well, as usual we've got five days of ", {"n": 56, "opts": ["action packed", "action-packed", "action-backed"], "ans": 1}, " exciting events for children, with writers coming from all over the country getting involved. Just to give you an idea of what's on offer in the workshops, first of all, there's a very special event called ", {"n": 57, "opts": ["Superstars", "Supermarkets", "Superheroes"], "ans": 2}, ". This is a chance for ", {"n": 58, "opts": ["def", "death", "deaf"], "ans": 2}, " children to share their reading ", {"n": 59, "opts": ["experiences", "expenses", "experiments"], "ans": 0}, " with author Madeleine Gordon, who is herself hearing ", {"n": 60, "opts": ["repaired", "impaired", "imported"], "ans": 1}, ". 'Just do it' is a ", {"n": 61, "opts": ["practical", "political", "practice"], "ans": 0}, " workshop led by the well-known ", {"n": 62, "opts": ["instructor", "illustrator", "illustration"], "ans": 1}, " Mark Keane. He'll take participants on a ", {"n": 63, "opts": ["medical", "musical", "magical"], "ans": 2}, " journey to faraway ", {"n": 64, "opts": ["lands", "lens", "lambs"], "ans": 0}, " with an opportunity for aspiring ", {"n": 65, "opts": ["factors", "authors", "actors"], "ans": 2}, " to do some ", {"n": 66, "opts": ["rule", "role", "roll"], "ans": 1}, " play. 'Count on me' is an inspiring and ", {"n": 67, "opts": ["maintaining", "entertaining", "entering"], "ans": 1}, " look at the issues of ", {"n": 68, "opts": ["friendship", "friendly", "freshman"], "ans": 0}, " for ", {"n": 69, "opts": ["13-year-olds", "30-40-year-olds", "13-14-year-olds"], "ans": 2}, ". It looks at some of the friendships described in ", {"n": 70, "opts": ["popular", "people", "poplar"], "ans": 0}, " books and asks participants to compare these with their own experiences. 'Speak up' is part of a series of workshops on the subject of ", {"n": 71, "opts": ["metal", "mental", "medal"], "ans": 1}, " health. This is a ", {"n": 72, "opts": ["reactive", "creature", "creative"], "ans": 2}, " writing workshop encouraging children to describe situations where young people experience ", {"n": 73, "opts": ["loveliness", "lowliness", "loneliness"], "ans": 2}, ". A recent ", {"n": 74, "opts": ["surgery", "survey", "service"], "ans": 1}, " revealed that children can be lonely even when they're at home with their families. 'Jump for joy', as many of you will know, is the ", {"n": 75, "opts": ["heart-warming", "heart-breaking", "hard-working"], "ans": 0}, ", ", {"n": 76, "opts": ["best-telling", "best-seller", "best-selling"], "ans": 2}, " story by Nina Karan about a young girl's trip to visit her ", {"n": 77, "opts": ["relations", "relatives", "relatively"], "ans": 1}, " in India. It recently received the ", {"n": 78, "opts": ["gold", "old", "cold"], "ans": 0}, " medal at the Waterford ", {"n": 79, "opts": ["Wards", "Awards", "Rewards"], "ans": 1}, ". Nina will get children to celebrate the word 'joy' by writing a ", {"n": 80, "opts": ["poet", "palm", "poem"], "ans": 2}, ". 'Sticks and stones' is the beautifully illustrated ", {"n": 81, "opts": ["picture", "pitcher", "puncture"], "ans": 0}, " book for young readers about a ", {"n": 82, "opts": ["community", "common", "commodity"], "ans": 0}, " who organise an African-Caribbean festival to help local children learn about their Jamaican ", {"n": 83, "opts": ["routes", "rules", "roots"], "ans": 2}, ". This will be a ", {"n": 84, "opts": ["musician", "musical", "magical"], "ans": 1}, " event where children will have the chance to play ", {"n": 85, "opts": ["still", "steal", "steel"], "ans": 2}, " drums. This is bound to be very popular, so please ", {"n": 86, "opts": ["book", "cook", "look"], "ans": 0}, " as soon as possible.\n\nPRESENTER: Thanks Jenny. That all sounds really interesting. I'm just wondering if you have a ", {"n": 87, "opts": ["flavourite", "favourite", "favour"], "ans": 1}, " book you could recommend for our readers?\n\nJENNY: It's hard to choose, but Alive and Kicking is definitely worth ", {"n": 88, "opts": ["measuring", "mentioning", "mentoring"], "ans": 1}, ". You won't have heard of the writer as it's her ", {"n": 89, "opts": ["first", "fist", "fast"], "ans": 0}, " book – which is really ", {"n": 90, "opts": ["expensive", "expressive", "impressive"], "ans": 2}, ". It's basically the teenage ", {"n": 91, "opts": ["diary", "dietary", "dairy"], "ans": 0}, " of a boy from ", {"n": 92, "opts": ["Samoa", "Somerset", "Somalia"], "ans": 2}, " who comes to live in the UK. It deals with the serious issue of ", {"n": 93, "opts": ["imagination", "immigration", "irrigation"], "ans": 1}, " and all the challenges the boy has to face at school and with the language ", {"n": 94, "opts": ["barrier", "carrier", "barber"], "ans": 0}, ", etc. Usually, books like this are quite ", {"n": 95, "opts": ["sand", "sad", "said"], "ans": 1}, ", but this one actually made me cry with ", {"n": 96, "opts": ["daughter", "later", "laughter"], "ans": 2}, ". On each page, there are simple but ", {"n": 97, "opts": ["hilarious", "various", "hideous"], "ans": 0}, " black and white stick ", {"n": 98, "opts": ["drowning", "drawers", "drawings"], "ans": 2}, " of the boy with his friends and teachers. At the end of each diary ", {"n": 99, "opts": ["empty", "entry", "entries"], "ans": 1}, ", there are new English words the boy learns each day, which may help develop some children's ", {"n": 100, "opts": ["vacancy", "vocabulary", "vocational"], "ans": 1}, ".\n\nPRESENTER: ", {"n": 15, "ans": "I think my kids would enjoy that", "w": 7, "kind": "write"}, ". ", {"n": 16, "ans": "What about any advice for parents", "w": 6, "kind": "write"}, " on ", {"n": 17, "ans": "how to encourage their children", "w": 5, "kind": "write"}, " to read more?\n\nJENNY: Well, ", {"n": 18, "ans": "this is something I get asked about a lot", "w": 9, "kind": "write"}, ". There are so many ", {"n": 101, "opts": ["distractions", "destructions", "directions"], "ans": 0}, " ", {"n": 19, "ans": "for kids these days", "w": 4, "kind": "write"}, " ", {"n": 20, "ans": "that it can be hard to find time for", "w": 9, "kind": "write"}, " reading. ", {"n": 21, "ans": "One thing I'd say is", "w": 5, "kind": "write"}, " ", {"n": 22, "ans": "to make time to sit down with your child", "w": 9, "kind": "write"}, " and ", {"n": 102, "opts": ["chair", "shave", "share"], "ans": 2}, " books with them. A lot of parents give up reading ", {"n": 103, "opts": ["aloud", "allowed", "a lot"], "ans": 0}, " to their children as soon as they learn to read ", {"n": 104, "opts": ["impatiently", "independently", "indifferently"], "ans": 1}, ", but this is a mistake. It's good to read more ", {"n": 105, "opts": ["advantaged", "advertised", "advanced"], "ans": 2}, " books to them as it helps to develop their vocabulary. If you don't have time for this, then let them listen to ", {"n": 106, "opts": ["audience", "audio", "radio"], "ans": 1}, " books. Often, they'll want to read books they've listened to for themselves. I think it's a good idea to make a mental ", {"n": 107, "opts": ["net", "nut", "note"], "ans": 2}, " of the type of books your child is reading – often they just read the same ", {"n": 108, "opts": ["genre", "junior", "gender"], "ans": 0}, " all the time, which can get a bit ", {"n": 109, "opts": ["boring", "bowling", "burning"], "ans": 0}, ". You can introduce new ", {"n": 110, "opts": ["others", "authors", "actors"], "ans": 1}, " and genres to them. ", {"n": 111, "opts": ["Liberians", "Libraries", "Librarians"], "ans": 2}, " should be able to help you with this.\n\nPRESENTER: Well Jenny, I think that's really useful. ..."]}, {"num": 3, "title": "Science experiment for Year 12 students", "audio": "cambridge19-test3-part3.mp3", "segs": ["CLARE: Hi Jake. How are you getting on with the practical ", {"n": 112, "opts": ["touching", "teacher", "teaching"], "ans": 2}, "?\n\nJAKE: It's harder than I ", {"n": 113, "opts": ["expected", "respected", "accepted"], "ans": 0}, ", but I've got some great ", {"n": 114, "opts": ["classics", "classes", "glasses"], "ans": 1}, ". How about you?\n\nCLARE: Not ", {"n": 115, "opts": ["brilliant", "resilient", "brilliance"], "ans": 0}, ". I'm really struggling with my Year ", {"n": 116, "opts": ["20", "2", "12"], "ans": 2}, " science class.\n\nJAKE: Are they hard to ", {"n": 117, "opts": ["console", "control", "patrol"], "ans": 1}, "?\n\nCLARE: Well, I don't have ", {"n": 118, "opts": ["district", "disciple", "discipline"], "ans": 2}, " problems as such. It's just that they don't seem to think that science has anything to do with their lives. It's ", {"n": 119, "opts": ["impressing", "depressing", "dressing"], "ans": 1}, ". They listen to what I say, and I gave them a ", {"n": 120, "opts": ["test", "taste", "text"], "ans": 0}, " last week and the results weren't too bad, but there's no real ", {"n": 121, "opts": ["engagement", "arrangement", "encouragement"], "ans": 0}, ".\n\nJAKE: Right.\n\nCLARE: And as part of my teaching practice, I have to ", {"n": 122, "opts": ["decide", "assign", "design"], "ans": 2}, " an experiment for them to do. I was wondering about something on the children's ", {"n": 123, "opts": ["dates", "diets", "debts"], "ans": 1}, "... you know, asking them to record what they eat and maybe linking it to their state of ", {"n": 124, "opts": ["wealth", "health", "help"], "ans": 1}, ".\n\nJAKE: Mmm. Let's think. So your ", {"n": 125, "opts": ["methodology", "meteorology", "mythology"], "ans": 0}, " would involve the children recording what they eat. OK, but you'd also need to have access to the children's ", {"n": 126, "opts": ["metal", "magical", "medical"], "ans": 2}, " records and I don't think people would be happy about that; ", {"n": 127, "opts": ["credibility", "confidence", "confidentiality"], "ans": 2}, " would be an issue. If you could get the right data, the conclusions might be ", {"n": 128, "opts": ["magnificent", "significant", "sufficient"], "ans": 1}, ", but I suspect it's not going to be easy.\n\nCLARE: Right.\n\nJAKE: Have you thought about doing an experiment using ", {"n": 129, "opts": ["animals", "animations", "annuals"], "ans": 0}, "?\n\nCLARE: Wouldn't that be ", {"n": 130, "opts": ["upsizing", "setting", "upsetting"], "ans": 2}, " for the children?\n\nJAKE: Well, the animals don't have to be ", {"n": 131, "opts": ["harmed", "armed", "harmful"], "ans": 0}, " in any way. It could just be an experiment where they're given a certain diet and the effects are ", {"n": 132, "opts": ["absorbed", "observed", "deserved"], "ans": 1}, ".\n\nCLARE: ", {"n": 23, "ans": "Would I have to", "w": 4, "kind": "write"}, " get ", {"n": 133, "opts": ["permission", "commission", "admission"], "ans": 0}, " to use animals?\n\nJAKE: Yes, ", {"n": 24, "ans": "you'd have to", "w": 3, "kind": "write"}, " submit an ", {"n": 134, "opts": ["outlet", "online", "outline"], "ans": 2}, " ", {"n": 25, "ans": "of the experiment and", "w": 4, "kind": "write"}, " fill in a ", {"n": 135, "opts": ["farm", "form", "foam"], "ans": 1}, ", ", {"n": 26, "ans": "but it's", "w": 2, "kind": "write"}, " quite ", {"n": 136, "opts": ["straightforward", "strangely", "straight forward"], "ans": 0}, ".\n\nCLARE: ", {"n": 27, "ans": "But if we found out that", "w": 6, "kind": "write"}, ", say, a ", {"n": 137, "opts": ["particle", "popular", "particular"], "ans": 2}, " diet ", {"n": 28, "ans": "affects the", "w": 2, "kind": "write"}, " health of animals, ", {"n": 29, "ans": "the same thing wouldn't necessarily be true for people", "w": 9, "kind": "write"}, ", would it?\n\nJAKE: ", {"n": 30, "ans": "No that's true", "w": 3, "kind": "write"}, ", ", {"n": 31, "ans": "but the findings for any experiment", "w": 6, "kind": "write"}, " are going to be ", {"n": 138, "opts": ["united", "limited", "limitless"], "ans": 1}, ". It's ", {"n": 139, "opts": ["inevitably", "inevitable", "invisible"], "ans": 1}, ".\n\nCLARE: I suppose so. So what animals could I use to investigate the effects of diet? Mice?\n\nJAKE: Yes. You'd need ", {"n": 140, "opts": ["experimental", "exceptional", "experiential"], "ans": 0}, " mice – ones that have been specially ", {"n": 141, "opts": ["bored", "bread", "bred"], "ans": 2}, " for experiments. OK, so what will your experiment be investigating exactly?\n\nCLARE: Well, something to do with ", {"n": 142, "opts": ["nutrition", "tuition", "nutrients"], "ans": 0}, ". So maybe we could look at food ", {"n": 143, "opts": ["implements", "supplements", "complements"], "ans": 1}, " ... things like extra ", {"n": 144, "opts": ["irony", "icon", "iron"], "ans": 2}, " and extra ", {"n": 145, "opts": ["protein", "protection", "protest"], "ans": 0}, ", and their impact on health.\n\nJAKE: Mmm. That might be rather ", {"n": 146, "opts": ["bread", "board", "broad"], "ans": 2}, ". Maybe just look at the effects of one supplement, like ", {"n": 147, "opts": ["cigar", "sugar", "sugary"], "ans": 1}, ", on the health of the mice?\n\nCLARE: In fact, maybe the focus could be on whether mice can control their ", {"n": 148, "opts": ["one", "on", "own"], "ans": 2}, " diet.\n\nJAKE: So, what happens when they have access to more sugar, that they don't really ", {"n": 149, "opts": ["feed", "need", "knead"], "ans": 1}, "?\n\nCLARE: Exactly. Do they eat it or do they decide to ", {"n": 150, "opts": ["leave", "live", "love"], "ans": 0}, " it?\n\nJAKE: Great. Then later on, you could do a ", {"n": 151, "opts": ["fall-back", "follow up", "follow-up"], "ans": 2}, " experiment adding another ", {"n": 152, "opts": ["variable", "valuable", "veritable"], "ans": 0}, ". Like, you could give some of the mice the chance to be more active, running on a ", {"n": 153, "opts": ["well", "wheel", "wall"], "ans": 1}, " or something, and the others just sit around and don't do much.\n\nCLARE: Or I could repeat the experiment but change the type of food I provided ... or use mice with a different ", {"n": 154, "opts": ["genuine", "genetic", "generic"], "ans": 1}, " structure. But I think your idea would be more interesting, I might think about that some more.\n\nCLARE: So can I talk through a possible ", {"n": 155, "opts": ["producer", "procession", "procedure"], "ans": 2}, " for the experiment where mice are given a sugar supplement?\n\nJAKE: Sure. I did a similar experiment in ", {"n": 156, "opts": ["college", "collage", "colleague"], "ans": 0}, " actually.\n\nCLARE: Great. So how many mice would I need?\n\nJAKE: I'd say about ", {"n": 157, "opts": ["20", "2", "12"], "ans": 2}, ". And all ", {"n": 158, "opts": ["young", "yawn", "yang"], "ans": 0}, " ones, not a mixture of old and young.\n\nCLARE: OK. And I'd need two groups of ", {"n": 159, "opts": ["equals", "equal", "eagle"], "ans": 1}, " sizes, so ", {"n": 160, "opts": ["sick", "sixteen", "six"], "ans": 2}, " in each group. And how would I tell them apart? I suppose I could put some sort of ", {"n": 161, "opts": ["tag", "tack", "bag"], "ans": 0}, " on one group ... or just mark them in some way?\n\nJAKE: You could use food ", {"n": 162, "opts": ["cooling", "colouring", "colliding"], "ans": 1}, ", that wouldn't hurt them.\n\nCLARE: Perfect. Then each group would go into a separate ", {"n": 163, "opts": ["cake", "cage", "gauge"], "ans": 1}, ", and one group, let's call them group A, would be the ", {"n": 164, "opts": ["patrol", "contrast", "control"], "ans": 2}, " group. So they'd just have ", {"n": 165, "opts": ["ordinary", "original", "orderly"], "ans": 0}, " mouse food. I suppose you can buy that?\n\nJAKE: Yes, it comes in dry ", {"n": 166, "opts": ["pallets", "pellets", "palettes"], "ans": 1}, ".\n\nCLARE: And the other group would have the same as the first group, but they'd also have the extra sugar.\n\nJAKE: Would you just give them straight sugar?\n\nCLARE: It might be better to give them something like ", {"n": 167, "opts": ["surreal", "serial", "cereal"], "ans": 2}, " with it.\n\nJAKE: Mmm. Then you'd need to ", {"n": 168, "opts": ["weigh", "wait", "way"], "ans": 0}, " the mice, I should think once a ", {"n": 169, "opts": ["week", "weak", "wake"], "ans": 0}, ". And you'd need an electronic ", {"n": 170, "opts": ["ballot", "balance", "bounce"], "ans": 1}, ".\n\nCLARE: But we can't hold them on the balance, or it'd affect the reading.\n\nJAKE: Exactly. So you need something called a weighing ", {"n": 171, "opts": ["champion", "number", "chamber"], "ans": 2}, " to stop the mice from running away. It sounds ", {"n": 172, "opts": ["complimented", "compacted", "complicated"], "ans": 2}, ", but actually you can just use a plastic ", {"n": 173, "opts": ["bags", "box", "fox"], "ans": 1}, " with holes in the top.\n\nCLARE: OK. So once we've measured the weight ", {"n": 174, "opts": ["gain", "grain", "game"], "ans": 0}, " of each mouse we can work out the average for each group, as well as the standard ", {"n": 175, "opts": ["devotion", "deviation", "division"], "ans": 1}, ". And then see where we go from there. That sounds ", {"n": 176, "opts": ["fool", "cold", "cool"], "ans": 2}, ", I think the students will enjoy it.\n\nJAKE: Yes. One thing ..."]}, {"num": 4, "title": "Microplastics", "audio": "cambridge19-test3-part4.mp3", "segs": ["In today's lecture, I'm going to be talking about ", {"n": 177, "opts": ["microplastics", "micro-politics", "microphones"], "ans": 0}, ".\n\nMicroplastics are tiny pieces of plastic smaller than ", {"n": 178, "opts": ["nine", "five", "fine"], "ans": 1}, " millimetres in size. Recently there's been a greater ", {"n": 179, "opts": ["fairness", "wariness", "awareness"], "ans": 2}, " that there are large ", {"n": 180, "opts": ["quantities", "quarantines", "qualities"], "ans": 0}, " of plastic waste – big and small – in the environment. The amount of plastic waste in the oceans has received ", {"n": 181, "opts": ["widespread", "wide-screen", "worldwide"], "ans": 0}, " attention, but far less is known about the effects of microplastics in ", {"n": 182, "opts": ["freshmen", "fresh air", "freshwater"], "ans": 2}, " and particularly in ", {"n": 183, "opts": ["sole", "soil", "oil"], "ans": 1}, ".\n\nMicroplastics can enter the environment via a number of different sources. ", {"n": 184, "opts": ["Threats", "Treads", "Threads"], "ans": 2}, " and microfibres detach from ", {"n": 185, "opts": ["synthesis", "synthetic", "sympathetic"], "ans": 1}, " clothing every time they're put in a ", {"n": 186, "opts": ["washing", "watching", "wishing"], "ans": 0}, " machine, and these find their way into the water ", {"n": 187, "opts": ["sister", "system", "cistern"], "ans": 1}, ". Other sources include big pieces of plastic waste that are already in the environment, and these break down into microscopic ", {"n": 188, "opts": ["parcels", "articles", "particles"], "ans": 2}, " over a period of time. On a larger scale, ", {"n": 189, "opts": ["factory", "factor", "fact"], "ans": 0}, " waste is another route, as are ", {"n": 190, "opts": ["towers", "tiles", "tyres"], "ans": 2}, " which wear down as cars, lorries and so on travel along road ", {"n": 191, "opts": ["surfaces", "surprises", "services"], "ans": 0}, ".\n\n", {"n": 32, "ans": "We already understand", "w": 3, "kind": "write"}, " ", {"n": 33, "ans": "some of the impacts of", "w": 5, "kind": "write"}, " microplastics from studies involving ", {"n": 192, "opts": ["fresh", "fish", "finish"], "ans": 1}, " ", {"n": 34, "ans": "and other animals", "w": 3, "kind": "write"}, ". ", {"n": 35, "ans": "There is evidence that", "w": 4, "kind": "write"}, " microplastics ", {"n": 36, "ans": "harm", "w": 1, "kind": "write"}, " small ", {"n": 193, "opts": ["creatures", "features", "creations"], "ans": 0}, " ", {"n": 37, "ans": "in a variety of ways", "w": 5, "kind": "write"}, ", ", {"n": 38, "ans": "such as by", "w": 3, "kind": "write"}, " damaging their ", {"n": 194, "opts": ["moths", "mouths", "months"], "ans": 1}, ", ", {"n": 39, "ans": "or by impairing", "w": 3, "kind": "write"}, " their ability to ", {"n": 195, "opts": ["feel", "fade", "feed"], "ans": 2}, ", ", {"n": 40, "ans": "for example when", "w": 3, "kind": "write"}, " microplastics ", {"n": 41, "ans": "get lodged in", "w": 3, "kind": "write"}, " their ", {"n": 196, "opts": ["digestive", "decisive", "digital"], "ans": 0}, " system.\n\nSurprisingly perhaps, ", {"n": 42, "ans": "it is likely that", "w": 4, "kind": "write"}, " humans ", {"n": 197, "opts": ["costume", "assume", "consume"], "ans": 2}, " microplastics, ", {"n": 43, "ans": "as these have been detected in", "w": 6, "kind": "write"}, " ", {"n": 44, "ans": "a wide range of food and drink products", "w": 8, "kind": "write"}, ", including ", {"n": 198, "opts": ["boiled", "bottled", "battled"], "ans": 1}, " water, ", {"n": 45, "ans": "as well as in water that", "w": 6, "kind": "write"}, " comes direct from the ", {"n": 199, "opts": ["top", "tape", "tap"], "ans": 2}, ". What's more, ", {"n": 200, "opts": ["salt", "slot", "salad"], "ans": 0}, " and many kinds of ", {"n": 201, "opts": ["sea view", "seafood", "seaweed"], "ans": 1}, " have also been found to contain microplastics.\n\nHowever, it's important to underline that there is not yet ", {"n": 202, "opts": ["inclusive", "conclusion", "conclusive"], "ans": 2}, " proof that microplastics cause significant harm to people. In many countries, including here in the UK, there is ", {"n": 203, "opts": ["legislation", "legalisation", "registration"], "ans": 0}, " which prevents ", {"n": 204, "opts": ["manufactures", "manufacturers", "managers"], "ans": 1}, " from adding plastic ", {"n": 205, "opts": ["microbeads", "microbes", "micro beds"], "ans": 0}, " to shower ", {"n": 206, "opts": ["gel", "gels", "girls"], "ans": 1}, ", facial ", {"n": 207, "opts": ["cleanses", "cleaners", "cleansers"], "ans": 2}, " and ", {"n": 208, "opts": ["toothpick", "tooth paste", "toothpaste"], "ans": 2}, ".\n\nIt is very difficult to accurately ", {"n": 209, "opts": ["estimate", "eliminate", "esteem"], "ans": 0}, " the total amount of microplastic particles in the soil as they can be hard to ", {"n": 210, "opts": ["detach", "detect", "protect"], "ans": 1}, ", but we do know they are carried in the ", {"n": 211, "opts": ["air", "hair", "ear"], "ans": 0}, " and deposited in the soil by ", {"n": 212, "opts": ["train", "brain", "rain"], "ans": 2}, ". What's more, many of the ", {"n": 213, "opts": ["finalisers", "fertilisers", "fertility"], "ans": 1}, " used by both farmers and ", {"n": 214, "opts": ["gardeners", "guardians", "gardens"], "ans": 0}, " contain microplastics.\n\nA team from the Anglia Ruskin University in ", {"n": 215, "opts": ["Camberwell", "Cambridge", "Oxford"], "ans": 1}, " has carried out a study of the effects of microplastics on the digestive ", {"n": 216, "opts": ["tractors", "tracks", "tracts"], "ans": 2}, " of ", {"n": 217, "opts": ["earthquakes", "earthworms", "earth warms"], "ans": 1}, ". These worms, which live in ", {"n": 218, "opts": ["topsoil", "top oil", "subsoil"], "ans": 0}, ", are an essential ", {"n": 219, "opts": ["compartment", "opponent", "component"], "ans": 2}, " of our ", {"n": 220, "opts": ["agricultural", "cultural", "architectural"], "ans": 0}, " system. By feeding on soil, they mix ", {"n": 221, "opts": ["neutrons", "nutrition", "nutrients"], "ans": 2}, " into it, thereby making it more ", {"n": 222, "opts": ["fragile", "fertile", "futile"], "ans": 1}, ".\n\nThe researchers set out to discover whether the introduction of microplastics into the soil – and the subsequent ", {"n": 223, "opts": ["suggestion", "injection", "ingestion"], "ans": 2}, " of these by earthworms – would impact soil ", {"n": 224, "opts": ["equality", "quality", "quantity"], "ans": 1}, " and ultimately ", {"n": 225, "opts": ["inhibit", "exhibit", "inhabit"], "ans": 0}, " plant growth. The short answer was, yes, it did. After placing ", {"n": 226, "opts": ["free", "tree", "three"], "ans": 2}, " different types of microplastic particles into the soil, they planted ", {"n": 227, "opts": ["perennial", "personal", "parental"], "ans": 0}, " rye grass. The particles of microplastic, which included ", {"n": 228, "opts": ["degradable", "biodegradable", "biodiverse"], "ans": 1}, " PLA and ", {"n": 229, "opts": ["convenient", "conventional", "conversational"], "ans": 1}, " high-density polyethylene, or HDPE, were then ingested by the earthworms in the soil. The result was that the worms lost weight ", {"n": 230, "opts": ["rapidly", "readily", "rabidly"], "ans": 0}, ". What's more, a ", {"n": 231, "opts": ["slower", "louder", "lower"], "ans": 2}, " percentage than normal of the rye grass seeds ", {"n": 232, "opts": ["germinated", "terminated", "germinating"], "ans": 0}, ", and the researchers concluded that this was a direct result of the earthworms being unable to fulfil their ", {"n": 233, "opts": ["minimal", "normal", "formal"], "ans": 1}, " role in making soil more fertile. The team also discovered that there was an increase in the amount of ", {"n": 234, "opts": ["acidic", "aced", "acid"], "ans": 2}, " found in the soil, and this was attributed mainly to the microplastic particles from conventional HDPE plastic.\n\nThe conclusions of the study make for very interesting ", {"n": 235, "opts": ["reasoning", "leading", "reading"], "ans": 2}, " – I've included the ", {"n": 236, "opts": ["reference", "preference", "reverence"], "ans": 0}, " in the notes to give you at the end of this session. To summarise, the authors proposed the idea that we need to ", {"n": 237, "opts": ["reward", "regard", "record"], "ans": 1}, " soil as we would regard any other process in nature. This means we should accept the implications of soil being dependent on ", {"n": 238, "opts": ["decaying", "delaying", "decorating"], "ans": 0}, " and dead matter constantly being passed through the bodies of earthworms. That is, when soil becomes ", {"n": 239, "opts": ["improved", "impoverished", "improvised"], "ans": 1}, " by the presence of microplastics, not only ecosystems but also the whole of society are ", {"n": 240, "opts": ["natively", "narratively", "negatively"], "ans": 2}, " impacted."]}], "mc": 240, "wr": 45};
+const $ = (s, r=document) => r.querySelector(s);
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const L = ["A","B","C"];
+const state = {};   // n -> chosen index
+const checked = {}; // part -> bool
+
+function storeGet(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}}
+function storeSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+Object.assign(state, storeGet(`c19t${DATA.test}-choices`)||{});
+
+function renderTabs(active){
+  const t = $("#tabs"); t.innerHTML = "";
+  DATA.parts.forEach(p => t.append(tab("p"+p.num, `Part ${p.num}`, 0, active)));
+}
+function tab(id, label, cnt, active){
+  const b = document.createElement("button");
+  b.className = "tab"; b.role = "tab"; b.setAttribute("aria-selected", id===active);
+  b.innerHTML = label;
+  b.onclick = () => show(id); return b;
+}
+
+function textToHTML(s){
+  return esc(s).replace(/(^|\n\n)(CLARE|JAKE|JENNY|LEON|PRESENTER|SHANNON):/g, (m,a,b)=>`${a}<span class="spk">${b}</span>`);
+}
+function renderPart(p){
+  // ráp segments thành HTML, tách đoạn theo \n\n
+  let html = "";
+  p.segs.forEach(s => {
+    if (typeof s === "string") { html += textToHTML(s); return; }
+    if (s.kind === "write") { html += `<span class="wgap" data-d="${s.n}"><span class="num">D${s.n}</span><input id="w${s.n}" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:${Math.max(5, s.ans.length*0.62+1)}em" aria-label="Ô D${s.n}, ${s.w} từ"><span class="wc">${s.w}</span><span class="fix" hidden></span></span>`; return; }
+    html += `<span class="gap" data-n="${s.n}"><span class="num">${s.n}</span>` +
+      s.opts.map((o,i)=>`<button class="opt" data-i="${i}"><span class="l">${L[i]}</span>${esc(o)}</button>`).join("") + `</span>`;
+  });
+  html = "<p>" + html.split("\n\n").join("</p><p>") + "</p>";
+  const mc = p.segs.filter(s=>typeof s!=="string"&&s.opts), wr = p.segs.filter(s=>typeof s!=="string"&&s.kind==="write");
+  const first = mc[0].n;
+  $("#main").innerHTML = `
+    <div class="panel-head"><div><div class="kicker">Part ${p.num} · Trắc nghiệm ${first}–${first+mc.length-1} · Tự viết D${wr[0].n}–D${wr[wr.length-1].n}</div><h2>${esc(p.title)}</h2></div>
+      <span class="progress" id="prog"></span></div>
+    <div class="player"><audio id="aud" controls preload="none" src="cambridge19-test${DATA.test}-part${p.num}.mp3"></audio>
+      <div class="speed" id="spd">${[0.75,0.9,1].map(r=>`<button data-r="${r}" class="${r===1?"on":""}">${r}×</button>`).join("")}</div></div>
+    <p class="how">Hai dạng ô: <b>ô số đen</b> — bấm chọn A, B hoặc C; <b>ô D đỏ</b> — tự gõ cụm từ nghe được (số nhỏ là số từ cần viết). Mẹo: lần 1 nghe 0.9×, lần 2 tốc độ thường rồi bấm <b>Chấm bài</b>.</p>
+    <article class="transcript" id="tx">${html}</article>
+    <div class="actions"><button class="btn primary" id="chk">Chấm bài</button><button class="btn" id="rst">Làm lại</button><span class="score" id="sc" hidden></span></div>`;
+  const aud = $("#aud");
+  $("#spd").onclick = e => { const b=e.target.closest("button"); if(!b) return; aud.playbackRate=+b.dataset.r; $("#spd").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b)); };
+  $("#tx").onclick = e => {
+    const b = e.target.closest(".opt"); if(!b || b.disabled) return;
+    const g = b.closest(".gap"); state[g.dataset.n] = +b.dataset.i; storeSet(`c19t${DATA.test}-choices`, state); paint(p);
+  };
+  $("#tx").oninput = e => { if(e.target.tagName==="INPUT"){ state[e.target.id] = e.target.value; storeSet(`c19t${DATA.test}-choices`, state); paint(p);} };
+  $("#tx").querySelectorAll("input").forEach(i => i.value = state[i.id] || "");
+  $("#chk").onclick = () => { checked[p.num]=true; paint(p); $("#sc").scrollIntoView({block:"nearest"}); };
+  $("#rst").onclick = () => { p.segs.forEach(s=>{ if(typeof s!=="string") delete state[s.kind==="write" ? "w"+s.n : s.n]; }); $("#tx").querySelectorAll("input").forEach(i=>i.value=""); storeSet(`c19t${DATA.test}-choices`, state); checked[p.num]=false; paint(p); };
+  paint(p);
+}
+const normW = s => (s||"").toLowerCase().replace(/[’‘]/g,"'").replace(/[^a-z0-9'£ -]/g," ").replace(/\s+/g," ").trim();
+function paint(p){
+  let done=0, right=0, wd=0, wr=0; const isC = !!checked[p.num];
+  const gaps = p.segs.filter(s=>typeof s!=="string" && s.opts), writes = p.segs.filter(s=>typeof s!=="string" && s.kind==="write");
+  gaps.forEach(s => {
+    const g = $(`.gap[data-n="${s.n}"]`); const ch = state[s.n];
+    if (ch!==undefined) done++; if (ch===s.ans) right++;
+    g.classList.toggle("done", isC); g.classList.toggle("right", isC && ch===s.ans); g.classList.toggle("wrong", isC && ch!==s.ans);
+    g.querySelectorAll(".opt").forEach((b,i) => {
+      b.classList.toggle("sel", !isC && ch===i);
+      b.classList.toggle("is-ans", isC && i===s.ans);
+      b.classList.toggle("is-wrong", isC && ch===i && i!==s.ans);
+      b.disabled = isC;
+    });
+  });
+  writes.forEach(s => {
+    const g = $(`.wgap[data-d="${s.n}"]`), inp = g.querySelector("input"), fix = g.querySelector(".fix");
+    const v = state["w"+s.n]||""; if (v.trim()) wd++; const ok = normW(v)===normW(s.ans); if (ok) wr++;
+    g.classList.toggle("right", isC && ok); g.classList.toggle("wrong", isC && !ok);
+    inp.readOnly = isC; fix.hidden = !(isC && !ok); fix.textContent = s.ans;
+  });
+  $("#prog").textContent = `Đã làm ${done}/${gaps.length} trắc nghiệm · ${wd}/${writes.length} tự viết`;
+  const sc = $("#sc"); sc.hidden = !isC;
+  if (isC) sc.textContent = `Trắc nghiệm ${right}/${gaps.length} · Tự viết ${wr}/${writes.length} · Tổng ${Math.round((right+wr)/(gaps.length+writes.length)*100)}%`;
+}
+
+/* ---------- Chép chính tả ---------- */
+const norm = s => s.toLowerCase().replace(/[’']/g,"'").replace(/[^a-z0-9'£\s-]/g," ").split(/\s+/).filter(Boolean);
+function lcsDiff(target, typed){
+  const a=norm(target), b=norm(typed), m=a.length, n=b.length;
+  const dp=Array.from({length:m+1},()=>Array(n+1).fill(0));
+  for(let i=m-1;i>=0;i--) for(let j=n-1;j>=0;j--) dp[i][j]= a[i]===b[j]? dp[i+1][j+1]+1 : Math.max(dp[i+1][j],dp[i][j+1]);
+  const out=[]; let i=0,j=0;
+  while(i<m||j<n){
+    if(i<m&&j<n&&a[i]===b[j]){out.push(["ok",b[j]]);i++;j++}
+    else if(j<n&&(i===m||dp[i][j+1]>=dp[i+1][j])){out.push(["bad",b[j]]);j++}
+    else {out.push(["miss",a[i]]);i++}
+  }
+  return {out, pct: m? Math.round(dp[0][0]/m*100):0};
+}
+let voice=null;
+function pickVoice(){ const vs=speechSynthesis.getVoices(); voice = vs.find(v=>/en-GB/i.test(v.lang)) || vs.find(v=>/^en/i.test(v.lang)) || null; }
+if ("speechSynthesis" in window){ pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+function speak(text, rate){
+  if(!("speechSynthesis" in window)) return false;
+  speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.lang="en-GB"; u.rate=rate; if(voice) u.voice=voice; speechSynthesis.speak(u); return true;
+}
+function renderDict(){
+  const drafts = storeGet(`c19t${DATA.test}-dict`)||{};
+  let k=0, html = `<div class="panel-head"><div><div class="kicker">Writing · Dictation</div><h2>Chép chính tả — 20 câu từ transcript</h2></div></div>
+  <p class="how">Bấm <b>▶ Nghe</b> (hoặc <b>🐢 Chậm</b>), gõ lại đúng câu nghe được, rồi bấm <b>Kiểm tra</b>. Từ xanh = đúng, gạch cam = sai/thừa, ô xanh nhạt = từ bị thiếu. Không phân biệt hoa/thường và dấu câu.</p>`;
+  Object.entries(DATA.dictation).forEach(([pn, ss]) => {
+    html += `<section class="dgroup"><h3>Part ${pn} · ${esc(DATA.parts[pn-1].title)}</h3>`;
+    ss.forEach(s => { k++; html += `<div class="dcard" data-k="${k}">
+      <div class="drow"><span class="dn">D${k}</span><button class="sbtn" data-act="n">▶ Nghe</button><button class="sbtn" data-act="s">🐢 Chậm</button><button class="sbtn" data-act="c">Kiểm tra</button><button class="sbtn" data-act="a">Xem đáp án</button></div>
+      <textarea id="d${k}" rows="2" placeholder="Gõ câu bạn nghe được…" spellcheck="false">${esc(drafts[k]||"")}</textarea>
+      <div class="diff" hidden></div></div>`; });
+    html += `</section>`;
+  });
+  html += `<p class="note">Giọng đọc dùng giọng Anh-Anh của trình duyệt (text-to-speech — giọng máy đọc văn bản). Muốn nghe giọng gốc, quay lại tab Part tương ứng và phát audio.</p>`;
+  $("#main").innerHTML = html;
+  const all = Object.values(DATA.dictation).flat();
+  $("#main").onclick = e => {
+    const b=e.target.closest(".sbtn"); if(!b) return;
+    const card=b.closest(".dcard"), k=+card.dataset.k, s=all[k-1], d=card.querySelector(".diff");
+    if(b.dataset.act==="n"||b.dataset.act==="s"){ if(!speak(s, b.dataset.act==="n"?0.9:0.6)){ d.hidden=false; d.textContent="Trình duyệt này không hỗ trợ đọc giọng nói."; } }
+    if(b.dataset.act==="c"){ const r=lcsDiff(s, card.querySelector("textarea").value); d.hidden=false;
+      d.innerHTML = r.out.map(([t,w])=>`<span class="w-${t}">${esc(w)}</span>`).join(" ") + `<span class="pct">${r.pct}% đúng</span>`; }
+    if(b.dataset.act==="a"){ d.hidden=false; d.innerHTML = `<b>Đáp án:</b> ${esc(s)}`; }
+  };
+  $("#main").oninput = e => { if(e.target.tagName==="TEXTAREA"){ drafts[e.target.id.slice(1)]=e.target.value; storeSet(`c19t${DATA.test}-dict`,drafts);} };
+}
+
+function show(id){
+  renderTabs(id); $("#main").onclick=null; $("#main").oninput=null;
+  if ("speechSynthesis" in window) speechSynthesis.cancel();
+  if (id==="dict") renderDict(); else renderPart(DATA.parts[+id.slice(1)-1]);
+  try{ localStorage.setItem(`c19t${DATA.test}-tab`, id) }catch(e){}
+}
+let start="p1"; try{ start = localStorage.getItem(`c19t${DATA.test}-tab`) || "p1" }catch(e){}
+if (!/^p[1-4]$/.test(start)) start="p1";
+show(start);
+</script>
+
+</body>
+</html>
