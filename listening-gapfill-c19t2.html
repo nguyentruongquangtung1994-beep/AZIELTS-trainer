@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Cam 19 Test 2 Listening Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Literata:opsz,wght@7..72,400;7..72,600&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+:root{
+  --red:#C8102E; --red-soft:#FBE9EC; --ink:#18110F; --paper:#FFFFFF; --ground:#F8F4F3;
+  --muted:#6E605C; --line:#E8DCD9; --ok:#1C7A4B; --ok-soft:#E3F3EA; --bad:#B8430B; --bad-soft:#FCEBDD;
+  --chip:#FFFFFF; --shadow:0 1px 2px rgba(24,17,15,.06);
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Literata",Georgia,"Times New Roman",serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  color-scheme:dark; --red:#FF5A6E; --red-soft:#3A1419; --ink:#F3EAE8; --paper:#1E1817; --ground:#141010;
+  --muted:#B3A29E; --line:#3A2E2C; --ok:#5CD39A; --ok-soft:#12301F; --bad:#FF9A5C; --bad-soft:#3A2012; --chip:#261E1D; --shadow:none;}}
+:root[data-theme="dark"]{
+  color-scheme:dark; --red:#FF5A6E; --red-soft:#3A1419; --ink:#F3EAE8; --paper:#1E1817; --ground:#141010;
+  --muted:#B3A29E; --line:#3A2E2C; --ok:#5CD39A; --ok-soft:#12301F; --bad:#FF9A5C; --bad-soft:#3A2012; --chip:#261E1D; --shadow:none;}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.9;padding-inline:16px;padding-block:0 64px}
+.wrap{max-width:860px;margin:0 auto}
+header.top{padding-block:28px 12px}
+.brand{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);font-weight:700}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,5vw,42px);line-height:1.05;margin:.25em 0 .2em;text-wrap:balance;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:15px;line-height:1.6;margin:0;max-width:62ch}
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);display:flex;gap:6px;flex-wrap:wrap;padding-block:12px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.tab{font-family:var(--display);font-weight:700;font-size:14px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);padding:7px 14px;border-radius:999px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.tab .cnt{font-family:var(--mono);font-size:11px;opacity:.7;margin-left:6px}
+.tab:focus-visible,button:focus-visible,textarea:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.panel-head{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:end;justify-content:space-between;margin-bottom:14px}
+.panel-head h2{font-family:var(--display);font-size:24px;line-height:1.15;margin:0;text-wrap:balance}
+.panel-head .kicker{font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.1em;text-transform:uppercase}
+.player{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 14px;margin-bottom:16px;box-shadow:var(--shadow)}
+.player audio{flex:1 1 260px;min-width:0;height:40px}
+.speed{display:flex;gap:4px}
+.speed button{font-family:var(--mono);font-size:12px;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:8px;padding:4px 8px;cursor:pointer}
+.speed button.on{background:var(--red);color:#fff;border-color:var(--red)}
+.how{font-size:14px;line-height:1.6;color:var(--muted);margin:0 0 18px}
+.transcript{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px clamp(16px,4vw,32px)}
+.transcript p{margin:0 0 1.1em}
+.spk{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.08em;color:var(--red);margin-right:6px}
+.gap{display:inline-flex;align-items:center;gap:3px;vertical-align:baseline;border:1.5px dashed var(--line);border-radius:10px;padding:1px 4px;margin:1px 1px;line-height:1.4;flex-wrap:wrap}
+.gap .num{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--red);padding:0 3px}
+.opt{font-family:var(--body);font-size:15px;border:1px solid var(--line);background:var(--chip);color:var(--ink);border-radius:7px;padding:1px 8px;cursor:pointer;line-height:1.5}
+.opt:hover{border-color:var(--ink)}
+.opt .l{font-family:var(--mono);font-size:10px;color:var(--muted);margin-right:4px}
+.opt.sel{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+.opt.sel .l{color:inherit;opacity:.7}
+.gap.done{border-style:solid}
+.gap.right{border-color:var(--ok);background:var(--ok-soft)}
+.gap.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt.is-ans{background:var(--ok);color:#fff;border-color:var(--ok)}
+.opt.is-wrong{text-decoration:line-through;background:transparent;color:var(--bad);border-color:var(--bad)}
+.opt:disabled{cursor:default}
+.gap.done .opt:not(.is-ans):not(.is-wrong){opacity:.35}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px}
+.btn{font-family:var(--display);font-weight:700;font-size:15px;border-radius:10px;padding:10px 18px;cursor:pointer;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink)}
+.btn.primary{background:var(--red);border-color:var(--red);color:#fff}
+.score{font-family:var(--mono);font-size:14px;font-weight:700;padding:6px 12px;border-radius:999px;background:var(--red-soft);color:var(--red)}
+.progress{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.wgap{display:inline-flex;align-items:center;gap:3px;vertical-align:baseline;border:1.5px dashed var(--red);border-radius:10px;padding:1px 4px;margin:1px;line-height:1.4;flex-wrap:wrap;max-width:100%}
+.wgap .num{font-family:var(--mono);font-size:11px;font-weight:700;color:#fff;background:var(--red);border-radius:5px;padding:0 5px}
+.wgap input{font-family:var(--body);font-size:15px;border:0;border-bottom:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:0 2px;max-width:70vw;outline:none}
+.wgap input:focus{border-bottom-color:var(--red)}
+.wgap .wc{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.wgap.right{border-style:solid;border-color:var(--ok);background:var(--ok-soft)}
+.wgap.wrong{border-style:solid;border-color:var(--bad);background:var(--bad-soft)}
+.wgap.wrong input{text-decoration:line-through;color:var(--bad)}
+.wgap .fix{font-weight:600;color:var(--ok);font-size:15px}
+/* dictation */
+.dgroup{margin-bottom:26px}
+.dgroup h3{font-family:var(--display);font-size:18px;margin:0 0 10px}
+.dcard{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;display:grid;gap:10px}
+.drow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.drow .dn{font-family:var(--mono);font-weight:700;color:var(--red);font-size:13px;min-width:2.2em}
+.sbtn{font-family:var(--display);font-weight:700;font-size:13px;border:1px solid var(--line);background:var(--ground);color:var(--ink);border-radius:8px;padding:5px 10px;cursor:pointer}
+.sbtn:hover{border-color:var(--ink)}
+textarea{width:100%;font-family:var(--body);font-size:16px;line-height:1.6;border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--ground);color:var(--ink);resize:vertical;min-height:64px}
+.diff{font-size:15px;line-height:1.9}
+.diff .w-ok{color:var(--ok)}
+.diff .w-bad{color:var(--bad);text-decoration:line-through}
+.diff .w-miss{background:var(--ok-soft);color:var(--ok);border-radius:4px;padding:0 3px;font-weight:600}
+.diff .pct{font-family:var(--mono);font-size:12px;font-weight:700;margin-left:8px;color:var(--muted)}
+.note{font-size:13px;color:var(--muted);line-height:1.6}
+footer{margin-top:40px;font-size:12px;color:var(--muted);font-family:var(--mono)}
+@media (prefers-reduced-motion:no-preference){.gap.done{transition:background .2s}}
+[hidden]{display:none!important}
+body{margin:0}
+.crumb{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.crumb a{font-family:var(--display);font-weight:700;font-size:14px;color:var(--ink);text-decoration:none;border-bottom:1.5px solid var(--red)}
+.nextnav{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.nextnav a{font-family:var(--display);font-weight:700;font-size:15px;color:var(--ink);text-decoration:none;border:1.5px solid var(--line);background:var(--paper);border-radius:10px;padding:10px 16px}
+.nextnav a:hover{border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:22px}
+.card{display:grid;gap:10px;align-content:start;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;text-decoration:none;color:var(--ink)}
+.card:hover{border-color:var(--ink)}
+.card:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.card .tn{font-family:var(--display);font-weight:800;font-size:26px;line-height:1}
+.card ol{margin:0;padding-left:18px;font-size:14px;line-height:1.55;color:var(--muted)}
+.card .meta{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:11px;font-weight:700;border-radius:999px;padding:3px 9px;background:var(--ground);border:1px solid var(--line)}
+.chip.w{color:var(--red);border-color:var(--red)}
+.bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);width:0}
+.card .pg{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.steps{margin:26px 0 0;padding:16px 20px;background:var(--paper);border:1px solid var(--line);border-radius:14px;font-size:14.5px;line-height:1.7}
+.steps b{font-family:var(--display)}
+</style>
+</head>
+<body>
+<div id="gateScreen" style="position:fixed;inset:0;z-index:999;background:var(--ground);display:flex;align-items:center;justify-content:center;padding:20px;">
+  <form id="gateForm" style="max-width:340px;width:100%;text-align:center;font-family:var(--display);">
+    <div class="brand">AZEnglish · Listening Lab</div>
+    <h2 style="font-size:22px;margin:8px 0 6px">Cambridge IELTS 19</h2>
+    <p style="font-size:13px;color:var(--muted);margin:0 0 16px;line-height:1.5">Nhập mật khẩu được cung cấp để vào làm bài.</p>
+    <input id="gatePassword" type="password" placeholder="Mật khẩu" autocomplete="off" style="width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font-size:15px;margin-bottom:10px;background:var(--paper);color:var(--ink)">
+    <button type="submit" class="btn primary" style="width:100%">Vào làm bài</button>
+    <p id="gateError" style="color:var(--red);font-size:13px;margin:10px 0 0" hidden>Sai mật khẩu, thử lại nhé.</p>
+  </form>
+</div>
+<script>
+(function(){
+  var GATE_PASSWORD = "azenglish2026", GATE_KEY = "az_rt_gate_ok", g = document.getElementById("gateScreen");
+  try{ if(localStorage.getItem(GATE_KEY) === "1") g.style.display = "none"; }catch(e){}
+  document.getElementById("gateForm").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    if(document.getElementById("gatePassword").value === GATE_PASSWORD){ try{ localStorage.setItem(GATE_KEY,"1"); }catch(e){} g.style.display="none"; }
+    else document.getElementById("gateError").hidden = false;
+  });
+})();
+</script>
+
+
+<div class="wrap">
+  <header class="top">
+    <div class="crumb"><div class="brand">AZEnglish · Listening Lab · Band 3.0–5.0+</div><a href="listening-gapfill-c19.html">← Tất cả Test</a></div>
+    <h1>Cambridge 19 · Test 2 — Nghe, chọn & viết</h1>
+    <p class="sub">Toàn bộ transcript 4 Part, giống bản in trên lớp: 232 ô chọn A/B/C và 54 ô tự viết. Bài làm được lưu trên trình duyệt của bạn — tải lại trang không mất.</p>
+  </header>
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+  <main id="main"></main>
+  <nav class="nextnav"><a href="listening-gapfill-c19t1.html">Test 1 →</a><a href="listening-gapfill-c19t3.html">Test 3 →</a><a href="listening-gapfill-c19t4.html">Test 4 →</a><a href="listening-gapfill-c19.html">Trang chủ</a></nav>
+  <footer>Nguồn: Cambridge IELTS 19, Test 2 — transcript & audio gốc. Tài liệu lớp học nội bộ AZEnglish.</footer>
+</div>
+
+<script>
+const DATA = {"test": 2, "parts": [{"num": 1, "title": "Guitar Group", "audio": "cambridge19-test2-part1.mp3", "segs": ["WOMAN: Hi Coleman, how are you?\n\nCOLEMAN: Good, thanks.\n\nWOMAN: I wanted to have a ", {"n": 1, "opts": ["chat", "cat", "chart"], "ans": 0}, " with you because our ", {"n": 2, "opts": ["fried", "friends", "friend"], "ans": 2}, " Josh told me that you've joined a ", {"n": 3, "opts": ["gutter", "guitar", "guitars"], "ans": 1}, " group and it sounds ", {"n": 4, "opts": ["increasing", "interesting", "interested"], "ans": 1}, ". I'd really like to learn myself.\n\nCOLEMAN: Why don't you come along? I'm sure there's ", {"n": 5, "opts": ["room", "rum", "roof"], "ans": 0}, " for another person.\n\nWOMAN: Really? So – who ", {"n": 6, "opts": ["rules", "ruins", "runs"], "ans": 2}, " the classes?\n\nCOLEMAN: He's called a '", {"n": 7, "opts": ["cooperator", "decorator", "coordinator"], "ans": 2}, "' – his name's Gary ", {"n": 8, "opts": ["Mathieson", "Madison", "Matthewson"], "ans": 0}, ".\n\nWOMAN: Let me note that down. Gary. ... How do you spell his surname?\n\nCOLEMAN: It's M-A-T-H-I-E-S-O-N.\n\nWOMAN: Right, thanks.\n\nCOLEMAN: He's ", {"n": 9, "opts": ["tired", "retired", "retried"], "ans": 1}, ", actually, but he's a really ", {"n": 10, "opts": ["nice", "night", "nine"], "ans": 0}, " guy and he used to play in a lot of ", {"n": 11, "opts": ["bonds", "banks", "bands"], "ans": 2}, ".\n\nWOMAN: Thanks. So how long have you been going?\n\nCOLEMAN: About a ", {"n": 12, "opts": ["mouth", "month", "moth"], "ans": 1}, " now.\n\nWOMAN: And could you play anything before you started?\n\nCOLEMAN: I knew a few ", {"n": 13, "opts": ["cords", "chores", "chords"], "ans": 2}, ", but that's all.\n\nWOMAN: I'm sure everyone will be better than me.\n\nCOLEMAN: That's what I thought, too. When I first spoke to Gary on the ", {"n": 14, "opts": ["phone", "fawn", "fun"], "ans": 0}, ", he said it was a class for ", {"n": 15, "opts": ["bigger ones", "beginners", "builders"], "ans": 1}, ", but I was still ", {"n": 16, "opts": ["hurried", "married", "worried"], "ans": 2}, " that everyone would be better than me, but we were all equally ", {"n": 17, "opts": ["hopeless", "helpless", "hopeful"], "ans": 0}, "!\n\nWOMAN: Oh, that's ", {"n": 18, "opts": ["recurring", "reassuring", "measuring"], "ans": 1}, ". So where do you meet?\n\nCOLEMAN: Well, when I joined the group, they were meeting in Gary's ", {"n": 19, "opts": ["house", "home", "hall"], "ans": 1}, ", but as the group got ", {"n": 20, "opts": ["bigger", "better", "bitter"], "ans": 0}, ", he decided to book a room at the ", {"n": 21, "opts": ["colleague", "collage", "college"], "ans": 2}, " in town. I prefer going there.\n\nWOMAN: I know that place. I used to go to tap ", {"n": 22, "opts": ["dining", "dancing", "dance"], "ans": 1}, " classes there when I was at ", {"n": 23, "opts": ["secondary", "second", "sanitary"], "ans": 0}, " school. I haven't been since, though and I can't remember what road it's in ... is it ", {"n": 24, "opts": ["Luck", "Look", "Lock"], "ans": 2}, " Street?\n\nCOLEMAN: It's just beyond there at the bottom of ", {"n": 25, "opts": ["New", "Knew", "Nine"], "ans": 0}, " Street near the city ", {"n": 26, "opts": ["runabout", "roundabout", "round about"], "ans": 1}, ".\n\nWOMAN: Yes, of course.\n\nCOLEMAN: The guitar club is on the ", {"n": 27, "opts": ["fast", "fist", "first"], "ans": 2}, " floor in Room ", {"n": 28, "opts": ["T347", "D347", "T374"], "ans": 0}, ".\n\nWOMAN: Right. And when do you meet? Is it at the ", {"n": 29, "opts": ["weekday", "week", "weekend"], "ans": 2}, "?\n\nCOLEMAN: We meet on ", {"n": 30, "opts": ["Tuesdays", "Thursdays", "Thursday"], "ans": 1}, ". It used to be ", {"n": 31, "opts": ["12.30", "10.13", "10.30"], "ans": 2}, " and that suited me well, but now we meet at ", {"n": 32, "opts": ["17", "11", "7"], "ans": 1}, ". The class that's in there before us asked if they could have the room for another ", {"n": 33, "opts": ["30", "40", "13"], "ans": 0}, " minutes.\n\nWOMAN: Oh, I see. Well, I'd love to come, but I don't have a guitar.\n\nCOLEMAN: Well, you can always buy a ", {"n": 34, "opts": ["second hand", "secondary", "second-hand"], "ans": 2}, " one. There's a website called 'The ", {"n": 35, "opts": ["prefect", "perfect", "perfume"], "ans": 1}, " instrument' that sells all kinds of guitars, ", {"n": 36, "opts": ["violins", "violence", "villains"], "ans": 0}, " and so on. I'm sure you'll find something there.\n\nWOMAN: So what's a ", {"n": 37, "opts": ["typical", "tropical", "topical"], "ans": 0}, " lesson like with Gary?\n\nCOLEMAN: Well, ", {"n": 1, "ans": "he always starts by getting us", "w": 6, "kind": "write"}, " to ", {"n": 38, "opts": ["turn", "tune", "tone"], "ans": 1}, " our guitars. ", {"n": 2, "ans": "That takes about", "w": 3, "kind": "write"}, " ", {"n": 39, "opts": ["nine", "fine", "five"], "ans": 2}, " minutes.\n\nWOMAN: Uhuh.\n\nCOLEMAN: ", {"n": 3, "ans": "Some people have", "w": 3, "kind": "write"}, " an ", {"n": 40, "opts": ["apple", "up", "app"], "ans": 2}, " they use, but ", {"n": 4, "ans": "others do it", "w": 3, "kind": "write"}, " by ", {"n": 41, "opts": ["year", "ear", "hear"], "ans": 1}, ". ", {"n": 5, "ans": "Gary goes round and helps them", "w": 6, "kind": "write"}, ". And ", {"n": 6, "ans": "while he's doing that", "w": 4, "kind": "write"}, ", he tells us ", {"n": 7, "ans": "what he's going to do during the lesson", "w": 8, "kind": "write"}, ".\n\nWOMAN: Right.\n\nCOLEMAN: First, ", {"n": 8, "ans": "we usually spend", "w": 3, "kind": "write"}, " about ten minutes doing some ", {"n": 42, "opts": ["strumming", "drumming", "strimming"], "ans": 0}, ".\n\nWOMAN: So is that using ... ", {"n": 9, "ans": "what are they called", "w": 4, "kind": "write"}, " ... plectrums?\n\nCOLEMAN: No – we just use our ", {"n": 43, "opts": ["drums", "thumb", "thumbs"], "ans": 2}, ".\n\nWOMAN: Much easier.\n\nCOLEMAN: ", {"n": 10, "ans": "Gary reminds us where to", "w": 5, "kind": "write"}, " put our ", {"n": 44, "opts": ["fingers", "figures", "fingernails"], "ans": 0}, " ", {"n": 11, "ans": "for each chord", "w": 3, "kind": "write"}, " and then we play them together. Sometimes ", {"n": 12, "ans": "we all just start laughing", "w": 5, "kind": "write"}, " ", {"n": 13, "ans": "because we're so bad at", "w": 5, "kind": "write"}, " keeping ", {"n": 45, "opts": ["tie", "time", "tight"], "ans": 1}, ", so Gary starts ", {"n": 46, "opts": ["slapping", "clipping", "clapping"], "ans": 2}, " to help us.\n\nWOMAN: ", {"n": 14, "ans": "Do you learn to play any songs", "w": 7, "kind": "write"}, "?\n\nCOLEMAN: Yes – we do ", {"n": 15, "ans": "at least one song with words", "w": 6, "kind": "write"}, " and chords. I mean that's ", {"n": 16, "ans": "harder than you think", "w": 4, "kind": "write"}, ".\n\nWOMAN: Oh, I'm sure it is!\n\nCOLEMAN: ", {"n": 17, "ans": "That part of the lesson", "w": 5, "kind": "write"}, " takes about 15 minutes. He often brings a ", {"n": 47, "opts": ["reading", "recording", "record"], "ans": 1}, " of the song and ", {"n": 18, "ans": "plays it to us", "w": 4, "kind": "write"}, " first. ", {"n": 19, "ans": "Then he hands out the song", "w": 6, "kind": "write"}, " and if there's a new chord in it, we practise that before we play it together – but really ", {"n": 48, "opts": ["slowly", "lowly", "softly"], "ans": 0}, ".\n\nWOMAN: Do you do any finger ", {"n": 49, "opts": ["picking", "kicking", "packing"], "ans": 0}, "?\n\nCOLEMAN: That's the last ten minutes of the lesson, when we pick out the ", {"n": 50, "opts": ["indivisible", "individual", "industrial"], "ans": 1}, " notes from a tune he's made up. It's always quite simple.\n\nWOMAN: That must be hard, though.\n\nCOLEMAN: It is, but people like it because they can really concentrate and if we're all playing well, it sounds quite ", {"n": 51, "opts": ["expensive", "expressive", "impressive"], "ans": 2}, ". The only trouble is that he sometimes gets us to play one at a time – you know, alone.\n\nWOMAN: That's ", {"n": 52, "opts": ["scary", "scarce", "starry"], "ans": 0}, ".\n\nCOLEMAN: It is, but I've got ", {"n": 53, "opts": ["lost", "use", "used"], "ans": 2}, " to it now. At the end he spends about five minutes telling us what to practise for the following week.\n\nWOMAN: Well, thanks Coleman. I'll go and have a look at that website, I think."]}, {"num": 2, "title": "Working as a lifeboat volunteer", "audio": "cambridge19-test2-part2.mp3", "segs": ["I never really planned to be a lifeboat ", {"n": 54, "opts": ["voluntary", "volunteer", "volume"], "ans": 1}, " when I came to live in Northsea. I'd been working in London as a website ", {"n": 55, "opts": ["designed", "designer", "dinner"], "ans": 1}, ", but although that was interesting, I didn't like ", {"n": 56, "opts": ["sitting", "silly", "city"], "ans": 2}, " life. I'd been really keen on ", {"n": 57, "opts": ["boats", "votes", "boots"], "ans": 0}, " as a ", {"n": 58, "opts": ["teenager", "teacher", "manager"], "ans": 0}, ", and I thought if I went to live by the ", {"n": 59, "opts": ["seat", "sea", "see"], "ans": 1}, ", I might be able to ", {"n": 60, "opts": ["persuade", "purse", "pursue"], "ans": 2}, " that interest a bit more in my ", {"n": 61, "opts": ["three", "tree", "free"], "ans": 2}, " time. Then I found that the Lifeboat Institution was looking for ", {"n": 62, "opts": ["volunteers", "adventurers", "volunteering"], "ans": 0}, ", so I decided to ", {"n": 63, "opts": ["reply", "apply", "supply"], "ans": 1}, ".\n\nThe Lifeboat Institution building here in Northsea's hard to miss, it's one of the ", {"n": 64, "opts": ["largest", "latest", "longest"], "ans": 0}, " in the country. It was built ", {"n": 65, "opts": ["50", "5", "15"], "ans": 2}, " years ago with funds provided by a ", {"n": 66, "opts": ["general", "generous", "dangerous"], "ans": 1}, " member of the public, who'd lived here all her life. As the Lifeboat Institution is a ", {"n": 67, "opts": ["cherry", "clarity", "charity"], "ans": 2}, " that relies on that kind of donation, rather than ", {"n": 68, "opts": ["finding", "funding", "founding"], "ans": 1}, " provided by the government, that was a ", {"n": 69, "opts": ["huge", "hue", "hug"], "ans": 0}, " help to us.\n\nWhen I applied, I had to have a health ", {"n": 70, "opts": ["assessment", "amusement", "assistant"], "ans": 0}, ". The doctors were particularly interested in my ", {"n": 71, "opts": ["version", "vision", "visit"], "ans": 1}, ". I used to be ", {"n": 72, "opts": ["long-sighted", "short-staffed", "short-sighted"], "ans": 2}, ", so I'd had to wear ", {"n": 73, "opts": ["classes", "grasses", "glasses"], "ans": 2}, ", but I'd had laser eye ", {"n": 74, "opts": ["surgery", "sugary", "survey"], "ans": 0}, " two years earlier so that was OK. They gave me tests for colour ", {"n": 75, "opts": ["kindness", "blindness", "blandness"], "ans": 1}, " and they thought I might have a problem there, but it turned out I was OK.\n\nWhen the coastguard gets an ", {"n": 76, "opts": ["allergy", "alert", "a lot"], "ans": 1}, ", all the volunteers are contacted and rush to the lifeboat ", {"n": 77, "opts": ["nation", "stadium", "station"], "ans": 2}, ". Our target's to get there in ", {"n": 78, "opts": ["five", "fifty", "nine"], "ans": 0}, " minutes, then we try to get the boat off the ", {"n": 79, "opts": ["deck", "dock", "duck"], "ans": 1}, " and out to sea in another six to ", {"n": 80, "opts": ["eight", "eighty", "hate"], "ans": 0}, " minutes. Our team's proud that we usually achieve that — the ", {"n": 81, "opts": ["beverage", "overage", "average"], "ans": 2}, " time across the country's eight and a half minutes.\n\nI've recently qualified as what's called a '", {"n": 82, "opts": ["helmet man", "helmsman", "headsman"], "ans": 1}, "', which means I have the ", {"n": 83, "opts": ["intimate", "estimate", "ultimate"], "ans": 2}, " responsibility for the lifeboat. I have to check that the ", {"n": 84, "opts": ["equipment", "requirement", "agreement"], "ans": 0}, " we use is in working order – the crew have special life ", {"n": 85, "opts": ["jackets", "rackets", "jackpots"], "ans": 0}, " that can support up to ", {"n": 86, "opts": ["for", "four", "fourteen"], "ans": 1}, " people in the water. And it's ultimately my decision whether it's safe to ", {"n": 87, "opts": ["lounge", "lunch", "launch"], "ans": 2}, " the boat. But it's very rare not to launch it, even in the ", {"n": 88, "opts": ["worse", "worst", "west"], "ans": 1}, " weather.\n\n", {"n": 20, "ans": "As well as going out on", "w": 6, "kind": "write"}, " the lifeboat, ", {"n": 21, "ans": "my work involves other things too", "w": 6, "kind": "write"}, ". A lot of people ", {"n": 89, "opts": ["overestimate", "understand", "underestimate"], "ans": 2}, " ", {"n": 22, "ans": "how quickly conditions can change", "w": 5, "kind": "write"}, " at sea, so I speak to ", {"n": 90, "opts": ["youth", "you", "truth"], "ans": 0}, " groups and sailing ", {"n": 91, "opts": ["clues", "clubs", "cubs"], "ans": 1}, " in the area ", {"n": 23, "ans": "about the sorts of problems", "w": 5, "kind": "write"}, " that sailors and ", {"n": 92, "opts": ["swimmers", "summers", "swimsuits"], "ans": 0}, " ", {"n": 24, "ans": "can have if the weather suddenly gets bad", "w": 8, "kind": "write"}, ". ", {"n": 25, "ans": "We also have a lot of", "w": 6, "kind": "write"}, " volunteers ", {"n": 26, "ans": "who organise", "w": 2, "kind": "write"}, " activities to ", {"n": 93, "opts": ["race", "rise", "raise"], "ans": 2}, " money for us, ", {"n": 27, "ans": "and we couldn't manage without them", "w": 6, "kind": "write"}, ".\n\nThe training we get is a ", {"n": 94, "opts": ["conscious", "continuous", "contagious"], "ans": 1}, " process, focusing on technical ", {"n": 95, "opts": ["confidence", "competition", "competence"], "ans": 2}, " and safe handling techniques, and it's given me the confidence to deal with extreme situations without ", {"n": 96, "opts": ["panicking", "picnicking", "packing"], "ans": 0}, ". I was glad I'd done a first ", {"n": 97, "opts": ["age", "aid", "aim"], "ans": 1}, " course before I started, as that's a big help with the ", {"n": 98, "opts": ["casualty", "casually", "causality"], "ans": 0}, " care activities we do. We've done a lot on how to deal with ", {"n": 99, "opts": ["robes", "rope", "ropes"], "ans": 2}, " and tie ", {"n": 100, "opts": ["notes", "knots", "nuts"], "ans": 1}, " – that's an ", {"n": 101, "opts": ["essential", "exceptional", "eventual"], "ans": 0}, " skill. After a year, I did a one-week ", {"n": 102, "opts": ["residents", "presidential", "residential"], "ans": 2}, " course, led by ", {"n": 103, "opts": ["specials", "specialists", "socialists"], "ans": 1}, ". They had a ", {"n": 104, "opts": ["wave-tank", "wave-talk", "wave-bank"], "ans": 0}, " where they could create extreme weather conditions – so we could get experience at what to do if the boat turned over in a ", {"n": 105, "opts": ["store", "stone", "storm"], "ans": 2}, " at night, for example. Since I started, I've had to deal with a range of emergency situations.\n\nBut the work's hugely ", {"n": 106, "opts": ["moderating", "motivating", "motivated"], "ans": 1}, ". It's not just about ", {"n": 107, "opts": ["shaving", "serving", "saving"], "ans": 2}, " lives – I've learned a lot about the ", {"n": 108, "opts": ["technology", "biology", "terminology"], "ans": 0}, " involved. My background in IT's been useful here, and I can use my ", {"n": 109, "opts": ["expertise", "expenses", "experience"], "ans": 0}, " to help other volunteers. They're a great group – we're like a ", {"n": 110, "opts": ["factory", "famine", "family"], "ans": 2}, " really, which helps when you're dragging yourself out of bed on a cold ", {"n": 111, "opts": ["starry", "stormy", "story"], "ans": 1}, " night. But actually, it's the ", {"n": 112, "opts": ["older", "cooler", "colder"], "ans": 2}, " months that can be the most ", {"n": 113, "opts": ["rewarding", "regarding", "rewarded"], "ans": 0}, " time. That's when the incidents tend to be more serious, and you realise that you can make a huge difference to the ", {"n": 114, "opts": ["outcrop", "outcome", "income"], "ans": 1}, ".\n\nSo if any of you listeners are interested..."]}, {"num": 3, "title": "Discussion: recycling footwear", "audio": "cambridge19-test2-part3.mp3", "segs": ["BELLA: Hi Don – did you get the ", {"n": 115, "opts": ["copy", "cup", "coffee"], "ans": 0}, " of the article on recycling ", {"n": 116, "opts": ["footwork", "footwear", "furniture"], "ans": 1}, " that I emailed you?\n\nDON: Yeah – it's here ... I've had a look at it.\n\nBELLA: So do you think it's a good ", {"n": 117, "opts": ["topping", "tropic", "topic"], "ans": 2}, " for our presentation?\n\nDON: Well, before I started reading it, I thought recycling footwear, well, although it's quite interesting, perhaps there isn't enough to say about it, cos we put shoes in recycling ", {"n": 118, "opts": ["pins", "beans", "bins"], "ans": 2}, ", they go to ", {"n": 119, "opts": ["cherry", "charity", "chatty"], "ans": 1}, " shops and that's about it.\n\nBELLA: ... but there's much more to it than that.\n\nDON: I realise that now and I'm keen to ", {"n": 120, "opts": ["research", "rehearse", "reach"], "ans": 0}, " the topic more.\n\nBELLA: That's great.\n\nDON: One of the things I didn't realise until I read the article was just how many pairs of ", {"n": 121, "opts": ["trainers", "drainers", "trainees"], "ans": 0}, " get recycled!\n\nBELLA: Well, a lot of ", {"n": 122, "opts": ["your", "yang", "young"], "ans": 2}, " people wear them all the time now. They've become more popular than ", {"n": 123, "opts": ["original", "ordinary", "orderly"], "ans": 1}, " shoes.\n\nDON: I know. ", {"n": 28, "ans": "I guess they are", "w": 4, "kind": "write"}, " very ", {"n": 124, "opts": ["hard-wearing", "hard-working", "hard wearing"], "ans": 0}, ", but ", {"n": 29, "ans": "don't they look", "w": 3, "kind": "write"}, " a bit ", {"n": 125, "opts": ["casually", "casual", "causal"], "ans": 1}, " for school ", {"n": 126, "opts": ["unicorn", "uniforms", "uniform"], "ans": 2}, "? ", {"n": 30, "ans": "I don't think they're right for that", "w": 7, "kind": "write"}, ".\n\nBELLA: ", {"n": 31, "ans": "Actually, I think some of them look", "w": 7, "kind": "write"}, " quite ", {"n": 127, "opts": ["start", "smell", "smart"], "ans": 2}, " on pupils... ", {"n": 32, "ans": "better than", "w": 2, "kind": "write"}, " a ", {"n": 128, "opts": ["scruffy", "scruff", "stuffy"], "ans": 0}, " old pair of shoes. ", {"n": 33, "ans": "So do you keep shoes a long time", "w": 8, "kind": "write"}, "?\n\nDON: Yes. ", {"n": 34, "ans": "Though I do tend to wear my old pairs", "w": 9, "kind": "write"}, " ", {"n": 35, "ans": "for doing dirty jobs", "w": 4, "kind": "write"}, " like cleaning my ", {"n": 129, "opts": ["bite", "bike", "back"], "ans": 1}, ".\n\nBELLA: ", {"n": 36, "ans": "I must admit", "w": 3, "kind": "write"}, ", I've recycled ", {"n": 37, "ans": "some perfectly good shoes", "w": 4, "kind": "write"}, ", that haven't gone out of ", {"n": 130, "opts": ["passion", "fiction", "fashion"], "ans": 2}, " ", {"n": 38, "ans": "and still fit", "w": 3, "kind": "write"}, ", ", {"n": 39, "ans": "just because they don't look great on me", "w": 8, "kind": "write"}, " any more. That's ", {"n": 131, "opts": ["awful", "awesome", "offer"], "ans": 0}, " isn't it?\n\nDON: ", {"n": 40, "ans": "I think it's common because", "w": 5, "kind": "write"}, " there's so much ", {"n": 132, "opts": ["choose", "choice", "voice"], "ans": 1}, ". The article did say that ", {"n": 41, "ans": "recent sales of", "w": 3, "kind": "write"}, " footwear have increased ", {"n": 133, "opts": ["anonymously", "enormously", "enormous"], "ans": 1}, ".\n\nBELLA: ", {"n": 42, "ans": "That didn't surprise me", "w": 4, "kind": "write"}, ".\n\nDON: No. But then it said that the amount of recycled footwear has fallen: it's ", {"n": 134, "opts": ["6", "16", "60"], "ans": 0}, " percent now compared to a previous level of ", {"n": 135, "opts": ["7", "17", "11"], "ans": 2}, " percent. That doesn't seem to make ", {"n": 136, "opts": ["sense", "since", "cents"], "ans": 0}, ".\n\nBELLA: That's because not everything goes through the recycling process. Some footwear just isn't good enough to ", {"n": 137, "opts": ["recycle", "resale", "re-sell"], "ans": 2}, ", for one reason or another, and gets ", {"n": 138, "opts": ["rejecting", "rejected", "respected"], "ans": 1}, ".\n\nBELLA: So let's find some examples in the article of footwear that was rejected for recycling.\n\nDON: OK. I think there are some in the interview with the recycling ", {"n": 139, "opts": ["manager", "teenager", "manner"], "ans": 0}, ". Yeah – here it is.\n\nBELLA: Mmm. Let's start with the ladies' ", {"n": 140, "opts": ["high-held", "high-healed", "high-heeled"], "ans": 2}, " shoes. What did he say about those?\n\nDON: He said they were probably ", {"n": 141, "opts": ["expressive", "expensive", "extensive"], "ans": 1}, " – the material was ", {"n": 142, "opts": ["Swede", "suede", "sweet"], "ans": 1}, " and they were ", {"n": 143, "opts": ["beige", "bags", "baked"], "ans": 0}, " in colour – it looked like someone had only worn them once, but in a very ", {"n": 144, "opts": ["what", "white", "wet"], "ans": 2}, " field so the heels were too stained with ", {"n": 145, "opts": ["mud", "mad", "mood"], "ans": 0}, " and grass to re-sell them.\n\nBELLA: OK... and the leather ", {"n": 146, "opts": ["angle", "uncle", "ankle"], "ans": 2}, " boots. What was wrong with them?\n\nDON: Apparently, the heels were worn – but that wasn't the problem. One of the shoes was a much ", {"n": 147, "opts": ["lighten", "lighter", "later"], "ans": 1}, " shade than the other one – it had obviously been left in the ", {"n": 148, "opts": ["son", "sign", "sun"], "ans": 2}, ". I suppose even second-hand shoes should look the same!\n\nBELLA: Sure. Then there were the red ", {"n": 149, "opts": ["busy", "baby", "bay"], "ans": 1}, " shoes.\n\nDON: Oh yes — we're told to ", {"n": 150, "opts": ["tie", "tidy", "take"], "ans": 0}, " shoes together when we put them in a recycling bin, but people often don't bother.\n\nBELLA: You'd think it would have been easy to find the other, but it wasn't. That was a shame because they were obviously ", {"n": 151, "opts": ["knew", "new", "now"], "ans": 1}, ".\n\nDON: The trainers were interesting. He said they looked like they'd been worn by a ", {"n": 152, "opts": ["marathons", "Marlton", "marathon"], "ans": 2}, " runner.\n\nBELLA: Yeah – weren't they split?\n\nDON: Not exactly. One of the ", {"n": 153, "opts": ["soles", "souls", "sales"], "ans": 0}, " was so worn under the foot that you could put your ", {"n": 154, "opts": ["figure", "fingers", "finger"], "ans": 2}, " through it. Well, we could certainly use some of those examples in our presentation to explain why 90 percent of shoes that people take to recycling centres or bins get thrown into ", {"n": 155, "opts": ["landfall", "landfill", "land fill"], "ans": 1}, ".\n\nBELLA: Mmm. What did you think about the project his team set up to avoid this by making new shoes out of the good ", {"n": 156, "opts": ["parts", "pairs", "pots"], "ans": 0}, " of old shoes?\n\nDON: It sounded like a good idea. They get so many shoes, they should be able to ", {"n": 157, "opts": ["much", "match", "mash"], "ans": 1}, " parts. I wasn't surprised that it ", {"n": 158, "opts": ["failed", "fell", "filled"], "ans": 0}, ", though. I mean who wants to buy second-hand shoes really? Think of all the ", {"n": 159, "opts": ["terms", "gems", "germs"], "ans": 2}, " you could catch!\n\nBELLA: Well, people didn't refuse them for that reason, did they? It was because the pairs of shoes weren't ", {"n": 160, "opts": ["identical", "ideal", "identified"], "ans": 0}, ".\n\nDON: They still managed to ship them ", {"n": 161, "opts": ["over seas", "overseas", "oversees"], "ans": 1}, ", though.\n\nBELLA: That's another area we need to discuss.\n\nDON: You know I used to consider this topic just from my own ", {"n": 162, "opts": ["respective", "prospective", "perspective"], "ans": 2}, ", by thinking about my own recycling ", {"n": 163, "opts": ["behalf", "believer", "behaviour"], "ans": 2}, " without looking at the bigger ", {"n": 164, "opts": ["future", "picture", "pitcher"], "ans": 1}, ". So much happens once shoes leave the recycling area.\n\nBELLA: It's not as simple as you first think, and we can show that by taking a very different ", {"n": 165, "opts": ["approach", "approve", "reproach"], "ans": 0}, " to it.\n\nDON: Absolutely. So let's discuss ..."]}, {"num": 4, "title": "Tardigrades", "audio": "cambridge19-test2-part4.mp3", "segs": ["For my project on ", {"n": 166, "opts": ["inverters", "vertebrates", "invertebrates"], "ans": 2}, ", I chose to ", {"n": 167, "opts": ["sturdy", "study", "steady"], "ans": 1}, " tardigrades. These are ", {"n": 168, "opts": ["microscopic", "macroscopic", "microphonic"], "ans": 0}, " – or to be more precise – near-microscopic animals. There are well over a ", {"n": 169, "opts": ["thousands", "thousand", "hundred"], "ans": 1}, " known species of these ", {"n": 170, "opts": ["tiny", "tidy", "tinny"], "ans": 0}, " animals, which belong to the phylum Tardigrada. Most tardigrades range in length from ", {"n": 171, "opts": ["0.5", "0.15", "0.05"], "ans": 2}, " to 1 millimetre, though the largest species can grow to be ", {"n": 172, "opts": ["1.2", "2.1", "1.02"], "ans": 0}, " millimetres in length. They are also sometimes called 'water ", {"n": 173, "opts": ["beers", "bears", "bares"], "ans": 1}, "': 'water' because that's where they ", {"n": 174, "opts": ["thrill", "drive", "thrive"], "ans": 2}, " best, and 'bear' because of the way they ", {"n": 175, "opts": ["moo", "mood", "move"], "ans": 2}, ". 'Moss ", {"n": 176, "opts": ["pickle", "piglet", "piglets"], "ans": 1}, "' is another name for tardigrades because of the way they look when viewed from the ", {"n": 177, "opts": ["front", "font", "frond"], "ans": 0}, ". They were first discovered in Germany in ", {"n": 178, "opts": ["1873", "1773", "1737"], "ans": 1}, " by Johann Goeze, who coined the name Tardigrada.\n\nAs I say, there are many different species of tardigrade – ", {"n": 43, "ans": "too many to describe here", "w": 5, "kind": "write"}, " – but, ", {"n": 44, "ans": "generally speaking", "w": 2, "kind": "write"}, ", ", {"n": 45, "ans": "the different species share similar", "w": 5, "kind": "write"}, " physical ", {"n": 179, "opts": ["trays", "trains", "traits"], "ans": 2}, ". ", {"n": 46, "ans": "They have a body", "w": 4, "kind": "write"}, " which is ", {"n": 180, "opts": ["short", "sport", "shot"], "ans": 0}, ", ", {"n": 47, "ans": "and also rounded", "w": 3, "kind": "write"}, " – a bit like a ", {"n": 181, "opts": ["beryl", "barren", "barrel"], "ans": 2}, " – ", {"n": 48, "ans": "and the body", "w": 3, "kind": "write"}, " comprises four ", {"n": 182, "opts": ["segments", "cements", "sediments"], "ans": 0}, ". Each segment has a pair of ", {"n": 183, "opts": ["eggs", "legs", "logs"], "ans": 1}, ", ", {"n": 49, "ans": "at the end of which are", "w": 6, "kind": "write"}, " ", {"n": 50, "ans": "between four and", "w": 3, "kind": "write"}, " eight sharp ", {"n": 184, "opts": ["clause", "claws", "cause"], "ans": 1}, ". ", {"n": 51, "ans": "I should also say that", "w": 5, "kind": "write"}, " ", {"n": 52, "ans": "some species don't have any", "w": 5, "kind": "write"}, " claws; what they have are ", {"n": 185, "opts": ["desks", "disks", "discs"], "ans": 2}, ", and ", {"n": 53, "ans": "these work by", "w": 3, "kind": "write"}, " means of ", {"n": 186, "opts": ["suction", "section", "suggestion"], "ans": 0}, ". ", {"n": 54, "ans": "They enable the tardigrade", "w": 4, "kind": "write"}, " to ", {"n": 187, "opts": ["clean", "cling", "climb"], "ans": 1}, " on to surfaces or to grip its ", {"n": 188, "opts": ["prey", "play", "pray"], "ans": 0}, ". Within the body, there are no ", {"n": 189, "opts": ["lunges", "longs", "lungs"], "ans": 2}, ", or any organs for breathing at all. Instead, oxygen and also ", {"n": 190, "opts": ["blood", "flood", "bloom"], "ans": 0}, " are transported in a ", {"n": 191, "opts": ["fluent", "fluid", "flute"], "ans": 1}, " that fills the ", {"n": 192, "opts": ["gravity", "cavities", "cavity"], "ans": 2}, " of the body. As far as the tardigrade's head is concerned, the best way I can describe this is that it looks rather ", {"n": 193, "opts": ["strange", "strong", "stranger"], "ans": 0}, " – a bit ", {"n": 194, "opts": ["washed", "squashed", "squished"], "ans": 1}, " even – though many of the websites I looked at described its appearance as ", {"n": 195, "opts": ["cut", "acute", "cute"], "ans": 2}, ", which isn't exactly very ", {"n": 196, "opts": ["scientist", "specific", "scientific"], "ans": 2}, ". The tardigrade's mouth is a kind of ", {"n": 197, "opts": ["tube", "tune", "tub"], "ans": 0}, " that can open outwards to reveal teeth-like structures known as '", {"n": 198, "opts": ["stilts", "stylets", "styles"], "ans": 1}, "'. These are sharp enough to ", {"n": 199, "opts": ["pierce", "pier", "peace"], "ans": 0}, " plant or animal cells.\n\nSo, where are tardigrades found? Well, they live in every part of the world, in a variety of habitats: most commonly, on the ", {"n": 200, "opts": ["bid", "bed", "bad"], "ans": 1}, " of a lake, or on many kinds of plants or in very ", {"n": 201, "opts": ["white", "west", "wet"], "ans": 2}, " environments. There's been some interesting research which has found that tardigrades are capable of surviving ", {"n": 202, "opts": ["radiation", "radiator", "relation"], "ans": 0}, " and very high ", {"n": 203, "opts": ["president", "pressure", "pleasure"], "ans": 1}, ", and they're also able to withstand temperatures as cold as ", {"n": 204, "opts": ["-20", "-2,000", "-200"], "ans": 2}, " degrees centigrade, or highs of more than ", {"n": 205, "opts": ["148", "184", "140"], "ans": 0}, " degrees centigrade, which is incredibly hot.\n\nIt has been said that tardigrades could survive long after human beings have been ", {"n": 206, "opts": ["wide", "whipped", "wiped"], "ans": 2}, " out, even in the event of an ", {"n": 207, "opts": ["steroid", "asteroid", "asteroids"], "ans": 1}, " hitting the earth. If conditions become too extreme and tardigrades are at risk of ", {"n": 208, "opts": ["drying", "dying", "trying"], "ans": 0}, " out, they enter a state called cryptobiosis. They curl into a ", {"n": 209, "opts": ["bell", "ball", "bowl"], "ans": 1}, ", called a tun — that's T-U-N – by retracting their head and legs, and their ", {"n": 210, "opts": ["metabolic", "mechanism", "metabolism"], "ans": 2}, " drops to less than ", {"n": 211, "opts": ["won", "ten", "one"], "ans": 2}, " percent of normal levels. They can remain like this until they are re-introduced to ", {"n": 212, "opts": ["waiter", "water", "winter"], "ans": 1}, ", when they will come back to life in a matter of a few ", {"n": 213, "opts": ["hours", "houses", "ours"], "ans": 0}, ". While in a state of cryptobiosis, tardigrades produce a ", {"n": 214, "opts": ["protein", "protest", "protected"], "ans": 0}, " that protects their ", {"n": 215, "opts": ["DND", "DNA", "RNA"], "ans": 1}, ". In ", {"n": 216, "opts": ["2060", "2006", "2016"], "ans": 2}, ", scientists revived two tardigrades that had been tuns for more than ", {"n": 217, "opts": ["30", "13", "33"], "ans": 0}, " years. There was a report that, in ", {"n": 218, "opts": ["1984", "1948", "1849"], "ans": 1}, ", a 120-year-old tun was revived, but this experiment has never been ", {"n": 219, "opts": ["reported", "rejected", "repeated"], "ans": 2}, ". There are currently several tests taking place in ", {"n": 220, "opts": ["space", "place", "spice"], "ans": 0}, ", to determine how long tardigrades might be able to survive there. I believe the record so far is ", {"n": 221, "opts": ["12", "10", "100"], "ans": 1}, " days.\n\nSo, erm, moving on. In terms of their diet, tardigrades consume ", {"n": 222, "opts": ["liquid", "lipids", "liquids"], "ans": 2}, " in order to survive. Although they have teeth, they don't use these for ", {"n": 223, "opts": ["choosing", "chowing", "chewing"], "ans": 2}, ". They suck the juices from ", {"n": 224, "opts": ["moss", "moth", "mass"], "ans": 0}, ", or extract fluid from ", {"n": 225, "opts": ["seaside", "seaweed", "seabed"], "ans": 1}, ", but some species ", {"n": 226, "opts": ["pray", "play", "prey"], "ans": 2}, " on other tardigrades, from other species or within their own. I suppose this isn't surprising, given that tardigrades are mainly comprised of liquid and are coated with a type of ", {"n": 227, "opts": ["jail", "gel", "gold"], "ans": 1}, ".\n\nFinally, I'd like to mention the ", {"n": 228, "opts": ["conservation", "reservation", "conversation"], "ans": 0}, " status of tardigrades. It is estimated that they have been in existence for approximately half a ", {"n": 229, "opts": ["billion", "trillion", "million"], "ans": 0}, " years and, in that time, they have survived five mass ", {"n": 230, "opts": ["extensions", "distinctions", "extinctions"], "ans": 2}, ". So, it will probably come as no surprise to you, that tardigrades have not been evaluated by the International Union for Conservation of Nature and are not on any ", {"n": 231, "opts": ["dangerous", "endangered", "engendered"], "ans": 1}, " list. Some researchers have described them as ", {"n": 232, "opts": ["driving", "striving", "thriving"], "ans": 2}, ".\n\nDoes anyone have any questions they'd like to ask?"]}], "mc": 232, "wr": 54};
+const $ = (s, r=document) => r.querySelector(s);
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const L = ["A","B","C"];
+const state = {};   // n -> chosen index
+const checked = {}; // part -> bool
+
+function storeGet(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}}
+function storeSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+Object.assign(state, storeGet(`c19t${DATA.test}-choices`)||{});
+
+function renderTabs(active){
+  const t = $("#tabs"); t.innerHTML = "";
+  DATA.parts.forEach(p => t.append(tab("p"+p.num, `Part ${p.num}`, 0, active)));
+}
+function tab(id, label, cnt, active){
+  const b = document.createElement("button");
+  b.className = "tab"; b.role = "tab"; b.setAttribute("aria-selected", id===active);
+  b.innerHTML = label;
+  b.onclick = () => show(id); return b;
+}
+
+function textToHTML(s){
+  return esc(s).replace(/(^|\n\n)(BELLA|COLEMAN|DON|WOMAN):/g, (m,a,b)=>`${a}<span class="spk">${b}</span>`);
+}
+function renderPart(p){
+  // ráp segments thành HTML, tách đoạn theo \n\n
+  let html = "";
+  p.segs.forEach(s => {
+    if (typeof s === "string") { html += textToHTML(s); return; }
+    if (s.kind === "write") { html += `<span class="wgap" data-d="${s.n}"><span class="num">D${s.n}</span><input id="w${s.n}" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" style="width:${Math.max(5, s.ans.length*0.62+1)}em" aria-label="Ô D${s.n}, ${s.w} từ"><span class="wc">${s.w}</span><span class="fix" hidden></span></span>`; return; }
+    html += `<span class="gap" data-n="${s.n}"><span class="num">${s.n}</span>` +
+      s.opts.map((o,i)=>`<button class="opt" data-i="${i}"><span class="l">${L[i]}</span>${esc(o)}</button>`).join("") + `</span>`;
+  });
+  html = "<p>" + html.split("\n\n").join("</p><p>") + "</p>";
+  const mc = p.segs.filter(s=>typeof s!=="string"&&s.opts), wr = p.segs.filter(s=>typeof s!=="string"&&s.kind==="write");
+  const first = mc[0].n;
+  $("#main").innerHTML = `
+    <div class="panel-head"><div><div class="kicker">Part ${p.num} · Trắc nghiệm ${first}–${first+mc.length-1} · Tự viết D${wr[0].n}–D${wr[wr.length-1].n}</div><h2>${esc(p.title)}</h2></div>
+      <span class="progress" id="prog"></span></div>
+    <div class="player"><audio id="aud" controls preload="none" src="cambridge19-test${DATA.test}-part${p.num}.mp3"></audio>
+      <div class="speed" id="spd">${[0.75,0.9,1].map(r=>`<button data-r="${r}" class="${r===1?"on":""}">${r}×</button>`).join("")}</div></div>
+    <p class="how">Hai dạng ô: <b>ô số đen</b> — bấm chọn A, B hoặc C; <b>ô D đỏ</b> — tự gõ cụm từ nghe được (số nhỏ là số từ cần viết). Mẹo: lần 1 nghe 0.9×, lần 2 tốc độ thường rồi bấm <b>Chấm bài</b>.</p>
+    <article class="transcript" id="tx">${html}</article>
+    <div class="actions"><button class="btn primary" id="chk">Chấm bài</button><button class="btn" id="rst">Làm lại</button><span class="score" id="sc" hidden></span></div>`;
+  const aud = $("#aud");
+  $("#spd").onclick = e => { const b=e.target.closest("button"); if(!b) return; aud.playbackRate=+b.dataset.r; $("#spd").querySelectorAll("button").forEach(x=>x.classList.toggle("on",x===b)); };
+  $("#tx").onclick = e => {
+    const b = e.target.closest(".opt"); if(!b || b.disabled) return;
+    const g = b.closest(".gap"); state[g.dataset.n] = +b.dataset.i; storeSet(`c19t${DATA.test}-choices`, state); paint(p);
+  };
+  $("#tx").oninput = e => { if(e.target.tagName==="INPUT"){ state[e.target.id] = e.target.value; storeSet(`c19t${DATA.test}-choices`, state); paint(p);} };
+  $("#tx").querySelectorAll("input").forEach(i => i.value = state[i.id] || "");
+  $("#chk").onclick = () => { checked[p.num]=true; paint(p); $("#sc").scrollIntoView({block:"nearest"}); };
+  $("#rst").onclick = () => { p.segs.forEach(s=>{ if(typeof s!=="string") delete state[s.kind==="write" ? "w"+s.n : s.n]; }); $("#tx").querySelectorAll("input").forEach(i=>i.value=""); storeSet(`c19t${DATA.test}-choices`, state); checked[p.num]=false; paint(p); };
+  paint(p);
+}
+const normW = s => (s||"").toLowerCase().replace(/[’‘]/g,"'").replace(/[^a-z0-9'£ -]/g," ").replace(/\s+/g," ").trim();
+function paint(p){
+  let done=0, right=0, wd=0, wr=0; const isC = !!checked[p.num];
+  const gaps = p.segs.filter(s=>typeof s!=="string" && s.opts), writes = p.segs.filter(s=>typeof s!=="string" && s.kind==="write");
+  gaps.forEach(s => {
+    const g = $(`.gap[data-n="${s.n}"]`); const ch = state[s.n];
+    if (ch!==undefined) done++; if (ch===s.ans) right++;
+    g.classList.toggle("done", isC); g.classList.toggle("right", isC && ch===s.ans); g.classList.toggle("wrong", isC && ch!==s.ans);
+    g.querySelectorAll(".opt").forEach((b,i) => {
+      b.classList.toggle("sel", !isC && ch===i);
+      b.classList.toggle("is-ans", isC && i===s.ans);
+      b.classList.toggle("is-wrong", isC && ch===i && i!==s.ans);
+      b.disabled = isC;
+    });
+  });
+  writes.forEach(s => {
+    const g = $(`.wgap[data-d="${s.n}"]`), inp = g.querySelector("input"), fix = g.querySelector(".fix");
+    const v = state["w"+s.n]||""; if (v.trim()) wd++; const ok = normW(v)===normW(s.ans); if (ok) wr++;
+    g.classList.toggle("right", isC && ok); g.classList.toggle("wrong", isC && !ok);
+    inp.readOnly = isC; fix.hidden = !(isC && !ok); fix.textContent = s.ans;
+  });
+  $("#prog").textContent = `Đã làm ${done}/${gaps.length} trắc nghiệm · ${wd}/${writes.length} tự viết`;
+  const sc = $("#sc"); sc.hidden = !isC;
+  if (isC) sc.textContent = `Trắc nghiệm ${right}/${gaps.length} · Tự viết ${wr}/${writes.length} · Tổng ${Math.round((right+wr)/(gaps.length+writes.length)*100)}%`;
+}
+
+/* ---------- Chép chính tả ---------- */
+const norm = s => s.toLowerCase().replace(/[’']/g,"'").replace(/[^a-z0-9'£\s-]/g," ").split(/\s+/).filter(Boolean);
+function lcsDiff(target, typed){
+  const a=norm(target), b=norm(typed), m=a.length, n=b.length;
+  const dp=Array.from({length:m+1},()=>Array(n+1).fill(0));
+  for(let i=m-1;i>=0;i--) for(let j=n-1;j>=0;j--) dp[i][j]= a[i]===b[j]? dp[i+1][j+1]+1 : Math.max(dp[i+1][j],dp[i][j+1]);
+  const out=[]; let i=0,j=0;
+  while(i<m||j<n){
+    if(i<m&&j<n&&a[i]===b[j]){out.push(["ok",b[j]]);i++;j++}
+    else if(j<n&&(i===m||dp[i][j+1]>=dp[i+1][j])){out.push(["bad",b[j]]);j++}
+    else {out.push(["miss",a[i]]);i++}
+  }
+  return {out, pct: m? Math.round(dp[0][0]/m*100):0};
+}
+let voice=null;
+function pickVoice(){ const vs=speechSynthesis.getVoices(); voice = vs.find(v=>/en-GB/i.test(v.lang)) || vs.find(v=>/^en/i.test(v.lang)) || null; }
+if ("speechSynthesis" in window){ pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+function speak(text, rate){
+  if(!("speechSynthesis" in window)) return false;
+  speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.lang="en-GB"; u.rate=rate; if(voice) u.voice=voice; speechSynthesis.speak(u); return true;
+}
+function renderDict(){
+  const drafts = storeGet(`c19t${DATA.test}-dict`)||{};
+  let k=0, html = `<div class="panel-head"><div><div class="kicker">Writing · Dictation</div><h2>Chép chính tả — 20 câu từ transcript</h2></div></div>
+  <p class="how">Bấm <b>▶ Nghe</b> (hoặc <b>🐢 Chậm</b>), gõ lại đúng câu nghe được, rồi bấm <b>Kiểm tra</b>. Từ xanh = đúng, gạch cam = sai/thừa, ô xanh nhạt = từ bị thiếu. Không phân biệt hoa/thường và dấu câu.</p>`;
+  Object.entries(DATA.dictation).forEach(([pn, ss]) => {
+    html += `<section class="dgroup"><h3>Part ${pn} · ${esc(DATA.parts[pn-1].title)}</h3>`;
+    ss.forEach(s => { k++; html += `<div class="dcard" data-k="${k}">
+      <div class="drow"><span class="dn">D${k}</span><button class="sbtn" data-act="n">▶ Nghe</button><button class="sbtn" data-act="s">🐢 Chậm</button><button class="sbtn" data-act="c">Kiểm tra</button><button class="sbtn" data-act="a">Xem đáp án</button></div>
+      <textarea id="d${k}" rows="2" placeholder="Gõ câu bạn nghe được…" spellcheck="false">${esc(drafts[k]||"")}</textarea>
+      <div class="diff" hidden></div></div>`; });
+    html += `</section>`;
+  });
+  html += `<p class="note">Giọng đọc dùng giọng Anh-Anh của trình duyệt (text-to-speech — giọng máy đọc văn bản). Muốn nghe giọng gốc, quay lại tab Part tương ứng và phát audio.</p>`;
+  $("#main").innerHTML = html;
+  const all = Object.values(DATA.dictation).flat();
+  $("#main").onclick = e => {
+    const b=e.target.closest(".sbtn"); if(!b) return;
+    const card=b.closest(".dcard"), k=+card.dataset.k, s=all[k-1], d=card.querySelector(".diff");
+    if(b.dataset.act==="n"||b.dataset.act==="s"){ if(!speak(s, b.dataset.act==="n"?0.9:0.6)){ d.hidden=false; d.textContent="Trình duyệt này không hỗ trợ đọc giọng nói."; } }
+    if(b.dataset.act==="c"){ const r=lcsDiff(s, card.querySelector("textarea").value); d.hidden=false;
+      d.innerHTML = r.out.map(([t,w])=>`<span class="w-${t}">${esc(w)}</span>`).join(" ") + `<span class="pct">${r.pct}% đúng</span>`; }
+    if(b.dataset.act==="a"){ d.hidden=false; d.innerHTML = `<b>Đáp án:</b> ${esc(s)}`; }
+  };
+  $("#main").oninput = e => { if(e.target.tagName==="TEXTAREA"){ drafts[e.target.id.slice(1)]=e.target.value; storeSet(`c19t${DATA.test}-dict`,drafts);} };
+}
+
+function show(id){
+  renderTabs(id); $("#main").onclick=null; $("#main").oninput=null;
+  if ("speechSynthesis" in window) speechSynthesis.cancel();
+  if (id==="dict") renderDict(); else renderPart(DATA.parts[+id.slice(1)-1]);
+  try{ localStorage.setItem(`c19t${DATA.test}-tab`, id) }catch(e){}
+}
+let start="p1"; try{ start = localStorage.getItem(`c19t${DATA.test}-tab`) || "p1" }catch(e){}
+if (!/^p[1-4]$/.test(start)) start="p1";
+show(start);
+</script>
+
+</body>
+</html>
