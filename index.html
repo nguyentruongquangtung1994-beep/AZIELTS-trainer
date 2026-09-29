@@ -6,6 +6,9 @@
 <meta name="robots" content="noindex, nofollow" />
 <title>AZEnglish Reading & Listening Trainer</title>
 <meta name="theme-color" content="#e0102b" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Be+Vietnam+Pro:wght@400;600;700&display=swap" />
 <style>
   :root{
     --paper:#fcfbfa; --paper-2:#f2f0ee; --ink:#1a1210; --ink-soft:#5c534f; --line:#e6e1dc;
@@ -240,6 +243,115 @@
   .strategy-example + .strategy-example{ margin-top:8px; }
   .strategy-example .ex-label{ font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; color:var(--red-ink); display:block; margin-bottom:4px; }
   .strategy-example .ex-quote{ font-style:italic; color:var(--ink-soft); }
+
+  /* ================= HOME — neo-brutal AZ (chỉ áp dụng cho trang chủ) ================= */
+  :root{ --nb-line:#161012; --nb-surface:#ffffff; --nb-blush:#ffe3e1; --nb-grid:#f6e1de; --nb-hl:#ffe45c; --nb-muted:#5e5153;
+    --nb-display:"Baloo 2","Be Vietnam Pro",ui-rounded,system-ui,sans-serif; --nb-body:"Be Vietnam Pro",-apple-system,"Segoe UI",Roboto,sans-serif; }
+  @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --nb-line:#f3ece9; --nb-surface:#1f1a18; --nb-blush:#3a1c1f; --nb-grid:#2a2220; --nb-muted:#b8aca6; } }
+  :root[data-theme="dark"]{ --nb-line:#f3ece9; --nb-surface:#1f1a18; --nb-blush:#3a1c1f; --nb-grid:#2a2220; --nb-muted:#b8aca6; }
+  .home{ font-family:var(--nb-body); display:flex; flex-direction:column; gap:0; }
+  .home h1,.home h2,.home h3{ font-family:var(--nb-display); line-height:1.05; margin:0; text-wrap:balance; }
+  .nb-eyebrow{ font:700 12px/1 var(--nb-body); letter-spacing:.12em; text-transform:uppercase; color:var(--red); margin:0 0 14px; }
+  .nb-hero{ display:grid; grid-template-columns:1.15fr .85fr; gap:20px; align-items:center; padding:18px 0 26px; }
+  .nb-hero h1{ font-size:clamp(36px,6vw,64px); font-weight:800; color:var(--ink); }
+  .nb-hero h1 .hlw{ background:linear-gradient(transparent 55%,var(--nb-hl) 55%,var(--nb-hl) 92%,transparent 92%); padding:0 .08em; }
+  :root[data-theme="dark"] .nb-hero h1 .hlw{ color:var(--ink); }
+  .nb-hero h1 em{ font-style:normal; color:#fff; background:#e0102b; padding:0 .18em; border:4px solid var(--nb-line); border-radius:10px; box-shadow:6px 6px 0 var(--nb-line); display:inline-block; transform:rotate(-2deg); margin-top:.14em; }
+  .nb-hero p.nb-lede{ max-width:34em; color:var(--nb-muted); margin:20px 0 24px; font-size:15.5px; line-height:1.6; }
+  .nb-btn{ display:inline-flex; align-items:center; gap:10px; font:700 15px/1 var(--nb-body); padding:14px 20px; border:3px solid var(--nb-line); border-radius:12px; background:#e0102b; color:#fff; box-shadow:5px 5px 0 var(--nb-line); cursor:pointer; transition:transform .2s ease-out, box-shadow .2s ease-out; text-decoration:none; }
+  .nb-btn:hover{ transform:translate(-2px,-3px); box-shadow:8px 8px 0 var(--nb-line); }
+  .nb-btn:active{ transform:translate(3px,3px); box-shadow:2px 2px 0 var(--nb-line); }
+  .nb-btn.ghost{ background:var(--nb-surface); color:var(--ink); }
+  .nb-btn.sm{ padding:9px 13px; font-size:13.5px; box-shadow:3px 3px 0 var(--nb-line); }
+  .nb-btn:focus-visible,.nb-skill:focus-visible,.nb-test:focus-visible,.nb-strategy:focus-visible{ outline:3px dashed #e0102b; outline-offset:4px; box-shadow:none; }
+  .nb-art{ position:relative; aspect-ratio:1; max-width:360px; width:100%; justify-self:center; }
+  .nb-art svg{ width:100%; height:100%; overflow:visible; }
+  .nb-burst{ animation:nbSpin 40s linear infinite; transform-origin:50% 50%; }
+  @keyframes nbSpin{ to{ transform:rotate(360deg); } }
+  .nb-bubble{ position:absolute; top:3%; left:-4%; background:var(--nb-surface); color:var(--ink); border:3px solid var(--nb-line); border-radius:16px; padding:8px 14px; font:700 14px/1.2 var(--nb-body); box-shadow:4px 4px 0 var(--nb-line); transform:rotate(-4deg); }
+  .o{ stroke:var(--nb-line); } .fl{ fill:var(--nb-line); } .fb{ fill:var(--nb-blush); }
+  .nb-blink{ animation:nbBlink 5s infinite; transform-box:fill-box; transform-origin:center; }
+  @keyframes nbBlink{ 0%,94%,100%{ transform:scaleY(1); } 96%{ transform:scaleY(.1); } }
+  @media (max-width:760px){ .nb-hero{ grid-template-columns:1fr; } .nb-art{ max-width:260px; } }
+
+  .nb-stats{ display:flex; flex-wrap:wrap; gap:12px 28px; align-items:center; border:4px solid var(--nb-line); border-radius:14px; background:var(--nb-surface); padding:16px 20px; box-shadow:8px 8px 0 var(--nb-line); }
+  .nb-stats .k{ font-size:12.5px; color:var(--nb-muted); }
+  .nb-stats .v{ font:800 25px/1.1 var(--nb-display); font-variant-numeric:tabular-nums; color:var(--ink); }
+  .nb-stats .bar{ flex:1 1 220px; min-width:0; }
+  .nb-meter{ height:16px; border:3px solid var(--nb-line); border-radius:999px; background:var(--nb-blush); overflow:hidden; margin-top:6px; }
+  .nb-meter i{ display:block; height:100%; background:#e0102b; }
+
+  .nb-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:12px; flex-wrap:wrap; margin:46px 0 18px; }
+  .nb-head h2{ font-size:clamp(26px,4vw,36px); color:var(--ink); }
+  .nb-head p{ margin:6px 0 0; color:var(--nb-muted); font-size:14.5px; max-width:44em; line-height:1.55; }
+
+  .nb-skills{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+  @media (max-width:700px){ .nb-skills{ grid-template-columns:1fr; } }
+  .nb-skill{ position:relative; display:flex; flex-direction:column; align-items:flex-start; text-align:left; min-height:280px; overflow:hidden; border:4px solid var(--nb-line); border-radius:10px; background:var(--c); color:#fff; box-shadow:8px 8px 0 var(--nb-line); padding:20px; cursor:pointer; font-family:var(--nb-body); transition:transform .3s cubic-bezier(0,0,.2,1), box-shadow .3s cubic-bezier(0,0,.2,1); }
+  .nb-skill:hover{ transform:translateY(-6px); box-shadow:12px 12px 0 var(--nb-line); }
+  .nb-skill[aria-pressed="false"]{ filter:saturate(.55) brightness(.95); }
+  .nb-skill[aria-pressed="false"]:hover{ filter:none; }
+  .nb-skill .ico{ width:46px; height:46px; display:grid; place-items:center; background:#fff; border:3px solid #161012; border-radius:12px; color:#161012; }
+  .nb-skill .ico svg{ width:24px; height:24px; }
+  .nb-skill h3{ font-size:38px; font-weight:800; margin-top:14px; color:#fff; }
+  .nb-skill p{ font-size:14px; line-height:1.5; margin:6px 0 0; max-width:21em; position:relative; z-index:1; }
+  .nb-skill ul{ list-style:none; padding:0; margin:12px 0 0; display:flex; flex-wrap:wrap; gap:7px; max-width:58%; position:relative; z-index:1; }
+  .nb-skill li{ border:2px solid #fff; border-radius:999px; padding:3px 10px; font-size:12px; font-weight:600; }
+  .nb-skill .tag{ margin-top:auto; background:#161012; color:#fff; border:3px solid #fff; border-radius:999px; padding:6px 13px; font:700 12px/1 var(--nb-body); letter-spacing:.06em; position:relative; z-index:1; }
+  .nb-skill .tag.sel{ background:#fff; color:#161012; border-color:#161012; }
+  .nb-skill .nb-mascot{ position:absolute; right:-6px; bottom:-40px; width:44%; max-width:220px; transition:transform .35s cubic-bezier(.3,1.6,.5,1); }
+  .nb-skill:hover .nb-mascot{ transform:translateY(-14px) rotate(-3deg); }
+  .nb-skill .ms-o{ stroke:#161012; } .nb-skill .ms-f{ fill:#161012; }
+
+  .nb-books{ display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:18px; }
+  @media (max-width:900px){ .nb-books{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
+  @media (max-width:520px){ .nb-books{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; } }
+  .nb-book{ display:flex; flex-direction:column; gap:10px; border:3px solid var(--nb-line); border-radius:10px; background:var(--nb-surface); box-shadow:5px 5px 0 var(--nb-line); padding:14px; color:var(--ink); min-width:0; }
+  .nb-book .spine{ height:10px; border-radius:4px; background:var(--skill-c,#e0102b); border:2px solid var(--nb-line); }
+  .nb-book .cap{ color:var(--nb-muted); font-size:12px; }
+  .nb-book b.num{ font:800 34px/1 var(--nb-display); }
+  .nb-book .new{ align-self:flex-start; background:var(--nb-hl); color:#161012; border:2px solid var(--nb-line); border-radius:999px; font:700 10.5px/1 var(--nb-body); padding:3px 8px; letter-spacing:.04em; text-transform:uppercase; }
+  .nb-tests{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+  .nb-test{ display:flex; flex-direction:column; gap:2px; text-decoration:none; color:var(--ink); border:2px solid var(--nb-line); border-radius:8px; padding:7px 8px; background:var(--nb-surface); font:700 13px/1.1 var(--nb-body); transition:transform .15s, box-shadow .15s; }
+  .nb-test:hover{ transform:translate(-1px,-2px); box-shadow:3px 3px 0 var(--nb-line); }
+  .nb-test small{ font-weight:600; font-size:11px; color:var(--nb-muted); }
+  .nb-test.done{ background:var(--skill-c,#e0102b); color:#fff; }
+  .nb-test.done small{ color:#fff; opacity:.9; }
+  .nb-test.doing{ background:var(--nb-blush); }
+  .nb-test.off{ opacity:.45; pointer-events:none; }
+  .nb-book .sum{ font-size:12px; color:var(--nb-muted); }
+
+  .nb-strategy{ display:flex; gap:16px; align-items:center; border:4px solid var(--nb-line); border-radius:12px; background:var(--nb-hl); color:#161012; box-shadow:8px 8px 0 var(--nb-line); padding:18px 20px; text-decoration:none; margin-top:34px; transition:transform .25s, box-shadow .25s; }
+  .nb-strategy:hover{ transform:translateY(-4px); box-shadow:11px 11px 0 var(--nb-line); }
+  .nb-strategy .i{ flex:none; width:52px; height:52px; display:grid; place-items:center; background:#161012; color:#ffe45c; border-radius:12px; font:800 22px/1 var(--nb-display); }
+  .nb-strategy h3{ font-size:24px; color:#161012; }
+  .nb-strategy p{ margin:4px 0 0; font-size:14px; line-height:1.5; }
+  .nb-strategy .go{ margin-left:auto; font:800 26px/1 var(--nb-display); }
+
+  .nb-kw{ display:grid; grid-template-columns:1.15fr .85fr; gap:20px; border:4px solid var(--nb-line); border-radius:14px; box-shadow:8px 8px 0 var(--nb-line); padding:20px;
+    background-color:var(--paper); background-image:linear-gradient(var(--nb-grid) 1px,transparent 1px),linear-gradient(90deg,var(--nb-grid) 1px,transparent 1px); background-size:28px 28px; }
+  @media (max-width:820px){ .nb-kw{ grid-template-columns:1fr; } }
+  .nb-pane{ background:var(--nb-surface); border:3px solid var(--nb-line); border-radius:12px; padding:18px 20px; min-width:0; color:var(--ink); }
+  .nb-pane h3{ font-size:22px; margin-bottom:10px; }
+  .nb-pane .src{ font-family:Georgia,"Iowan Old Style",serif; font-size:16px; line-height:1.75; margin:0; max-width:62ch; }
+  .nb-q{ display:flex; gap:10px; align-items:flex-start; font-weight:600; margin:0 0 12px; }
+  .nb-q .n{ flex:none; display:inline-grid; place-items:center; width:32px; height:32px; border:3px solid var(--nb-line); border-radius:8px; background:var(--nb-line); color:var(--paper); font:800 15px/1 var(--nb-display); }
+  .nb-q span.t{ padding-top:3px; }
+  .nb-tools{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+  .nb-count{ font:700 12.5px/1 var(--nb-body); color:var(--nb-muted); margin:12px 0 0; }
+  .nb-tip{ display:flex; gap:12px; align-items:flex-start; margin-top:14px; }
+  .nb-tip svg{ width:64px; flex:none; overflow:visible; }
+  .nb-say{ background:var(--nb-surface); border:3px solid var(--nb-line); border-radius:14px; padding:10px 12px; box-shadow:4px 4px 0 var(--nb-line); font-size:13.5px; line-height:1.5; min-width:0; }
+  .nb-say strong{ font-family:var(--nb-display); font-size:17px; display:block; line-height:1.1; margin-bottom:2px; }
+  @media (prefers-reduced-motion:reduce){ .home *{ animation:none!important; transition:none!important; } }
+
+  /* ---- bôi keyword (dùng ở trang chủ + khi làm bài, giống máy thi IELTS) ---- */
+  mark.hl-user{ background:#ffe45c; color:#161012; border-radius:2px; padding:0 1px; }
+  .hl-menu{ position:fixed; z-index:1000; display:flex; border:3px solid #161012; border-radius:10px; background:#fff; box-shadow:4px 4px 0 #161012; overflow:hidden; }
+  .hl-menu button{ font:700 13.5px/1 -apple-system,"Segoe UI",Roboto,sans-serif; background:#fff; color:#161012; border:0; padding:10px 14px; cursor:pointer; }
+  .hl-menu button + button{ border-left:2px solid #161012; }
+  .hl-menu button:hover{ background:#ffe3e1; }
+  .hl-menu .dot{ display:inline-block; width:10px; height:10px; border-radius:2px; background:#ffe45c; border:1.5px solid #161012; margin-right:6px; vertical-align:-1px; }
 </style>
 </head>
 <body>
@@ -485,289 +597,317 @@
   // ---------- HOME ----------
   function renderHome(){
     app.innerHTML = "";
-    var lede = el("p", "lede", "Chọn Test để luyện Reading hoặc Listening — tự chấm điểm ngay khi nộp bài, Reading có thêm ôn từ vựng lấy đúng trong bài vừa làm.");
-    app.appendChild(lede);
+    var BOOKS = [
+      {num:21, read:TESTS_REGISTRY_21, listen:LISTEN_TESTS_REGISTRY_21, isNew:true},
+      {num:20, read:TESTS_REGISTRY_20, listen:LISTEN_TESTS_REGISTRY_20},
+      {num:19, read:TESTS_REGISTRY,    listen:LISTEN_TESTS_REGISTRY},
+      {num:18, read:TESTS_REGISTRY_18, listen:LISTEN_TESTS_REGISTRY_18},
+      {num:16, read:TESTS_REGISTRY_16, listen:LISTEN_TESTS_REGISTRY_16},
+    ];
+    var SKILL_COLOR = {reading:"#9e0b21", listening:"#e0102b"};
+    var skill = "reading";
+    try{ skill = localStorage.getItem(STORAGE_KEY + "_skill") === "listening" ? "listening" : "reading"; }catch(e){}
 
-    var strategyLink = el("a", "book-card");
-    strategyLink.href = "#/strategy";
-    strategyLink.innerHTML =
-      '<div class="book-badge">📋</div>' +
-      '<div class="book-body">' +
-        '<div class="book-title">Chiến lược làm bài IELTS</div>' +
-        '<p class="book-desc">Cách phân bổ thời gian và mẹo xử lý từng dạng câu hỏi Reading &amp; Listening — đọc trước khi luyện đề.</p>' +
-      '</div>';
-    app.appendChild(strategyLink);
+    // ---- tiến độ thật từ localStorage ----
+    function summarize(key){
+      var done = 0, total = 0, latest = null;
+      BOOKS.forEach(function(b){
+        b[key].forEach(function(t){
+          total++;
+          var a = STATE.attempts[t.id];
+          if(a && a.score !== undefined){
+            done++;
+            if(!latest || (a.submittedAt||0) > (latest.submittedAt||0)) latest = a;
+          }
+        });
+      });
+      return {done:done, total:total, latest:latest};
+    }
+    var sR = summarize("read"), sL = summarize("listen");
+    var pct = Math.round((sR.done + sL.done) / Math.max(1, sR.total + sL.total) * 100);
+    function lastTxt(s){ return s.latest ? (s.latest.score + "/" + (s.latest.total||40)) : "Chưa có"; }
 
-    var readingBook = el("a", "book-card");
-    readingBook.href = "#/test/cambridge19-test1/intro";
-    readingBook.innerHTML =
-      '<div class="book-badge">C19</div>' +
-      '<div class="book-body">' +
-        '<div class="book-title">Cambridge IELTS 19 — Reading</div>' +
-        '<p class="book-desc">4 test, mỗi test 3 bài đọc / 40 câu hỏi.</p>' +
-        '<div class="test-grid" style="margin-top:14px"></div>' +
-      '</div>';
-    var readGrid = readingBook.querySelector(".test-grid");
-    TESTS_REGISTRY.forEach(function(t){
-      var d = getData(t.id);
-      var tile = document.createElement(t.available ? "a" : "div");
-      tile.className = "test-tile";
-      if(t.available){
-        tile.href = "#/test/" + t.id + "/intro";
-        var attempt = STATE.attempts[t.id];
-        tile.innerHTML = "<b>" + esc(d.test) + "</b><span>" + d.passages.length + " bài đọc &middot; " + totalQuestions(d) + " câu &middot; " + d.durationMin + " phút</span>" +
-          (attempt ? '<div class="soon-chip" style="background:var(--green-bg);color:var(--green)">Đã làm: ' + attempt.score + '/40</div>' : "");
-      } else {
-        tile.setAttribute("disabled","disabled");
-        tile.innerHTML = "<b>" + (t.label||t.id) + "</b><span>3 bài đọc &middot; 40 câu &middot; 60 phút</span><div class='soon-chip'>Sắp có</div>";
-      }
-      readGrid.appendChild(tile);
+    var root = el("div", "home");
+    root.innerHTML =
+      '<section class="nb-hero">' +
+        '<div>' +
+          '<p class="nb-eyebrow">AZEnglish · Reading &amp; Listening Trainer</p>' +
+          '<h1>Luyện <span class="hlw">Reading</span> &amp; <span class="hlw">Listening</span><br><em>chuẩn Cambridge</em></h1>' +
+          '<p class="nb-lede">' + (sR.total + sL.total) + ' đề Reading và Listening từ Cambridge IELTS 16 đến 21. Làm bài như thi thật, bôi keyword, tự chấm điểm và xem bằng chứng cho từng câu.</p>' +
+          '<div class="btn-row" style="gap:14px">' +
+            '<a class="nb-btn" href="#" data-jump="nbBooks">Bắt đầu luyện →</a>' +
+            '<a class="nb-btn ghost" href="#" data-jump="nbKeyword">Thử bôi keyword</a>' +
+          '</div>' +
+        '</div>' +
+        '<div class="nb-art" aria-hidden="true">' +
+          '<div class="nb-bubble">Bôi keyword trước khi đọc nhé!</div>' +
+          '<svg viewBox="0 0 400 400">' +
+            '<g class="nb-burst"><polygon class="fb o" stroke-width="5" stroke-linejoin="round" points="' + burstPoints() + '"/></g>' +
+            '<g transform="translate(100 95)">' +
+              '<rect class="fl" x="6" y="14" width="200" height="200" rx="46"/>' +
+              '<rect class="o" x="0" y="0" width="200" height="200" rx="46" fill="#e0102b" stroke-width="6"/>' +
+              '<g class="nb-blink"><ellipse cx="66" cy="62" rx="20" ry="22" fill="#fff" stroke="#161012" stroke-width="5"/><ellipse cx="134" cy="62" rx="20" ry="22" fill="#fff" stroke="#161012" stroke-width="5"/>' +
+              '<circle cx="72" cy="66" r="9" fill="#161012"/><circle cx="140" cy="66" r="9" fill="#161012"/></g>' +
+              '<text x="100" y="164" text-anchor="middle" font-family="Be Vietnam Pro,Arial,sans-serif" font-weight="800" font-size="82" fill="#fff" letter-spacing="-3">AZ</text>' +
+              '<ellipse cx="34" cy="100" rx="12" ry="7" fill="#ff8f98"/><ellipse cx="166" cy="100" rx="12" ry="7" fill="#ff8f98"/>' +
+              '<path class="o" d="M-8 120 q-34 -10 -40 -44" fill="none" stroke-width="7" stroke-linecap="round"/>' +
+              '<path class="o" d="M208 120 q30 4 40 -24" fill="none" stroke-width="7" stroke-linecap="round"/>' +
+              '<g transform="translate(236 40) rotate(28)"><rect class="o" x="0" y="0" width="22" height="70" rx="5" fill="#ffe45c" stroke-width="5"/><rect class="fl" x="0" y="0" width="22" height="18" rx="4"/><path class="o" d="M3 70 l8 16 l8 -16z" fill="#ffe45c" stroke-width="5" stroke-linejoin="round"/></g>' +
+              '<path class="o" d="M60 206 v26 M140 206 v26" stroke-width="7" stroke-linecap="round"/>' +
+            '</g>' +
+          '</svg>' +
+        '</div>' +
+      '</section>' +
+
+      '<div class="nb-stats" role="group" aria-label="Tiến độ của bạn">' +
+        '<div><div class="k">Đề đã làm</div><div class="v">' + (sR.done + sL.done) + ' / ' + (sR.total + sL.total) + '</div></div>' +
+        '<div><div class="k">Reading gần nhất</div><div class="v">' + lastTxt(sR) + '</div></div>' +
+        '<div><div class="k">Listening gần nhất</div><div class="v">' + lastTxt(sL) + '</div></div>' +
+        '<div class="bar"><div class="k">Hoàn thành bộ Cambridge 16–21</div><div class="nb-meter"><i style="width:' + pct + '%"></i></div></div>' +
+      '</div>' +
+
+      '<div class="nb-head"><div><h2>Chọn kỹ năng</h2></div></div>' +
+      '<div class="nb-skills">' +
+        skillCard("listening", "Listening", SKILL_COLOR.listening,
+          "4 part nghe theo format thi thật, audio gốc, có transcript và bằng chứng cho từng câu.",
+          ["Gap-fill","Map / Plan","Multiple choice","Matching"], sL.total + " ĐỀ · CAM 16–21") +
+        skillCard("reading", "Reading", SKILL_COLOR.reading,
+          "3 passage mỗi test, bôi keyword trên bài đọc, ôn từ vựng lấy từ chính bài vừa làm.",
+          ["T/F/NG","Matching","Summary","Multiple choice"], sR.total + " ĐỀ · CAM 16–21") +
+      '</div>' +
+
+      '<div class="nb-head" id="nbBooks"><div><h2 id="nbBooksTitle"></h2><p>Mỗi sách 4 test. Ô tô màu là test đã nộp bài, ô hồng là test đang làm dở.</p></div></div>' +
+      '<div class="nb-books" id="nbBookGrid"></div>' +
+
+      '<a class="nb-strategy" href="#/strategy">' +
+        '<span class="i">!</span>' +
+        '<span><h3>Chiến lược làm bài IELTS</h3><p>Phân bổ thời gian và mẹo xử lý từng dạng câu hỏi Reading &amp; Listening. Nên đọc trước khi luyện đề.</p></span>' +
+        '<span class="go">→</span>' +
+      '</a>' +
+
+      '<div class="nb-head" id="nbKeyword"><div><h2>Bôi keyword như thi thật</h2><p>Trên máy thi IELTS, bạn bôi đen chữ rồi chọn Highlight. Khi làm đề ở đây cũng vậy. Thử ngay: quét chọn từ trong câu hỏi hoặc bài đọc bên dưới rồi bấm <b>Highlight</b>. Bấm vào chữ đã bôi để xóa.</p></div></div>' +
+      '<section class="nb-kw">' +
+        '<div class="nb-pane">' +
+          '<p class="nb-eyebrow" style="margin-bottom:8px">Bài đọc mẫu</p>' +
+          '<h3>Bees on the Rooftops</h3>' +
+          '<p class="src hl-zone" id="nbPassage">Over the past two decades, beekeeping has quietly moved from the countryside into city centres. Office blocks, hotels and even train stations now host hives on their roofs. Researchers suggest one reason is diversity: city parks and private gardens offer a wider mix of flowering plants across the season than farmland planted with a single crop, which blooms for only a few weeks.</p>' +
+        '</div>' +
+        '<div class="nb-pane">' +
+          '<p class="nb-eyebrow" style="color:var(--nb-muted);margin-bottom:10px">True / False / Not Given</p>' +
+          '<p class="nb-q"><span class="n">1</span><span class="t hl-zone" id="nbQuestion">Urban gardens provide bees with a greater variety of flowers than single-crop farmland.</span></p>' +
+          '<div class="nb-tools">' +
+            '<button class="nb-btn sm ghost" id="nbDemo">Xem keyword mẫu</button>' +
+            '<button class="nb-btn sm ghost" id="nbClear">Xóa hết</button>' +
+          '</div>' +
+          '<p class="nb-count" id="nbCount">Chưa có keyword nào được bôi.</p>' +
+          '<div class="nb-tip">' +
+            '<svg viewBox="0 0 120 130" aria-hidden="true">' +
+              '<rect class="fl" x="14" y="14" width="96" height="100" rx="26"/>' +
+              '<rect class="o" x="8" y="6" width="96" height="100" rx="26" fill="#e0102b" stroke-width="5"/>' +
+              '<g class="nb-blink"><circle cx="40" cy="42" r="12" fill="#fff" stroke="#161012" stroke-width="4"/><circle cx="72" cy="42" r="12" fill="#fff" stroke="#161012" stroke-width="4"/>' +
+              '<circle cx="43" cy="45" r="5" fill="#161012"/><circle cx="75" cy="45" r="5" fill="#161012"/></g>' +
+              '<path d="M44 68 q12 8 24 0" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>' +
+              '<text x="56" y="96" text-anchor="middle" font-family="Be Vietnam Pro,Arial,sans-serif" font-weight="800" font-size="20" fill="#fff">AZ</text>' +
+            '</svg>' +
+            '<div class="nb-say" id="nbSay"><strong>Mẹo bôi keyword</strong>Bôi danh từ và cụm so sánh trong câu hỏi trước, rồi tìm cụm đồng nghĩa trong bài đọc.</div>' +
+          '</div>' +
+        '</div>' +
+      '</section>';
+    app.appendChild(root);
+
+    // ---- chọn kỹ năng → đổi danh sách test trong từng sách ----
+    function renderBooks(){
+      document.getElementById("nbBooksTitle").textContent = "Chọn sách · " + (skill === "reading" ? "Reading" : "Listening");
+      root.querySelectorAll(".nb-skill").forEach(function(c){
+        var on = c.dataset.skill === skill;
+        c.setAttribute("aria-pressed", on ? "true" : "false");
+        c.querySelector(".tag").classList.toggle("sel", on);
+      });
+      var grid = document.getElementById("nbBookGrid");
+      grid.innerHTML = "";
+      BOOKS.forEach(function(b){
+        var list = skill === "reading" ? b.read : b.listen;
+        var done = 0;
+        var tests = list.map(function(t, i){
+          var data = skill === "reading" ? getData(t.id) : getListenData(t.id);
+          var label = "Test " + (i + 1);
+          if(!t.available || !data) return '<span class="nb-test off">' + label + '<small>Sắp có</small></span>';
+          var a = STATE.attempts[t.id];
+          var href = (skill === "reading" ? "#/test/" : "#/listen/") + t.id + "/intro";
+          if(a && a.score !== undefined){ done++; return '<a class="nb-test done" href="' + href + '">' + label + '<small>' + a.score + '/' + (a.total||40) + '</small></a>'; }
+          if(a && a.inProgress && Object.keys(a.inProgress).length) return '<a class="nb-test doing" href="' + href + '">' + label + '<small>Đang làm</small></a>';
+          return '<a class="nb-test" href="' + href + '">' + label + '<small>Chưa làm</small></a>';
+        }).join("");
+        var card = el("div", "nb-book");
+        card.style.setProperty("--skill-c", SKILL_COLOR[skill]);
+        card.innerHTML =
+          '<span class="spine"></span>' +
+          '<span class="cap">Cambridge IELTS</span>' +
+          '<b class="num">' + b.num + '</b>' +
+          (b.isNew ? '<span class="new">Mới nhất</span>' : '') +
+          '<div class="nb-tests">' + tests + '</div>' +
+          '<span class="sum">Đã nộp ' + done + '/' + list.length + '</span>';
+        grid.appendChild(card);
+      });
+    }
+    root.querySelectorAll(".nb-skill").forEach(function(c){
+      c.addEventListener("click", function(){
+        skill = c.dataset.skill;
+        try{ localStorage.setItem(STORAGE_KEY + "_skill", skill); }catch(e){}
+        renderBooks();
+        document.getElementById("nbBooks").scrollIntoView({behavior:"smooth", block:"start"});
+      });
     });
-    app.appendChild(readingBook);
-
-    var listenBook = el("a", "book-card");
-    listenBook.href = "#/listen/cambridge19-test1-listening/intro";
-    listenBook.innerHTML =
-      '<div class="book-badge">C19</div>' +
-      '<div class="book-body">' +
-        '<div class="book-title">Cambridge IELTS 19 — Listening</div>' +
-        '<p class="book-desc">4 test, mỗi test 4 part / 40 câu hỏi, nghe audio gốc.</p>' +
-        '<div class="test-grid" style="margin-top:14px"></div>' +
-      '</div>';
-    var listenGrid = listenBook.querySelector(".test-grid");
-    LISTEN_TESTS_REGISTRY.forEach(function(t){
-      var ld = getListenData(t.id);
-      var tile = document.createElement(t.available ? "a" : "div");
-      tile.className = "test-tile";
-      if(t.available && ld){
-        tile.href = "#/listen/" + t.id + "/intro";
-        var attempt = STATE.attempts[t.id];
-        tile.innerHTML = "<b>" + esc(ld.test) + "</b><span>" + ld.parts.length + " part &middot; " + totalQuestions(ld) + " câu &middot; nghe audio</span>" +
-          (attempt ? '<div class="soon-chip" style="background:var(--green-bg);color:var(--green)">Đã làm: ' + attempt.score + '/40</div>' : "");
-      } else {
-        tile.setAttribute("disabled","disabled");
-        tile.innerHTML = "<b>" + (t.label||t.id) + "</b><span>4 part &middot; 40 câu &middot; nghe audio</span><div class='soon-chip'>Sắp có</div>";
-      }
-      listenGrid.appendChild(tile);
+    root.querySelectorAll("[data-jump]").forEach(function(a){
+      a.addEventListener("click", function(e){
+        e.preventDefault();
+        document.getElementById(a.dataset.jump).scrollIntoView({behavior:"smooth", block:"start"});
+      });
     });
-    app.appendChild(listenBook);
+    renderBooks();
 
-    var readingBook21 = el("a", "book-card");
-    readingBook21.href = "#/test/cambridge21-test1/intro";
-    readingBook21.innerHTML =
-      '<div class="book-badge">C21</div>' +
-      '<div class="book-body">' +
-        '<div class="book-title">Cambridge IELTS 21 — Reading</div>' +
-        '<p class="book-desc">4 test, mỗi test 3 bài đọc / 40 câu hỏi.</p>' +
-        '<div class="test-grid" style="margin-top:14px"></div>' +
-      '</div>';
-    var readGrid21 = readingBook21.querySelector(".test-grid");
-    TESTS_REGISTRY_21.forEach(function(t){
-      var d = getData(t.id);
-      var tile = document.createElement(t.available ? "a" : "div");
-      tile.className = "test-tile";
-      if(t.available){
-        tile.href = "#/test/" + t.id + "/intro";
-        var attempt = STATE.attempts[t.id];
-        tile.innerHTML = "<b>" + esc(d.test) + "</b><span>" + d.passages.length + " bài đọc &middot; " + totalQuestions(d) + " câu &middot; " + d.durationMin + " phút</span>" +
-          (attempt && attempt.score !== undefined ? '<div class="soon-chip" style="background:var(--green-bg);color:var(--green)">Đã làm: ' + attempt.score + '/40</div>' : "");
-      } else {
-        tile.setAttribute("disabled","disabled");
-        tile.innerHTML = "<b>" + (t.label||t.id) + "</b><span>3 bài đọc &middot; 40 câu &middot; 60 phút</span><div class='soon-chip'>Sắp có</div>";
-      }
-      readGrid21.appendChild(tile);
+    // ---- khu thử bôi keyword ----
+    var zones = [document.getElementById("nbPassage"), document.getElementById("nbQuestion")];
+    var originals = zones.map(function(z){ return z.innerHTML; });
+    var say = document.getElementById("nbSay"), count = document.getElementById("nbCount");
+    function updateCount(){
+      var n = root.querySelectorAll("mark.hl-user").length;
+      count.textContent = n ? ("Đã bôi " + n + " keyword.") : "Chưa có keyword nào được bôi.";
+    }
+    zones.forEach(function(z){ z.__hlChange = function(){
+      updateCount();
+      say.innerHTML = "<strong>Đã bôi!</strong>Giờ tìm cụm đồng nghĩa (paraphrase) trong bài đọc. Bấm vào chữ đã bôi nếu muốn xóa.";
+    }; });
+    document.getElementById("nbClear").addEventListener("click", function(){
+      zones.forEach(function(z, i){ z.innerHTML = originals[i]; });
+      updateCount();
+      say.innerHTML = "<strong>Mẹo bôi keyword</strong>Bôi danh từ và cụm so sánh trong câu hỏi trước, rồi tìm cụm đồng nghĩa trong bài đọc.";
     });
-    app.appendChild(readingBook21);
+    document.getElementById("nbDemo").addEventListener("click", function(){
+      zones.forEach(function(z, i){ z.innerHTML = originals[i]; });
+      [["Urban gardens","city parks and private gardens"],
+       ["a greater variety of flowers","a wider mix of flowering plants"],
+       ["single-crop farmland","farmland planted with a single crop"]].forEach(function(p){
+        zones[1].innerHTML = zones[1].innerHTML.replace(p[0], '<mark class="hl-user">' + p[0] + '</mark>');
+        zones[0].innerHTML = zones[0].innerHTML.replace(p[1], '<mark class="hl-user">' + p[1] + '</mark>');
+      });
+      updateCount();
+      say.innerHTML = "<strong>3 cặp paraphrase</strong>Urban gardens = city parks and private gardens · greater variety = wider mix · single-crop farmland = farmland planted with a single crop. Đáp án: <b>TRUE</b>.";
+    });
 
-    var listenBook21 = el("a", "book-card");
-    listenBook21.href = "#/listen/cambridge21-test1-listening/intro";
-    listenBook21.innerHTML =
-      '<div class="book-badge">C21</div>' +
-      '<div class="book-body">' +
-        '<div class="book-title">Cambridge IELTS 21 — Listening</div>' +
-        '<p class="book-desc">4 test, mỗi test 4 part / 40 câu hỏi, nghe audio gốc.</p>' +
-        '<div class="test-grid" style="margin-top:14px"></div>' +
-      '</div>';
-    var listenGrid21 = listenBook21.querySelector(".test-grid");
-    LISTEN_TESTS_REGISTRY_21.forEach(function(t){
-      var ld = getListenData(t.id);
-      var tile = document.createElement(t.available ? "a" : "div");
-      tile.className = "test-tile";
-      if(t.available && ld){
-        tile.href = "#/listen/" + t.id + "/intro";
-        var attempt = STATE.attempts[t.id];
-        tile.innerHTML = "<b>" + esc(ld.test) + "</b><span>" + ld.parts.length + " part &middot; " + totalQuestions(ld) + " câu &middot; nghe audio</span>" +
-          (attempt && attempt.score !== undefined ? '<div class="soon-chip" style="background:var(--green-bg);color:var(--green)">Đã làm: ' + attempt.score + '/40</div>' : "");
-      } else {
-        tile.setAttribute("disabled","disabled");
-        tile.innerHTML = "<b>" + (t.label||t.id) + "</b><span>4 part &middot; 40 câu &middot; nghe audio</span><div class='soon-chip'>Sắp có</div>";
+    function skillCard(key, name, color, desc, types, tag){
+      var icon = key === "listening"
+        ? '<path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="3" y="14" width="5" height="7" rx="2"/><rect x="16" y="14" width="5" height="7" rx="2"/>'
+        : '<path d="M2 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H2z"/><path d="M22 5h-7a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h8z"/>';
+      var prop = key === "listening"
+        ? '<path class="ms-o" d="M34 78 C34 0 166 0 166 78" fill="none" stroke-width="9" stroke-linecap="round"/><rect class="ms-o" x="22" y="66" width="24" height="40" rx="10" fill="#fff" stroke-width="5"/><rect class="ms-o" x="154" y="66" width="24" height="40" rx="10" fill="#fff" stroke-width="5"/>'
+        : '<g transform="translate(58 112)"><path class="ms-o" d="M0 6 q21 -10 42 0 v40 q-21 -10 -42 0z" fill="#fff" stroke-width="5" stroke-linejoin="round"/><path class="ms-o" d="M42 6 q21 -10 42 0 v40 q-21 -10 -42 0z" fill="#fff" stroke-width="5" stroke-linejoin="round"/></g>';
+      var pupilY = key === "listening" ? 62 : 72;
+      return '<button type="button" class="nb-skill" data-skill="' + key + '" aria-pressed="false" style="--c:' + color + '">' +
+        '<span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">' + icon + '</svg></span>' +
+        '<h3>' + name + '</h3>' +
+        '<p>' + desc + '</p>' +
+        '<ul>' + types.map(function(t){ return '<li>' + t + '</li>'; }).join("") + '</ul>' +
+        '<span class="tag">' + tag + '</span>' +
+        '<svg class="nb-mascot" viewBox="0 0 200 200" aria-hidden="true">' +
+          '<rect class="ms-o" x="40" y="20" width="120" height="200" rx="36" fill="' + color + '" stroke-width="6" style="filter:brightness(1.12)"/>' +
+          '<g class="nb-blink"><ellipse class="ms-o" cx="78" cy="68" rx="15" ry="17" fill="#fff" stroke-width="5"/><ellipse class="ms-o" cx="122" cy="68" rx="15" ry="17" fill="#fff" stroke-width="5"/><circle class="ms-f" cx="80" cy="' + pupilY + '" r="7"/><circle class="ms-f" cx="124" cy="' + pupilY + '" r="7"/></g>' +
+          '<path class="ms-o" d="M88 98 q12 9 24 0" fill="none" stroke-width="5" stroke-linecap="round"/>' +
+          '<text x="100" y="' + (key === "reading" ? 182 : 152) + '" text-anchor="middle" font-family="Be Vietnam Pro,Arial,sans-serif" font-weight="800" font-size="30" fill="#fff" opacity=".9" letter-spacing="-1">AZ</text>' +
+          prop +
+        '</svg>' +
+      '</button>';
+    }
+    function burstPoints(){
+      var n = 18, pts = [];
+      for(var i = 0; i < n*2; i++){
+        var a = Math.PI * i / n, r = i % 2 ? 160 : 190;
+        pts.push((200 + r*Math.cos(a)).toFixed(1) + "," + (200 + r*Math.sin(a)).toFixed(1));
       }
-      listenGrid21.appendChild(tile);
-    });
-    app.appendChild(listenBook21);
-
-    var readingBook20 = el("a", "book-card");
-    readingBook20.href = "#/test/cambridge20-test1/intro";
-    readingBook20.innerHTML =
-      '<div class="book-badge">C20</div>' +
-      '<div class="book-body">' +
-        '<div class="book-title">Cambridge IELTS 20 — Reading</div>' +
-        '<p class="book-desc">4 test, mỗi test 3 bài đọc / 40 câu hỏi.</p>' +
-        '<div class="test-grid" style="margin-top:14px"></div>' +
-      '</div>';
-    var readGrid20 = readingBook20.querySelector(".test-grid");
-    TESTS_REGISTRY_20.forEach(function(t){
-      var d = getData(t.id);
-      var tile = document.createElement(t.available ? "a" : "div");
-      tile.className = "test-tile";
-      if(t.available){
-        tile.href = "#/test/" + t.id + "/intro";
-        var attempt = STATE.attempts[t.id];
-        tile.innerHTML = "<b>" + esc(d.test) + "</b><span>" + d.passages.length + " bài đọc &middot; " + totalQuestions(d) + " câu &middot; " + d.durationMin + " phút</span>" +
-          (attempt && attempt.score !== undefined ? '<div class="soon-chip" style="background:var(--green-bg);color:var(--green)">Đã làm: ' + attempt.score + '/40</div>' : "");
-      } else {
-        tile.setAttribute("disabled","disabled");
-        tile.innerHTML = "<b>" + (t.label||t.id) + "</b><span>3 bài đọc &middot; 40 câu &middot; 60 phút</span><div class='soon-chip'>Sắp có</div>";
-      }
-      readGrid20.appendChild(tile);
-    });
-    app.appendChild(readingBook20);
-
-    var listenBook20 = el("a", "book-card");
-    listenBook20.href = "#/listen/cambridge20-test1-listening/intro";
-    listenBook20.innerHTML =
-      '<div class="book-badge">C20</div>' +
-      '<div class="book-body">' +
-        '<div class="book-title">Cambridge IELTS 20 — Listening</div>' +
-        '<p class="book-desc">4 test, mỗi test 4 part / 40 câu hỏi, nghe audio gốc.</p>' +
-        '<div class="test-grid" style="margin-top:14px"></div>' +
-      '</div>';
-    var listenGrid20 = listenBook20.querySelector(".test-grid");
-    LISTEN_TESTS_REGISTRY_20.forEach(function(t){
-      var ld = getListenData(t.id);
-      var tile = document.createElement(t.available ? "a" : "div");
-      tile.className = "test-tile";
-      if(t.available && ld){
-        tile.href = "#/listen/" + t.id + "/intro";
-        var attempt = STATE.attempts[t.id];
-        tile.innerHTML = "<b>" + esc(ld.test) + "</b><span>" + ld.parts.length + " part &middot; " + totalQuestions(ld) + " câu &middot; nghe audio</span>" +
-          (attempt && attempt.score !== undefined ? '<div class="soon-chip" style="background:var(--green-bg);color:var(--green)">Đã làm: ' + attempt.score + '/40</div>' : "");
-      } else {
-        tile.setAttribute("disabled","disabled");
-        tile.innerHTML = "<b>" + (t.label||t.id) + "</b><span>4 part &middot; 40 câu &middot; nghe audio</span><div class='soon-chip'>Sắp có</div>";
-      }
-      listenGrid20.appendChild(tile);
-    });
-    app.appendChild(listenBook20);
-
-    var readingBook18 = el("a", "book-card");
-    readingBook18.href = "#/test/cambridge18-test1/intro";
-    readingBook18.innerHTML =
-      '<div class="book-badge">C18</div>' +
-      '<div class="book-body">' +
-        '<div class="book-title">Cambridge IELTS 18 — Reading</div>' +
-        '<p class="book-desc">4 test, mỗi test 3 bài đọc / 40 câu hỏi.</p>' +
-        '<div class="test-grid" style="margin-top:14px"></div>' +
-      '</div>';
-    var readGrid18 = readingBook18.querySelector(".test-grid");
-    TESTS_REGISTRY_18.forEach(function(t){
-      var d = getData(t.id);
-      var tile = document.createElement(t.available ? "a" : "div");
-      tile.className = "test-tile";
-      if(t.available){
-        tile.href = "#/test/" + t.id + "/intro";
-        var attempt = STATE.attempts[t.id];
-        tile.innerHTML = "<b>" + esc(d.test) + "</b><span>" + d.passages.length + " bài đọc &middot; " + totalQuestions(d) + " câu &middot; " + d.durationMin + " phút</span>" +
-          (attempt && attempt.score !== undefined ? '<div class="soon-chip" style="background:var(--green-bg);color:var(--green)">Đã làm: ' + attempt.score + '/40</div>' : "");
-      } else {
-        tile.setAttribute("disabled","disabled");
-        tile.innerHTML = "<b>" + (t.label||t.id) + "</b><span>3 bài đọc &middot; 40 câu &middot; 60 phút</span><div class='soon-chip'>Sắp có</div>";
-      }
-      readGrid18.appendChild(tile);
-    });
-    app.appendChild(readingBook18);
-
-    var listenBook18 = el("a", "book-card");
-    listenBook18.href = "#/listen/cambridge18-test1-listening/intro";
-    listenBook18.innerHTML =
-      '<div class="book-badge">C18</div>' +
-      '<div class="book-body">' +
-        '<div class="book-title">Cambridge IELTS 18 — Listening</div>' +
-        '<p class="book-desc">4 test, mỗi test 4 part / 40 câu hỏi, nghe audio gốc.</p>' +
-        '<div class="test-grid" style="margin-top:14px"></div>' +
-      '</div>';
-    var listenGrid18 = listenBook18.querySelector(".test-grid");
-    LISTEN_TESTS_REGISTRY_18.forEach(function(t){
-      var ld = getListenData(t.id);
-      var tile = document.createElement(t.available ? "a" : "div");
-      tile.className = "test-tile";
-      if(t.available && ld){
-        tile.href = "#/listen/" + t.id + "/intro";
-        var attempt = STATE.attempts[t.id];
-        tile.innerHTML = "<b>" + esc(ld.test) + "</b><span>" + ld.parts.length + " part &middot; " + totalQuestions(ld) + " câu &middot; nghe audio</span>" +
-          (attempt && attempt.score !== undefined ? '<div class="soon-chip" style="background:var(--green-bg);color:var(--green)">Đã làm: ' + attempt.score + '/40</div>' : "");
-      } else {
-        tile.setAttribute("disabled","disabled");
-        tile.innerHTML = "<b>" + (t.label||t.id) + "</b><span>4 part &middot; 40 câu &middot; nghe audio</span><div class='soon-chip'>Sắp có</div>";
-      }
-      listenGrid18.appendChild(tile);
-    });
-    app.appendChild(listenBook18);
-
-    var readingBook16 = el("a", "book-card");
-    readingBook16.href = "#/test/cambridge16-test1/intro";
-    readingBook16.innerHTML =
-      '<div class="book-badge">C16</div>' +
-      '<div class="book-body">' +
-        '<div class="book-title">Cambridge IELTS 16 — Reading</div>' +
-        '<p class="book-desc">4 test, mỗi test 3 bài đọc / 40 câu hỏi.</p>' +
-        '<div class="test-grid" style="margin-top:14px"></div>' +
-      '</div>';
-    var readGrid16 = readingBook16.querySelector(".test-grid");
-    TESTS_REGISTRY_16.forEach(function(t){
-      var d = getData(t.id);
-      var tile = document.createElement(t.available ? "a" : "div");
-      tile.className = "test-tile";
-      if(t.available){
-        tile.href = "#/test/" + t.id + "/intro";
-        var attempt = STATE.attempts[t.id];
-        tile.innerHTML = "<b>" + esc(d.test) + "</b><span>" + d.passages.length + " bài đọc &middot; " + totalQuestions(d) + " câu &middot; " + d.durationMin + " phút</span>" +
-          (attempt && attempt.score !== undefined ? '<div class="soon-chip" style="background:var(--green-bg);color:var(--green)">Đã làm: ' + attempt.score + '/40</div>' : "");
-      } else {
-        tile.setAttribute("disabled","disabled");
-        tile.innerHTML = "<b>" + (t.label||t.id) + "</b><span>3 bài đọc &middot; 40 câu &middot; 60 phút</span><div class='soon-chip'>Sắp có</div>";
-      }
-      readGrid16.appendChild(tile);
-    });
-    app.appendChild(readingBook16);
-
-    var listenBook16 = el("a", "book-card");
-    listenBook16.href = "#/listen/cambridge16-test1-listening/intro";
-    listenBook16.innerHTML =
-      '<div class="book-badge">C16</div>' +
-      '<div class="book-body">' +
-        '<div class="book-title">Cambridge IELTS 16 — Listening</div>' +
-        '<p class="book-desc">4 test, mỗi test 4 part / 40 câu hỏi, nghe audio gốc.</p>' +
-        '<div class="test-grid" style="margin-top:14px"></div>' +
-      '</div>';
-    var listenGrid16 = listenBook16.querySelector(".test-grid");
-    LISTEN_TESTS_REGISTRY_16.forEach(function(t){
-      var ld = getListenData(t.id);
-      var tile = document.createElement(t.available ? "a" : "div");
-      tile.className = "test-tile";
-      if(t.available && ld){
-        tile.href = "#/listen/" + t.id + "/intro";
-        var attempt = STATE.attempts[t.id];
-        tile.innerHTML = "<b>" + esc(ld.test) + "</b><span>" + ld.parts.length + " part &middot; " + totalQuestions(ld) + " câu &middot; nghe audio</span>" +
-          (attempt && attempt.score !== undefined ? '<div class="soon-chip" style="background:var(--green-bg);color:var(--green)">Đã làm: ' + attempt.score + '/40</div>' : "");
-      } else {
-        tile.setAttribute("disabled","disabled");
-        tile.innerHTML = "<b>" + (t.label||t.id) + "</b><span>4 part &middot; 40 câu &middot; nghe audio</span><div class='soon-chip'>Sắp có</div>";
-      }
-      listenGrid16.appendChild(tile);
-    });
-    app.appendChild(listenBook16);
+      return pts.join(" ");
+    }
   }
+
+  // ---------- HIGHLIGHT (bôi keyword như máy thi IELTS) ----------
+  // Vùng nào có class "hl-zone" thì bôi được: chọn chữ → menu "Highlight"; bấm vào chữ đã bôi → "Xóa bôi".
+  // Nếu vùng có hàm zone.__hlChange thì gọi sau mỗi lần thay đổi (để lưu lại).
+  (function initHighlighter(){
+    var menu = document.createElement("div");
+    menu.className = "hl-menu";
+    menu.hidden = true;
+    document.body.appendChild(menu);
+    var pending = null;
+
+    function zoneOf(node){
+      var e = node && (node.nodeType === 3 ? node.parentNode : node);
+      return e && e.closest ? e.closest(".hl-zone") : null;
+    }
+    function blockOf(node){
+      var e = node.nodeType === 3 ? node.parentNode : node;
+      return e.closest("p,li,label,h2,h3,td,th,div");
+    }
+    function hide(){ menu.hidden = true; pending = null; }
+    function place(rect){
+      menu.hidden = false;
+      var w = menu.offsetWidth, h = menu.offsetHeight;
+      menu.style.left = Math.max(8, Math.min(window.innerWidth - w - 8, rect.left + rect.width/2 - w/2)) + "px";
+      menu.style.top = (rect.top - h - 10 < 8 ? rect.bottom + 10 : rect.top - h - 10) + "px";
+    }
+    function changed(zone){ if(zone && typeof zone.__hlChange === "function") zone.__hlChange(); }
+
+    function checkSelection(){
+      var sel = window.getSelection();
+      if(!sel || sel.isCollapsed || !sel.rangeCount){ if(pending && pending.type === "add") hide(); return; }
+      var range = sel.getRangeAt(0);
+      var zone = zoneOf(range.commonAncestorContainer);
+      if(!zone || zoneOf(range.startContainer) !== zone || zoneOf(range.endContainer) !== zone) { hide(); return; }
+      if(blockOf(range.startContainer) !== blockOf(range.endContainer)) { hide(); return; }
+      if(!sel.toString().trim()) { hide(); return; }
+      pending = {type:"add", range:range.cloneRange(), zone:zone};
+      menu.innerHTML = '<button type="button" data-act="add"><span class="dot"></span>Highlight</button>';
+      place(range.getBoundingClientRect());
+    }
+
+    document.addEventListener("mouseup", function(e){ if(!menu.contains(e.target)) setTimeout(checkSelection, 0); });
+    document.addEventListener("keyup", function(e){ if(e.shiftKey) checkSelection(); });
+    document.addEventListener("touchend", function(){ setTimeout(checkSelection, 300); });
+    window.addEventListener("scroll", hide, true);
+    window.addEventListener("hashchange", hide);
+
+    document.addEventListener("click", function(e){
+      if(menu.contains(e.target)) return;
+      var m = e.target.closest && e.target.closest("mark.hl-user");
+      if(m && zoneOf(m) && window.getSelection().isCollapsed){
+        e.preventDefault();
+        pending = {type:"remove", mark:m, zone:zoneOf(m)};
+        menu.innerHTML = '<button type="button" data-act="remove">Xóa bôi</button>';
+        place(m.getBoundingClientRect());
+        return;
+      }
+      if(pending && pending.type === "remove") hide();
+    });
+
+    menu.addEventListener("mousedown", function(e){ e.preventDefault(); });
+    menu.addEventListener("click", function(e){
+      var b = e.target.closest("button");
+      if(!b || !pending) return;
+      var zone = pending.zone;
+      if(b.dataset.act === "add"){
+        var mark = document.createElement("mark");
+        mark.className = "hl-user";
+        try{ mark.appendChild(pending.range.extractContents()); pending.range.insertNode(mark); }catch(err){}
+        // gộp các mark lồng nhau khi bôi đè lên đoạn đã bôi
+        mark.querySelectorAll("mark.hl-user").forEach(function(inner){ inner.replaceWith.apply(inner, Array.prototype.slice.call(inner.childNodes)); });
+        window.getSelection().removeAllRanges();
+      } else if(b.dataset.act === "remove"){
+        var m = pending.mark, parent = m.parentNode;
+        m.replaceWith.apply(m, Array.prototype.slice.call(m.childNodes));
+        if(parent) parent.normalize();
+      }
+      hide();
+      changed(zone);
+    });
+  })();
 
   // ---------- STRATEGY (chiến lược làm bài — đọc trước khi luyện đề) ----------
   var STRATEGY_META = [
@@ -992,6 +1132,7 @@
       testId: testId, data: d,
       answers: (saved && saved.inProgress) ? saved.inProgress : {},
       activePassage: 1,
+      hlPassage: loadHighlights(testId),
       timerInterval: null,
       useTimer: sessionStorage.getItem("az_rt_timer_" + testId) !== "0",
       startedAt: Number(sessionStorage.getItem("az_rt_start_" + testId)) || Date.now(),
@@ -1095,14 +1236,26 @@
       var letter = typeof p === "string" ? "" : ('<span class="para-letter">' + p.letter + '</span>');
       leftPane.appendChild(el("p","passage-para", letter + esc(t)));
     });
+    // bôi keyword trên bài đọc — giữ lại khi chuyển qua lại giữa các bài
+    var pNum = passage.num;
+    if(takeCtx.hlPassage[pNum]) leftPane.innerHTML = takeCtx.hlPassage[pNum];
+    leftPane.classList.add("hl-zone");
+    leftPane.__hlChange = function(){
+      takeCtx.hlPassage[pNum] = leftPane.innerHTML;
+      try{ sessionStorage.setItem("az_rt_hl_" + takeCtx.testId, JSON.stringify(takeCtx.hlPassage)); }catch(e){}
+    };
 
-    var rightPane = el("div", "pane question-pane");
+    var rightPane = el("div", "pane question-pane hl-zone");
     d.questionGroups.filter(function(g){ return groupPassageNum(g) === passage.num; }).forEach(function(g){
       rightPane.appendChild(renderGroup(g, d, false));
     });
 
     body.appendChild(leftPane);
     body.appendChild(rightPane);
+  }
+
+  function loadHighlights(testId){
+    try{ return JSON.parse(sessionStorage.getItem("az_rt_hl_" + testId)) || {}; }catch(e){ return {}; }
   }
 
   function groupPassageNum(g){
@@ -1674,7 +1827,7 @@
     });
 
     var part = d.parts[takeCtx.activePart-1];
-    var card = el("div", "part-card");
+    var card = el("div", "part-card hl-zone");
     card.appendChild(el("h2","part-title", "Part " + part.num + (part.title ? ": " + esc(part.title) : "")));
     card.innerHTML += '<audio class="part-audio" controls preload="none" src="'+esc(part.audio)+'"></audio>';
 
