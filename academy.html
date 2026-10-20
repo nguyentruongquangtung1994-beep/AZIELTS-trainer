@@ -247,6 +247,12 @@ a.app:hover .cv-t,button.app:hover .cv-t{color:var(--gold-2)}
 .acct dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:14px}
 .acct dt{color:var(--ink-3)} .acct dd{margin:0;font-weight:600;text-align:right}
 .acct .acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.redeem{display:grid;grid-template-columns:1fr auto;gap:8px;padding-top:12px;border-top:1px solid var(--line)}
+.redeem label{grid-column:1/-1;margin:0;font-size:12.5px;color:var(--ink-3);font-weight:600}
+.redeem input{margin:0;padding:9px 11px;font-size:15px;text-transform:uppercase;letter-spacing:.04em}
+.redeem .btn{min-height:40px;padding:8px 14px;font-size:14px;background:var(--navy);border-color:var(--navy)}
+.redeem .err{grid-column:1/-1;margin:0;min-height:0}
+
 .acct .acts .btn{min-height:40px;font-size:14px;padding:8px 10px}
 .banner{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 24px;padding:14px 18px;border-radius:12px;font-size:14.5px;font-weight:500}
 .banner .azi{width:20px;height:20px}
@@ -615,10 +621,20 @@ function render() {
   $("#dHello").textContent = `Chào ${first}, hôm nay mình học gì?`;
   $("#acct").innerHTML = `<div class="acct-top"><span class="ring" style="--p:${Math.max(0, Math.min(100, left / total * 100))}"><b>${left > 900 ? "∞" : left}</b></span><div><span class="pill ${esc(s.tier)}">Gói ${esc(tierName)}</span><div style="margin-top:6px;font-weight:700">${left > 900 ? "Không giới hạn" : "Còn " + left + " ngày"}</div></div></div>
     <dl><dt>Tên đăng nhập</dt><dd>${esc(s.u)}</dd>${s.exp ? `<dt>Hết hạn</dt><dd>${esc(vnDate(s.exp))}</dd>` : ""}</dl>
+    ${s.tier === "elite" ? "" : `<form class="redeem" id="fRedeem"><label for="rdc">Có mã lớp từ AZEnglish? Nhập để mở gói của lớp</label><input id="rdc" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="IELTS-XXXXXX" required><button class="btn" type="submit" id="bRedeem">Áp dụng</button><p class="err" id="eRedeem" role="alert"></p></form>`}
     <div class="acts"><button class="btn line" type="button" id="bRefresh">Cập nhật</button><button class="btn line" type="button" id="bOut">Đăng xuất</button></div>`;
   $("#bRefresh").onclick = () => refresh(false);
+  if ($("#fRedeem")) $("#fRedeem").onsubmit = async e => {
+    e.preventDefault(); const b = $("#bRedeem"), er = $("#eRedeem"), code = $("#rdc").value.trim().toUpperCase(); er.textContent = ""; if (!code) return;
+    b.disabled = true; b.textContent = "Đang kiểm tra…";
+    try { const j = await api({ t: "redeem", u: s.u, tok: s.tok, cls: code });
+      if (j && j.ok) { setS(j.s); render(); toast("Đã áp dụng mã lớp. Tài khoản của bạn: gói " + (TIER[j.s.tier] || j.s.tier) + "."); return; }
+      er.textContent = (j && j.error) || "Không áp dụng được mã."; }
+    catch (x) { er.textContent = "Không kết nối được máy chủ. Kiểm tra mạng rồi thử lại."; }
+    b.disabled = false; b.textContent = "Áp dụng";
+  };
   $("#bOut").onclick = logout;
-  $("#dBanner").innerHTML = s.tier === "trial" ? `<div class="banner trial">${azi("clock")}<span>Bạn đang dùng thử miễn phí, còn <b>${left} ngày</b>. Đăng ký khoá học để giữ tiến độ: gọi / Zalo <b style="user-select:all">${PHONE}</b>.</span></div>`
+  $("#dBanner").innerHTML = s.tier === "trial" ? `<div class="banner trial">${azi("clock")}<span>Bạn đang dùng thử miễn phí, còn <b>${left} ngày</b>. Có mã lớp thì nhập ở khung tài khoản bên trên. Đăng ký khoá học: gọi / Zalo <b style="user-select:all">${PHONE}</b>.</span></div>`
     : left <= 7 ? `<div class="banner warn">${azi("info")}<span>Tài khoản còn <b>${left} ngày</b>. Liên hệ AZEnglish để gia hạn và giữ tiến độ học.</span></div>` : "";
   $("#apps").innerHTML = APPS.map((a, n) => appCard(a, false, n)).join("");
   $("#elite").innerHTML = s.tier === "elite" ? `<div><h3>Quyền lợi Elite của em</h3><ul><li>Nộp bài Writing trong Writing Studio: giáo viên chấm và trả nhận xét.</li><li>Thi thử 4 kỹ năng hằng tháng có giáo viên chấm.</li><li>Tư vấn lộ trình 1–1 với giáo viên.</li></ul></div><div class="contact">Đặt lịch với giáo viên<b>${PHONE}</b></div>`
