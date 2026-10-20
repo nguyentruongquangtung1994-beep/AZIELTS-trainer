@@ -140,9 +140,17 @@ body{margin:0}
   var legacy = today() < CUT;
   try{ if(legacy && localStorage.getItem(GATE_KEY) === "1"){ g.style.display = "none"; return; } }catch(e){}
   var msg = (s && s.exp && s.exp < today()) ? (s.tier === "trial" ? "Đã hết 7 ngày dùng thử. Liên hệ AZEnglish để đăng ký khoá học." : "Tài khoản đã hết hạn. Liên hệ AZEnglish để gia hạn.") : "Đăng nhập AZIELTS Academy để vào học. Chưa có tài khoản? Dùng thử miễn phí 7 ngày.";
-  var inp = f.querySelector("input"), btn = f.querySelector("button");
+  var inp = f.querySelector("input"), btn = f.querySelector("button"), INK = "#111827", MUT = "#4B5563";
+  /* giao diện sáng thống nhất với AZIELTS Academy */
+  g.style.background = "linear-gradient(180deg,#FFF6F6,#F6F7F9 60%)"; g.style.colorScheme = "light";
+  f.style.cssText += ";max-width:400px;background:#fff;border:1px solid #E4E7EC;border-radius:18px;padding:30px;box-shadow:0 2px 6px rgba(16,24,40,.06),0 24px 48px -20px rgba(16,24,40,.22);color:" + INK + ";font-family:'Be Vietnam Pro',system-ui,-apple-system,sans-serif;text-align:left";
+  [].forEach.call(f.querySelectorAll("h1,h2,h3"), function(h){ h.style.color = INK; h.style.fontWeight = "800"; h.style.letterSpacing = "-.02em"; });
+  var lg = f.firstElementChild; if (lg && lg.tagName === "DIV" && !lg.className) lg.style.margin = "0 0 18px";
+  [].forEach.call(f.querySelectorAll(".brand"), function(x){ x.style.color = "#D7192D"; x.style.textAlign = "left"; });
+  inp.style.cssText += ";background:#fff;color:" + INK + ";border:1px solid #D3D8E0;border-radius:10px;font-size:16px";
+  btn.style.cssText += ";background:#fff;color:" + INK + ";border:1px solid #D3D8E0;border-radius:10px;min-height:44px;font-weight:700;box-shadow:none";
   [].forEach.call(f.querySelectorAll("p"), function(p){ if(p.id !== "gateError") p.style.display = "none"; });
-  inp.insertAdjacentHTML("beforebegin", '<p style="font-size:13.5px;line-height:1.5;margin:0 0 14px;opacity:.85">' + msg + '</p><a href="' + ACAD + '?next=' + encodeURIComponent(location.href) + '" style="display:flex;align-items:center;justify-content:center;min-height:48px;margin:0 0 16px;border-radius:14px;background:#E0102B;color:#fff;font-weight:800;font-size:15px;text-decoration:none;box-shadow:0 4px 0 #8F0A1C">Đăng nhập AZIELTS Academy</a>' + (legacy ? '<p style="font-size:12.5px;margin:0 0 8px;opacity:.7">Hoặc nhập mã lớp cũ (dùng được tới hết 02/11/2026):</p>' : ''));
+  inp.insertAdjacentHTML("beforebegin", '<p style="font-size:14.5px;line-height:1.55;margin:0 0 18px;color:#4B5563">' + msg + '</p><a href="' + ACAD + '?next=' + encodeURIComponent(location.href) + '" style="display:flex;align-items:center;justify-content:center;min-height:48px;margin:0 0 6px;border-radius:10px;background:#D7192D;color:#fff;font-weight:700;font-size:15.5px;text-decoration:none;box-shadow:0 1px 2px rgba(176,19,34,.25)">Đăng nhập AZIELTS Academy</a>' + (legacy ? '<p style="font-size:13px;margin:18px 0 0;padding-top:16px;border-top:1px solid #E4E7EC;color:#4B5563">Hoặc nhập mã lớp cũ (dùng được tới hết 02/11/2026):</p>' : ''));
   if(!legacy){ inp.style.display = "none"; btn.style.display = "none"; }
   f.addEventListener("submit", function(ev){
     ev.preventDefault(); if(!legacy) return;
