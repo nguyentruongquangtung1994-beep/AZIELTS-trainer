@@ -374,12 +374,13 @@
   try{ if(legacy && localStorage.getItem(GATE_KEY) === "1"){ g.style.display = "none"; return; } }catch(e){}
   var msg = (s && s.exp && s.exp < today()) ? (s.tier === "trial" ? "Đã hết 7 ngày dùng thử. Liên hệ AZEnglish để đăng ký khoá học." : "Tài khoản đã hết hạn. Liên hệ AZEnglish để gia hạn.") : "Đăng nhập AZIELTS Academy để vào học. Chưa có tài khoản? Dùng thử miễn phí 7 ngày.";
   var inp = f.querySelector("input"), btn = f.querySelector("button"), INK = "#111827", MUT = "#4B5563";
-  /* giao diện sáng thống nhất với AZIELTS Academy */
-  g.style.background = "linear-gradient(180deg,#FFF6F6,#F6F7F9 60%)"; g.style.colorScheme = "light";
-  f.style.cssText += ";max-width:400px;background:#fff;border:1px solid #E4E7EC;border-radius:18px;padding:30px;box-shadow:0 2px 6px rgba(16,24,40,.06),0 24px 48px -20px rgba(16,24,40,.22);color:" + INK + ";font-family:'Be Vietnam Pro',system-ui,-apple-system,sans-serif;text-align:left";
-  [].forEach.call(f.querySelectorAll("h1,h2,h3"), function(h){ h.style.color = INK; h.style.fontWeight = "800"; h.style.letterSpacing = "-.02em"; });
+  /* giao diện premium thống nhất với AZIELTS Academy */
+  try{ var fl = document.createElement("link"); fl.rel = "stylesheet"; fl.href = "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap"; document.head.appendChild(fl); }catch(e){}
+  g.style.background = "radial-gradient(800px 500px at 85% 0%,rgba(215,25,45,.3),transparent 60%),radial-gradient(700px 500px at 0% 100%,rgba(58,96,170,.25),transparent 60%),linear-gradient(160deg,#0B1424,#13233B 55%,#0E1A2E)"; g.style.colorScheme = "light";
+  f.style.cssText += ";max-width:420px;background:#FDFCF9;border:0;border-top:2px solid #C9A24B;border-radius:20px;padding:32px;box-shadow:0 40px 80px -30px rgba(0,0,0,.6);color:" + INK + ";font-family:'Be Vietnam Pro',system-ui,-apple-system,sans-serif;text-align:left";
+  [].forEach.call(f.querySelectorAll("h1,h2,h3"), function(h){ h.style.color = INK; h.style.fontWeight = "700"; h.style.letterSpacing = "-.01em"; h.style.fontFamily = "'Playfair Display',Georgia,serif"; h.style.fontSize = "26px"; });
   var lg = f.firstElementChild; if (lg && lg.tagName === "DIV" && !lg.className) lg.style.margin = "0 0 18px";
-  [].forEach.call(f.querySelectorAll(".brand"), function(x){ x.style.color = "#D7192D"; x.style.textAlign = "left"; });
+  [].forEach.call(f.querySelectorAll(".brand"), function(x){ x.style.color = "#B8913A"; x.style.textAlign = "left"; });
   inp.style.cssText += ";background:#fff;color:" + INK + ";border:1px solid #D3D8E0;border-radius:10px;font-size:16px";
   btn.style.cssText += ";background:#fff;color:" + INK + ";border:1px solid #D3D8E0;border-radius:10px;min-height:44px;font-weight:700;box-shadow:none";
   [].forEach.call(f.querySelectorAll("p"), function(p){ if(p.id !== "gateError") p.style.display = "none"; });
