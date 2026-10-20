@@ -365,22 +365,22 @@
 </div>
 <script>
 (function(){
-  var GATE_PASSWORD = "azenglish2026"; // đổi mật khẩu này rồi báo lại cho học viên
-  var GATE_KEY = "az_rt_gate_ok";
-  try{
-    if(localStorage.getItem(GATE_KEY) === "1"){
-      document.getElementById("gateScreen").style.display = "none";
-    }
-  }catch(e){}
-  document.getElementById("gateForm").addEventListener("submit", function(ev){
-    ev.preventDefault();
-    var val = document.getElementById("gatePassword").value;
-    if(val === GATE_PASSWORD){
-      try{ localStorage.setItem(GATE_KEY, "1"); }catch(e){}
-      document.getElementById("gateScreen").style.display = "none";
-    } else {
-      document.getElementById("gateError").style.display = "block";
-    }
+  var GATE_PASSWORD = "azenglish2026", GATE_KEY = "az_rt_gate_ok", CUT = "2026-11-03", ACAD = "academy.html";
+  var g = document.getElementById("gateScreen"), f = document.getElementById("gateForm"); if(!g || !f) return;
+  function today(){ var d = new Date(); return new Date(d.getTime() - d.getTimezoneOffset()*6e4).toISOString().slice(0,10); }
+  var s = null; try{ s = JSON.parse(localStorage.getItem("az_acad") || "null"); }catch(e){}
+  if(s && s.u && s.exp && s.exp >= today()){ g.style.display = "none"; return; }
+  var legacy = today() < CUT;
+  try{ if(legacy && localStorage.getItem(GATE_KEY) === "1"){ g.style.display = "none"; return; } }catch(e){}
+  var msg = (s && s.exp && s.exp < today()) ? (s.tier === "trial" ? "Đã hết 7 ngày dùng thử. Liên hệ AZEnglish để đăng ký khoá học." : "Tài khoản đã hết hạn. Liên hệ AZEnglish để gia hạn.") : "Đăng nhập AZIELTS Academy để vào học. Chưa có tài khoản? Dùng thử miễn phí 7 ngày.";
+  var inp = f.querySelector("input"), btn = f.querySelector("button");
+  [].forEach.call(f.querySelectorAll("p"), function(p){ if(p.id !== "gateError") p.style.display = "none"; });
+  inp.insertAdjacentHTML("beforebegin", '<p style="font-size:13.5px;line-height:1.5;margin:0 0 14px;opacity:.85">' + msg + '</p><a href="' + ACAD + '?next=' + encodeURIComponent(location.href) + '" style="display:flex;align-items:center;justify-content:center;min-height:48px;margin:0 0 16px;border-radius:14px;background:#E0102B;color:#fff;font-weight:800;font-size:15px;text-decoration:none;box-shadow:0 4px 0 #8F0A1C">Đăng nhập AZIELTS Academy</a>' + (legacy ? '<p style="font-size:12.5px;margin:0 0 8px;opacity:.7">Hoặc nhập mã lớp cũ (dùng được tới hết 02/11/2026):</p>' : ''));
+  if(!legacy){ inp.style.display = "none"; btn.style.display = "none"; }
+  f.addEventListener("submit", function(ev){
+    ev.preventDefault(); if(!legacy) return;
+    if(inp.value === GATE_PASSWORD){ try{ localStorage.setItem(GATE_KEY, "1"); }catch(e){} g.style.display = "none"; }
+    else { var er = document.getElementById("gateError"); if(er){ er.hidden = false; er.style.display = "block"; } }
   });
 })();
 </script>
