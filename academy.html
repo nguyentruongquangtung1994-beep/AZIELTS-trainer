@@ -243,8 +243,8 @@ button.app{font:inherit;text-align:left;cursor:pointer}
           </div>
         </div>
         <div class="auth" id="auth">
-          <div class="auth-h"><img id="lion" alt=""><div><h2 id="authTitle">Đăng nhập để vào học</h2><p id="authSub">Dùng tài khoản AZEnglish cấp cho em.</p></div></div>
-          <div class="seg" role="tablist"><button type="button" role="tab" data-tab="login" aria-selected="true">Đăng nhập</button><button type="button" role="tab" data-tab="reg" aria-selected="false">Dùng thử 7 ngày</button></div>
+          <div class="auth-h"><img id="lion" alt=""><div><h2 id="authTitle">Đăng nhập để vào học</h2><p id="authSub">Dùng tài khoản AZEnglish của bạn.</p></div></div>
+          <div class="seg" role="tablist"><button type="button" role="tab" data-tab="login" aria-selected="true">Đăng nhập</button><button type="button" role="tab" data-tab="reg" aria-selected="false">Đăng ký</button></div>
           <form id="fLogin" autocomplete="on">
             <label for="lu">Tên đăng nhập</label><input id="lu" autocomplete="username" autocapitalize="off" spellcheck="false" required>
             <label for="lp">Mật khẩu</label><input id="lp" type="password" autocomplete="current-password" required>
@@ -257,9 +257,10 @@ button.app{font:inherit;text-align:left;cursor:pointer}
             <div class="row2"><div><label for="rph">Số điện thoại</label><input id="rph" type="tel" inputmode="tel" autocomplete="tel" required></div><div><label for="re">Email <span style="color:var(--ink-3);font-weight:500">(không bắt buộc)</span></label><input id="re" type="email" autocomplete="email"></div></div>
             <label for="ru">Tên đăng nhập</label><input id="ru" autocomplete="username" autocapitalize="off" spellcheck="false" placeholder="ví dụ: minhanh2010" required>
             <label for="rp">Mật khẩu <span style="color:var(--ink-3);font-weight:500">(từ 6 ký tự)</span></label><input id="rp" type="password" autocomplete="new-password" minlength="6" required>
-            <button class="btn lg" type="submit" id="bReg">Bắt đầu dùng thử miễn phí</button>
+            <label for="rc">Mã lớp <span style="color:var(--ink-3);font-weight:500">(học viên đang học tại AZEnglish)</span></label><input id="rc" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="Bỏ trống nếu đăng ký dùng thử">
+            <button class="btn lg" type="submit" id="bReg">Tạo tài khoản</button>
             <p class="err" id="eReg" role="alert"></p>
-            <p class="note">Mỗi số điện thoại được dùng thử một lần. Không cần thẻ thanh toán.</p>
+            <p class="note">Có mã lớp: tài khoản học chính thức. Không có mã: dùng thử 7 ngày, mỗi số điện thoại một lần.</p>
           </form>
           <div class="secure"><svg class="azi" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Mật khẩu được mã hoá trước khi gửi. Mỗi tài khoản dùng tối đa 2 thiết bị.</div>
         </div>
@@ -286,10 +287,10 @@ button.app{font:inherit;text-align:left;cursor:pointer}
       <div class="wrap">
         <div class="sec-h"><span class="k">Hỏi đáp</span><h2>Câu hỏi thường gặp</h2></div>
         <div class="faq">
-          <details><summary>Dùng thử 7 ngày gồm những gì?</summary><p>Mở đầy đủ Writing Studio, Reading & Listening, Listening Lab và AZ World trong 7 ngày, tính cả ngày đăng ký. Hết hạn, tiến độ vẫn được giữ nếu em đăng ký khoá học.</p></details>
-          <details><summary>Học viên đang học tại AZEnglish đăng nhập thế nào?</summary><p>Giáo viên cấp tên đăng nhập và mật khẩu tạm. Lần đầu đăng nhập, mật khẩu tạm trở thành mật khẩu của em.</p></details>
+          <details><summary>Dùng thử 7 ngày gồm những gì?</summary><p>Mở đầy đủ Writing Studio, Reading & Listening, Listening Lab và AZ World trong 7 ngày, tính cả ngày đăng ký. Hết hạn, tiến độ vẫn được giữ nếu bạn đăng ký khoá học.</p></details>
+          <details><summary>Học viên đang học tại AZEnglish đăng nhập thế nào?</summary><p>Chọn Đăng ký, nhập mã lớp giáo viên gửi cho lớp và tự đặt mật khẩu. Tài khoản sẽ là tài khoản học chính thức, không giới hạn 7 ngày.</p></details>
           <details><summary>Dùng được trên mấy thiết bị?</summary><p>Tối đa 2 thiết bị (ví dụ điện thoại và máy tính). Muốn đổi máy, bấm Đăng xuất ở máy cũ hoặc nhờ giáo viên mở lại.</p></details>
-          <details><summary>Quên mật khẩu thì sao?</summary><p>Nhắn giáo viên hoặc fanpage AZEnglish. Giáo viên đặt mật khẩu tạm mới để em đăng nhập lại.</p></details>
+          <details><summary>Quên mật khẩu thì sao?</summary><p>Nhắn giáo viên hoặc fanpage AZEnglish. Giáo viên đặt mật khẩu tạm mới để bạn đăng nhập lại.</p></details>
         </div>
       </div>
     </section>
@@ -387,8 +388,8 @@ function openAuth(t) { setTab(t); scrollTo({ top: 0, behavior: "smooth" }); setT
 function setTab(t) {
   document.querySelectorAll(".seg button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === t));
   $("#fLogin").hidden = t !== "login"; $("#fReg").hidden = t !== "reg";
-  $("#authTitle").textContent = t === "reg" ? "Dùng thử miễn phí 7 ngày" : "Đăng nhập để vào học";
-  $("#authSub").textContent = t === "reg" ? "Tạo tài khoản trong 1 phút." : "Dùng tài khoản AZEnglish cấp cho em.";
+  $("#authTitle").textContent = t === "reg" ? "Tạo tài khoản học" : "Đăng nhập để vào học";
+  $("#authSub").textContent = t === "reg" ? "Nhập mã lớp nếu bạn đang học tại AZEnglish." : "Dùng tài khoản AZEnglish của bạn.";
 }
 function render() {
   const s = getS(), valid = s && s.u && daysLeft(s.exp) > 0;
@@ -405,7 +406,7 @@ function render() {
     <div class="acts"><button class="btn line" type="button" id="bRefresh">Cập nhật</button><button class="btn line" type="button" id="bOut">Đăng xuất</button></div>`;
   $("#bRefresh").onclick = () => refresh(false);
   $("#bOut").onclick = logout;
-  $("#dBanner").innerHTML = s.tier === "trial" ? `<div class="banner trial">${azi("clock")}<span>Em đang dùng thử miễn phí, còn <b>${left} ngày</b>. Đăng ký khoá học để giữ tiến độ: gọi / Zalo <b style="user-select:all">${PHONE}</b>.</span></div>`
+  $("#dBanner").innerHTML = s.tier === "trial" ? `<div class="banner trial">${azi("clock")}<span>Bạn đang dùng thử miễn phí, còn <b>${left} ngày</b>. Đăng ký khoá học để giữ tiến độ: gọi / Zalo <b style="user-select:all">${PHONE}</b>.</span></div>`
     : left <= 7 ? `<div class="banner warn">${azi("info")}<span>Tài khoản còn <b>${left} ngày</b>. Liên hệ AZEnglish để gia hạn và giữ tiến độ học.</span></div>` : "";
   $("#apps").innerHTML = APPS.map(a => appCard(a, false)).join("");
   $("#elite").innerHTML = s.tier === "elite" ? `<div><h3>${azi("crown")} Quyền lợi Elite của em</h3><ul><li>Nộp bài Writing trong Writing Studio: giáo viên chấm và trả nhận xét.</li><li>Thi thử 4 kỹ năng hằng tháng có giáo viên chấm.</li><li>Tư vấn lộ trình 1–1 với giáo viên.</li></ul></div><div class="contact">Đặt lịch với giáo viên<b>${PHONE}</b></div>`
@@ -426,10 +427,10 @@ $("#fReg").onsubmit = async e => {
   if (!/^[a-z0-9._-]{3,30}$/.test(u)) { er.textContent = "Tên đăng nhập 3–30 ký tự: chữ không dấu, số, dấu chấm hoặc gạch."; return; }
   if (pw.length < 6) { er.textContent = "Mật khẩu cần ít nhất 6 ký tự."; return; }
   b.disabled = true; b.textContent = "Đang tạo tài khoản…";
-  try { const j = await api({ t: "register", u, ph: await hashPw(u, pw), name: $("#rn").value.trim(), phone: $("#rph").value.trim(), email: $("#re").value.trim(), dev: dev() });
-    if (j && j.ok) { toast("Tạo tài khoản dùng thử thành công. Chúc em học tốt!"); afterLogin(j.s); } else er.textContent = (j && j.error) || "Không tạo được tài khoản."; }
+  try { const j = await api({ t: "register", u, ph: await hashPw(u, pw), cls: $("#rc").value.trim().toUpperCase(), name: $("#rn").value.trim(), phone: $("#rph").value.trim(), email: $("#re").value.trim(), dev: dev() });
+    if (j && j.ok) { toast(j.s.tier === "trial" ? "Tạo tài khoản dùng thử thành công. Chúc bạn học tốt!" : "Tạo tài khoản lớp học thành công. Chúc bạn học tốt!"); afterLogin(j.s); } else er.textContent = (j && j.error) || "Không tạo được tài khoản."; }
   catch (x) { er.textContent = x.message.includes("cài đặt") ? x.message : "Không kết nối được máy chủ. Kiểm tra mạng rồi thử lại."; }
-  b.disabled = false; b.textContent = "Bắt đầu dùng thử miễn phí";
+  b.disabled = false; b.textContent = "Tạo tài khoản";
 };
 async function refresh(silent) {
   const s = getS(); if (!s || !s.u) return;
