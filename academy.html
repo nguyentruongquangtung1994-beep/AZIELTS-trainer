@@ -91,7 +91,7 @@ button,input{font:inherit}
 .mini div{text-align:center;padding:5px 0;border-radius:8px;background:var(--bg-2);font-size:10.5px;color:var(--ink-3);font-weight:600}
 .mini div b{display:block;font-size:14px;color:var(--ink);font-weight:800}
 .float.count{right:-30px;bottom:96px;display:flex;align-items:center;gap:12px;padding:14px 16px}
-.float.count .dot{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--navy);color:#F5C451}
+.float.count .dot{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:var(--gold-2);font-family:var(--serif);font-size:22px;font-weight:700;box-shadow:inset 0 0 0 1px rgba(227,194,122,.5)}
 .float.count b{display:block;font-size:15px;font-weight:800}
 .float.count span{font-size:12.5px;color:var(--ink-3)}
 /* hộp đăng nhập (cửa sổ nổi) */
@@ -177,6 +177,37 @@ button.app{font:inherit;text-align:left;cursor:pointer}
 .tch-main ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .tch-main li{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:var(--ink-2)}
 .tch-main li .azi{color:var(--red);margin-top:.2em}
+/* kiểm tra trình độ */
+.place{margin-top:28px;padding:28px;border-radius:18px;background:#fff;border:1px solid var(--line);box-shadow:var(--sh-2)}
+.place-h{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:20px}
+.place-h h2{font-family:var(--serif);font-size:26px}
+.place-h p{margin:4px 0 0;color:var(--ink-2);font-size:14.5px;max-width:60ch}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.step{display:flex;flex-direction:column;gap:8px;padding:18px;border-radius:14px;border:1px solid var(--line);background:var(--bg-2);color:var(--ink);text-decoration:none}
+a.step:hover{border-color:var(--gold);background:#fff}
+.step .no{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--gold);letter-spacing:.08em}
+.step h3{font-size:17px}
+.step p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.5}
+.step .meta{margin-top:auto;padding-top:8px;font-size:12.5px;font-weight:700;color:var(--red)}
+.step.center .meta{color:var(--navy)}
+@media (max-width:980px){ .steps{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:560px){ .steps{grid-template-columns:1fr} .place{padding:20px} }
+/* thẻ chương trình premium */
+.apps{grid-template-columns:repeat(4,minmax(0,1fr))}
+.app{padding:0;overflow:hidden;gap:0;background:#fff}
+.app .cv{position:relative;display:flex;flex-direction:column;justify-content:flex-end;height:150px;padding:18px 20px;color:#fff;overflow:hidden;background:radial-gradient(220px 160px at 100% 0%,color-mix(in srgb,var(--hue) 55%,transparent),transparent 70%),linear-gradient(150deg,#0B1424,#18294A)}
+.app .cv::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:22px 22px;mask-image:linear-gradient(200deg,#000,transparent 70%);-webkit-mask-image:linear-gradient(200deg,#000,transparent 70%)}
+.app .cv::after{content:"";position:absolute;left:20px;right:20px;bottom:12px;height:1px;background:linear-gradient(90deg,var(--gold-2),transparent)}
+.cv-n{position:absolute;top:16px;left:20px;font-family:var(--serif);font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--gold-2)}
+.cv-t{position:relative;font-family:var(--serif);font-size:30px;font-weight:700;line-height:1;letter-spacing:-.01em}
+.cv-s{position:relative;margin:8px 0 6px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#C5CEDD}
+.app-b{display:flex;flex-direction:column;gap:8px;padding:20px;flex:1}
+.app .tagx{z-index:2;top:14px;right:14px}
+.cv-n,.cv-t,.step .no,.float.count .dot,.place-h h2{font-variant-numeric:lining-nums;font-feature-settings:"lnum" 1}
+.tagx.new{background:linear-gradient(90deg,var(--gold),var(--gold-2));color:#1A1406}
+a.app:hover .cv-t,button.app:hover .cv-t{color:var(--gold-2)}
+@media (max-width:1060px){ .apps{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:560px){ .apps{grid-template-columns:1fr} .app .cv{height:120px} }
 /* gói */
 .plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
 .plan{position:relative;display:flex;flex-direction:column;padding:26px;border-radius:18px;background:var(--bg);border:1px solid var(--line);box-shadow:var(--sh-1)}
@@ -340,10 +371,10 @@ body{background:#FDFCF9}
         <div>
           <span class="eyebrow"><i></i>AZEnglish Nha Trang · Lộ trình IELTS 240 buổi</span>
           <h1>Luyện IELTS mỗi ngày,<br><em>thấy tiến bộ từng tuần.</em></h1>
-          <p class="lead">Một tài khoản cho toàn bộ chương trình luyện IELTS của AZEnglish: Writing chấm band ngay, đề Cambridge Reading và Listening, nghe chép chính tả và lộ trình học theo level.</p>
+          <p class="lead">Một tài khoản cho toàn bộ chương trình luyện IELTS của AZEnglish: Writing chấm band ngay, đề Cambridge Reading và Listening, nghe chép chính tả và bài kiểm tra đầu vào 4 kỹ năng.</p>
           <div class="hero-cta"><button class="btn" type="button" data-auth="reg">Tạo tài khoản</button><button class="btn glass" type="button" data-auth="login">Đăng nhập</button></div>
           <div class="trust">
-            <div><b><span class="stars">★★★★★</span></b>100% đề xuất · 130 đánh giá</div>
+            <div><b>100%</b>phụ huynh, học viên đề xuất · 130 đánh giá</div>
             <div><b>33.000+</b>người theo dõi AZEnglish</div>
             <div><b>6.0 – 8.0</b>band học viên đạt được</div>
           </div>
@@ -351,7 +382,7 @@ body{background:#FDFCF9}
         <div class="visual" aria-hidden="true">
           <div class="frame"><img id="heroImg" alt=""><div class="cap"><b>Thầy Nguyễn Trương Quang Tùng</b><span>IELTS 7.5 · TOEIC 980 · Phụ trách chương trình</span></div></div>
           <div class="float score"><span class="k">Học viên AZEnglish</span><div class="big"><b>8.0</b><span>Overall · Leyonardo</span></div><div class="mini"><div><b>8.5</b>L</div><div><b>8.0</b>R</div><div><b>6.5</b>W</div><div><b>8.5</b>S</div></div></div>
-          <div class="float count"><span class="dot"><svg class="azi" viewBox="0 0 24 24" style="width:22px;height:22px"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/></svg></span><div><b>4 học viên mới nhất</b><span>đạt 6.0 – 8.0 IELTS</span></div></div>
+          <div class="float count"><span class="dot">4</span><div><b>Học viên tiêu biểu</b><span>đạt 6.0 – 8.0 IELTS</span></div></div>
         </div>
       </div>
     </section>
@@ -421,7 +452,7 @@ body{background:#FDFCF9}
       <div class="wrap">
         <div class="sec-h"><span class="k">Hỏi đáp</span><h2>Câu hỏi thường gặp</h2></div>
         <div class="faq">
-          <details><summary>Dùng thử 7 ngày gồm những gì?</summary><p>Mở đầy đủ Writing Studio, Reading & Listening, Listening Lab và AZ World trong 7 ngày, tính cả ngày đăng ký. Hết hạn, tiến độ vẫn được giữ nếu bạn đăng ký khoá học.</p></details>
+          <details><summary>Dùng thử 7 ngày gồm những gì?</summary><p>Mở đầy đủ Writing Studio, Reading & Listening, Listening Lab và bài kiểm tra trình độ trong 7 ngày, tính cả ngày đăng ký. Hết hạn, tiến độ vẫn được giữ nếu bạn đăng ký khoá học.</p></details>
           <details><summary>Học viên đang học tại AZEnglish đăng nhập thế nào?</summary><p>Chọn Đăng ký, nhập mã lớp giáo viên gửi cho lớp và tự đặt mật khẩu. Tài khoản sẽ là tài khoản học chính thức, không giới hạn 7 ngày.</p></details>
           <details><summary>Dùng được trên mấy thiết bị?</summary><p>Tối đa 2 thiết bị (ví dụ điện thoại và máy tính). Muốn đổi máy, bấm Đăng xuất ở máy cũ hoặc nhờ giáo viên mở lại.</p></details>
           <details><summary>Quên mật khẩu thì sao?</summary><p>Nhắn giáo viên hoặc fanpage AZEnglish. Giáo viên đặt mật khẩu tạm mới để bạn đăng nhập lại.</p></details>
@@ -440,6 +471,15 @@ body{background:#FDFCF9}
       <div id="dBanner"></div>
       <h2 class="sub">Chương trình học</h2>
       <div class="apps" id="apps"></div>
+      <div class="place" id="kiem-tra">
+        <div class="place-h"><div><h2>Bài kiểm tra đầu vào</h2><p>Làm lần lượt 4 phần để giáo viên xếp lộ trình phù hợp. Listening và Reading dùng đề Cambridge IELTS 21 Test 1, máy chấm điểm ngay.</p></div></div>
+        <div class="steps">
+          <a class="step" href="index.html#/listen/cambridge21-test1-listening/intro"><span class="no">PHẦN 1</span><h3>Listening</h3><p>Cambridge 21 · Test 1. 4 phần, 40 câu, khoảng 30 phút.</p><span class="meta">Bắt đầu làm →</span></a>
+          <a class="step" href="index.html#/test/cambridge21-test1/intro"><span class="no">PHẦN 2</span><h3>Reading</h3><p>Cambridge 21 · Test 1. 3 bài đọc, 40 câu, 60 phút.</p><span class="meta">Bắt đầu làm →</span></a>
+          <a class="step" href="writing-studio.html"><span class="no">PHẦN 3</span><h3>Writing</h3><p>Vào Writing Studio, mục Task 2 → Đề thi, tự chọn 1 đề và viết trong 40 phút. Nộp để chấm band.</p><span class="meta">Mở Writing Studio →</span></a>
+          <div class="step center"><span class="no">PHẦN 4</span><h3>Speaking</h3><p>Thi nói trực tiếp với giáo viên tại trung tâm, 100 Hà Thanh, Nha Trang (11–14 phút như bài thi thật).</p><span class="meta">Đặt lịch: <span style="user-select:all">0971 882 096</span></span></div>
+        </div>
+      </div>
       <div class="elite-box" id="elite"></div>
     </div>
   </section>
@@ -495,12 +535,10 @@ const P = {
 };
 const azi = k => `<svg class="azi" viewBox="0 0 24 24" aria-hidden="true">${P[k]}</svg>`;
 const APPS = [
-  { id: "writing", name: "Writing Studio", hue: "#D7192D", ic: "pen", href: "writing-studio.html", desc: "Nhiệm vụ mỗi ngày, công thức theo dạng đề Task 1 và Task 2, chấm band ngay sau khi nộp.", badge: "Mới" },
-  { id: "rl", name: "Reading & Listening", hue: "#1D4ED8", ic: "book", href: "index.html", desc: "Đề Cambridge IELTS có bấm giờ, chấm điểm và chỉ vị trí đáp án trong bài." },
-  { id: "gap", name: "Listening Lab", hue: "#6D28D9", ic: "head", href: "listening-gapfill.html", desc: "Nghe transcript khoét lỗ Cambridge 19–21: chọn đáp án và chép chính tả với audio gốc." },
-  { id: "world", name: "AZ World", hue: "#15803D", ic: "map", href: "azworld/", desc: "Hành trình học theo level: nhiệm vụ, nhân vật và bài thi lên level." },
-  { id: "speak", name: "Speaking", hue: "#C2410C", ic: "mic", href: "", desc: "Luyện nói Part 1–3, ghi âm và nộp giáo viên chấm.", soon: true },
-  { id: "test", name: "Kiểm tra trình độ", hue: "#B7851A", ic: "target", href: "", desc: "Bài kiểm tra 4 kỹ năng để xếp lộ trình phù hợp.", soon: true }
+  { id: "writing", cv: "Writing", sub: "Task 1 · Task 2", name: "Writing Studio", hue: "#D7192D", ic: "pen", href: "writing-studio.html", desc: "Nhiệm vụ mỗi ngày, công thức theo dạng đề Task 1 và Task 2, chấm band ngay sau khi nộp.", badge: "Mới" },
+  { id: "rl", cv: "Reading", sub: "Cambridge 16 – 21", name: "Reading & Listening", hue: "#1D4ED8", ic: "book", href: "index.html", desc: "Đề Cambridge IELTS có bấm giờ, chấm điểm và chỉ vị trí đáp án trong bài." },
+  { id: "gap", cv: "Listening", sub: "Cambridge 19 – 21", name: "Listening Lab", hue: "#6D28D9", ic: "head", href: "listening-gapfill.html", desc: "Nghe transcript khoét lỗ Cambridge 19–21: chọn đáp án và chép chính tả với audio gốc." },
+  { id: "test", cv: "Placement", sub: "Đầu vào 4 kỹ năng", name: "Kiểm tra trình độ", hue: "#B7851A", ic: "target", href: "#kiem-tra", desc: "Bài kiểm tra đầu vào 4 kỹ năng: Listening, Reading đề Cambridge 21, Writing tự chọn đề, Speaking tại trung tâm.", badge: "Đầu vào" },
 ];
 const PLANS = [
   { k: "trial", name: "Dùng thử", lvl: "Miễn phí", price: "7 ngày trải nghiệm nền tảng, không cần thanh toán.", items: ["Mở đầy đủ 4 chương trình luyện tập", "Chấm band Writing tự động", "Đề Cambridge Reading và Listening", "Học cụm từ, thử thách 60 giây"] },
@@ -543,15 +581,15 @@ function renderResults() {
   $("#lb").onclick = () => { $("#lb").hidden = true; };
 }
 /* ===== giao diện ===== */
-function appCard(a, guest) {
-  const inner = `<span class="ic">${azi(a.ic)}</span><h3>${esc(a.name)}</h3><p>${esc(a.desc)}</p>`;
-  if (a.soon) return `<div class="app soon" style="--hue:${a.hue}"><span class="tagx soon">Sắp ra mắt</span>${inner}</div>`;
+function appCard(a, guest, n) {
+  const no = String(n + 1).padStart(2, "0");
+  const inner = `<span class="cv" style="--hue:${a.hue}"><span class="cv-n">${no}</span><span class="cv-t">${esc(a.cv)}</span><span class="cv-s">${esc(a.sub)}</span></span><span class="app-b"><h3>${esc(a.name)}</h3><p>${esc(a.desc)}</p>`;
   const tag = a.badge ? `<span class="tagx new">${esc(a.badge)}</span>` : "";
-  if (guest) return `<button type="button" class="app" style="--hue:${a.hue}" data-auth="login">${tag}${inner}<span class="go">Đăng nhập để học ${azi("arrow")}</span></button>`;
-  return `<a class="app" style="--hue:${a.hue}" href="${a.href}">${tag}${inner}<span class="go">Vào học ${azi("arrow")}</span></a>`;
+  if (guest) return `<button type="button" class="app" data-auth="login">${tag}${inner}<span class="go">Đăng nhập để học ${azi("arrow")}</span></span></button>`;
+  return `<a class="app" href="${a.href}">${tag}${inner}<span class="go">Vào học ${azi("arrow")}</span></span></a>`;
 }
 function renderGuest() {
-  $("#appsGuest").innerHTML = APPS.map(a => appCard(a, true)).join("");
+  $("#appsGuest").innerHTML = APPS.map((a, n) => appCard(a, true, n)).join("");
   $("#plans").innerHTML = PLANS.map(p => `<div class="plan ${p.k}">${p.k === "elite" ? `<span class="badge">Cam kết đầu ra</span>` : ""}<span class="lvl">${esc(p.lvl)}</span><h3>${esc(p.name)}</h3>${p.seats ? `<span class="seats">${esc(p.seats)}</span>` : ""}<p class="price">${esc(p.price)}</p>
     <ul>${p.items.map(i => `<li>${azi("check")}<span>${esc(i)}</span></li>`).join("")}</ul>
     <div class="cta">${p.k === "trial" ? `<button class="btn" type="button" data-auth="reg">Bắt đầu dùng thử</button>` : `<a class="btn ${p.k === "elite" ? "dark" : "line"}" href="#lien-he">Liên hệ tư vấn</a><span class="phone">Gọi / Zalo <b>${PHONE}</b></span>`}</div></div>`).join("");
@@ -582,9 +620,9 @@ function render() {
   $("#bOut").onclick = logout;
   $("#dBanner").innerHTML = s.tier === "trial" ? `<div class="banner trial">${azi("clock")}<span>Bạn đang dùng thử miễn phí, còn <b>${left} ngày</b>. Đăng ký khoá học để giữ tiến độ: gọi / Zalo <b style="user-select:all">${PHONE}</b>.</span></div>`
     : left <= 7 ? `<div class="banner warn">${azi("info")}<span>Tài khoản còn <b>${left} ngày</b>. Liên hệ AZEnglish để gia hạn và giữ tiến độ học.</span></div>` : "";
-  $("#apps").innerHTML = APPS.map(a => appCard(a, false)).join("");
-  $("#elite").innerHTML = s.tier === "elite" ? `<div><h3>${azi("crown")} Quyền lợi Elite của em</h3><ul><li>Nộp bài Writing trong Writing Studio: giáo viên chấm và trả nhận xét.</li><li>Thi thử 4 kỹ năng hằng tháng có giáo viên chấm.</li><li>Tư vấn lộ trình 1–1 với giáo viên.</li></ul></div><div class="contact">Đặt lịch với giáo viên<b>${PHONE}</b></div>`
-    : `<div><h3>${azi("crown")} Nâng cấp Elite: có giáo viên theo sát</h3><ul><li>Giáo viên chấm và sửa bài Writing, Speaking.</li><li>Thi thử hằng tháng có giáo viên chấm.</li><li>Tư vấn lộ trình 1–1, ưu tiên hỗ trợ.</li></ul></div><div class="contact">Liên hệ nâng cấp<b>${PHONE}</b></div>`;
+  $("#apps").innerHTML = APPS.map((a, n) => appCard(a, false, n)).join("");
+  $("#elite").innerHTML = s.tier === "elite" ? `<div><h3>Quyền lợi Elite của em</h3><ul><li>Nộp bài Writing trong Writing Studio: giáo viên chấm và trả nhận xét.</li><li>Thi thử 4 kỹ năng hằng tháng có giáo viên chấm.</li><li>Tư vấn lộ trình 1–1 với giáo viên.</li></ul></div><div class="contact">Đặt lịch với giáo viên<b>${PHONE}</b></div>`
+    : `<div><h3>Nâng cấp Elite: có giáo viên theo sát</h3><ul><li>Giáo viên chấm và sửa bài Writing, Speaking.</li><li>Thi thử hằng tháng có giáo viên chấm.</li><li>Tư vấn lộ trình 1–1, ưu tiên hỗ trợ.</li></ul></div><div class="contact">Liên hệ nâng cấp<b>${PHONE}</b></div>`;
 }
 /* ===== sự kiện ===== */
 document.querySelectorAll(".seg button").forEach(b => b.onclick = () => setTab(b.dataset.tab));
