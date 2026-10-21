@@ -118,7 +118,89 @@ body{margin:0}
 .book{scroll-margin-top:64px;margin-top:26px}
 .book h2{font-family:var(--display);font-weight:800;font-size:24px;margin:0}
 </style>
-</head>
+<!--AZP:start--><style id="azp">/* ===== AZIELTS PREMIUM — Listening Lab (Cambridge 19–21) ===== */
+:root,:root[data-theme="dark"],:root[data-theme="light"]{
+  --red:#D7192D; --red-soft:#FDEDEF; --ink:#111827; --paper:#FFFFFF; --ground:#FDFCF9;
+  --muted:#4B5563; --line:#E8E4DA; --ok:#1F7A4D; --ok-soft:#E8F3EC; --bad:#B01322; --bad-soft:#FDEDEF;
+  --chip:#FFFFFF; --shadow:0 1px 3px rgba(16,24,40,.06),0 12px 28px -16px rgba(16,24,40,.18);
+  --display:"Playfair Display",Georgia,serif; --body:"Source Serif 4",Georgia,"Times New Roman",serif; --mono:"Be Vietnam Pro",system-ui,sans-serif;
+  --navy:#0B1424; --gold:#B8913A; --gold-2:#E3C27A; color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:light; --red:#D7192D; --red-soft:#FDEDEF; --ink:#111827; --paper:#FFFFFF; --ground:#FDFCF9;
+  --muted:#4B5563; --line:#E8E4DA; --ok:#1F7A4D; --ok-soft:#E8F3EC; --bad:#B01322; --bad-soft:#FDEDEF; --chip:#FFFFFF;
+  --shadow:0 1px 3px rgba(16,24,40,.06),0 12px 28px -16px rgba(16,24,40,.18)}}
+body{background:#FDFCF9!important;color:#111827!important;-webkit-font-smoothing:antialiased}
+/* đầu trang xanh đêm */
+header.top{position:relative;margin-top:16px;padding:30px 28px 26px!important;border-radius:20px;background:radial-gradient(600px 360px at 92% 0%,rgba(215,25,45,.3),transparent 60%),linear-gradient(160deg,#0B1424,#13233B 55%,#0E1A2E);color:#fff;overflow:hidden}
+header.top::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:radial-gradient(ellipse at 40% 40%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse at 40% 40%,#000 30%,transparent 75%);pointer-events:none}
+header.top>*{position:relative}
+header.top .brand{color:var(--gold-2)!important;font-family:"Be Vietnam Pro",sans-serif!important;letter-spacing:.16em}
+header.top h1{color:#fff!important;font-family:"Playfair Display",Georgia,serif!important;font-weight:700!important}
+header.top .sub,header.top .sub *{color:#BAC5D6!important}
+header.top .crumb a{color:var(--gold-2)!important}
+h1,h2,.panel-head h2,.book h2,.dgroup h3,.card .tn{font-family:"Playfair Display",Georgia,serif!important;font-weight:700!important;font-variant-numeric:lining-nums;font-feature-settings:"lnum" 1}
+.brand,.kicker,.panel-head .kicker{color:var(--gold)!important}
+/* tab Part */
+nav.tabs{background:rgba(253,252,249,.95)!important;backdrop-filter:blur(10px)}
+.tab{border-radius:99px!important;font-family:"Be Vietnam Pro",sans-serif!important;font-weight:600!important;border:1px solid var(--line)!important;background:#fff!important}
+.tab[aria-selected="true"]{background:var(--navy)!important;color:#fff!important;border-color:var(--navy)!important}
+.tab[aria-selected="true"] .cnt{color:var(--gold-2)!important}
+/* trình phát */
+.player{background:linear-gradient(150deg,#0B1424,#18294A)!important;border:0!important;border-radius:16px!important;color:#fff;padding:14px 16px!important}
+.speed button{border-radius:99px!important;font-family:"Be Vietnam Pro",sans-serif!important;background:rgba(255,255,255,.08)!important;color:#E6EBF3!important;border:1px solid rgba(255,255,255,.18)!important}
+.speed button.on{background:linear-gradient(90deg,var(--gold),var(--gold-2))!important;color:#1A1406!important;border:0!important}
+.how,.note{border-left:3px solid var(--gold)!important;background:#fff!important;border-radius:12px;padding:10px 14px!important}
+/* bài nghe & ô điền */
+.transcript{background:#fff!important;border:1px solid var(--line)!important;border-radius:16px!important;box-shadow:var(--shadow)}
+.gap .num,.wgap .num,.drow .dn{background:var(--navy)!important;color:#fff!important;font-family:"Be Vietnam Pro",sans-serif!important}
+.opt{border-radius:10px!important;font-family:"Be Vietnam Pro",sans-serif!important}
+.opt.sel{border-color:var(--navy)!important;background:#EEF1F6!important}
+.opt.sel .l{background:var(--navy)!important;color:#fff!important}
+.wgap input:focus{border-color:var(--gold)!important;box-shadow:0 0 0 3px rgba(184,145,58,.2)!important}
+.btn{border-radius:10px!important;font-family:"Be Vietnam Pro",sans-serif!important;font-weight:700!important}
+.btn.primary{background:var(--red)!important;border-color:var(--red)!important;box-shadow:0 8px 20px -12px rgba(176,19,34,.55)!important}
+.score{font-family:"Playfair Display",Georgia,serif!important;color:var(--navy)!important}
+.progress i,.bar i{background:linear-gradient(90deg,var(--gold),var(--gold-2))!important}
+/* trang chọn đề */
+.card,.bk{background:#fff!important;border:1px solid var(--line)!important;border-radius:16px!important;box-shadow:var(--shadow)!important}
+.card:hover,.bk:hover{border-color:var(--gold)!important}
+.chip{border-radius:99px!important;font-family:"Be Vietnam Pro",sans-serif!important}
+.nextnav a{border-radius:10px!important}
+/* thanh về Academy */
+.azp-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:14px}
+.azp-home{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:99px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#E6EBF3;font:600 12.5px/1.2 "Be Vietnam Pro",sans-serif;text-decoration:none;white-space:nowrap}
+.azp-home:hover{border-color:var(--gold-2);color:#fff}
+.azp-tier{display:inline-flex;align-items:center;padding:3px 9px;border-radius:99px;font:700 11.5px/1.2 "Be Vietnam Pro",sans-serif;letter-spacing:.04em;white-space:nowrap}
+.azp-tier.elite{background:linear-gradient(90deg,#B8913A,#E3C27A);color:#1A1406}
+.azp-tier.standard{background:#E8F3EC;color:#1F7A4D}
+.azp-tier.trial{background:#EAF0FD;color:#1D4ED8}
+@media (max-width:600px){ header.top{padding:22px 18px 20px!important;border-radius:16px} }
+</style><script>window.AZP_ACAD="academy.html";window.AZP_HOST="header.top";/* AZIELTS PREMIUM — dùng chung cho trang học tĩnh: nạp font, luôn sáng, nút về Academy + huy hiệu gói */
+(function () {
+  try {
+    var l = document.createElement("link"); l.rel = "stylesheet";
+    l.href = "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Source+Serif+4:wght@400;600&display=swap";
+    document.head.appendChild(l);
+  } catch (e) {}
+  var root = document.documentElement;
+  function light() { if (root.getAttribute("data-theme") === "dark") root.setAttribute("data-theme", "light"); }
+  light(); try { new MutationObserver(light).observe(root, { attributes: true, attributeFilter: ["data-theme"] }); } catch (e) {}
+  var s = null; try { s = JSON.parse(localStorage.getItem("az_acad") || "null"); } catch (e) {}
+  if (!s || !s.u) return;
+  var TIER = { elite: "Elite", standard: "Standard", trial: "Dùng thử" };
+  var ACAD = (window.AZP_ACAD || "academy.html");
+  function mount() {
+    if (document.querySelector(".azp-bar")) return;
+    var host = document.querySelector(window.AZP_HOST || ".masthead"); if (!host) return;
+    var bar = document.createElement("div"); bar.className = "azp-bar";
+    bar.innerHTML = '<a class="azp-home" href="' + ACAD + '" title="Về AZIELTS Academy">← Academy</a>' + (TIER[s.tier] ? '<span class="azp-tier ' + s.tier + '">' + TIER[s.tier] + "</span>" : "");
+    host.appendChild(bar);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", mount); else mount();
+  setTimeout(mount, 600); setTimeout(mount, 2000);
+})();
+</script><!--AZP:end--></head>
 <body>
 <div id="gateScreen" style="position:fixed;inset:0;z-index:999;background:var(--ground);display:flex;align-items:center;justify-content:center;padding:20px;">
   <form id="gateForm" style="max-width:340px;width:100%;text-align:center;font-family:var(--display);">
