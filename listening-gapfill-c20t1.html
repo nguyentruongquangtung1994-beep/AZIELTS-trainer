@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="vi">
-<head>
+<head><!--AZOG:start--><meta name="description" content="Nghe chép chính tả và chọn từ theo đề Cambridge IELTS 19–21, có transcript và giải nghĩa. Thuộc AZIELTS Academy của AZEnglish."><meta property="og:type" content="website"><meta property="og:site_name" content="AZIELTS Academy"><meta property="og:title" content="AZIELTS Listening Lab"><meta property="og:description" content="Nghe chép chính tả và chọn từ theo đề Cambridge IELTS 19–21, có transcript và giải nghĩa. Thuộc AZIELTS Academy của AZEnglish."><meta property="og:url" content="https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/listening-gapfill-c20t1.html"><meta property="og:image" content="https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/og-azielts.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/og-azielts.jpg"><!--AZOG:end-->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -182,6 +182,27 @@ nav.tabs{background:rgba(253,252,249,.95)!important;backdrop-filter:blur(10px)}
 .crumb a,.nextnav a,header.top a{font-family:"Be Vietnam Pro",system-ui,sans-serif!important}
 button,input,select,textarea{font-family:"Be Vietnam Pro",system-ui,-apple-system,sans-serif!important}
 .wgap input,textarea{font-family:"Source Serif 4",Georgia,serif!important}
+
+/* ===== AZIELTS SYNC — một thang chung cho Academy · Writing Studio · Reading & Listening · Listening Lab =====
+   Bo góc: 10px nút & ô nhập · 12px khối nhỏ bên trong thẻ · 16px thẻ & bảng · 20px khung lớn · 999px viên thuốc (chip, nhãn gói).
+   Nút: chữ thường, đậm 700, không giãn chữ. Biểu tượng: nét mảnh 1.8. */
+:root{--r-btn:10px;--r-in:12px;--r-card:16px;--r-xl:20px}
+/* nút & ô nhập */
+html body :is(.btn,.ghost,.nb-btn,.opt,#chk,#rst,.ws-steps button,#tabs button,select,textarea,input:not([type=checkbox]):not([type=radio]):not([type=range])):not(.mchip):not(.avatar):not(.tab):not(.azp-home){border-radius:var(--r-btn)!important}
+html body :is(.btn,.ghost,.nb-btn,#chk,#rst):not(.tab){font-weight:700!important;letter-spacing:0!important;text-transform:none!important}
+html body .ws-steps button{font-weight:700!important}
+/* khối nhỏ bên trong thẻ */
+html body :is(.nb-book,.ph,.how,.board-note,.essay-raw,details.faq-i,.faq details,.ico,.ti){border-radius:var(--r-in)!important}
+/* thẻ & bảng */
+html body :is(.panel,.wk-it,.figure,nav#tabs,.ws-steps,.jmap,.rc,.pgrid,.tch,.plan,.perk,.stats,.float,.acct,.auth,.place,.step,.nb-skill,.nb-writing,.nb-strategy,.nb-stats,.nb-panel,.bk,.card,.steps,.player,.transcript,.app){border-radius:var(--r-card)!important}
+/* khung lớn */
+html body :is(aside.side,.frame,.nb-hero,.az-hero,header.top,.hello,.hero-card){border-radius:var(--r-xl)!important}
+/* biểu tượng nét mảnh */
+html body :is(.azi,.nb-skill .ico svg,.nb-strategy .i svg,.azp-ico){stroke-width:1.8!important}
+html body .nb-strategy .i svg,html body .azp-ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+html body .azp-ico{width:18px;height:18px;vertical-align:-3px;margin-right:8px;color:var(--gold,#B8913A)}
+html body .nb-strategy .i svg{margin:0!important;color:inherit!important}
+html body a.card > .tn{display:flex;align-items:center}
 </style><script>window.AZP_ACAD="academy.html";window.AZP_HOST="header.top";/* AZIELTS PREMIUM — dùng chung cho trang học tĩnh: nạp font, luôn sáng, nút về Academy + huy hiệu gói */
 (function () {
   try {
@@ -198,6 +219,20 @@ button,input,select,textarea{font-family:"Be Vietnam Pro",system-ui,-apple-syste
     var strip = function (root) { var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), n; while ((n = w.nextNode())) { if (n.parentElement && /^(SCRIPT|STYLE|TEXTAREA)$/.test(n.parentElement.tagName)) continue; if (EM.test(n.textContent)) { EM.lastIndex = 0; n.textContent = n.textContent.replace(EM, ""); } EM.lastIndex = 0; } };
     var go = function () { strip(document.body); new MutationObserver(function (ms) { ms.forEach(function (m) { m.addedNodes.forEach(function (x) { if (x.nodeType === 1) strip(x); else if (x.nodeType === 3 && x.parentNode) strip(x.parentNode); }); }); }).observe(document.body, { childList: true, subtree: true }); };
     if (document.body) go(); else document.addEventListener("DOMContentLoaded", go);
+  } catch (e) {}
+  /* BIỂU TƯỢNG: bộ nét mảnh chung với Academy & Writing Studio (thay ô "!" thẻ Chiến lược, thêm tai nghe / mẹo cho Listening Lab) */
+  try {
+    var SVG = function (d) { return '<svg class="azp-ico" viewBox="0 0 24 24" aria-hidden="true">' + d + "</svg>"; };
+    var ICO = { compass: '<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/>',
+      phones: '<path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/>',
+      tip: '<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/>' };
+    var deco = function () {
+      document.querySelectorAll(".nb-strategy .i").forEach(function (e) { if (e.textContent.trim() === "!") e.innerHTML = SVG(ICO.compass).replace("azp-ico", "azp-ico azp-big"); });
+      document.querySelectorAll("a.card > .tn").forEach(function (e) { if (!e.querySelector(".azp-ico")) e.insertAdjacentHTML("afterbegin", SVG(ICO.phones)); });
+      document.querySelectorAll(".steps > b:first-child").forEach(function (e) { if (!e.querySelector(".azp-ico")) e.insertAdjacentHTML("afterbegin", SVG(ICO.tip)); });
+    };
+    var goDeco = function () { deco(); new MutationObserver(function () { deco(); }).observe(document.body, { childList: true, subtree: true }); };
+    if (document.body) goDeco(); else document.addEventListener("DOMContentLoaded", goDeco);
   } catch (e) {}
   var s = null; try { s = JSON.parse(localStorage.getItem("az_acad") || "null"); } catch (e) {}
   if (!s || !s.u) return;
