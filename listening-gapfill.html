@@ -176,6 +176,12 @@ nav.tabs{background:rgba(253,252,249,.95)!important;backdrop-filter:blur(10px)}
 .azp-tier.standard{background:#E8F3EC;color:#1F7A4D}
 .azp-tier.trial{background:#EAF0FD;color:#1D4ED8}
 @media (max-width:600px){ header.top{padding:22px 18px 20px!important;border-radius:16px} }
+/* ===== Sửa sau rà soát font & hình ảnh (21/10) ===== */
+/* O: nhãn người nói và liên kết điều hướng dùng chữ giao diện */
+.spk{font-family:"Be Vietnam Pro",system-ui,sans-serif!important;font-weight:700!important;letter-spacing:.1em;font-size:11.5px!important}
+.crumb a,.nextnav a,header.top a{font-family:"Be Vietnam Pro",system-ui,sans-serif!important}
+button,input,select,textarea{font-family:"Be Vietnam Pro",system-ui,-apple-system,sans-serif!important}
+.wgap input,textarea{font-family:"Source Serif 4",Georgia,serif!important}
 </style><script>window.AZP_ACAD="academy.html";window.AZP_HOST="header.top";/* AZIELTS PREMIUM — dùng chung cho trang học tĩnh: nạp font, luôn sáng, nút về Academy + huy hiệu gói */
 (function () {
   try {
@@ -186,6 +192,13 @@ nav.tabs{background:rgba(253,252,249,.95)!important;backdrop-filter:blur(10px)}
   var root = document.documentElement;
   function light() { if (root.getAttribute("data-theme") === "dark") root.setAttribute("data-theme", "light"); }
   light(); try { new MutationObserver(light).observe(root, { attributes: true, attributeFilter: ["data-theme"] }); } catch (e) {}
+  /* EMOJI: bỏ biểu tượng emoji còn sót trong nội dung cũ (đồng hồ ⏱, tiêu đề 📋 🎯 📌…) để giao diện premium */
+  try {
+    var EM = /(?:[\u{1F000}-\u{1FAFF}]|[⏩-⏺]|[☀-⛿]|⭐)️?\s?/gu;
+    var strip = function (root) { var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), n; while ((n = w.nextNode())) { if (n.parentElement && /^(SCRIPT|STYLE|TEXTAREA)$/.test(n.parentElement.tagName)) continue; if (EM.test(n.textContent)) { EM.lastIndex = 0; n.textContent = n.textContent.replace(EM, ""); } EM.lastIndex = 0; } };
+    var go = function () { strip(document.body); new MutationObserver(function (ms) { ms.forEach(function (m) { m.addedNodes.forEach(function (x) { if (x.nodeType === 1) strip(x); else if (x.nodeType === 3 && x.parentNode) strip(x.parentNode); }); }); }).observe(document.body, { childList: true, subtree: true }); };
+    if (document.body) go(); else document.addEventListener("DOMContentLoaded", go);
+  } catch (e) {}
   var s = null; try { s = JSON.parse(localStorage.getItem("az_acad") || "null"); } catch (e) {}
   if (!s || !s.u) return;
   var TIER = { elite: "Elite", standard: "Standard", trial: "Dùng thử" };
