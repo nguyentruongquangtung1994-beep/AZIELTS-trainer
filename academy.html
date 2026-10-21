@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="vi">
-<head>
+<head><!--AZOG:start--><meta name="description" content="Luyện IELTS mỗi ngày, thấy tiến bộ từng tuần. Writing chấm band ngay, đề Cambridge Reading &amp; Listening, kiểm tra đầu vào 4 kỹ năng. Dùng thử 7 ngày."><meta property="og:type" content="website"><meta property="og:site_name" content="AZIELTS Academy"><meta property="og:title" content="AZIELTS Academy · AZEnglish Nha Trang"><meta property="og:description" content="Luyện IELTS mỗi ngày, thấy tiến bộ từng tuần. Writing chấm band ngay, đề Cambridge Reading &amp; Listening, kiểm tra đầu vào 4 kỹ năng. Dùng thử 7 ngày."><meta property="og:url" content="https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/academy.html"><meta property="og:image" content="https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/og-azielts.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/og-azielts.jpg"><!--AZOG:end-->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -147,15 +147,15 @@ button.app{font:inherit;text-align:left;cursor:pointer}
 /* thành tích */
 .res{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
 .rc{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:22px;align-items:center;padding:20px;border-radius:18px;background:var(--bg);border:1px solid var(--line);box-shadow:var(--sh-2)}
-.rc a.ph{display:block;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--bg-2);aspect-ratio:3/4}
-.rc a.ph img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .3s}
+.rc a.ph{display:block;border-radius:12px;overflow:hidden;border:1px solid rgba(184,145,58,.55);background:#0B1424;padding:6px;aspect-ratio:4/5;box-shadow:0 12px 28px -20px rgba(11,20,36,.6)}
+.rc a.ph img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;border-radius:7px;filter:saturate(.88) contrast(1.03);transition:transform .3s}
 .rc a.ph:hover img{transform:scale(1.03)}
 .rc .ov{display:flex;align-items:baseline;gap:8px}
 .rc .ov b{font-size:46px;font-weight:800;letter-spacing:-.04em;color:var(--red);line-height:1;font-variant-numeric:tabular-nums}
 .rc .ov span{font-size:14px;font-weight:600;color:var(--ink-3)}
 .rc h3{font-size:20px;margin:10px 0 2px}
 .rc .when{font-size:13.5px;color:var(--ink-3);margin:0 0 14px}
-.sk{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.sk{display:grid;grid-template-columns:repeat(auto-fit,minmax(64px,1fr));gap:6px}
 .sk div{padding:8px 4px;border-radius:10px;background:var(--bg-2);border:1px solid var(--line);text-align:center;font-size:11.5px;color:var(--ink-3);font-weight:600}
 .sk div b{display:block;font-size:17px;color:var(--ink);font-weight:800;font-variant-numeric:tabular-nums}
 .res-note{margin:14px 0 0;font-size:12.5px;color:var(--ink-3)}
@@ -327,7 +327,7 @@ a.app:hover .cv-t,button.app:hover .cv-t{color:var(--gold-2)}
   .row2{grid-template-columns:1fr;gap:0}
   .auth{padding:20px}
   .who .nm{display:none}
-  .rc{grid-template-columns:1fr} .rc a.ph{aspect-ratio:4/3}
+  .rc{grid-template-columns:1fr} .rc a.ph{aspect-ratio:4/5;width:min(100%,300px);justify-self:center}
 }
 /* ===== lớp premium (phụ huynh) ===== */
 :root{--gold:#B8913A;--gold-2:#E3C27A;--gold-soft:#FAF4E6;--serif:"Playfair Display",Georgia,"Times New Roman",serif;--bg-2:#F7F5F0;--line:#E8E4DA;--line-2:#D8D2C4}
@@ -375,7 +375,27 @@ body{background:#FDFCF9}
 .foot{background:#0B1424}
 @media (max-width:860px){ .pgrid{grid-template-columns:1fr} }
 </style>
-</head>
+<style id="azsync">/* ===== AZIELTS SYNC — một thang chung cho Academy · Writing Studio · Reading & Listening · Listening Lab =====
+   Bo góc: 10px nút & ô nhập · 12px khối nhỏ bên trong thẻ · 16px thẻ & bảng · 20px khung lớn · 999px viên thuốc (chip, nhãn gói).
+   Nút: chữ thường, đậm 700, không giãn chữ. Biểu tượng: nét mảnh 1.8. */
+:root{--r-btn:10px;--r-in:12px;--r-card:16px;--r-xl:20px}
+/* nút & ô nhập */
+html body :is(.btn,.ghost,.nb-btn,.opt,#chk,#rst,.ws-steps button,#tabs button,select,textarea,input:not([type=checkbox]):not([type=radio]):not([type=range])):not(.mchip):not(.avatar):not(.tab):not(.azp-home){border-radius:var(--r-btn)!important}
+html body :is(.btn,.ghost,.nb-btn,#chk,#rst):not(.tab){font-weight:700!important;letter-spacing:0!important;text-transform:none!important}
+html body .ws-steps button{font-weight:700!important}
+/* khối nhỏ bên trong thẻ */
+html body :is(.nb-book,.ph,.how,.board-note,.essay-raw,details.faq-i,.faq details,.ico,.ti){border-radius:var(--r-in)!important}
+/* thẻ & bảng */
+html body :is(.panel,.wk-it,.figure,nav#tabs,.ws-steps,.jmap,.rc,.pgrid,.tch,.plan,.perk,.stats,.float,.acct,.auth,.place,.step,.nb-skill,.nb-writing,.nb-strategy,.nb-stats,.nb-panel,.bk,.card,.steps,.player,.transcript,.app){border-radius:var(--r-card)!important}
+/* khung lớn */
+html body :is(aside.side,.frame,.nb-hero,.az-hero,header.top,.hello,.hero-card){border-radius:var(--r-xl)!important}
+/* biểu tượng nét mảnh */
+html body :is(.azi,.nb-skill .ico svg,.nb-strategy .i svg,.azp-ico){stroke-width:1.8!important}
+html body .nb-strategy .i svg,html body .azp-ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+html body .azp-ico{width:18px;height:18px;vertical-align:-3px;margin-right:8px;color:var(--gold,#B8913A)}
+html body .nb-strategy .i svg{margin:0!important;color:inherit!important}
+html body a.card > .tn{display:flex;align-items:center}
+</style></head>
 <body>
 <header class="top">
   <div class="wrap">
