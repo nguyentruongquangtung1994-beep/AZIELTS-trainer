@@ -688,7 +688,7 @@ function render() {
   $("#dBanner").innerHTML = s.tier === "trial" ? `<div class="banner trial">${azi("clock")}<span>Bạn đang dùng thử miễn phí, còn <b>${left} ngày</b>. Có mã lớp thì nhập ở khung tài khoản bên trên. Đăng ký khoá học: gọi / Zalo <b style="user-select:all">${PHONE}</b>.</span></div>`
     : left <= 7 ? `<div class="banner warn">${azi("info")}<span>Tài khoản còn <b>${left} ngày</b>. Liên hệ AZEnglish để gia hạn và giữ tiến độ học.</span></div>` : "";
   $("#apps").innerHTML = APPS.map((a, n) => appCard(a, false, n)).join("");
-  $("#elite").innerHTML = s.tier === "elite" ? `<div><h3>Quyền lợi Elite của em</h3><ul><li>Nộp bài Writing trong Writing Studio: giáo viên chấm và trả nhận xét.</li><li>Thi thử 4 kỹ năng hằng tháng có giáo viên chấm.</li><li>Tư vấn lộ trình 1–1 với giáo viên.</li></ul></div><div class="contact">Đặt lịch với giáo viên<b>${PHONE}</b></div>`
+  $("#elite").innerHTML = s.tier === "elite" ? `<div><h3>Quyền lợi Elite của bạn</h3><ul><li>Nộp bài Writing trong Writing Studio: giáo viên chấm và trả nhận xét.</li><li>Thi thử 4 kỹ năng hằng tháng có giáo viên chấm.</li><li>Tư vấn lộ trình 1–1 với giáo viên.</li></ul></div><div class="contact">Đặt lịch với giáo viên<b>${PHONE}</b></div>`
     : `<div><h3>Nâng cấp Elite: có giáo viên theo sát</h3><ul><li>Giáo viên chấm và sửa bài Writing, Speaking.</li><li>Thi thử hằng tháng có giáo viên chấm.</li><li>Tư vấn lộ trình 1–1, ưu tiên hỗ trợ.</li></ul></div><div class="contact">Liên hệ nâng cấp<b>${PHONE}</b></div>`;
 }
 /* ===== sự kiện ===== */
