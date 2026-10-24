@@ -505,7 +505,7 @@ html body a.card > .tn{display:flex;align-items:center}
   light(); try { new MutationObserver(light).observe(root, { attributes: true, attributeFilter: ["data-theme"] }); } catch (e) {}
   /* EMOJI: bỏ biểu tượng emoji còn sót trong nội dung cũ (đồng hồ ⏱, tiêu đề 📋 🎯 📌…) để giao diện premium */
   try {
-    var EM = /(?:[\u{1F000}-\u{1FAFF}]|[⏩-⏺]|[☀-⛿]|⭐)️?\s?/gu;
+    var EM = /(?:[\u{1F000}-\u{1FAFF}]|[⏩-⏺]|[☀-⛿]|⭐|[✅❌❎✨])️?\s?/gu;
     var strip = function (root) { var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), n; while ((n = w.nextNode())) { if (n.parentElement && /^(SCRIPT|STYLE|TEXTAREA)$/.test(n.parentElement.tagName)) continue; if (EM.test(n.textContent)) { EM.lastIndex = 0; n.textContent = n.textContent.replace(EM, ""); } EM.lastIndex = 0; } };
     var go = function () { strip(document.body); new MutationObserver(function (ms) { ms.forEach(function (m) { m.addedNodes.forEach(function (x) { if (x.nodeType === 1) strip(x); else if (x.nodeType === 3 && x.parentNode) strip(x.parentNode); }); }); }).observe(document.body, { childList: true, subtree: true }); };
     if (document.body) go(); else document.addEventListener("DOMContentLoaded", go);
@@ -1858,6 +1858,27 @@ html body a.card > .tn{display:flex;align-items:center}
     return html;
   }
 
+  // ---------- KIỂM TRA ĐẦU VÀO: gửi kết quả về máy chủ AZIELTS Academy → email kết quả + tư vấn cho học viên ----------
+  var AZ_PLACE_API = "https://script.google.com/macros/s/AKfycbyPyrWqg-HzFSAJar9ZPFr_e9hb5R8duczv2N5tTUufixSu0P69SD9REpyJyBERUA0P/exec";
+  var AZ_PLACE_TESTS = { "cambridge21-test1": "R", "cambridge21-test1-listening": "L" };
+  function placementSend(testId, d, attempt){
+    var skill = AZ_PLACE_TESTS[testId]; if(!skill) return;
+    var s = null, prof = {}; try { s = JSON.parse(localStorage.getItem("az_acad") || "null"); prof = JSON.parse(localStorage.getItem("az_place") || "{}"); } catch(e){}
+    if(!s || !s.u || !s.tok) return;
+    var stats = analyzeByType(d, attempt.answers);
+    var rows = Object.keys(stats).map(function(type){ var x = stats[type], info = TYPE_INFO[type] || {label:type, advice:""};
+      return {label:info.label, advice:info.advice || "", correct:x.correct, total:x.total, pct: x.total ? x.correct/x.total : 0}; }).sort(function(a,b){ return a.pct - b.pct; });
+    var body = { t:"placement", u:s.u, tok:s.tok, skill:skill, score:attempt.score, total:attempt.total,
+      band: scoreToBand(attempt.score, attempt.total, skill === "L" ? BAND_TABLE_LISTENING : BAND_TABLE_READING),
+      weak: rows.filter(function(r){ return r.pct < 0.8; }).slice(0,3), strong: rows.filter(function(r){ return r.pct >= 0.8; }).slice(-2), profile: prof };
+    fetch(AZ_PLACE_API, { method:"POST", body: JSON.stringify(body) }).then(function(r){ return r.json(); }).then(function(j){
+      var msg = !j || !j.ok ? ((j && j.error) || "") : j.mailed ? "Kết quả và nhận xét chi tiết đã được gửi về email của bạn. Kiểm tra cả mục Quảng cáo / Spam nếu chưa thấy." : j.noEmail ? "Tài khoản chưa có email nên chưa gửi được kết quả. Liên hệ AZEnglish 0971 882 096." : "";
+      var tile = document.querySelector(".score-tile"); if(!msg || !tile) return;
+      var p = document.createElement("p"); p.className = "place-sent"; p.textContent = msg; p.style.cssText = "margin:14px 0 0;padding:10px 14px;border-radius:10px;background:#F6F1E4;color:#3D4757;font-size:14px";
+      tile.parentNode.insertBefore(p, tile.nextSibling);
+    }).catch(function(){});
+  }
+
   function submitTest(){
     if(takeCtx.timerInterval) clearInterval(takeCtx.timerInterval);
     var d = takeCtx.data;
@@ -1867,6 +1888,7 @@ html body a.card > .tn{display:flex;align-items:center}
       submittedAt: Date.now(),
     };
     saveState();
+    placementSend(takeCtx.testId, d, STATE.attempts[takeCtx.testId]);
     location.hash = "#/test/" + takeCtx.testId + "/result";
   }
 
@@ -2035,6 +2057,7 @@ html body a.card > .tn{display:flex;align-items:center}
       submittedAt: Date.now(),
     };
     saveState();
+    placementSend(takeCtx.testId, d, STATE.attempts[takeCtx.testId]);
     location.hash = "#/listen/" + takeCtx.testId + "/result";
   }
 
