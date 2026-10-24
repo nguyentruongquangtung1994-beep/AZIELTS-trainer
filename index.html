@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="vi">
-<head><!--AZOG:start--><meta name="description" content="Luyện đề Cambridge IELTS 16–21: chấm điểm ngay, bằng chứng đáp án từng câu. Thuộc AZIELTS Academy của AZEnglish."><meta property="og:type" content="website"><meta property="og:site_name" content="AZIELTS Academy"><meta property="og:title" content="AZIELTS Reading &amp; Listening"><meta property="og:description" content="Luyện đề Cambridge IELTS 16–21: chấm điểm ngay, bằng chứng đáp án từng câu. Thuộc AZIELTS Academy của AZEnglish."><meta property="og:url" content="https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/"><meta property="og:image" content="https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/og-azielts-v2.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/og-azielts-v2.jpg"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23C8102E'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-weight='800' font-size='28' fill='white' text-anchor='middle'%3EAZ%3C/text%3E%3C/svg%3E"><!--AZOG:end-->
+<head><!--AZOG:start--><meta name="description" content="Luyện đề Cambridge IELTS 16–21 và IELTS Reading Actual Test 5: chấm điểm ngay, bằng chứng đáp án từng câu. Thuộc AZIELTS Academy của AZEnglish."><meta property="og:type" content="website"><meta property="og:site_name" content="AZIELTS Academy"><meta property="og:title" content="AZIELTS Reading &amp; Listening"><meta property="og:description" content="Luyện đề Cambridge IELTS 16–21 và IELTS Reading Actual Test 5: chấm điểm ngay, bằng chứng đáp án từng câu. Thuộc AZIELTS Academy của AZEnglish."><meta property="og:url" content="https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/"><meta property="og:image" content="https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/og-azielts-v2.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/og-azielts-v2.jpg"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23C8102E'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-weight='800' font-size='28' fill='white' text-anchor='middle'%3EAZ%3C/text%3E%3C/svg%3E"><!--AZOG:end-->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <meta name="robots" content="noindex, nofollow" />
@@ -604,6 +604,12 @@ html body a.card > .tn{display:flex;align-items:center}
 <script src="./listening-test3.js"></script>
 <script src="./listening-test4.js"></script>
 <script src="./cambridge21-test1.js"></script>
+<script src="./actual5-test1.js"></script>
+<script src="./actual5-test2.js"></script>
+<script src="./actual5-test3.js"></script>
+<script src="./actual5-test4.js"></script>
+<script src="./actual5-test5.js"></script>
+<script src="./actual5-test6.js"></script>
 <script src="./cambridge21-test2.js"></script>
 <script src="./cambridge21-test3.js"></script>
 <script src="./cambridge21-test4.js"></script>
@@ -652,6 +658,15 @@ html body a.card > .tn{display:flex;align-items:center}
     {id:"cambridge19-test2-listening", label:"Test 2", available:true},
     {id:"cambridge19-test3-listening", label:"Test 3", available:true},
     {id:"cambridge19-test4-listening", label:"Test 4", available:true},
+  ];
+
+  var TESTS_REGISTRY_AT5 = [
+    {id:"actual5-test1", available:true},
+    {id:"actual5-test2", available:true},
+    {id:"actual5-test3", available:true},
+    {id:"actual5-test4", available:true},
+    {id:"actual5-test5", available:true},
+    {id:"actual5-test6", available:true},
   ];
 
   var TESTS_REGISTRY_21 = [
@@ -716,7 +731,7 @@ html body a.card > .tn{display:flex;align-items:center}
   function totalQuestions(d){
     var total = 0;
     d.questionGroups.forEach(function(g){
-      if(g.type === "multi") total += g.range.length;
+      if(g.type === "multi") total += g.range[1] - g.range[0] + 1;
       else if(g.type === "fill") total += g.items ? g.items.length : g.summary.filter(function(s){return s.blank;}).length;
       else if(g.type === "bank_fill") total += g.summary.filter(function(s){return s.blank;}).length;
       else total += g.items.length;
@@ -792,7 +807,8 @@ html body a.card > .tn{display:flex;align-items:center}
   function renderHome(){
     app.innerHTML = "";
     var BOOKS = [
-      {num:21, read:TESTS_REGISTRY_21, listen:LISTEN_TESTS_REGISTRY_21, isNew:true},
+      {num:"AT5", cap:"Actual Test", label:"5", title:"IELTS Reading Actual Test 5", short:"AT5", read:TESTS_REGISTRY_AT5, listen:[], isNew:true},
+      {num:21, read:TESTS_REGISTRY_21, listen:LISTEN_TESTS_REGISTRY_21},
       {num:20, read:TESTS_REGISTRY_20, listen:LISTEN_TESTS_REGISTRY_20},
       {num:19, read:TESTS_REGISTRY,    listen:LISTEN_TESTS_REGISTRY},
       {num:18, read:TESTS_REGISTRY_18, listen:LISTEN_TESTS_REGISTRY_18},
@@ -826,7 +842,7 @@ html body a.card > .tn{display:flex;align-items:center}
           var a = STATE.attempts[t.id], d = k[2](t.id);
           if(!d || !a || a.score !== undefined || !a.inProgress || !Object.keys(a.inProgress).length) return;
           if(!resume || (a.inProgressAt||0) > (resume.at||0)){
-            resume = {at:a.inProgressAt||0, href:k[1] + t.id + "/take", label:"C" + b.num + " " + d.test + " " + k[3]};
+            resume = {at:a.inProgressAt||0, href:k[1] + t.id + "/take", label:(b.short || "C" + b.num) + " " + d.test + " " + k[3]};
           }
         });
       });
@@ -942,6 +958,7 @@ html body a.card > .tn{display:flex;align-items:center}
       var panel = document.getElementById("nbTestPanel");
       grid.innerHTML = "";
       BOOKS.forEach(function(b){
+        if(!(skill === "reading" ? b.read : b.listen).length) return;
         var info = bookTests(b);
         var btn = el("button", "nb-book");
         btn.type = "button";
@@ -949,8 +966,8 @@ html body a.card > .tn{display:flex;align-items:center}
         btn.setAttribute("aria-expanded", openBook === b.num ? "true" : "false");
         btn.setAttribute("aria-controls", "nbTestPanel");
         btn.innerHTML =
-          '<span class="cap">Cambridge</span>' +
-          '<b class="num">' + b.num + '</b>' +
+          '<span class="cap">' + (b.cap || 'Cambridge') + '</span>' +
+          '<b class="num">' + (b.label || b.num) + '</b>' +
           '<span class="sum">Đã nộp ' + info.done + '/' + info.total + '</span>' +
           (b.isNew ? '<span class="new">Mới</span>' : '');
         btn.addEventListener("click", function(){
@@ -964,7 +981,7 @@ html body a.card > .tn{display:flex;align-items:center}
       panel.hidden = !cur;
       if(cur){
         panel.style.setProperty("--skill-c", SKILL_COLOR[skill]);
-        panel.innerHTML = '<h3>Cambridge IELTS ' + cur.num + ' · ' + skillName + '</h3><div class="nb-tests">' + bookTests(cur).html + '</div>';
+        panel.innerHTML = '<h3>' + (cur.title || 'Cambridge IELTS ' + cur.num) + ' · ' + skillName + '</h3><div class="nb-tests">' + bookTests(cur).html + '</div>';
       }
     }
     root.querySelectorAll(".nb-skill").forEach(function(c){
@@ -1521,7 +1538,7 @@ html body a.card > .tn{display:flex;align-items:center}
 
     else if(g.type === "multi"){
       var key = g.range.join("_");
-      wrap.appendChild(el("p","qtext","<b>Câu "+g.range[0]+" &amp; "+g.range[1]+".</b>"));
+      wrap.appendChild(el("p","qtext","<b>Câu "+g.range[0]+(g.range[1]-g.range[0]>1?"–":" &amp; ")+g.range[1]+".</b>"));
       var optRow = el("div","opt-row");
       g.options.forEach(function(o){
         var label = el("label","opt-label");
@@ -1727,10 +1744,11 @@ html body a.card > .tn{display:flex;align-items:center}
     var correct = d.answerKey[key];
     var user = takeCtx.answers[key] || [];
     var correctCount = user.filter(function(x){ return correct.indexOf(x)!==-1; }).length;
-    var full = user.length===2 && correctCount===2;
+    var nq = g.range[1] - g.range[0] + 1;
+    var full = user.length===nq && correctCount===nq;
     var row = el("div","review-row");
-    row.innerHTML = '<span class="review-badge '+(full?'ok':'bad')+'">'+(full?'✓':correctCount+'/2')+'</span>' +
-      '<div class="review-body"><p class="q">Câu '+g.range[0]+' &amp; '+g.range[1]+'</p>' +
+    row.innerHTML = '<span class="review-badge '+(full?'ok':'bad')+'">'+(full?'✓':correctCount+'/'+nq)+'</span>' +
+      '<div class="review-body"><p class="q">Câu '+g.range[0]+(nq>2?'–':' &amp; ')+g.range[1]+'</p>' +
       '<p class="a">Bạn chọn: <b>'+esc(user.join(", ")||"(bỏ trống)")+'</b></p>' +
       (full? '' : '<p class="correct-answer">Đáp án đúng: '+correct.join(" &amp; ")+'</p>') +
       evidenceHTML(d, key) +
@@ -1873,7 +1891,7 @@ html body a.card > .tn{display:flex;align-items:center}
     d.questionGroups.forEach(function(g){
       var k = skill === "L" ? groupPartNum(g) : groupPassageNum(g); if(!sec[k]) sec[k] = {c:0, t:0};
       function mark(num, ok){ sec[k].t++; if(ok) sec[k].c++; else wrong.push(num); }
-      if(g.type === "multi"){ var key = g.range.join("_"), cor = d.answerKey[key] || [], us = ans[key] || []; cor.forEach(function(c, i){ mark(g.range[i] || g.range[0], us.indexOf(c) !== -1); }); }
+      if(g.type === "multi"){ var key = g.range.join("_"), cor = d.answerKey[key] || [], us = ans[key] || []; cor.forEach(function(c, i){ mark(g.range[0] + i, us.indexOf(c) !== -1); }); }
       else if(g.type === "tfng" || g.type === "match_single" || g.type === "mcq"){ (g.items||[]).forEach(function(it){ mark(it.num, normAns(ans[it.num]) === normAns(d.answerKey[it.num])); }); }
       else if(g.type === "fill"){ (g.items ? g.items.map(function(it){ return it.num; }) : g.summary.filter(function(x){ return x.blank; }).map(function(x){ return x.blank; })).forEach(function(n){ mark(n, fillCorrect(ans[n], d.answerKey[n])); }); }
       else if(g.type === "bank_fill"){ g.summary.forEach(function(x){ if(x.blank) mark(x.blank, normAns(ans[x.blank]) === normAns(d.answerKey[x.blank])); }); }
