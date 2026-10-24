@@ -364,6 +364,49 @@ body{background:#FDFCF9}
 .pc h3{font-size:20px;margin:10px 0 8px;color:#fff;line-height:1.25}
 .pc p{margin:0;color:#AAB6C8;font-size:14.5px;line-height:1.6}
 .pnote{margin:18px 0 0;font-size:13px;color:#8E9BB0}
+/* mục Tư vấn: bảng chương trình + học phí */
+.tv-tabs{display:inline-flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:12px;background:#fff;margin-bottom:22px}
+.tv-tabs button{border:0;background:none;padding:10px 18px;border-radius:9px;font:600 14.5px "Be Vietnam Pro",system-ui,sans-serif;color:var(--ink-2);cursor:pointer}
+.tv-tabs button[aria-selected="true"]{background:var(--navy);color:#fff}
+.tv-nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.tv-nums div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.tv-nums b{display:block;font-family:var(--serif);font-size:26px;color:var(--navy);line-height:1.1}
+.tv-nums span{font-size:13px;color:var(--ink-3)}
+.tv-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.tv-ph{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+.tv-pl{background:var(--navy);color:#fff;padding:14px 16px}
+.tv-ph:nth-child(even) .tv-pl{background:#16263F}
+.tv-pl small{display:block;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-2);font-weight:700}
+.tv-pl b{display:block;font-family:var(--serif);font-size:26px;margin:2px 0;font-variant-numeric:lining-nums}
+.tv-pl span{font-size:13.5px;color:#C9D3E2}
+.tv-meta{margin:0;padding:10px 16px 0;font-size:13px;font-weight:600;color:var(--ink-2)}
+.tv-ph ul{list-style:none;margin:0;padding:8px 16px;display:grid;gap:6px;font-size:13.5px;color:var(--ink-2);line-height:1.45}
+.tv-ph li em{display:block;font-style:normal;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.tv-out{margin:auto 16px 0;padding:10px 0 4px;border-top:1px solid var(--line);font-size:13.5px;font-weight:600;color:var(--navy);line-height:1.45}
+.tv-ts{margin:0;padding:2px 16px 14px;font-size:12px;color:var(--ink-3)}
+.tv-fees{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.tv-fee{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 20px 12px}
+.tv-fee.el{background:linear-gradient(165deg,#0B1424,#16263F);border-color:#2A3B57;color:#fff}
+.tv-k{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.tv-fee.el .tv-k{color:var(--gold-2)}
+.tv-fee h3{font-family:var(--serif);font-size:21px;margin:4px 0 12px}
+.tv-t{width:100%;border-collapse:collapse;font-size:14px}
+.tv-t th{text-align:left;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:700;padding:8px 6px;border-bottom:1px solid var(--line)}
+.tv-t td{padding:10px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.tv-t th:not(:first-child),.tv-t td:not(:first-child){text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.tv-t td small{display:block;font-size:12px;color:var(--ink-3);margin-top:2px}
+.tv-t tr.best td{background:#F6F1E4;font-weight:700}
+.tv-t tr:last-child td{border-bottom:0}
+.tv-fee.el .tv-t th{color:#9FB0C8;border-color:rgba(255,255,255,.14)} .tv-fee.el .tv-t td{border-color:rgba(255,255,255,.1);color:#E4E9F1}
+.tv-fee.el .tv-t td small{color:#9FB0C8} .tv-fee.el .tv-t tr.best td{background:rgba(184,145,58,.2);color:#fff}
+.tv-note{margin:16px 0 0;font-size:14px;color:var(--ink-2);max-width:820px}
+.tv-dl{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:22px}
+.tv-dl span{font-size:14px;color:var(--ink-2)} .tv-dl b{color:var(--navy)}
+.plan .more{display:inline-block;margin:-6px 0 14px;font-size:13px;font-weight:600;color:var(--gold);text-decoration:none}
+.plan.elite .more{color:var(--gold-2)}
+@media (max-width:1060px){ .tv-grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:860px){ .tv-fees{grid-template-columns:1fr} .tv-nums{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:560px){ .tv-grid{grid-template-columns:1fr} .tv-tabs{display:flex} .tv-tabs button{flex:1;padding:10px 8px} .tv-t{font-size:13px} .tv-fee{padding:16px 14px 8px} .tv-dl .btn{width:100%} }
 /* học phí theo giờ */
 @media (max-width:860px){ .plan .price{min-height:0} }
 .plan .rate{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;margin:-6px 0 2px}
@@ -422,7 +465,7 @@ html body a.card > .tn{display:flex;align-items:center}
 <header class="top">
   <div class="wrap">
     <a class="logo" href="#" id="home"><span class="mk">AZ</span><span><b>AZIELTS Academy</b><small>Nền tảng luyện IELTS của AZEnglish</small></span></a>
-    <nav class="nav" id="nav"><a href="#thanh-tich">Thành tích</a><a href="#cam-ket">Cam kết</a><a href="#quyen-loi">Quyền lợi</a><a href="#giao-vien">Giáo viên</a><a href="#chuong-trinh">Chương trình</a><a href="#goi-hoc">Gói học</a><a href="#lien-he">Liên hệ</a></nav>
+    <nav class="nav" id="nav"><a href="#thanh-tich">Thành tích</a><a href="#cam-ket">Cam kết</a><a href="#quyen-loi">Quyền lợi</a><a href="#giao-vien">Giáo viên</a><a href="#chuong-trinh">Chương trình</a><a href="#goi-hoc">Gói học</a><a href="#tu-van">Tư vấn</a><a href="#lien-he">Liên hệ</a></nav>
     <span class="sp"></span>
     <div class="top-act" id="topGuest"><button class="btn line" type="button" data-auth="login">Đăng nhập</button><button class="btn" type="button" data-auth="reg">Dùng thử 7 ngày</button></div>
     <div class="who" id="topUser" hidden></div>
@@ -544,6 +587,20 @@ html body a.card > .tn{display:flex;align-items:center}
       <div class="wrap">
         <div class="sec-h"><span class="k">Khoá học</span><h2>Chọn lộ trình phù hợp với mục tiêu của con</h2><p>Bắt đầu bằng 7 ngày dùng thử. Học viên đăng ký khoá tại AZEnglish được dùng AZIELTS Academy suốt khoá học.</p></div>
         <div class="plans" id="plans"></div>
+      </div>
+    </section>
+
+    <section class="sec" id="tu-van">
+      <div class="wrap">
+        <div class="sec-h"><span class="k">Tư vấn</span><h2>Lộ trình và học phí chi tiết</h2><p>Xem con đi qua 4 giai đoạn thế nào và học phí theo từng hình thức đóng. Tải bộ hồ sơ tư vấn để xem cùng gia đình.</p></div>
+        <div class="tv-tabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-tv="ct">Bảng chương trình</button><button type="button" role="tab" aria-selected="false" data-tv="hp">Học phí</button></div>
+        <div class="tv-pane" id="tv-ct"><div class="tv-nums"><div><b>240</b><span>buổi · 360 giờ</span></div><div><b>2</b><span>buổi/tuần · 90 phút</span></div><div><b>16</b><span>bài kiểm tra</span></div><div><b>30</b><span>tháng trọn lộ trình</span></div></div><div class="tv-grid"><div class="tv-ph"><div class="tv-pl"><small>Giai đoạn 1</small><b>0 → 3.0</b><span>Xây nền tảng</span></div><p class="tv-meta">64 buổi · 8 tháng · tháng 1–8</p><ul><li><em>Nghe</em>10/20 câu Section 1–2, chép chính tả đúng 80%</li><li><em>Đọc</em>6/13 câu Passage 1 trong 20 phút</li><li><em>Viết</em>Đoạn văn 120 từ, câu đơn và câu ghép không lỗi</li><li><em>Nói</em>Trả lời Part 1, 2–3 câu mỗi câu hỏi</li></ul><p class="tv-out">Phát âm chuẩn 44 âm IPA, nắm 12 thì cơ bản và 2.500 từ vựng.</p><p class="tv-ts">Kiểm tra buổi 16 · 32 · 48 · thi cuối buổi 64</p></div><div class="tv-ph"><div class="tv-pl"><small>Giai đoạn 2</small><b>3.0 → 5.0</b><span>Làm chủ dạng bài</span></div><p class="tv-meta">64 buổi · 8 tháng · tháng 9–16</p><ul><li><em>Nghe</em>16/40 câu, đủ 4 Section</li><li><em>Đọc</em>15/40 câu trong 60 phút</li><li><em>Viết</em>Task 1 + Task 2, 150 và 250 từ đúng giờ thi</li><li><em>Nói</em>Part 2 nói 1,5 phút; Part 1 có ví dụ</li></ul><p class="tv-out">Làm trọn một bài thi IELTS đủ 4 kỹ năng, đúng thời gian thi thật.</p><p class="tv-ts">Kiểm tra buổi 80 · 96 · 112 · thi cuối buổi 127</p></div><div class="tv-ph"><div class="tv-pl"><small>Giai đoạn 3</small><b>5.0 → 6.0+</b><span>Tăng tốc phương pháp</span></div><p class="tv-meta">56 buổi · 7 tháng · tháng 17–23</p><ul><li><em>Nghe</em>23/40 câu, nhận ra bẫy diễn đạt lại</li><li><em>Đọc</em>23/40 câu, đủ 3 bài trong 60 phút</li><li><em>Viết</em>Task 2 trong 38 phút, lập luận đủ 4 bước</li><li><em>Nói</em>Part 2 nói đủ 2 phút; Part 3 có lập luận</li></ul><p class="tv-out">Viết lập luận chặt chẽ, tự tin nói về chủ đề học thuật.</p><p class="tv-ts">Kiểm tra buổi 142 · 156 · 170 · thi cuối buổi 183</p></div><div class="tv-ph"><div class="tv-pl"><small>Giai đoạn 4</small><b>6.0 → 7.0+</b><span>Chinh phục đề thật</span></div><p class="tv-meta">56 buổi · 7 tháng · tháng 24–30</p><ul><li><em>Nghe</em>30/40 câu, đề Cambridge và đề thật</li><li><em>Đọc</em>30/40 câu, xong trước giờ, trong 55 phút</li><li><em>Viết</em>6.5+: 2 bài trong 55 phút, không lỗi lập luận</li><li><em>Nói</em>Part 3 chủ đề trừu tượng, trôi chảy</li></ul><p class="tv-out">Sẵn sàng thi thật, đủ chuẩn du học và xét tuyển đại học.</p><p class="tv-ts">Kiểm tra buổi 200 · 216 · 230 · thi thử tổng 231, 235</p></div></div>
+          <p class="tv-note">Con bắt đầu đúng giai đoạn sau bài kiểm tra đầu vào miễn phí, không phải học lại từ đầu. Chưa đạt mốc: học bổ trợ 4 buổi trước khi lên chặng.</p></div>
+        <div class="tv-pane" id="tv-hp" hidden><div class="tv-fees">
+          <div class="tv-fee"><span class="tv-k">Tiêu chuẩn · lớp tối đa 12 học viên</span><h3>Lộ trình 240 buổi · 360 giờ</h3><table class="tv-t"><thead><tr><th>Hình thức đóng</th><th>Giá/giờ</th><th>Học phí</th></tr></thead><tbody><tr><td>Theo tháng<small>khoảng 8 buổi mỗi tháng</small></td><td>180.000đ</td><td>≈ 2,16 triệu/tháng</td></tr><tr><td>Theo giai đoạn (4 lần)<small>GĐ1–2: 16,32 tr · GĐ3–4: 14,28 tr</small></td><td>170.000đ</td><td>61,2 triệu</td></tr><tr><td>Đóng 2 lần<small>GĐ 1+2: 30,72 tr · GĐ 3+4: 26,88 tr</small></td><td>160.000đ</td><td>57,6 triệu</td></tr><tr class="best"><td>Đóng trọn lộ trình</td><td>150.000đ</td><td>54 triệu</td></tr></tbody></table></div>
+          <div class="tv-fee el"><span class="tv-k">Elite 6.5+ · lớp tối đa 7 học viên</span><h3>240 buổi + 5 buổi kèm 1-1 · 367,5 giờ</h3><table class="tv-t"><thead><tr><th>Hình thức đóng</th><th>Giá/giờ</th><th>Học phí</th></tr></thead><tbody><tr><td>Trả góp 5 kỳ<small>6 tháng một kỳ</small></td><td>280.000đ</td><td>5 × 20,58 triệu</td></tr><tr><td>Đóng 2 lần<small>nhập học và đầu tháng 16</small></td><td>270.000đ</td><td>2 × 49,6 triệu</td></tr><tr class="best"><td>Đóng một lần</td><td>250.000đ</td><td>91,9 triệu</td></tr></tbody></table></div></div>
+          <p class="tv-note">Mỗi buổi 90 phút. Học phí thu sau tuần học đầu tiên. Bảo lưu tối đa 2 lần, giữ nguyên giá; chuyển nhượng cho anh chị em ruột. Chi tiết hoàn phí và cam kết Elite theo hợp đồng khoá học.</p></div>
+        <div class="tv-dl"><a class="btn" href="tu-van/ho-so-tu-van-ielts-azenglish.pdf" target="_blank" rel="noopener">Tải hồ sơ tư vấn (PDF, 4 trang)</a><a class="btn line" href="tu-van/bang-chuong-trinh-ielts.pdf" target="_blank" rel="noopener">Tải bảng chương trình (PDF)</a><span>Đặt lịch tư vấn · Gọi / Zalo <b>0971 882 096</b></span></div>
       </div>
     </section>
 
@@ -690,7 +747,7 @@ function appCard(a, guest, n) {
 }
 function renderGuest() {
   $("#appsGuest").innerHTML = APPS.map((a, n) => appCard(a, true, n)).join("");
-  $("#plans").innerHTML = PLANS.map(p => `<div class="plan ${p.k}">${p.k === "elite" ? `<span class="badge">Cam kết đầu ra</span>` : ""}<span class="lvl">${esc(p.lvl)}</span><h3>${esc(p.name)}</h3>${p.seats ? `<span class="seats">${esc(p.seats)}</span>` : ""}<p class="price">${esc(p.price)}</p>${p.rate ? `<div class="rate"><span class="from">chỉ từ</span><b>${esc(p.rate)}</b><span>/giờ</span></div><p class="rsub">${esc(p.rsub)}</p>` : ""}
+  $("#plans").innerHTML = PLANS.map(p => `<div class="plan ${p.k}">${p.k === "elite" ? `<span class="badge">Cam kết đầu ra</span>` : ""}<span class="lvl">${esc(p.lvl)}</span><h3>${esc(p.name)}</h3>${p.seats ? `<span class="seats">${esc(p.seats)}</span>` : ""}<p class="price">${esc(p.price)}</p>${p.rate ? `<div class="rate"><span class="from">chỉ từ</span><b>${esc(p.rate)}</b><span>/giờ</span></div><p class="rsub">${esc(p.rsub)}</p><a class="more" href="#tu-van" data-tvgo="hp">Xem học phí chi tiết →</a>` : ""}
     <ul>${p.items.map(i => `<li>${azi("check")}<span>${esc(i)}</span></li>`).join("")}</ul>
     <div class="cta">${p.k === "trial" ? `<button class="btn" type="button" data-auth="reg">Bắt đầu dùng thử</button>` : `<a class="btn ${p.k === "elite" ? "dark" : "line"}" href="#lien-he">Liên hệ tư vấn</a><span class="phone">Gọi / Zalo <b>${PHONE}</b></span>`}</div></div>`).join("");
   document.querySelectorAll("[data-auth]").forEach(b => b.onclick = () => openAuth(b.dataset.auth));
@@ -734,6 +791,11 @@ function render() {
   $("#elite").innerHTML = s.tier === "elite" ? `<div><h3>Quyền lợi Elite của bạn</h3><ul><li>Nộp bài Writing trong Writing Studio: giáo viên chấm và trả nhận xét.</li><li>Thi thử 4 kỹ năng hằng tháng có giáo viên chấm.</li><li>Tư vấn lộ trình 1–1 với giáo viên.</li></ul></div><div class="contact">Đặt lịch với giáo viên<b>${PHONE}</b></div>`
     : `<div><h3>Nâng cấp Elite: có giáo viên theo sát</h3><ul><li>Giáo viên chấm và sửa bài Writing, Speaking.</li><li>Thi thử hằng tháng có giáo viên chấm.</li><li>Tư vấn lộ trình 1–1, ưu tiên hỗ trợ.</li></ul></div><div class="contact">Liên hệ nâng cấp<b>${PHONE}</b></div>`;
 }
+
+/* mục Tư vấn: chuyển thẻ Bảng chương trình / Học phí */
+function tvShow(k) { document.querySelectorAll("[data-tv]").forEach(b => b.setAttribute("aria-selected", String(b.dataset.tv === k))); document.getElementById("tv-ct").hidden = k !== "ct"; document.getElementById("tv-hp").hidden = k !== "hp"; }
+document.querySelectorAll("[data-tv]").forEach(b => b.onclick = () => tvShow(b.dataset.tv));
+document.addEventListener("click", e => { const a = e.target.closest("[data-tvgo]"); if (a) tvShow(a.dataset.tvgo); });
 /* ===== sự kiện ===== */
 document.querySelectorAll(".seg button").forEach(b => b.onclick = () => setTab(b.dataset.tab));
 $("#fLogin").onsubmit = async e => {
