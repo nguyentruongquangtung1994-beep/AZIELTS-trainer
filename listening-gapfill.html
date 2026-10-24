@@ -215,7 +215,7 @@ html body a.card > .tn{display:flex;align-items:center}
   light(); try { new MutationObserver(light).observe(root, { attributes: true, attributeFilter: ["data-theme"] }); } catch (e) {}
   /* EMOJI: bỏ biểu tượng emoji còn sót trong nội dung cũ (đồng hồ ⏱, tiêu đề 📋 🎯 📌…) để giao diện premium */
   try {
-    var EM = /(?:[\u{1F000}-\u{1FAFF}]|[⏩-⏺]|[☀-⛿]|⭐)️?\s?/gu;
+    var EM = /(?:[\u{1F000}-\u{1FAFF}]|[⏩-⏺]|[☀-⛿]|⭐|[✅❌❎✨])️?\s?/gu;
     var strip = function (root) { var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), n; while ((n = w.nextNode())) { if (n.parentElement && /^(SCRIPT|STYLE|TEXTAREA)$/.test(n.parentElement.tagName)) continue; if (EM.test(n.textContent)) { EM.lastIndex = 0; n.textContent = n.textContent.replace(EM, ""); } EM.lastIndex = 0; } };
     var go = function () { strip(document.body); new MutationObserver(function (ms) { ms.forEach(function (m) { m.addedNodes.forEach(function (x) { if (x.nodeType === 1) strip(x); else if (x.nodeType === 3 && x.parentNode) strip(x.parentNode); }); }); }).observe(document.body, { childList: true, subtree: true }); };
     if (document.body) go(); else document.addEventListener("DOMContentLoaded", go);
