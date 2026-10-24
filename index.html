@@ -1868,9 +1868,21 @@ html body a.card > .tn{display:flex;align-items:center}
     var stats = analyzeByType(d, attempt.answers);
     var rows = Object.keys(stats).map(function(type){ var x = stats[type], info = TYPE_INFO[type] || {label:type, advice:""};
       return {label:info.label, advice:info.advice || "", correct:x.correct, total:x.total, pct: x.total ? x.correct/x.total : 0}; }).sort(function(a,b){ return a.pct - b.pct; });
+    /* theo từng Part (Listening) / Passage (Reading) + câu sai, cho Báo cáo năng lực */
+    var sec = {}, wrong = [], ans = attempt.answers || {};
+    d.questionGroups.forEach(function(g){
+      var k = skill === "L" ? groupPartNum(g) : groupPassageNum(g); if(!sec[k]) sec[k] = {c:0, t:0};
+      function mark(num, ok){ sec[k].t++; if(ok) sec[k].c++; else wrong.push(num); }
+      if(g.type === "multi"){ var key = g.range.join("_"), cor = d.answerKey[key] || [], us = ans[key] || []; cor.forEach(function(c, i){ mark(g.range[i] || g.range[0], us.indexOf(c) !== -1); }); }
+      else if(g.type === "tfng" || g.type === "match_single" || g.type === "mcq"){ (g.items||[]).forEach(function(it){ mark(it.num, normAns(ans[it.num]) === normAns(d.answerKey[it.num])); }); }
+      else if(g.type === "fill"){ (g.items ? g.items.map(function(it){ return it.num; }) : g.summary.filter(function(x){ return x.blank; }).map(function(x){ return x.blank; })).forEach(function(n){ mark(n, fillCorrect(ans[n], d.answerKey[n])); }); }
+      else if(g.type === "bank_fill"){ g.summary.forEach(function(x){ if(x.blank) mark(x.blank, normAns(ans[x.blank]) === normAns(d.answerKey[x.blank])); }); }
+    });
+    var mins = takeCtx && takeCtx.startedAt ? Math.max(1, Math.round((Date.now() - takeCtx.startedAt) / 60000)) : 0;
     var body = { t:"placement", u:s.u, tok:s.tok, skill:skill, score:attempt.score, total:attempt.total,
       band: scoreToBand(attempt.score, attempt.total, skill === "L" ? BAND_TABLE_LISTENING : BAND_TABLE_READING),
-      weak: rows.filter(function(r){ return r.pct < 0.8; }).slice(0,3), strong: rows.filter(function(r){ return r.pct >= 0.8; }).slice(-2), profile: prof };
+      weak: rows.filter(function(r){ return r.pct < 0.8; }).slice(0,3), strong: rows.filter(function(r){ return r.pct >= 0.8; }).slice(-2), profile: prof,
+      types: rows.map(function(r){ return {label:r.label, correct:r.correct, total:r.total}; }), sec: sec, wrong: wrong.sort(function(a,b){ return a-b; }).slice(0,40), mins: mins };
     fetch(AZ_PLACE_API, { method:"POST", body: JSON.stringify(body) }).then(function(r){ return r.json(); }).then(function(j){
       var msg = !j || !j.ok ? ((j && j.error) || "") : j.mailed ? "Kết quả và nhận xét chi tiết đã được gửi về email của bạn. Kiểm tra cả mục Quảng cáo / Spam nếu chưa thấy." : j.noEmail ? "Tài khoản chưa có email nên chưa gửi được kết quả. Liên hệ AZEnglish 0971 882 096." : "";
       var tile = document.querySelector(".score-tile"); if(!msg || !tile) return;
