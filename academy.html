@@ -408,6 +408,19 @@ body{background:#FDFCF9}
 @media (max-width:1060px){ .tv-grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
 @media (max-width:860px){ .tv-fees{grid-template-columns:1fr} .tv-nums{grid-template-columns:repeat(2,minmax(0,1fr))} }
 @media (max-width:560px){ .tv-grid{grid-template-columns:1fr} .tv-tabs{display:flex} .tv-tabs button{flex:1;padding:10px 8px} .tv-t{font-size:13px} .tv-fee{padding:16px 14px 8px} .tv-dl .btn{width:100%} }
+/* kiểm tra đầu vào: mục tiêu + đồng ý nhận email */
+.pgoal{margin:0 0 18px;padding:18px;border-radius:14px;background:#F6F1E4;border:1px solid #E7D9B5;display:grid;gap:12px}
+.pg-h b{display:block;font-family:var(--serif);font-size:19px;color:var(--navy)}
+.pg-h span{font-size:14px;color:var(--ink-2)}
+.pg-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.pg-row label{display:grid;gap:6px;font-size:13px;font-weight:600;color:var(--ink-2)}
+.pg-row select,.pg-row input{height:44px;padding:0 12px;border:1px solid var(--line);border-radius:10px;background:#fff;font:500 15px "Be Vietnam Pro",system-ui,sans-serif;color:var(--ink);width:100%}
+.pg-ok{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--ink-2);cursor:pointer}
+.pg-ok input{width:18px;height:18px;margin-top:2px;flex:none;accent-color:var(--navy)}
+.pg-act{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.pg-msg{font-size:14px;font-weight:600;color:var(--navy)}
+.pg-msg.err{color:var(--red)}
+@media (max-width:640px){ .pg-row{grid-template-columns:1fr} }
 /* học phí theo giờ */
 @media (max-width:860px){ .plan .price{min-height:0} }
 .plan .rate{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;margin:-6px 0 2px}
@@ -509,13 +522,13 @@ html body a.card > .tn{display:flex;align-items:center}
 
     <section class="sec promise" id="cam-ket">
       <div class="wrap">
-        <div class="sec-h"><span class="k">Cam kết với phụ huynh</span><h2>Học phí đi kèm kết quả đo được bằng con số</h2><p>Phụ huynh luôn biết con đang ở band nào, đạt được gì sau mỗi chặng và AZEnglish chịu trách nhiệm ra sao nếu con chưa đạt.</p></div>
+        <div class="sec-h"><span class="k">Cam kết với phụ huynh</span><h2>Học phí đi kèm kết quả đo được bằng con số</h2><p>Phụ huynh luôn biết bạn đang ở band nào, đạt được gì sau mỗi chặng và AZEnglish chịu trách nhiệm ra sao nếu bạn chưa đạt.</p></div>
         <div class="pgrid">
-          <div class="pc"><span class="n">01</span><h3>Báo cáo band định kỳ</h3><p>Con làm bài kiểm tra sau mỗi 16 buổi. Phụ huynh nhận band từng kỹ năng và nhận xét của giáo viên khoảng 2 tháng một lần.</p></div>
+          <div class="pc"><span class="n">01</span><h3>Báo cáo band định kỳ</h3><p>Bạn làm bài kiểm tra sau mỗi 16 buổi. Phụ huynh nhận band từng kỹ năng và nhận xét của giáo viên khoảng 2 tháng một lần.</p></div>
           <div class="pc"><span class="n">02</span><h3>Cam kết đầu ra từng chặng</h3><p>Lộ trình 240 buổi chia 4 chặng, mỗi chặng một mốc band. Đạt khi band tổng bằng mức cam kết và không kỹ năng nào thấp hơn quá 0.5.</p></div>
-          <div class="pc"><span class="n">03</span><h3>Chưa đạt thì học bổ trợ</h3><p>Con chưa đạt mốc được học bổ trợ 4 buổi đúng phần còn yếu trước khi lên chặng tiếp theo.</p></div>
+          <div class="pc"><span class="n">03</span><h3>Chưa đạt thì học bổ trợ</h3><p>Bạn chưa đạt mốc được học bổ trợ 4 buổi đúng phần còn yếu trước khi lên chặng tiếp theo.</p></div>
           <div class="pc"><span class="n">04</span><h3>Lớp nhỏ, chữa từng bài</h3><p>Lớp thường tối đa 12 học viên, khoá Elite chỉ 7 và thêm 5 buổi kèm riêng 1-1. Writing, Speaking chấm theo 4 tiêu chí IELTS.</p></div>
-          <div class="pc"><span class="n">05</span><h3>Elite: học lại miễn phí</h3><p>Cam kết bằng điểm thi IELTS thật. Đủ điều kiện mà chưa đạt 6.5 thì con học lại miễn phí đến khi đạt, tối đa 6 tháng.</p></div>
+          <div class="pc"><span class="n">05</span><h3>Elite: học lại miễn phí</h3><p>Cam kết bằng điểm thi IELTS thật. Đủ điều kiện mà chưa đạt 6.5 thì bạn học lại miễn phí đến khi đạt, tối đa 6 tháng.</p></div>
           <div class="pc"><span class="n">06</span><h3>Giáo trình Cambridge</h3><p>Bộ Mindset for IELTS của Cambridge University Press, kết hợp nền tảng luyện tập AZIELTS Academy mỗi ngày.</p></div>
         </div>
         <p class="pnote">Điều kiện cam kết cụ thể được ghi trong hợp đồng khoá học. Liên hệ 0971 882 096 để được tư vấn.</p>
@@ -529,23 +542,23 @@ html body a.card > .tn{display:flex;align-items:center}
         <div class="perks">
           <div class="perk"><span class="n">01</span><h3>Tài khoản AZIELTS Academy</h3><p>Writing Studio chấm band ngay, đề Cambridge 16–21 Reading và Listening, Listening Lab, 2.295 cụm từ học thuật. Dùng suốt khoá học.</p></div>
           <div class="perk"><span class="n">02</span><h3>Thi thử và báo cáo liên tục</h3><p>Thi thử định kỳ theo đúng định dạng IELTS. Phụ huynh nhận band từng kỹ năng và nhận xét của giáo viên sau mỗi chặng 16 buổi.</p></div>
-          <div class="perk"><span class="n">03</span><h3>Giải đáp thắc mắc 24/7</h3><p>Học viên hỏi bài bất cứ lúc nào, giáo viên AZEnglish phản hồi để con không bị kẹt khi tự học.</p></div>
+          <div class="perk"><span class="n">03</span><h3>Giải đáp thắc mắc 24/7</h3><p>Học viên hỏi bài bất cứ lúc nào, giáo viên AZEnglish phản hồi để bạn không bị kẹt khi tự học.</p></div>
           <div class="perk"><span class="n">04</span><h3>Hội thảo IELTS</h3><p>Hội thảo chiến lược làm bài từng kỹ năng, cập nhật xu hướng đề thi dành cho học viên AZEnglish.</p></div>
           <div class="perk"><span class="n">05</span><h3>CLB Tiếng Anh</h3><p>Sinh hoạt CLB Tiếng Anh cùng học viên AZEnglish để dùng tiếng Anh thật, ngoài giờ học trên lớp.</p></div>
           <div class="perk"><span class="n">06</span><h3>CLB Public Speaking & Debate</h3><p>Sinh hoạt hằng tuần: thuyết trình, tranh biện bằng tiếng Anh. Rèn tư duy lập luận cho Speaking và Writing Task 2.</p></div>
           <div class="perk"><span class="n">07</span><h3>Trao đổi ngôn ngữ</h3><p>Tham gia chương trình trao đổi ngôn ngữ do Trung tâm AZEnglish tổ chức để thực hành giao tiếp tiếng Anh thật.</p></div>
           <div class="perk"><span class="n">08</span><h3>Speaking với giáo viên bản xứ</h3><p>Luyện Speaking cùng giáo viên bản xứ.</p><span class="soon">Áp dụng từ các khoá sau</span></div>
           <div class="perk"><span class="n">09</span><h3>Kiểm tra đầu vào miễn phí</h3><p>Bài kiểm tra 4 kỹ năng: Listening, Reading đề Cambridge 21, Writing, Speaking chấm tại trung tâm. Xếp đúng chặng ngay từ đầu.</p></div>
-          <div class="perk"><span class="n">10</span><h3>Học bổ trợ khi chưa đạt mốc</h3><p>Con chưa đạt mốc được học bổ trợ 4 buổi đúng phần còn yếu trước khi lên chặng tiếp theo.</p></div>
+          <div class="perk"><span class="n">10</span><h3>Học bổ trợ khi chưa đạt mốc</h3><p>Bạn chưa đạt mốc được học bổ trợ 4 buổi đúng phần còn yếu trước khi lên chặng tiếp theo.</p></div>
         </div>
         <h3 class="perk-h el">Đặc quyền Elite <span>Có thêm toàn bộ quyền lợi trên</span></h3>
         <div class="perks">
           <div class="perk el"><span class="n">E01</span><h3>5 buổi kèm riêng 1-1</h3><p>Mỗi học viên Elite có 5 buổi kèm riêng với giáo viên, tập trung đúng điểm yếu của mình. Lịch kèm được ưu tiên sắp linh hoạt.</p></div>
           <div class="perk el"><span class="n">E02</span><h3>Lớp chỉ 7 học viên</h3><p>Lớp nhỏ để giáo viên theo sát và chữa kỹ từng bài. Thầy Quang Tùng trực tiếp kèm ở chặng cuối.</p></div>
-          <div class="perk el"><span class="n">E03</span><h3>Lộ trình cá nhân 1-1</h3><p>Buổi đầu khoá, thầy Quang Tùng xây lộ trình riêng cho con dựa trên bài kiểm tra đầu vào và mục tiêu band của gia đình.</p></div>
+          <div class="perk el"><span class="n">E03</span><h3>Lộ trình cá nhân 1-1</h3><p>Buổi đầu khoá, thầy Quang Tùng xây lộ trình riêng cho bạn dựa trên bài kiểm tra đầu vào và mục tiêu band của gia đình.</p></div>
           <div class="perk el"><span class="n">E04</span><h3>Giáo viên chấm từng bài Writing</h3><p>Mọi bài Writing nộp trên Writing Studio được giáo viên chấm chi tiết theo 4 tiêu chí và trả nhận xét, không chỉ chấm tự động.</p></div>
-          <div class="perk el"><span class="n">E05</span><h3>Thi thử 4 kỹ năng hằng tháng</h3><p>Mỗi tháng một bài thi thử đủ 4 kỹ năng có giáo viên chấm, bám sát tiến độ thật của con.</p></div>
-          <div class="perk el"><span class="n">E06</span><h3>Phòng thi Speaking mô phỏng</h3><p>Trước kỳ thi thật, con thi Speaking mô phỏng với giám khảo AZEnglish đúng quy trình 11–14 phút và nhận nhận xét chi tiết.</p></div>
+          <div class="perk el"><span class="n">E05</span><h3>Thi thử 4 kỹ năng hằng tháng</h3><p>Mỗi tháng một bài thi thử đủ 4 kỹ năng có giáo viên chấm, bám sát tiến độ thật của bạn.</p></div>
+          <div class="perk el"><span class="n">E06</span><h3>Phòng thi Speaking mô phỏng</h3><p>Trước kỳ thi thật, bạn thi Speaking mô phỏng với giám khảo AZEnglish đúng quy trình 11–14 phút và nhận nhận xét chi tiết.</p></div>
           <div class="perk el"><span class="n">E07</span><h3>Báo cáo riêng cho phụ huynh</h3><p>Báo cáo tiến độ hằng tháng và một buổi trao đổi 1-1 với phụ huynh sau mỗi chặng.</p></div>
           <div class="perk el"><span class="n">E08</span><h3>Tặng 1 lần lệ phí thi IELTS</h3><p>Cam kết bằng điểm thi IELTS thật. AZEnglish tặng một lần lệ phí thi chính thức và hỗ trợ đăng ký lịch thi.</p></div>
           <div class="perk el"><span class="n">E09</span><h3>Học lại miễn phí</h3><p>Đủ điều kiện mà chưa đạt 6.5 thì học lại miễn phí đến khi đạt, tối đa 6 tháng.</p></div>
@@ -586,17 +599,17 @@ html body a.card > .tn{display:flex;align-items:center}
 
     <section class="sec alt" id="goi-hoc">
       <div class="wrap">
-        <div class="sec-h"><span class="k">Khoá học</span><h2>Chọn lộ trình phù hợp với mục tiêu của con</h2><p>Bắt đầu bằng 7 ngày dùng thử. Học viên đăng ký khoá tại AZEnglish được dùng AZIELTS Academy suốt khoá học.</p></div>
+        <div class="sec-h"><span class="k">Khoá học</span><h2>Chọn lộ trình phù hợp với mục tiêu của bạn</h2><p>Bắt đầu bằng 7 ngày dùng thử. Học viên đăng ký khoá tại AZEnglish được dùng AZIELTS Academy suốt khoá học.</p></div>
         <div class="plans" id="plans"></div>
       </div>
     </section>
 
     <section class="sec" id="tu-van">
       <div class="wrap">
-        <div class="sec-h"><span class="k">Tư vấn</span><h2>Lộ trình 240 buổi, con đi qua 4 giai đoạn</h2><p>Mục tiêu từng kỹ năng, thời lượng và lịch kiểm tra của mỗi giai đoạn. Học phí chi tiết theo từng hình thức đóng được trình bày khi tư vấn trực tiếp.</p></div>
+        <div class="sec-h"><span class="k">Tư vấn</span><h2>Lộ trình 240 buổi, bạn đi qua 4 giai đoạn</h2><p>Mục tiêu từng kỹ năng, thời lượng và lịch kiểm tra của mỗi giai đoạn. Học phí chi tiết theo từng hình thức đóng được trình bày khi tư vấn trực tiếp.</p></div>
         <button class="btn tv-open" type="button" aria-expanded="false" aria-controls="tv-ct">Xem bảng lộ trình</button>
         <div class="tv-pane" id="tv-ct" hidden><div class="tv-nums"><div><b>240</b><span>buổi · 360 giờ</span></div><div><b>2</b><span>buổi/tuần · 90 phút</span></div><div><b>16</b><span>bài kiểm tra</span></div><div><b>30</b><span>tháng trọn lộ trình</span></div></div><div class="tv-grid"><div class="tv-ph"><div class="tv-pl"><small>Giai đoạn 1</small><b>0 → 3.0</b><span>Xây nền tảng</span></div><p class="tv-meta">64 buổi · 8 tháng · tháng 1–8</p><ul><li><em>Nghe</em>10/20 câu Section 1–2, chép chính tả đúng 80%</li><li><em>Đọc</em>6/13 câu Passage 1 trong 20 phút</li><li><em>Viết</em>Đoạn văn 120 từ, câu đơn và câu ghép không lỗi</li><li><em>Nói</em>Trả lời Part 1, 2–3 câu mỗi câu hỏi</li></ul><p class="tv-out">Phát âm chuẩn 44 âm IPA, nắm 12 thì cơ bản và 2.500 từ vựng.</p><p class="tv-ts">Kiểm tra buổi 16 · 32 · 48 · thi cuối buổi 64</p></div><div class="tv-ph"><div class="tv-pl"><small>Giai đoạn 2</small><b>3.0 → 5.0</b><span>Làm chủ dạng bài</span></div><p class="tv-meta">64 buổi · 8 tháng · tháng 9–16</p><ul><li><em>Nghe</em>16/40 câu, đủ 4 Section</li><li><em>Đọc</em>15/40 câu trong 60 phút</li><li><em>Viết</em>Task 1 + Task 2, 150 và 250 từ đúng giờ thi</li><li><em>Nói</em>Part 2 nói 1,5 phút; Part 1 có ví dụ</li></ul><p class="tv-out">Làm trọn một bài thi IELTS đủ 4 kỹ năng, đúng thời gian thi thật.</p><p class="tv-ts">Kiểm tra buổi 80 · 96 · 112 · thi cuối buổi 127</p></div><div class="tv-ph"><div class="tv-pl"><small>Giai đoạn 3</small><b>5.0 → 6.0+</b><span>Tăng tốc phương pháp</span></div><p class="tv-meta">56 buổi · 7 tháng · tháng 17–23</p><ul><li><em>Nghe</em>23/40 câu, nhận ra bẫy diễn đạt lại</li><li><em>Đọc</em>23/40 câu, đủ 3 bài trong 60 phút</li><li><em>Viết</em>Task 2 trong 38 phút, lập luận đủ 4 bước</li><li><em>Nói</em>Part 2 nói đủ 2 phút; Part 3 có lập luận</li></ul><p class="tv-out">Viết lập luận chặt chẽ, tự tin nói về chủ đề học thuật.</p><p class="tv-ts">Kiểm tra buổi 142 · 156 · 170 · thi cuối buổi 183</p></div><div class="tv-ph"><div class="tv-pl"><small>Giai đoạn 4</small><b>6.0 → 7.0+</b><span>Chinh phục đề thật</span></div><p class="tv-meta">56 buổi · 7 tháng · tháng 24–30</p><ul><li><em>Nghe</em>30/40 câu, đề Cambridge và đề thật</li><li><em>Đọc</em>30/40 câu, xong trước giờ, trong 55 phút</li><li><em>Viết</em>6.5+: 2 bài trong 55 phút, không lỗi lập luận</li><li><em>Nói</em>Part 3 chủ đề trừu tượng, trôi chảy</li></ul><p class="tv-out">Sẵn sàng thi thật, đủ chuẩn du học và xét tuyển đại học.</p><p class="tv-ts">Kiểm tra buổi 200 · 216 · 230 · thi thử tổng 231, 235</p></div></div>
-          <p class="tv-note">Con bắt đầu đúng giai đoạn sau bài kiểm tra đầu vào miễn phí, không phải học lại từ đầu. Chưa đạt mốc: học bổ trợ 4 buổi trước khi lên chặng.</p></div>
+          <p class="tv-note">Bạn bắt đầu đúng giai đoạn sau bài kiểm tra đầu vào miễn phí, không phải học lại từ đầu. Chưa đạt mốc: học bổ trợ 4 buổi trước khi lên chặng.</p></div>
                 <div class="tv-dl"><a class="btn line" href="tu-van/bang-chuong-trinh-ielts.pdf" target="_blank" rel="noopener">Tải bảng chương trình (PDF)</a><span>Đặt lịch tư vấn · Gọi / Zalo <b>0971 882 096</b></span></div>
       </div>
     </section>
@@ -628,10 +641,20 @@ html body a.card > .tn{display:flex;align-items:center}
       <div class="apps" id="apps"></div>
       <div class="place" id="kiem-tra">
         <div class="place-h"><div><h2>Bài kiểm tra đầu vào</h2><p>Làm lần lượt 4 phần để giáo viên xếp lộ trình phù hợp. Listening và Reading dùng đề Cambridge IELTS 21 Test 1, máy chấm điểm ngay.</p></div></div>
+        <form class="pgoal" id="pgoal" novalidate>
+          <div class="pg-h"><b>Mục tiêu của bạn</b><span>Sau mỗi phần, kết quả, lộ trình riêng và Cẩm nang phương pháp Reading &amp; Listening được gửi về email bạn đã đăng ký.</span></div>
+          <div class="pg-row">
+            <label>Đang học<select id="pgGrade"><option value="">Chọn</option><option>Lớp 5 trở xuống</option><option>Lớp 6–9</option><option>Lớp 10–12</option><option>Sinh viên</option><option>Đã đi làm</option></select></label>
+            <label>Band mục tiêu<select id="pgTarget"><option value="">Chọn</option><option>5.0</option><option>5.5</option><option>6.0</option><option>6.5</option><option>7.0</option><option>7.5</option><option>8.0</option></select></label>
+            <label>Cần có điểm trước<input id="pgDl" type="month" placeholder="2027-06"></label>
+          </div>
+          <label class="pg-ok"><input type="checkbox" id="pgConsent"><span>Đồng ý nhận kết quả, tư vấn lộ trình và tài liệu từ AZEnglish qua email. Có thể huỷ bất cứ lúc nào.</span></label>
+          <div class="pg-act"><button class="btn" type="submit">Lưu mục tiêu</button><span class="pg-msg" id="pgMsg" role="status"></span></div>
+        </form>
         <div class="steps">
           <a class="step" href="index.html#/listen/cambridge21-test1-listening/intro"><span class="no">PHẦN 1</span><h3>Listening</h3><p>Cambridge 21 · Test 1. 4 phần, 40 câu, khoảng 30 phút.</p><span class="meta">Bắt đầu làm →</span></a>
           <a class="step" href="index.html#/test/cambridge21-test1/intro"><span class="no">PHẦN 2</span><h3>Reading</h3><p>Cambridge 21 · Test 1. 3 bài đọc, 40 câu, 60 phút.</p><span class="meta">Bắt đầu làm →</span></a>
-          <a class="step" href="writing-studio.html"><span class="no">PHẦN 3</span><h3>Writing</h3><p>Vào Writing Studio, mục Task 2 → Đề thi, tự chọn 1 đề và viết trong 40 phút. Nộp để chấm band.</p><span class="meta">Mở Writing Studio →</span></a>
+          <a class="step" href="writing-studio.html" data-placew="1"><span class="no">PHẦN 3</span><h3>Writing</h3><p>Vào Writing Studio, mục Task 2 → Đề thi, tự chọn 1 đề và viết trong 40 phút. Nộp để chấm band.</p><span class="meta">Mở Writing Studio →</span></a>
           <div class="step center"><span class="no">PHẦN 4</span><h3>Speaking</h3><p>Thi nói trực tiếp với giáo viên tại trung tâm, 100 Hà Thanh, Nha Trang (11–14 phút như bài thi thật).</p><span class="meta">Đặt lịch: <span style="user-select:all">0971 882 096</span></span></div>
         </div>
       </div>
@@ -661,7 +684,7 @@ html body a.card > .tn{display:flex;align-items:center}
           </form>
           <form id="fReg" hidden autocomplete="on">
             <label for="rn">Họ và tên</label><input id="rn" autocomplete="name" required>
-            <div class="row2"><div><label for="rph">Số điện thoại</label><input id="rph" type="tel" inputmode="tel" autocomplete="tel" required></div><div><label for="re">Email <span style="color:var(--ink-3);font-weight:500">(không bắt buộc)</span></label><input id="re" type="email" autocomplete="email"></div></div>
+            <div class="row2"><div><label for="rph">Số điện thoại</label><input id="rph" type="tel" inputmode="tel" autocomplete="tel" required></div><div><label for="re">Email <span style="color:var(--ink-3);font-weight:500">(nhận kết quả kiểm tra)</span></label><input id="re" type="email" autocomplete="email" required></div></div>
             <label for="ru">Tên đăng nhập</label><input id="ru" autocomplete="username" autocapitalize="off" spellcheck="false" placeholder="ví dụ: minhanh2010" required>
             <label for="rp">Mật khẩu <span style="color:var(--ink-3);font-weight:500">(từ 6 ký tự)</span></label><input id="rp" type="password" autocomplete="new-password" minlength="6" required>
             <label for="rc">Mã lớp <span style="color:var(--ink-3);font-weight:500">(học viên đang học tại AZEnglish)</span></label><input id="rc" autocapitalize="characters" autocomplete="off" spellcheck="false" placeholder="Bỏ trống nếu đăng ký dùng thử">
@@ -791,6 +814,22 @@ function render() {
 
 /* mục Tư vấn: bấm mới hiện bảng lộ trình */
 document.querySelectorAll(".tv-open").forEach(b => b.onclick = () => { const p = document.getElementById("tv-ct"), open = p.hidden; p.hidden = !open; b.setAttribute("aria-expanded", String(open)); b.textContent = open ? "Thu gọn bảng lộ trình" : "Xem bảng lộ trình"; if (open) p.scrollIntoView({ behavior: "smooth", block: "nearest" }); });
+/* kiểm tra đầu vào: lưu mục tiêu (gửi kèm kết quả để tư vấn đúng lộ trình) */
+(function () {
+  const f = document.getElementById("pgoal"); if (!f) return;
+  const msg = document.getElementById("pgMsg"), get = () => { try { return JSON.parse(localStorage.getItem("az_place") || "null"); } catch (e) { return null; } };
+  const cur = get(); if (cur) { $("#pgGrade").value = cur.grade || ""; $("#pgTarget").value = cur.target ? Number(cur.target).toFixed(1) : ""; $("#pgDl").value = cur.deadline || ""; $("#pgConsent").checked = !!cur.consent; msg.textContent = "Đã lưu mục tiêu."; }
+  f.onsubmit = e => { e.preventDefault(); msg.className = "pg-msg";
+    if (!$("#pgTarget").value) { msg.className = "pg-msg err"; msg.textContent = "Chọn band mục tiêu."; return; }
+    if (!$("#pgConsent").checked) { msg.className = "pg-msg err"; msg.textContent = "Đánh dấu đồng ý để nhận kết quả qua email."; return; }
+    try { localStorage.setItem("az_place", JSON.stringify({ grade: $("#pgGrade").value, target: +$("#pgTarget").value, deadline: $("#pgDl").value, consent: true, at: Date.now() })); } catch (x) {}
+    msg.textContent = "Đã lưu. Bắt đầu với Phần 1 · Listening."; };
+  let warned = false;
+  document.querySelectorAll("#kiem-tra a.step").forEach(a => a.addEventListener("click", e => {
+    if (!get() && !warned) { e.preventDefault(); warned = true; msg.className = "pg-msg err"; msg.textContent = "Lưu mục tiêu để nhận kết quả qua email, hoặc bấm lại để làm luôn."; f.scrollIntoView({ behavior: "smooth", block: "center" }); return; }
+    if (a.dataset.placew) { try { localStorage.setItem("az_place_w", "1"); } catch (x) {} }
+  }));
+})();
 /* ===== sự kiện ===== */
 document.querySelectorAll(".seg button").forEach(b => b.onclick = () => setTab(b.dataset.tab));
 $("#fLogin").onsubmit = async e => {
@@ -805,6 +844,7 @@ $("#fReg").onsubmit = async e => {
   const u = $("#ru").value.trim().toLowerCase(), pw = $("#rp").value;
   if (!/^[a-z0-9._-]{3,30}$/.test(u)) { er.textContent = "Tên đăng nhập 3–30 ký tự: chữ không dấu, số, dấu chấm hoặc gạch."; return; }
   if (pw.length < 6) { er.textContent = "Mật khẩu cần ít nhất 6 ký tự."; return; }
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($("#re").value.trim())) { er.textContent = "Nhập email đúng để nhận kết quả kiểm tra và tư vấn."; return; }
   b.disabled = true; b.textContent = "Đang tạo tài khoản…";
   try { const j = await api({ t: "register", u, ph: await hashPw(u, pw), cls: $("#rc").value.trim().toUpperCase(), name: $("#rn").value.trim(), phone: $("#rph").value.trim(), email: $("#re").value.trim(), dev: dev() });
     if (j && j.ok) { toast(j.s.tier === "trial" ? "Tạo tài khoản dùng thử thành công. Chúc bạn học tốt!" : "Tạo tài khoản lớp học thành công. Chúc bạn học tốt!"); afterLogin(j.s); } else er.textContent = (j && j.error) || "Không tạo được tài khoản."; }
