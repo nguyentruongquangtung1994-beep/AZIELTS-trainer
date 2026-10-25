@@ -182,11 +182,17 @@ button.app{font:inherit;text-align:left;cursor:pointer}
 .place-h{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:20px}
 .place-h h2{font-family:var(--serif);font-size:26px}
 .place-h p{margin:4px 0 0;color:var(--ink-2);font-size:14.5px;max-width:60ch}
+.j-res h4{margin:0 0 8px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
+.jr-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}.jr-grid>div{min-width:0}
+.jr-best{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;margin-bottom:6px}.jr-best b{font-size:24px;font-weight:800;color:var(--navy)}.jr-best span{font-weight:700;color:var(--red)}.jr-best small{flex-basis:100%;color:var(--ink-3);font-size:12px}
+.jr-list{list-style:none;margin:0;padding:0;font-size:13px}.jr-list li{display:flex;justify-content:space-between;gap:8px;padding:5px 0;border-top:1px solid var(--line)}.jr-list li span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink-2)}
+.jr-dm{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:8px;font-size:13px;margin-bottom:6px}.jr-dm .j-bar{margin:0}
+@media (max-width:980px){.jr-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:560px){.jr-grid{grid-template-columns:1fr}}
 .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 .step{display:flex;flex-direction:column;gap:8px;padding:18px;border-radius:14px;border:1px solid var(--line);background:var(--bg-2);color:var(--ink);text-decoration:none}
 a.step:hover{border-color:var(--gold);background:#fff}
-.step .no{font-family:var(--serif);font-size:13px;font-weight:700;color:var(--gold);letter-spacing:.08em}
-.step h3{font-size:17px}
+.step .no{font-size:12px;font-weight:800;color:var(--gold);letter-spacing:.1em}
+.step h3{font-size:17px;margin:0}.steps{align-items:stretch}.step p{flex:1}
 .step p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.5}
 .step .meta{margin-top:auto;padding-top:8px;font-size:12.5px;font-weight:700;color:var(--red)}
 .step.center .meta{color:var(--navy)}
@@ -735,7 +741,7 @@ html body a.card > .tn{display:flex;align-items:center}
           <div class="pg-row">
             <label>Đang học<select id="pgGrade"><option value="">Chọn</option><option>Lớp 5 trở xuống</option><option>Lớp 6–9</option><option>Lớp 10–12</option><option>Sinh viên</option><option>Đã đi làm</option></select></label>
             <label>Band mục tiêu<select id="pgTarget"><option value="">Chọn</option><option>5.0</option><option>5.5</option><option>6.0</option><option>6.5</option><option>7.0</option><option>7.5</option><option>8.0</option></select></label>
-            <label>Cần có điểm trước<input id="pgDl" type="month" placeholder="2027-06"></label>
+            <label>Cần có điểm trước<select id="pgDl"><option value="">Chọn tháng</option></select></label>
           </div>
           <label class="pg-ok"><input type="checkbox" id="pgConsent"><span>Đồng ý nhận kết quả, tư vấn lộ trình và tài liệu từ AZEnglish qua email. Có thể huỷ bất cứ lúc nào.</span></label>
           <div class="pg-act"><button class="btn" type="submit">Lưu mục tiêu</button><span class="pg-msg" id="pgMsg" role="status"></span></div>
@@ -912,6 +918,7 @@ document.querySelectorAll(".tv-open").forEach(b => b.onclick = () => { const p =
 (function () {
   const f = document.getElementById("pgoal"); if (!f) return;
   const msg = document.getElementById("pgMsg"), get = () => { try { return JSON.parse(localStorage.getItem("az_place") || "null"); } catch (e) { return null; } };
+  { const s = $("#pgDl"), d = new Date(); for (let i = 1; i <= 30; i++) { const x = new Date(d.getFullYear(), d.getMonth() + i, 1), v = x.getFullYear() + "-" + String(x.getMonth() + 1).padStart(2, "0"); s.add(new Option("Tháng " + (x.getMonth() + 1) + "/" + x.getFullYear(), v)); } }
   const cur = get(); if (cur) { $("#pgGrade").value = cur.grade || ""; $("#pgTarget").value = cur.target ? Number(cur.target).toFixed(1) : ""; $("#pgDl").value = cur.deadline || ""; $("#pgConsent").checked = !!cur.consent; msg.textContent = "Đã lưu mục tiêu."; }
   f.onsubmit = e => { e.preventDefault(); msg.className = "pg-msg";
     if (!$("#pgTarget").value) { msg.className = "pg-msg err"; msg.textContent = "Chọn band mục tiêu."; return; }
@@ -958,7 +965,7 @@ $("#authModal").onclick = e => { if (e.target.id === "authModal") closeAuth(); }
 document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#authModal").hidden) closeAuth(); });
 $("#home").onclick = e => { e.preventDefault(); scrollTo({ top: 0, behavior: "smooth" }); };
 
-/* ===== AZIELTS Journey: XP · giải đấu theo chặng · Passport số (máy chủ: codes/apps-script-journey.gs) ===== */
+/* ===== AZIELTS Journey: XP · giải đấu theo chặng · kết quả học tập (máy chủ: codes/apps-script-journey.gs) ===== */
 const JLV = { 0: ["Khách thăm", "Học viên dùng thử"], 1: ["Khởi hành", "Buổi 1–64 · band 0 → 3.0"], 2: ["Cất cánh", "Buổi 65–128 · band 3.0 → 5.0"], 3: ["Bay cao", "Buổi 129–184 · band 5.0 → 6.0+"], 4: ["Hạ cánh 7.0+", "Buổi 185–240 · band 6.0 → 7.0+"] };
 const JRULES = [["Day Mission: hoàn thành một ngày học (lần đầu)", "40 + tối đa 20 theo % đúng"], ["Day Mission: ngày ôn / checkpoint (lần đầu)", "30 + tối đa 20 / 100"], ["Xong lộ trình từ vựng trong ngày (Writing Studio)", "30"], ["Kỷ lục mới ở Thử thách 60 giây", "+10"], ["Nộp một đề Reading hoặc Listening", "2 XP × câu đúng"], ["Làm lại đề cũ và vượt điểm cũ", "2 × câu tăng + 10"],
   ["Nộp bài Writing được chấm band (tối đa 2 bài mỗi ngày)", "40 + 10 / 20 / 30 khi band ≥ 5 / 6 / 7"], ["Đủ 3 nhiệm vụ trong ngày", "+20"], ["Chuỗi ngày học liên tiếp", "+2 × số ngày (tối đa +20)"],
@@ -973,6 +980,31 @@ function jMissions(l, dm, doneToday) {
       : { k: "DM", t: `Day ${n} Mission`, d: `Từ vựng IELTS chặng ${ch}: một bài nhỏ ${ch === 1 ? "khoảng 8 phút" : "khoảng 15 phút"}, đạt yêu cầu để mở khoá Day ${n + 1}`, x: "40–60 XP", href: "mission.html", main: true },
     { k: "RL", t: "Luyện thêm · Đọc hoặc Nghe", d: lo ? "Làm một đề Listening (nộp sau Part 1–2 cũng được tính câu đúng)" : "Làm một đề Reading hoặc Listening trọn vẹn, bấm giờ như thi thật", x: "2 XP / câu đúng", href: "index.html" },
     { k: "W", t: "Luyện thêm · Viết", d: l === 1 ? "Writing Studio → Gõ mẫu một bài, rồi viết một đoạn ngắn và nộp chấm" : "Viết một bài Task 1 hoặc Task 2 và nộp để chấm band", x: "40+ XP", href: "writing-studio.html#home" }];
+}
+/* kết quả học viên: tiến độ Day Mission (máy chủ) + điểm tốt nhất từng đề Reading/Listening (Trainer lưu cùng trang web) + Writing gần đây */
+const BANDR = [[39,9],[37,8.5],[35,8],[33,7.5],[30,7],[27,6.5],[23,6],[19,5.5],[15,5],[13,4.5],[10,4],[8,3.5],[6,3],[4,2.5],[0,2]];
+const BANDL = [[39,9],[37,8.5],[35,8],[32,7.5],[30,7],[26,6.5],[23,6],[18,5.5],[16,5],[13,4.5],[11,4],[9,3.5],[6,3],[4,2.5],[0,2]];
+const bandOf = (sc, tot, L) => tot === 40 ? (L ? BANDL : BANDR).find(r => sc >= r[0])[1].toFixed(1) : "";
+const testName = id => { let m;
+  if ((m = /^cambridge(\d+)-test(\d+)/.exec(id))) return "Cambridge " + m[1] + " · Test " + m[2];
+  if ((m = /^actual(\d+)-test(\d+)/.exec(id))) return "Actual Test " + m[1] + " · Test " + m[2];
+  if ((m = /vol(\d+)-test(\d+)/.exec(id))) return "Actual Test Vol " + m[1] + " · Test " + m[2];
+  return id; };
+function jResults(me) {
+  let at = {}; try { at = (JSON.parse(localStorage.getItem("az_reading_trainer_v1") || "{}").attempts) || {}; } catch (e) {}
+  const rows = Object.entries(at).filter(([k, a]) => a && a.total && a.submittedAt).map(([k, a]) => ({ k, L: /listen/.test(k), sc: a.score, tot: a.total, at: a.submittedAt })).sort((x, y) => y.at - x.at);
+  const dm = me.dm || {}, chs = [1, 2, 3, 4].filter(c => dm[c]), TOT = { 1: 100, 2: 77, 3: 61, 4: 68 };
+  const wr = (JD.recent || []).filter(r => r.act === "W").slice(0, 3);
+  const cell = (L) => { const r = rows.filter(x => x.L === L); if (!r.length) return `<p class="j-note">Chưa có đề ${L ? "Listening" : "Reading"} nào được nộp trên máy này.</p>`;
+    const best = r.reduce((a, b) => b.sc / b.tot > a.sc / a.tot ? b : a);
+    return `<div class="jr-best"><b>${best.sc}/${best.tot}</b>${bandOf(best.sc, best.tot, L) ? `<span>Band ${bandOf(best.sc, best.tot, L)}</span>` : ""}<small>tốt nhất · ${esc(testName(best.k))}</small></div>
+      <ul class="jr-list">${r.slice(0, 4).map(x => `<li><span>${esc(testName(x.k))}</span><b>${x.sc}/${x.tot}</b></li>`).join("")}</ul>`; };
+  return `<div class="jr-grid">
+    <div><h4>Day Mission</h4>${chs.length ? chs.map(c => `<div class="jr-dm"><span>Chặng ${c}</span><div class="j-bar"><i style="width:${Math.min(100, dm[c] / TOT[c] * 100)}%"></i></div><b>${dm[c]}/${TOT[c]}</b></div>`).join("") : `<p class="j-note">Chưa hoàn thành Day nào. Bắt đầu Day 1 ở nhiệm vụ hôm nay.</p>`}</div>
+    <div><h4>Reading</h4>${cell(false)}</div>
+    <div><h4>Listening</h4>${cell(true)}</div>
+    <div><h4>Writing</h4>${wr.length ? `<ul class="jr-list">${wr.map(r => `<li><span>${esc(vnDate(r.day))}</span><b>${esc((r.note.match(/band [\d.]+/i) || ["đã nộp"])[0])}</b></li>`).join("")}</ul>` : `<p class="j-note">Chưa nộp bài Writing nào để chấm band.</p>`}</div>
+  </div>`;
 }
 async function loadJourney() {
   const s = getS(), box = $("#journey"); if (!box || !s || !API) return;
@@ -1013,14 +1045,7 @@ function renderJourney() {
       <ol class="j-lb">${P.top.length ? P.top.map(r => `<li class="${r.me ? "me" : ""}"><span class="n">${r.n}</span><span>${esc(r.nick)}${r.me ? " (bạn)" : ""}</span><span class="x">${fmtN(r.xp)}</span></li>`).join("") : `<li class="j-note">Chưa có ai trong bảng.</li>`}</ol>
       <div class="j-note" style="margin-top:8px">${JP === "quarter" ? "Thưởng quý (tiền mặt) xét 40% học trên lớp + 40% tự học online + 20% tiến bộ thi thử." : "Top 3 mỗi chặng nhận quà và giấy chứng nhận."}</div></div>
   </div>
-  <div class="j-pass">
-    <div class="pp"><div class="t1">AZENGLISH · NHA TRANG</div><div class="t2">AZIELTS Passport</div><div class="glb">AZ</div><div class="nm">${esc(me.name)}</div><div class="j-note" style="color:#C9CFDA">Chặng ${me.lvl} · ${esc(L[0])}${me.cls ? " · Lớp " + esc(me.cls) : ""}</div><span class="tier">${esc(me.tier)} · ${fmtN(me.xp)} XP</span><div class="chip"></div></div>
-    <div class="j-card"><h3>Visa và con dấu <small>${Object.keys(me.stamps).length} con dấu</small></h3>
-      <div class="visas">${[1, 2, 3, 4].map(v => `<div class="visa ${me.stamps["VISA-" + v] ? "on" : ""}"><b>Visa ${v}</b>${esc(JLV[v][0])}</div>`).join("")}</div>
-      <div class="stamps">${JAUTO.map(k => `<span class="stamp ${me.stamps[k] ? "on" : ""}" title="${me.stamps[k] ? "Đạt ngày " + esc(vnDate(me.stamps[k])) : "Chưa đạt"}">${me.stamps[k] ? "✓ " : ""}${esc(d.catalog[k].n)}</span>`).join("")}</div>
-      ${Object.entries(grp).map(([sk, ks]) => `<div class="j-note" style="margin:12px 0 6px;font-weight:700;color:var(--ink-2)">I CAN · ${esc(sk)} (giáo viên đóng dấu tại lớp)</div><div class="stamps">${ks.map(k => `<span class="stamp ican ${me.stamps[k] ? "on" : ""}">${me.stamps[k] ? "✓ " : ""}${esc(d.catalog[k].n.replace(/^I CAN /, ""))}</span>`).join("")}</div>`).join("")}
-    </div>
-  </div>
+  <div class="j-card j-res"><h3>Kết quả học tập của bạn <small>${fmtN(me.classDays)} buổi có mặt trên lớp</small></h3>${jResults(me)}</div>
   <details class="j-rules"><summary>Cách tính XP</summary><table>${JRULES.map(r => `<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join("")}</table><p>Không bao giờ bị trừ điểm. Làm lại đề cũ chỉ tính phần câu đúng tăng thêm.</p></details>`;
   box.querySelectorAll("[data-jp]").forEach(b => b.onclick = () => { JP = b.dataset.jp; renderJourney(); });
 }
@@ -1055,7 +1080,7 @@ async function renderGV() {
   <div class="box"><h2>2 · Bảng công bố</h2>
     <div class="row"><label>Kỳ<br><select id="gvP"><option value="week">Tuần</option><option value="month">Tháng</option><option value="quarter">Quý (thưởng tiền mặt)</option></select></label><label>Ngày trong kỳ<br><input type="date" id="gvPD" value="${todayStr()}"></label><button class="btn dark" type="button" id="gvB">Tạo bảng</button><button class="btn line" type="button" id="gvCopy">Sao chép</button><span class="msg" id="gvM2"></span></div>
     <textarea id="gvTxt" style="margin-top:12px" placeholder="Bấm Tạo bảng để có nội dung dán vào nhóm Zalo lớp."></textarea></div>
-  <div class="box"><h2>3 · Thi thử và con dấu Passport</h2>
+  <div class="box"><h2>3 · Thi thử và con dấu thành tích</h2>
     <div class="row"><label>Học viên<br><select id="gvU">${stuOpts}</select></label><label>Band thi thử<br><input id="gvBand" type="number" step="0.5" min="0" max="9" style="width:110px"></label><label>Band lần trước<br><input id="gvPrev" type="number" step="0.5" min="0" max="9" style="width:110px"></label><button class="btn" type="button" id="gvMock">Ghi thi thử</button></div>
     <div class="row" style="margin-top:12px"><label>Con dấu<br><select id="gvS">${stampOpts}</select></label><button class="btn dark" type="button" id="gvStamp">Đóng dấu</button><span class="msg" id="gvM3"></span></div>
     <p class="j-note">Thi thử: mỗi 0.5 band tăng so với lần trước được +100 XP (tính vào 20% "tiến bộ" khi xét thưởng quý).</p></div>`;
