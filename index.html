@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="vi">
-<head><!--AZOG:start--><meta name="description" content="Luyện đề Cambridge IELTS 16–21 và IELTS Reading Actual Test 5: chấm điểm ngay, bằng chứng đáp án từng câu. Thuộc AZIELTS Academy của AZEnglish."><meta property="og:type" content="website"><meta property="og:site_name" content="AZIELTS Academy"><meta property="og:title" content="AZIELTS Reading &amp; Listening"><meta property="og:description" content="Luyện đề Cambridge IELTS 16–21 và IELTS Reading Actual Test 5: chấm điểm ngay, bằng chứng đáp án từng câu. Thuộc AZIELTS Academy của AZEnglish."><meta property="og:url" content="https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/"><meta property="og:image" content="https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/og-azielts-v2.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/og-azielts-v2.jpg"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23C8102E'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-weight='800' font-size='28' fill='white' text-anchor='middle'%3EAZ%3C/text%3E%3C/svg%3E"><!--AZOG:end-->
+<head><!--AZOG:start--><meta name="description" content="Luyện đề Cambridge IELTS 16–21, Reading Actual Test 5 và Listening Actual Test Vol 7: chấm điểm ngay, bằng chứng đáp án từng câu. Thuộc AZIELTS Academy của AZEnglish."><meta property="og:type" content="website"><meta property="og:site_name" content="AZIELTS Academy"><meta property="og:title" content="AZIELTS Reading &amp; Listening"><meta property="og:description" content="Luyện đề Cambridge IELTS 16–21, Reading Actual Test 5 và Listening Actual Test Vol 7: chấm điểm ngay, bằng chứng đáp án từng câu. Thuộc AZIELTS Academy của AZEnglish."><meta property="og:url" content="https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/"><meta property="og:image" content="https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/og-azielts-v2.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/og-azielts-v2.jpg"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23C8102E'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-weight='800' font-size='28' fill='white' text-anchor='middle'%3EAZ%3C/text%3E%3C/svg%3E"><!--AZOG:end-->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <meta name="robots" content="noindex, nofollow" />
@@ -610,6 +610,12 @@ html body a.card > .tn{display:flex;align-items:center}
 <script src="./actual5-test4.js"></script>
 <script src="./actual5-test5.js"></script>
 <script src="./actual5-test6.js"></script>
+<script src="./listening-vol7-test1.js"></script>
+<script src="./listening-vol7-test2.js"></script>
+<script src="./listening-vol7-test3.js"></script>
+<script src="./listening-vol7-test4.js"></script>
+<script src="./listening-vol7-test5.js"></script>
+<script src="./listening-vol7-test6.js"></script>
 <script src="./cambridge21-test2.js"></script>
 <script src="./cambridge21-test3.js"></script>
 <script src="./cambridge21-test4.js"></script>
@@ -658,6 +664,15 @@ html body a.card > .tn{display:flex;align-items:center}
     {id:"cambridge19-test2-listening", label:"Test 2", available:true},
     {id:"cambridge19-test3-listening", label:"Test 3", available:true},
     {id:"cambridge19-test4-listening", label:"Test 4", available:true},
+  ];
+
+  var LISTEN_TESTS_REGISTRY_V7 = [
+    {id:"vol7-test1-listening", label:"Test 1", available:true},
+    {id:"vol7-test2-listening", label:"Test 2", available:true},
+    {id:"vol7-test3-listening", label:"Test 3", available:true},
+    {id:"vol7-test4-listening", label:"Test 4", available:true},
+    {id:"vol7-test5-listening", label:"Test 5", available:true},
+    {id:"vol7-test6-listening", label:"Test 6", available:true},
   ];
 
   var TESTS_REGISTRY_AT5 = [
@@ -808,6 +823,7 @@ html body a.card > .tn{display:flex;align-items:center}
     app.innerHTML = "";
     var BOOKS = [
       {num:"AT5", cap:"Actual Test", label:"5", title:"IELTS Reading Actual Test 5", short:"AT5", read:TESTS_REGISTRY_AT5, listen:[], isNew:true},
+      {num:"V7", cap:"Actual Test", label:"Vol 7", title:"IELTS Listening Actual Test Vol 7", short:"Vol 7", read:[], listen:LISTEN_TESTS_REGISTRY_V7, isNew:true},
       {num:21, read:TESTS_REGISTRY_21, listen:LISTEN_TESTS_REGISTRY_21},
       {num:20, read:TESTS_REGISTRY_20, listen:LISTEN_TESTS_REGISTRY_20},
       {num:19, read:TESTS_REGISTRY,    listen:LISTEN_TESTS_REGISTRY},
@@ -861,7 +877,7 @@ html body a.card > .tn{display:flex;align-items:center}
             '<text x="59" y="100" text-anchor="middle" font-family="Be Vietnam Pro,Arial,sans-serif" font-weight="800" font-size="36" fill="#fff" letter-spacing="-1">AZ</text>' +
           '</svg>' +
           '<h1>Luyện <span class="hlw">Reading</span> &amp; <span class="hlw">Listening</span><br><em>chuẩn Cambridge</em></h1>' +
-          '<p class="nb-lede">' + (sR.total + sL.total) + ' đề Cambridge 16–21, chấm điểm ngay, có bằng chứng từng câu.</p>' +
+          '<p class="nb-lede">' + (sR.total + sL.total) + ' đề Cambridge 16–21 và Actual Test, chấm điểm ngay, có bằng chứng từng câu.</p>' +
           '<div class="btn-row" style="gap:14px">' +
             '<a class="nb-btn" href="#" data-jump="nbBooks">Bắt đầu luyện →</a>' +
             (resume
@@ -893,7 +909,7 @@ html body a.card > .tn{display:flex;align-items:center}
         '<div><div class="k">Đề đã làm</div><div class="v">' + (sR.done + sL.done) + ' / ' + (sR.total + sL.total) + '</div></div>' +
         '<div><div class="k">Reading gần nhất</div><div class="v">' + lastTxt(sR) + '</div></div>' +
         '<div><div class="k">Listening gần nhất</div><div class="v">' + lastTxt(sL) + '</div></div>' +
-        '<div class="bar"><div class="k">Hoàn thành bộ Cambridge 16–21</div><div class="nb-meter"><i style="width:' + pct + '%"></i></div></div>' +
+        '<div class="bar"><div class="k">Hoàn thành toàn bộ đề (Cambridge 16–21 và Actual Test)</div><div class="nb-meter"><i style="width:' + pct + '%"></i></div></div>' +
       '</div>' +
 
       '<div class="nb-head"><div><h2>Chọn kỹ năng</h2></div></div>' +
