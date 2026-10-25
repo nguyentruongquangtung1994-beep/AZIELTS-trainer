@@ -492,6 +492,8 @@ body{background:#FDFCF9}
 .j-rank{font-size:13.5px;color:var(--ink-2);margin-bottom:8px}
 .j-rank b{color:var(--ink)}
 .j-res{margin-top:16px}
+.j-mock{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-top:12px;padding:12px 14px;border-radius:12px;border:1px dashed var(--gold);background:var(--gold-soft);color:var(--ink);text-decoration:none}.j-mock span{font-weight:700;color:#7A5B12}.j-mock small{flex-basis:100%;color:var(--ink-3)}
+.rp td,.rp th{text-align:center}.rp td:first-child,.rp th:first-child{text-align:left}.rp .hi{color:var(--ok);font-weight:800}.rp .mid{color:#B7791F;font-weight:800}.rp .lo{color:var(--bad);font-weight:800}.rp tr.all td{background:var(--gold-soft);font-weight:700}
 .j-board{margin-top:16px;padding:24px;border-radius:18px;background:linear-gradient(165deg,#13233B,#0B1424);border:1px solid rgba(217,179,106,.35);color:#F4F1EA}
 .jb-h{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:18px}.jb-h h3{font-family:var(--serif);font-size:24px;margin:4px 0 0;color:#fff}
 .j-board .j-tabs button{background:rgba(255,255,255,.06);border-color:rgba(217,179,106,.4);color:#F4F1EA}.j-board .j-tabs button[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#fff}
@@ -607,7 +609,7 @@ html body a.card > .tn{display:flex;align-items:center}
       </div>
     </section>
 
-    <div class="wrap"><div class="stats" id="stats"><div><b>5</b><span>chương trình trong một tài khoản</span></div><div><b>2.295</b><span>cụm từ học thuật theo chủ đề</span></div><div><b>65</b><span>bài mẫu Writing Task 1 và 2</span></div><div><b>240</b><span>buổi theo lộ trình chuẩn</span></div></div></div>
+    <div class="wrap"><div class="stats" id="stats"><div><b>6</b><span>chương trình trong một tài khoản</span></div><div><b>2.295</b><span>cụm từ học thuật theo chủ đề</span></div><div><b>65</b><span>bài mẫu Writing Task 1 và 2</span></div><div><b>240</b><span>buổi theo lộ trình chuẩn</span></div></div></div>
 
     <section class="sec" id="thanh-tich">
       <div class="wrap">
@@ -812,13 +814,14 @@ const P = {
 const azi = k => `<svg class="azi" viewBox="0 0 24 24" aria-hidden="true">${P[k]}</svg>`;
 const APPS = [
   { id: "mission", cv: "Mission", sub: "Từ vựng IELTS mỗi ngày", name: "Day Mission", hue: "#B8913A", ic: "target", href: "mission.html", desc: "Mỗi ngày một bài nhỏ: học cụm từ IELTS theo chặng, luyện ngay, đạt yêu cầu để mở khoá ngày tiếp theo. 4 chặng: 306 Day, 1.776 cụm từ không trùng lặp.", badge: "Mới" },
+  { id: "skills", cv: "Skills", sub: "Đọc · Nghe theo dạng", name: "Skill Mission", hue: "#1F4E8C", ic: "map", href: "skills.html", desc: "Mỗi ngày một bài nhỏ Đọc hoặc Nghe đúng một dạng câu hỏi: thẻ phương pháp 1 phút, làm bài, chấm có bằng chứng. 4 chặng: 310 bài nhỏ từ đề Cambridge.", badge: "Mới" },
   { id: "writing", cv: "Writing", sub: "Task 1 · Task 2", name: "Writing Studio", hue: "#D7192D", ic: "pen", href: "writing-studio.html", desc: "Nhiệm vụ mỗi ngày, công thức theo dạng đề Task 1 và Task 2, chấm band ngay sau khi nộp.", badge: "Mới" },
   { id: "rl", cv: "Reading", sub: "Cambridge 16 – 21 · Actual Test", name: "Reading & Listening", hue: "#1D4ED8", ic: "book", href: "index.html", desc: "Đề Cambridge IELTS 16–21, Reading Actual Test 5 và Listening Actual Test Vol 7: bấm giờ, chấm điểm, chỉ vị trí đáp án trong bài." },
   { id: "gap", cv: "Listening", sub: "Cambridge 19 – 21", name: "Listening Lab", hue: "#6D28D9", ic: "head", href: "listening-gapfill.html", desc: "Nghe transcript khoét lỗ Cambridge 19–21: chọn đáp án và chép chính tả với audio gốc." },
   { id: "test", cv: "Placement", sub: "Đầu vào 4 kỹ năng", name: "Kiểm tra trình độ", hue: "#B7851A", ic: "target", href: "#kiem-tra", desc: "Bài kiểm tra đầu vào 4 kỹ năng: Listening, Reading đề Cambridge 21, Writing tự chọn đề, Speaking tại trung tâm.", badge: "Đầu vào" },
 ];
 const PLANS = [
-  { k: "trial", name: "Dùng thử", lvl: "Miễn phí", price: "7 ngày trải nghiệm nền tảng, không cần thanh toán.", items: ["Mở đầy đủ 5 chương trình luyện tập", "Chấm band Writing tự động", "Đề Cambridge Reading và Listening", "Học cụm từ, thử thách 60 giây"] },
+  { k: "trial", name: "Dùng thử", lvl: "Miễn phí", price: "7 ngày trải nghiệm nền tảng, không cần thanh toán.", items: ["Mở đầy đủ 6 chương trình luyện tập", "Chấm band Writing tự động", "Đề Cambridge Reading và Listening", "Học cụm từ, thử thách 60 giây"] },
   { k: "standard", name: "Lộ trình 240 buổi", lvl: "Standard", price: "240 buổi × 90 phút, 2 buổi mỗi tuần.", rate: "150.000đ", items: ["Lớp tối đa 12 học viên", "Thi thử định kỳ, báo cáo band cho phụ huynh", "Chưa đạt mốc: học bổ trợ 4 buổi", "CLB Tiếng Anh, CLB Public Speaking & Debate hằng tuần", "Giải đáp thắc mắc 24/7", "Tài khoản AZIELTS Academy suốt khoá học"] },
   { k: "elite", name: "Elite 6.5+", lvl: "Kèm sát · cam kết đầu ra", price: "240 buổi lớp + 5 buổi kèm 1-1, tổng 367,5 giờ.", rate: "250.000đ", seats: "Chỉ 7 học viên mỗi lớp", items: ["5 buổi kèm riêng 1-1 cho mỗi học viên", "Lộ trình cá nhân do thầy Quang Tùng xây dựng", "Giáo viên chấm từng bài Writing, thi thử 4 kỹ năng hằng tháng", "Phòng thi Speaking mô phỏng trước kỳ thi thật", "Cam kết bằng điểm thi thật, tặng 1 lần lệ phí thi", "Đủ điều kiện mà chưa đạt 6.5: học lại miễn phí, tối đa 6 tháng", "Tặng Public Speaking 4 buổi kèm riêng, có chứng nhận", "Toàn bộ quyền lợi gói Lộ trình 240 buổi"] }
 ];
@@ -970,19 +973,28 @@ $("#home").onclick = e => { e.preventDefault(); scrollTo({ top: 0, behavior: "sm
 
 /* ===== AZIELTS Journey: XP · giải đấu theo chặng · kết quả học tập (máy chủ: codes/apps-script-journey.gs) ===== */
 const JLV = { 0: ["Khách thăm", "Học viên dùng thử"], 1: ["Khởi hành", "Buổi 1–64 · band 0 → 3.0"], 2: ["Cất cánh", "Buổi 65–128 · band 3.0 → 5.0"], 3: ["Bay cao", "Buổi 129–184 · band 5.0 → 6.0+"], 4: ["Hạ cánh 7.0+", "Buổi 185–240 · band 6.0 → 7.0+"] };
-const JRULES = [["Day Mission: hoàn thành một ngày học (lần đầu)", "40 + tối đa 20 theo % đúng"], ["Day Mission: ngày ôn / checkpoint (lần đầu)", "30 + tối đa 20 / 100"], ["Xong lộ trình từ vựng trong ngày (Writing Studio)", "30"], ["Kỷ lục mới ở Thử thách 60 giây", "+10"], ["Nộp một đề Reading hoặc Listening", "2 XP × câu đúng"], ["Làm lại đề cũ và vượt điểm cũ", "2 × câu tăng + 10"],
+const JRULES = [["Day Mission: hoàn thành một ngày học (lần đầu)", "40 + tối đa 20 theo % đúng"], ["Day Mission: ngày ôn / checkpoint (lần đầu)", "30 + tối đa 20 / 100"], ["Xong lộ trình từ vựng trong ngày (Writing Studio)", "30"], ["Kỷ lục mới ở Thử thách 60 giây", "+10"], ["Skill Mission: một bài nhỏ Đọc/Nghe (lần đầu đạt 60%)", "20 + tối đa 10 theo % đúng"], ["Thi thử tháng: đề full Reading hoặc Listening (1 lần mỗi kỹ năng mỗi tháng)", "2 XP × câu đúng"], ["Tháng sau làm lại đề cũ và vượt điểm cũ", "2 × câu tăng + 10"],
   ["Nộp bài Writing được chấm band (tối đa 2 bài mỗi ngày)", "40 + 10 / 20 / 30 khi band ≥ 5 / 6 / 7"], ["Đủ 3 nhiệm vụ trong ngày", "+20"], ["Chuỗi ngày học liên tiếp", "+2 × số ngày (tối đa +20)"],
-  ["Có mặt buổi học trên lớp", "20"], ["Ngôi sao buổi học (giáo viên chọn)", "+30"], ["Thi thử quý: mỗi 0.5 band tăng thêm", "+100"]];
+  ["Có mặt buổi học trên lớp", "20"], ["Ngôi sao buổi học (giáo viên chọn)", "+30"], ["Thi thử 4 kỹ năng hằng tháng (giáo viên nhập): mỗi 0.5 band tăng thêm", "+100"]];
 const JAUTO = ["R1", "R30", "L1", "L30", "W1", "W6", "S7", "S30", "X1K", "STAR", "C16"];
 let JD = null, JP = "week", JLOAD = false;
 const fmtN = n => Number(n || 0).toLocaleString("vi-VN");
-function jMissions(l, dm, doneToday) {
-  const lo = l === 0 || l === 1 || l === 2, ch = Math.min(4, Math.max(1, l || 1)), total = { 1: 100, 2: 77, 3: 61, 4: 68 }[ch], done = (dm || {})[ch] || 0, n = Math.min(done + 1, total);
+const SKTY = {"1":[["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-match"],["R","R-mfeat"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-fill"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-fill"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-fill"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-fill"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-fill"],["R","R-fill"],["R","R-fill"],["R","R-fill"],["R","R-fill"],["R","R-fill"]],"2":[["L","L-fill"],["R","R-fill"],["L","L-match"],["R","R-tfng"],["L","L-map"],["R","R-bank"],["L","L-multi"],["R","R-ynng"],["L","L-match"],["R","R-mcq"],["L","L-map"],["R","R-mfeat"],["L","L-multi"],["R","R-multi"],["L","L-match"],["R","R-minfo"],["L","L-map"],["R","R-fill"],["L","L-multi"],["R","R-bank"],["L","L-match"],["R","R-ynng"],["L","L-map"],["R","R-mcq"],["L","L-multi"],["R","R-mfeat"],["L","L-match"],["R","R-multi"],["L","L-map"],["R","R-minfo"],["L","L-multi"],["R","R-fill"],["L","L-match"],["R","R-bank"],["L","L-map"],["R","R-ynng"],["L","L-multi"],["R","R-mcq"],["L","L-match"],["R","R-mfeat"],["L","L-multi"],["R","R-multi"],["L","L-match"],["R","R-fill"],["L","L-multi"],["R","R-bank"],["L","L-match"],["R","R-ynng"],["L","L-multi"],["R","R-mcq"],["L","L-multi"],["R","R-mfeat"],["L","L-multi"],["R","R-fill"],["L","L-multi"],["R","R-ynng"],["L","L-multi"],["R","R-mcq"],["L","L-multi"],["R","R-mfeat"],["L","L-multi"],["R","R-fill"],["L","L-multi"],["R","R-mcq"],["L","L-multi"],["R","R-fill"],["L","L-multi"],["R","R-mcq"],["L","L-multi"],["R","R-fill"],["L","L-multi"],["R","R-fill"],["L","L-multi"],["R","R-fill"],["R","R-fill"],["R","R-fill"],["R","R-fill"]],"3":[["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-match"],["R","R-bank"],["L","L-multi"],["R","R-multi"],["L","L-fill"],["R","R-minfo"],["L","L-mcq"],["R","R-head"],["L","L-match"],["R","R-fill"],["L","L-multi"],["R","R-tfng"],["L","L-mcq"],["R","R-bank"],["L","L-match"],["R","R-multi"],["L","L-multi"],["R","R-minfo"],["L","L-mcq"],["R","R-head"],["L","L-match"],["R","R-fill"],["L","L-multi"],["R","R-tfng"],["L","L-mcq"],["R","R-bank"],["L","L-match"],["R","R-multi"],["L","L-multi"],["R","R-minfo"],["L","L-mcq"],["R","R-head"],["L","L-match"],["R","R-fill"],["L","L-multi"],["R","R-bank"],["L","L-mcq"],["R","R-multi"],["L","L-match"],["R","R-minfo"],["L","L-multi"],["R","R-fill"],["L","L-mcq"],["R","R-bank"],["L","L-match"],["R","R-multi"],["L","L-mcq"],["R","R-minfo"],["L","L-match"],["R","R-bank"],["L","L-mcq"],["R","R-multi"],["L","L-match"],["R","R-minfo"],["L","L-mcq"],["R","R-bank"],["L","L-match"],["R","R-multi"],["L","L-mcq"],["R","R-minfo"],["L","L-match"],["R","R-bank"],["L","L-mcq"],["R","R-multi"],["L","L-match"],["R","R-minfo"],["L","L-mcq"],["R","R-bank"],["L","L-match"],["R","R-multi"],["R","R-minfo"],["R","R-multi"],["R","R-minfo"],["R","R-multi"]],"4":[["L","L-fill"],["R","R-ynng"],["L","L-multi"],["R","R-mcq"],["L","L-fill"],["R","R-mfeat"],["L","L-multi"],["R","R-minfo"],["L","L-fill"],["R","R-head"],["L","L-multi"],["R","R-ynng"],["L","L-fill"],["R","R-mcq"],["L","L-multi"],["R","R-mfeat"],["L","L-fill"],["R","R-minfo"],["L","L-multi"],["R","R-ynng"],["L","L-fill"],["R","R-mcq"],["L","L-multi"],["R","R-mfeat"],["L","L-fill"],["R","R-minfo"],["L","L-multi"],["R","R-ynng"],["L","L-fill"],["R","R-mcq"],["L","L-multi"],["R","R-mfeat"],["L","L-fill"],["R","R-ynng"],["L","L-multi"],["R","R-mcq"],["L","L-fill"],["R","R-mfeat"],["L","L-multi"],["R","R-ynng"],["L","L-fill"],["R","R-mcq"],["L","L-multi"],["R","R-mfeat"],["L","L-fill"],["R","R-ynng"],["L","L-multi"],["R","R-mcq"],["L","L-fill"],["R","R-mfeat"],["L","L-multi"],["R","R-ynng"],["L","L-fill"],["R","R-mcq"],["L","L-multi"],["R","R-mfeat"],["L","L-fill"],["R","R-ynng"],["L","L-multi"],["R","R-mcq"],["L","L-fill"],["R","R-ynng"],["L","L-multi"],["R","R-mcq"],["L","L-fill"],["R","R-ynng"],["L","L-multi"],["R","R-mcq"],["L","L-multi"],["R","R-ynng"],["L","L-multi"],["R","R-mcq"],["L","L-multi"],["R","R-mcq"],["R","R-mcq"],["R","R-mcq"],["R","R-mcq"]]}, SKLEN = { 1: 78, 2: 77, 3: 78, 4: 77 };
+const TYN = { "R-tfng": "True/False/Not Given", "R-ynng": "Yes/No/Not Given", "R-fill": "Điền từ", "R-bank": "Tóm tắt chọn từ", "R-mcq": "Trắc nghiệm", "R-multi": "Chọn 2–3 đáp án", "R-head": "Nối tiêu đề đoạn", "R-minfo": "Nối thông tin với đoạn", "R-mfeat": "Nối đặc điểm",
+  "L-fill": "Điền form, ghi chú", "L-mcq": "Trắc nghiệm", "L-multi": "Chọn 2 đáp án", "L-map": "Bản đồ, sơ đồ", "L-match": "Nối thông tin" };
+/* Viết theo kỹ năng nhỏ: mỗi ngày 1 việc ngắn thay vì cả bài 250 từ (xoay vòng theo ngày) */
+const WMICRO = [["Câu mở bài Task 2: diễn đạt lại đề + nêu lập trường", "Task 2"], ["Câu tổng quan (overview) Task 1: nêu 2 đặc điểm nổi bật", "Task 1"], ["Một đoạn thân bài Task 2 theo AREI (4–5 câu)", "Task 2"],
+  ["Mô tả một nhóm số liệu Task 1 có so sánh", "Task 1"], ["Câu kết bài Task 2: tóm lại lập trường, không thêm ý mới", "Task 2"], ["Gõ lại một bài mẫu Band 8 (Writing Studio → Gõ mẫu)", "Gõ mẫu"], ["Viết trọn một bài và nộp chấm band", "Bài đầy đủ"]];
+function jMissions(me, today) {
+  const l = me.lvl, lo = l === 0 || l === 1 || l === 2, ch = Math.min(4, Math.max(1, l || 1)), total = { 1: 100, 2: 77, 3: 61, 4: 68 }[ch], done = (me.dm || {})[ch] || 0, n = Math.min(done + 1, total);
+  const sDone = (me.sk || {})[ch] || 0, sN = Math.min(sDone + 1, SKLEN[ch]), les = SKTY && SKTY[ch] && SKTY[ch][sN - 1], sk = les ? (les[0] === "R" ? "Đọc" : "Nghe") : "Đọc hoặc Nghe";
+  const dIdx = Math.floor(Date.now() / 864e5), w = WMICRO[dIdx % WMICRO.length];
   return [
-    doneToday ? { k: "DM", t: `Day ${done} Mission · đã xong hôm nay`, d: done >= total ? `Bạn đã hoàn thành chặng ${ch}. Có thể ôn lại bất kỳ ngày nào.` : `Muốn học thêm? Day ${n} đã mở khoá.`, x: "✓", href: "mission.html", main: true }
-      : { k: "DM", t: `Day ${n} Mission`, d: `Từ vựng IELTS chặng ${ch}: một bài nhỏ ${ch === 1 ? "khoảng 8 phút" : "khoảng 15 phút"}, đạt yêu cầu để mở khoá Day ${n + 1}`, x: "40–60 XP", href: "mission.html", main: true },
-    { k: "RL", t: "Luyện thêm · Đọc hoặc Nghe", d: lo ? "Làm một đề Listening (nộp sau Part 1–2 cũng được tính câu đúng)" : "Làm một đề Reading hoặc Listening trọn vẹn, bấm giờ như thi thật", x: "2 XP / câu đúng", href: "index.html" },
-    { k: "W", t: "Luyện thêm · Viết", d: l === 1 ? "Writing Studio → Gõ mẫu một bài, rồi viết một đoạn ngắn và nộp chấm" : "Viết một bài Task 1 hoặc Task 2 và nộp để chấm band", x: "40+ XP", href: "writing-studio.html#home" }];
+    today.DM ? { k: "DM", t: `Day ${done} Mission · đã xong hôm nay`, d: done >= total ? `Bạn đã hoàn thành chặng ${ch}. Có thể ôn lại bất kỳ ngày nào.` : `Muốn học thêm? Day ${n} đã mở khoá.`, x: "✓", href: "mission.html", main: true }
+      : { k: "DM", t: `Day ${n} Mission · Từ vựng`, d: `Từ vựng IELTS chặng ${ch}: một bài nhỏ ${ch === 1 ? "khoảng 8 phút" : "khoảng 15 phút"}, đạt yêu cầu để mở khoá Day ${n + 1}`, x: "40–60 XP", href: "mission.html", main: true },
+    today.SK ? { k: "SK", t: `Skill Mission Day ${sDone} · đã xong hôm nay`, d: sDone >= SKLEN[ch] ? `Bạn đã làm hết bài nhỏ chặng ${ch}.` : `Muốn luyện thêm? Day ${sN} đã mở khoá.`, x: "✓", href: "skills.html", main: true }
+      : { k: "SK", t: `Day ${sN} Skill Mission · ${sk}`, d: `${les ? TYN[les[1]] + " · " : ""}một bài nhỏ khoảng 10 phút: xem phương pháp, làm 1 đoạn ${les && les[0] === "L" ? "nghe" : "đọc"}, chấm có bằng chứng`, x: "20–30 XP", href: "skills.html", main: true },
+    { k: "W", t: `Viết kỹ năng nhỏ · ${w[1]}`, d: lo && w[1] === "Bài đầy đủ" ? "Writing Studio → Gõ mẫu một bài, rồi viết một đoạn ngắn và nộp chấm" : w[0] + ". Nộp bài chấm band để nhận XP", x: "40+ XP", href: "writing-studio.html#home" }];
 }
 /* kết quả học viên: tiến độ Day Mission (máy chủ) + điểm tốt nhất từng đề Reading/Listening (Trainer lưu cùng trang web) + Writing gần đây */
 const BANDR = [[39,9],[37,8.5],[35,8],[33,7.5],[30,7],[27,6.5],[23,6],[19,5.5],[15,5],[13,4.5],[10,4],[8,3.5],[6,3],[4,2.5],[0,2]];
@@ -1044,7 +1056,7 @@ function renderJourney() {
       catch (e) { $("#jErr").textContent = "Không kết nối được máy chủ."; b.disabled = false; } });
     return;
   }
-  const me = d.me, L = JLV[me.lvl] || ["", ""], P = d[JP], ms = jMissions(me.lvl, me.dm, d.today.DM), doneN = ms.filter(m => d.today[m.k]).length;
+  const me = d.me, L = JLV[me.lvl] || ["", ""], P = d[JP], ms = jMissions(me, d.today), doneN = ms.filter(m => d.today[m.k]).length;
   const nextTxt = me.next ? `Còn ${fmtN(me.next.at - me.xp)} XP lên hạng ${esc(me.next.name)}` : "Hạng cao nhất";
   const plabel = { week: "Tuần này", month: "Tháng này", quarter: "Quý này" };
   const grp = {}; Object.entries(d.catalog).forEach(([k, v]) => { if (v.k !== "auto" && v.k !== "Visa") (grp[v.k] = grp[v.k] || []).push(k); });
@@ -1053,8 +1065,9 @@ function renderJourney() {
   <div class="j-grid">
     <div class="j-card"><h3>Nhiệm vụ hôm nay <small>${doneN}/3 xong · ${fmtN(d.today.xp)} XP</small></h3>
       <div class="j-mis">${ms.map(m => `<a class="j-m ${d.today[m.k] ? "done" : ""} ${m.main ? "main" : ""}" href="${m.href}"><span class="ck">${d.today[m.k] ? "✓" : ""}</span><span><b>${m.t}</b><small>${esc(m.d)}</small></span><span class="xp">${m.x}</span></a>`).join("")}</div>
-      <div class="j-bar"><i style="width:${Math.min(100, d.today.xp / d.today.cap * 100)}%"></i></div><div class="j-note">Day Mission là nhiệm vụ chính mỗi ngày. Tự học online tối đa ${d.today.cap} XP mỗi ngày; xong cả 3 mục được thưởng thêm 20 XP.</div>
-      ${d.recent.length ? `<ul class="j-feed">${d.recent.slice(0, 5).map(r => `<li><b>+${r.xp}</b> · ${esc(r.note)} <span class="j-note">${esc(vnDate(r.day))}</span></li>`).join("")}</ul>` : ""}</div>
+      <div class="j-bar"><i style="width:${Math.min(100, d.today.xp / d.today.cap * 100)}%"></i></div><div class="j-note">Mỗi ngày: Day Mission (từ vựng) + Skill Mission (bài nhỏ Đọc/Nghe) + Viết kỹ năng nhỏ. Tự học online tối đa ${d.today.cap} XP mỗi ngày; xong cả 3 mục được thưởng thêm 20 XP.</div>
+      <a class="j-mock" href="index.html"><b>📅 Thi thử tháng ${new Date().getMonth() + 1}</b><span>Reading ${me.mock && me.mock.R ? "✓ đã làm" : "chưa làm"} · Listening ${me.mock && me.mock.L ? "✓ đã làm" : "chưa làm"}</span><small>Mỗi tháng làm 1 đề full mỗi kỹ năng để đo band (được XP 1 lần/tháng)</small></a>
+      ${d.recent.length ? `<ul class="j-feed">${d.recent.slice(0, 5).map(r => `<li><b>+${r.xp}</b> · ${esc(String(r.note).replace(/\b[RL]-[a-z]+\b/, m => TYN[m] || m))} <span class="j-note">${esc(vnDate(r.day))}</span></li>`).join("")}</ul>` : ""}</div>
   </div>
   ${jBoard(P, L, plabel)}
   <div class="j-card j-res"><h3>Kết quả học tập của bạn <small>${fmtN(me.classDays)} buổi có mặt trên lớp</small></h3>${jResults(me)}</div>
@@ -1092,10 +1105,14 @@ async function renderGV() {
   <div class="box"><h2>2 · Bảng công bố</h2>
     <div class="row"><label>Kỳ<br><select id="gvP"><option value="week">Tuần</option><option value="month">Tháng</option><option value="quarter">Quý (thưởng tiền mặt)</option></select></label><label>Ngày trong kỳ<br><input type="date" id="gvPD" value="${todayStr()}"></label><button class="btn dark" type="button" id="gvB">Tạo bảng</button><button class="btn line" type="button" id="gvCopy">Sao chép</button><span class="msg" id="gvM2"></span></div>
     <textarea id="gvTxt" style="margin-top:12px" placeholder="Bấm Tạo bảng để có nội dung dán vào nhóm Zalo lớp."></textarea></div>
-  <div class="box"><h2>3 · Thi thử và con dấu thành tích</h2>
+  <div class="box"><h2>3 · Thi thử tháng và con dấu thành tích</h2>
     <div class="row"><label>Học viên<br><select id="gvU">${stuOpts}</select></label><label>Band thi thử<br><input id="gvBand" type="number" step="0.5" min="0" max="9" style="width:110px"></label><label>Band lần trước<br><input id="gvPrev" type="number" step="0.5" min="0" max="9" style="width:110px"></label><button class="btn" type="button" id="gvMock">Ghi thi thử</button></div>
     <div class="row" style="margin-top:12px"><label>Con dấu<br><select id="gvS">${stampOpts}</select></label><button class="btn dark" type="button" id="gvStamp">Đóng dấu</button><span class="msg" id="gvM3"></span></div>
-    <p class="j-note">Thi thử: mỗi 0.5 band tăng so với lần trước được +100 XP (tính vào 20% "tiến bộ" khi xét thưởng quý).</p></div>`;
+    <p class="j-note">Thi thử 4 kỹ năng mỗi tháng 1 lần: mỗi 0.5 band tăng so với tháng trước được +100 XP (tính vào 20% "tiến bộ" khi xét thưởng quý).</p></div>
+  <div class="box"><h2>4 · Báo cáo theo dạng câu (Skill Mission)</h2>
+    <div class="row"><label>Lớp<br><select id="gvRC"><option value="">Tất cả học viên</option>${j.classes.map(c => `<option value="${esc(c.code)}">${esc(c.cls)} · ${esc(c.code)}</option>`).join("")}</select></label><label>Khoảng<br><select id="gvRP"><option value="m">Tháng này</option><option value="30">30 ngày gần nhất</option><option value="all">Tất cả</option></select></label><button class="btn dark" type="button" id="gvRep">Xem báo cáo</button><span class="msg" id="gvM4"></span></div>
+    <div id="gvRepOut" style="margin-top:12px"></div>
+    <p class="j-note">% đúng theo từng dạng câu hỏi trong các bài nhỏ học viên đã làm. Xanh ≥ 75% · vàng 55–74% · đỏ &lt; 55%: dạng đỏ nên chữa ở buổi học tới.</p></div>`;
   const rows = () => {
     const c = j.classes.find(x => x.code === GV.cls) || { members: [] };
     $("#gvRows").innerHTML = c.members.length ? c.members.map(m => `<tr><td><input type="checkbox" class="gvPr" value="${esc(m.user)}" checked></td><td>${esc(m.name)}<br><span class="j-note">${esc(m.user)}</span></td>
@@ -1119,6 +1136,18 @@ async function renderGV() {
     t += p === "quarter" ? `\nĐiểm xét thưởng quý = 40% học trên lớp + 40% tự học online + 20% tiến bộ thi thử. Chúc mừng các bạn!` : `\nTop 3 mỗi chặng nhận quà và giấy chứng nhận. Hẹn gặp các bạn trên bảng ${p === "week" ? "tuần" : "tháng"} sau!`;
     $("#gvTxt").value = Object.keys(r.groups).length ? t : "Chưa có XP nào trong kỳ này."; gvMsg("#gvM2", "Đã tạo bảng."); };
   $("#gvCopy").onclick = async () => { const t = $("#gvTxt"); try { await navigator.clipboard.writeText(t.value); gvMsg("#gvM2", "Đã sao chép."); } catch (e) { t.select(); gvMsg("#gvM2", "Bấm Ctrl/Cmd + C để sao chép."); } };
+  $("#gvRep").onclick = async () => {
+    const p = $("#gvRP").value, now = new Date(), f = p === "m" ? todayStr().slice(0, 8) + "01" : p === "30" ? new Date(now - 30 * 864e5).toISOString().slice(0, 10) : "";
+    gvMsg("#gvM4", "Đang tải…"); let r; try { r = await gvApi({ t: "jrep", cls: $("#gvRC").value, from: f }); } catch (e) { r = null; }
+    if (!r || !r.ok) { gvMsg("#gvM4", (r && r.error) || "Chưa tải được (máy chủ chưa cập nhật?).", true); return; } gvMsg("#gvM4", "");
+    const tys = Object.keys(r.byType).sort(), pc = x => x && x.n ? Math.round(x.ok / x.n * 100) : null, cell = x => { const v = pc(x); return v == null ? "<td>–</td>" : `<td class="${v >= 75 ? "hi" : v >= 55 ? "mid" : "lo"}">${v}%<br><small class="j-note">${x.n} câu</small></td>`; };
+    if (!r.students.length) { $("#gvRepOut").innerHTML = `<p class="j-note">Chưa có học viên nào làm Skill Mission trong khoảng này.</p>`; return; }
+    const weak = tys.filter(k => pc(r.byType[k]) != null).sort((a, b) => pc(r.byType[a]) - pc(r.byType[b])).slice(0, 2);
+    $("#gvRepOut").innerHTML = `<p><b>Dạng yếu nhất:</b> ${weak.map(k => esc(TYN[k] || k) + " (" + (k[0] === "R" ? "Đọc" : "Nghe") + ", " + pc(r.byType[k]) + "%)").join(" · ")}</p>
+      <div class="tbl"><table class="rp"><thead><tr><th>Học viên</th><th>Bài</th>${tys.map(k => `<th>${k[0] === "R" ? "📖" : "🎧"} ${esc(TYN[k] || k)}</th>`).join("")}</tr></thead><tbody>
+      <tr class="all"><td>Cả nhóm</td><td>${r.students.reduce((s, x) => s + x.lessons, 0)}</td>${tys.map(k => cell(r.byType[k])).join("")}</tr>
+      ${r.students.map(s => `<tr><td>${esc(s.name)}</td><td>${s.lessons}</td>${tys.map(k => cell(s.types[k])).join("")}</tr>`).join("")}</tbody></table></div>`;
+  };
   $("#gvMock").onclick = async () => { const r = await gvApi({ t: "jmock", user: $("#gvU").value, band: +$("#gvBand").value, prev: +$("#gvPrev").value || 0 }); gvMsg("#gvM3", r && r.ok ? `Đã ghi thi thử (+${r.xp} XP).` : (r && r.error) || "Lỗi.", !(r && r.ok)); };
   $("#gvStamp").onclick = async () => { const r = await gvApi({ t: "jstamp", user: $("#gvU").value, stamp: $("#gvS").value }); gvMsg("#gvM3", r && r.ok ? "Đã đóng dấu." : (r && r.error) || "Lỗi.", !(r && r.ok)); };
 }
