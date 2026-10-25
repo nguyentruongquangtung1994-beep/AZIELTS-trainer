@@ -1925,6 +1925,25 @@ html body a.card > .tn{display:flex;align-items:center}
     }).catch(function(){});
   }
 
+  // ---------- AZIELTS Journey: gửi kết quả nộp đề để cộng XP (máy chủ tự tính, xem codes/apps-script-journey.gs) ----------
+  function journeySend(testId, attempt, act){
+    var s = null; try { s = JSON.parse(localStorage.getItem("az_acad") || "null"); } catch(e){}
+    if(!s || !s.u || !s.tok || !attempt || !attempt.total) return;
+    fetch(AZ_PLACE_API, { method:"POST", body: JSON.stringify({ t:"jev", u:s.u, tok:s.tok, act:act, ref:testId, score:attempt.score, total:attempt.total }) })
+      .then(function(r){ return r.json(); }).then(function(j){
+        if(!j || !j.ok) return;
+        var tile = document.querySelector(".score-tile"); if(!tile) return;
+        var why = (j.items || []).filter(function(i){ return i.why; }).map(function(i){ return (i.xp ? "+" + i.xp + " " : "") + i.why; }).join(" · ");
+        var p = document.createElement("p"); p.className = "journey-sent";
+        p.style.cssText = "margin:14px 0 0;padding:10px 14px;border-radius:10px;background:#0B1424;color:#F4F1EA;font-size:14px;line-height:1.5";
+        p.innerHTML = '<b style="color:#D9B36A">AZIELTS Journey: ' + (j.gained > 0 ? "+" + j.gained + " XP" : "chưa cộng thêm XP") + '</b> · ' + escHtml(why) +
+          (j.stamps && j.stamps.length ? '<br>Con dấu Passport mới: ' + escHtml(j.stamps.join(", ")) : "") + (j.capped ? '<br>Đã đạt trần XP tự học hôm nay.' : "") +
+          ' <a href="academy.html#journey" style="color:#D9B36A;font-weight:700">Xem hành trình →</a>';
+        tile.parentNode.insertBefore(p, tile.nextSibling);
+      }).catch(function(){});
+  }
+  function escHtml(x){ return String(x == null ? "" : x).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+
   function submitTest(){
     if(takeCtx.timerInterval) clearInterval(takeCtx.timerInterval);
     var d = takeCtx.data;
@@ -1935,6 +1954,7 @@ html body a.card > .tn{display:flex;align-items:center}
     };
     saveState();
     placementSend(takeCtx.testId, d, STATE.attempts[takeCtx.testId]);
+    journeySend(takeCtx.testId, STATE.attempts[takeCtx.testId], "R");
     location.hash = "#/test/" + takeCtx.testId + "/result";
   }
 
@@ -2104,6 +2124,7 @@ html body a.card > .tn{display:flex;align-items:center}
     };
     saveState();
     placementSend(takeCtx.testId, d, STATE.attempts[takeCtx.testId]);
+    journeySend(takeCtx.testId, STATE.attempts[takeCtx.testId], "L");
     location.hash = "#/listen/" + takeCtx.testId + "/result";
   }
 
