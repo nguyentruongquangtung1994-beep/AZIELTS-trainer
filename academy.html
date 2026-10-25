@@ -453,6 +453,93 @@ body{background:#FDFCF9}
 .seats{display:inline-block;margin-top:6px;padding:3px 10px;border-radius:99px;border:1px solid rgba(227,194,122,.5);color:var(--gold-2);font-size:12px;font-weight:700}
 .foot{background:#0B1424}
 @media (max-width:860px){ .pgrid{grid-template-columns:1fr} }
+/* ===== AZIELTS Journey ===== */
+.jny{margin:0 0 28px;border-radius:20px;background:radial-gradient(700px 360px at 92% 0%,rgba(184,145,58,.22),transparent 60%),linear-gradient(160deg,#0B1424,#13233B 60%,#0E1A2E);color:#F4F1EA;padding:26px;box-shadow:var(--sh-3)}
+.jny a{color:inherit}
+.j-head{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;margin-bottom:18px}
+.j-head .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#D9B36A;font-weight:700}
+.j-head h2{font-family:"Playfair Display",Georgia,serif;font-size:30px;font-weight:700;color:#fff;margin-top:4px}
+.j-head p{margin:4px 0 0;color:#C9CFDA;font-size:14.5px;max-width:62ch}
+.j-kpi{display:flex;gap:10px;flex-wrap:wrap}
+.j-kpi div{min-width:92px;padding:10px 14px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(217,179,106,.28)}
+.j-kpi b{display:block;font-family:"Playfair Display",Georgia,serif;font-size:24px;color:#fff;font-variant-numeric:lining-nums;line-height:1.1}
+.j-kpi span{font-size:12px;color:#C9CFDA;font-weight:600}
+.j-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:16px}
+.j-card{border-radius:16px;background:#fff;color:var(--ink);padding:18px;box-shadow:var(--sh-2);min-width:0}
+.j-card h3{font-size:16px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.j-card h3 small{font-weight:600;color:var(--ink-3);font-size:12.5px}
+.j-mis{display:grid;gap:10px}
+.j-m{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--bg-2);text-decoration:none;color:var(--ink)}
+.j-m:hover{border-color:var(--line-2);background:#fff}
+.j-m .ck{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;border:2px solid var(--line-2);flex:none;color:#fff;font-weight:800}
+.j-m.done .ck{background:var(--ok);border-color:var(--ok)}
+.j-m b{display:block;font-size:14.5px}
+.j-m small{display:block;color:var(--ink-2);font-size:12.8px;line-height:1.4}
+.j-m .xp{margin-left:auto;font-weight:800;color:#8A6210;font-size:13px;white-space:nowrap}
+.j-bar{height:8px;border-radius:99px;background:var(--bg-3);overflow:hidden;margin:12px 0 4px}
+.j-bar i{display:block;height:100%;background:linear-gradient(90deg,#B8913A,#D9B36A)}
+.j-note{font-size:12.5px;color:var(--ink-3)}
+.j-tabs{display:flex;gap:6px;margin-bottom:10px}
+.j-tabs button{border:1px solid var(--line-2);background:#fff;border-radius:999px;padding:5px 12px;font-weight:700;font-size:13px;cursor:pointer;color:var(--ink-2)}
+.j-tabs button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.j-rank{font-size:13.5px;color:var(--ink-2);margin-bottom:8px}
+.j-rank b{color:var(--ink)}
+.j-lb{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.j-lb li{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:10px;font-size:14px}
+.j-lb li.me{background:var(--gold-soft);font-weight:700}
+.j-lb .n{width:24px;text-align:center;font-weight:800;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.j-lb li:nth-child(-n+3) .n{color:#8A6210}
+.j-lb .x{margin-left:auto;font-weight:700;font-variant-numeric:tabular-nums}
+.j-pass{margin-top:16px;display:grid;grid-template-columns:260px minmax(0,1fr);gap:16px;align-items:start}
+.pp{border-radius:14px;padding:22px 18px;background:linear-gradient(165deg,#0F1D33,#0B1424);border:1px solid rgba(217,179,106,.45);text-align:center;color:#E9D7A8;box-shadow:inset 0 0 0 6px rgba(217,179,106,.06)}
+.pp .t1{font-size:11px;letter-spacing:.24em;font-weight:700}
+.pp .t2{font-family:"Playfair Display",Georgia,serif;font-size:24px;color:#E9C77A;margin:6px 0 2px}
+.pp .glb{width:76px;height:76px;margin:12px auto;border-radius:50%;border:2px solid #C9A24B;display:grid;place-items:center;font-weight:800;color:#E9C77A;font-size:22px}
+.pp .nm{color:#fff;font-weight:700;font-size:15px}
+.pp .tier{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:99px;border:1px solid #C9A24B;font-size:12px;font-weight:700}
+.pp .chip{width:30px;height:18px;margin:12px auto 0;border:2px solid #C9A24B;border-radius:4px;position:relative}
+.pp .chip:after{content:"";position:absolute;inset:5px 9px;border:2px solid #C9A24B;border-radius:50%}
+.visas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.visa{border-radius:10px;border:1.5px dashed var(--line-2);padding:8px;text-align:center;font-size:12px;color:var(--ink-3);font-weight:600}
+.visa.on{border-style:solid;border-color:#B8913A;background:var(--gold-soft);color:#8A6210}
+.visa b{display:block;font-size:13px}
+.stamps{display:flex;flex-wrap:wrap;gap:8px}
+.stamp{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;font-size:12.5px;font-weight:700;border:1.5px dashed var(--line-2);color:var(--ink-3)}
+.stamp.on{border-style:solid;border-color:var(--red);color:var(--red);background:var(--red-soft);transform:rotate(-1.5deg)}
+.stamp.ican.on{border-color:var(--blue);color:var(--blue);background:var(--blue-soft)}
+.j-pick{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:8px 0 14px}
+.j-pick button{text-align:left;border:1px solid rgba(217,179,106,.35);background:rgba(255,255,255,.05);color:#F4F1EA;border-radius:14px;padding:14px;cursor:pointer;font:inherit}
+.j-pick button:hover{background:rgba(255,255,255,.1)}
+.j-pick b{display:block;font-size:16px;color:#fff}
+.j-pick small{color:#C9CFDA;font-size:12.5px}
+.j-nick{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:14px}
+.j-nick input{min-height:40px;border-radius:10px;border:1px solid rgba(217,179,106,.4);background:rgba(255,255,255,.08);color:#fff;padding:6px 12px;width:200px}
+.j-rules{margin-top:14px;color:#C9CFDA;font-size:13.5px}
+.j-rules summary{cursor:pointer;font-weight:700;color:#D9B36A}
+.j-rules table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13px}
+.j-rules td{padding:5px 8px;border-top:1px solid rgba(255,255,255,.1)}
+.j-rules td:last-child{text-align:right;color:#fff;font-weight:700;white-space:nowrap}
+.j-err{color:#FFD7DC}
+.j-feed{list-style:none;margin:10px 0 0;padding:0;font-size:13px;color:var(--ink-2);display:grid;gap:4px}
+.j-feed b{color:#8A6210}
+@media (max-width:900px){ .j-grid,.j-pass{grid-template-columns:1fr} .j-pick{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:520px){ .jny{padding:18px} .visas{grid-template-columns:repeat(2,minmax(0,1fr))} .j-pick{grid-template-columns:1fr} .j-head h2{font-size:25px} }
+/* trang giáo viên Journey */
+.gvj{padding-block:36px 64px}
+.gvj h1{font-family:"Playfair Display",Georgia,serif;font-size:30px}
+.gvj .box{margin-top:18px;padding:20px;border-radius:16px;border:1px solid var(--line);background:#fff;box-shadow:var(--sh-1)}
+.gvj .box h2{font-size:18px;margin-bottom:10px}
+.gvj label{font-size:13.5px;font-weight:600;color:var(--ink-2)}
+.gvj input,.gvj select,.gvj textarea{min-height:40px;border-radius:10px;border:1px solid var(--line-2);padding:6px 10px;font:inherit;background:#fff}
+.gvj .row{display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+.gvj table{width:100%;border-collapse:collapse;font-size:14px}
+.gvj th,.gvj td{padding:8px;border-bottom:1px solid var(--line);text-align:left}
+.gvj th{font-size:12.5px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em}
+.gvj .tbl{overflow-x:auto}
+.gvj .star{cursor:pointer;font-size:18px;opacity:.3;border:0;background:none}
+.gvj .star.on{opacity:1}
+.gvj textarea{width:100%;min-height:220px;font-size:14px;line-height:1.5}
+.gvj .msg{font-size:14px;font-weight:600;color:var(--ok)} .gvj .msg.err{color:var(--red)}
 </style>
 <style id="azsync">/* ===== AZIELTS SYNC — một thang chung cho Academy · Writing Studio · Reading & Listening · Listening Lab =====
    Bo góc: 10px nút & ô nhập · 12px khối nhỏ bên trong thẻ · 16px thẻ & bảng · 20px khung lớn · 999px viên thuốc (chip, nhãn gói).
@@ -637,6 +724,7 @@ html body a.card > .tn{display:flex;align-items:center}
         <div class="acct" id="acct"></div>
       </div>
       <div id="dBanner"></div>
+      <div class="jny" id="journey" hidden></div>
       <h2 class="sub">Chương trình học</h2>
       <div class="apps" id="apps"></div>
       <div class="place" id="kiem-tra">
@@ -661,6 +749,7 @@ html body a.card > .tn{display:flex;align-items:center}
       <div class="elite-box" id="elite"></div>
     </div>
   </section>
+  <section class="gvj" id="gvj" hidden><div class="wrap"></div></section>
 </main>
 
 <footer class="foot" id="lien-he">
@@ -738,7 +827,7 @@ async function api(body) {
 }
 function nextUrl() { const n = new URLSearchParams(location.search).get("next"); if (!n) return null; try { const u = new URL(n, location.href); return u.origin === location.origin ? u.href : null; } catch (e) { return null; } }
 function afterLogin(s) {
-  setS(s); closeAuth();
+  setS(s); closeAuth(); JD = null; JLOAD = false;
   if (!s.k) toast("Đăng nhập thành công. Hệ thống đang hoàn tất cài đặt nội dung, vài chương trình có thể chưa mở được.");
   const n = nextUrl(); if (n) { location.replace(n); return; }
   render(); scrollTo({ top: 0 });
@@ -781,6 +870,8 @@ function setTab(t) {
   $("#authSub").textContent = t === "reg" ? "Nhập mã lớp nếu bạn đang học tại AZEnglish." : "Dùng tài khoản AZEnglish của bạn.";
 }
 function render() {
+  const gv = location.hash === "#gv-journey"; $("#gvj").hidden = !gv;
+  if (gv) { $("#guest").hidden = true; $("#dash").hidden = true; $("#nav").hidden = true; renderGV(); return; }
   const s = getS(), valid = s && s.u && daysLeft(s.exp) > 0;
   $("#guest").hidden = !!valid; $("#dash").hidden = !valid; $("#nav").hidden = !!valid;
   $("#topGuest").hidden = !!valid; $("#topUser").hidden = !valid;
@@ -794,7 +885,7 @@ function render() {
     <dl><dt>Tên đăng nhập</dt><dd>${esc(s.u)}</dd>${s.exp ? `<dt>Hết hạn</dt><dd>${esc(vnDate(s.exp))}</dd>` : ""}</dl>
     ${s.tier === "elite" ? "" : `<form class="redeem" id="fRedeem"><label for="rdc">Có mã lớp từ AZEnglish? Nhập để mở gói của lớp</label><input id="rdc" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="IELTS-XXXXXX" required><button class="btn" type="submit" id="bRedeem">Áp dụng</button><p class="err" id="eRedeem" role="alert"></p></form>`}
     <div class="acts"><button class="btn line" type="button" id="bRefresh">Cập nhật</button><button class="btn line" type="button" id="bOut">Đăng xuất</button></div>`;
-  $("#bRefresh").onclick = () => refresh(false);
+  $("#bRefresh").onclick = () => { refresh(false); loadJourney(); };
   if ($("#fRedeem")) $("#fRedeem").onsubmit = async e => {
     e.preventDefault(); const b = $("#bRedeem"), er = $("#eRedeem"), code = $("#rdc").value.trim().toUpperCase(); er.textContent = ""; if (!code) return;
     b.disabled = true; b.textContent = "Đang kiểm tra…";
@@ -808,6 +899,7 @@ function render() {
   $("#dBanner").innerHTML = s.tier === "trial" ? `<div class="banner trial">${azi("clock")}<span>Bạn đang dùng thử miễn phí, còn <b>${left} ngày</b>. Có mã lớp thì nhập ở khung tài khoản bên trên. Đăng ký khoá học: gọi / Zalo <b style="user-select:all">${PHONE}</b>.</span></div>`
     : left <= 7 ? `<div class="banner warn">${azi("info")}<span>Tài khoản còn <b>${left} ngày</b>. Liên hệ AZEnglish để gia hạn và giữ tiến độ học.</span></div>` : "";
   $("#apps").innerHTML = APPS.map((a, n) => appCard(a, false, n)).join("");
+  if (!JLOAD) { JLOAD = true; loadJourney(); }
   $("#elite").innerHTML = s.tier === "elite" ? `<div><h3>Quyền lợi Elite của bạn</h3><ul><li>Nộp bài Writing trong Writing Studio: giáo viên chấm và trả nhận xét.</li><li>Thi thử 4 kỹ năng hằng tháng có giáo viên chấm.</li><li>Tư vấn lộ trình 1–1 với giáo viên.</li></ul></div><div class="contact">Đặt lịch với giáo viên<b>${PHONE}</b></div>`
     : `<div><h3>Nâng cấp Elite: có giáo viên theo sát</h3><ul><li>Giáo viên chấm và sửa bài Writing, Speaking.</li><li>Thi thử hằng tháng có giáo viên chấm.</li><li>Tư vấn lộ trình 1–1, ưu tiên hỗ trợ.</li></ul></div><div class="contact">Liên hệ nâng cấp<b>${PHONE}</b></div>`;
 }
@@ -858,12 +950,140 @@ async function refresh(silent) {
   } catch (e) { if (!silent) toast("Chưa kết nối được máy chủ, dùng thông tin đã lưu."); }
   render(); const n = nextUrl(); if (n && getS()) location.replace(n);
 }
-async function logout() { const s = getS(); try { localStorage.removeItem(SK); } catch (e) {} render(); toast("Đã đăng xuất."); if (s) try { await api({ t: "logout", u: s.u, tok: s.tok, dev: dev() }); } catch (e) {} }
+async function logout() { const s = getS(); try { localStorage.removeItem(SK); } catch (e) {} JD = null; JLOAD = false; render(); toast("Đã đăng xuất."); if (s) try { await api({ t: "logout", u: s.u, tok: s.tok, dev: dev() }); } catch (e) {} }
 $("#xAuth").onclick = closeAuth;
 $("#authModal").onclick = e => { if (e.target.id === "authModal") closeAuth(); };
 document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#authModal").hidden) closeAuth(); });
 $("#home").onclick = e => { e.preventDefault(); scrollTo({ top: 0, behavior: "smooth" }); };
 
+/* ===== AZIELTS Journey: XP · giải đấu theo chặng · Passport số (máy chủ: codes/apps-script-journey.gs) ===== */
+const JLV = { 0: ["Khách thăm", "Học viên dùng thử"], 1: ["Khởi hành", "Buổi 1–64 · band 0 → 3.0"], 2: ["Cất cánh", "Buổi 65–128 · band 3.0 → 5.0"], 3: ["Bay cao", "Buổi 129–184 · band 5.0 → 6.0+"], 4: ["Hạ cánh 7.0+", "Buổi 185–240 · band 6.0 → 7.0+"] };
+const JRULES = [["Xong lộ trình từ vựng trong ngày (Writing Studio)", "30"], ["Kỷ lục mới ở Thử thách 60 giây", "+10"], ["Nộp một đề Reading hoặc Listening", "2 XP × câu đúng"], ["Làm lại đề cũ và vượt điểm cũ", "2 × câu tăng + 10"],
+  ["Nộp bài Writing được chấm band (tối đa 2 bài mỗi ngày)", "40 + 10 / 20 / 30 khi band ≥ 5 / 6 / 7"], ["Đủ 3 nhiệm vụ trong ngày", "+20"], ["Chuỗi ngày học liên tiếp", "+2 × số ngày (tối đa +20)"],
+  ["Có mặt buổi học trên lớp", "20"], ["Ngôi sao buổi học (giáo viên chọn)", "+30"], ["Thi thử quý: mỗi 0.5 band tăng thêm", "+100"]];
+const JAUTO = ["R1", "R30", "L1", "L30", "W1", "W6", "S7", "S30", "X1K", "STAR", "C16"];
+let JD = null, JP = "week", JLOAD = false;
+const fmtN = n => Number(n || 0).toLocaleString("vi-VN");
+function jMissions(l) {
+  const lo = l === 0 || l === 1 || l === 2;
+  return [
+    { k: "V", t: "Từ vựng", d: "Writing Studio → Từ vựng: đi hết 4 chặng của lộ trình hôm nay", x: "30 XP", href: "writing-studio.html#daily" },
+    { k: "RL", t: "Đọc hoặc Nghe", d: lo ? "Làm một đề Listening (nộp sau Part 1–2 cũng được tính câu đúng)" : "Làm một đề Reading hoặc Listening trọn vẹn, bấm giờ như thi thật", x: "2 XP / câu đúng", href: "index.html" },
+    { k: "W", t: "Viết", d: l === 1 ? "Writing Studio → Gõ mẫu một bài, rồi viết một đoạn ngắn và nộp chấm" : "Viết một bài Task 1 hoặc Task 2 và nộp để chấm band", x: "40+ XP", href: "writing-studio.html#home" }];
+}
+async function loadJourney() {
+  const s = getS(), box = $("#journey"); if (!box || !s || !API) return;
+  box.hidden = false; if (!JD) box.innerHTML = `<div class="j-head"><div><span class="eyebrow">AZIELTS Journey</span><h2>Đang tải hành trình của bạn…</h2></div></div>`;
+  try { const j = await api({ t: "jme", u: s.u, tok: s.tok }); if (!j || !j.ok) { box.innerHTML = `<p class="j-err">${esc((j && j.error) || "Chưa tải được Journey.")}</p>`; return; } JD = j; renderJourney(); }
+  catch (e) { if (!JD) box.innerHTML = `<p class="j-err">Chưa kết nối được máy chủ Journey. Kiểm tra mạng rồi tải lại trang.</p>`; }
+}
+function jPick() {
+  const s = getS();
+  return `<div class="j-head"><div><span class="eyebrow">AZIELTS Journey · bắt đầu hành trình</span><h2>Bạn đang ở chặng nào?</h2><p>Chọn chặng đúng với buổi học hoặc band hiện tại. Bạn chỉ thi đua với những bạn cùng chặng. Giáo viên có thể chỉnh lại sau.</p></div></div>
+    <div class="j-pick">${[1, 2, 3, 4].map(l => `<button type="button" data-lv="${l}"><small>Chặng ${l}</small><b>${JLV[l][0]}</b><small>${JLV[l][1]}</small></button>`).join("")}</div>
+    <div class="j-nick"><label for="jNick">Biệt danh trên bảng xếp hạng</label><input id="jNick" maxlength="20" value="${esc(JD.me.nick || "")}"><span class="j-note" style="color:#C9CFDA">Không bắt buộc dùng tên thật.</span></div><p class="j-err" id="jErr"></p>`;
+}
+function renderJourney() {
+  const box = $("#journey"), d = JD; if (!box || !d) return;
+  if (d.me.lvl == null) {
+    box.innerHTML = jPick();
+    box.querySelectorAll("[data-lv]").forEach(b => b.onclick = async () => { const s = getS(); b.disabled = true;
+      try { const j = await api({ t: "jset", u: s.u, tok: s.tok, lvl: +b.dataset.lv, nick: $("#jNick").value.trim() || JD.me.nick });
+        if (j && j.ok) { JD = j; renderJourney(); toast("Đã vào chặng " + JLV[j.me.lvl][0] + ". Chúc bạn một hành trình thật vui!"); } else { $("#jErr").textContent = (j && j.error) || "Chưa lưu được."; b.disabled = false; } }
+      catch (e) { $("#jErr").textContent = "Không kết nối được máy chủ."; b.disabled = false; } });
+    return;
+  }
+  const me = d.me, L = JLV[me.lvl] || ["", ""], P = d[JP], ms = jMissions(me.lvl), doneN = ms.filter(m => d.today[m.k]).length;
+  const nextTxt = me.next ? `Còn ${fmtN(me.next.at - me.xp)} XP lên hạng ${esc(me.next.name)}` : "Hạng cao nhất";
+  const plabel = { week: "Tuần này", month: "Tháng này", quarter: "Quý này" };
+  const grp = {}; Object.entries(d.catalog).forEach(([k, v]) => { if (v.k !== "auto" && v.k !== "Visa") (grp[v.k] = grp[v.k] || []).push(k); });
+  box.innerHTML = `<div class="j-head"><div><span class="eyebrow">AZIELTS Journey · Chặng ${me.lvl || "khách"} · ${esc(L[0])}</span><h2>Hành trình của ${esc(String(me.name).split(/\s+/).pop())}</h2><p>${esc(L[1])}. Hoàn thành 3 nhiệm vụ mỗi ngày để tích XP, giữ chuỗi ngày học và leo bảng xếp hạng cùng chặng. Giáo viên công bố người thắng mỗi tuần, tháng và quý.</p></div>
+    <div class="j-kpi"><div><b>${fmtN(me.xp)}</b><span>Tổng XP</span></div><div><b>${me.streak}</b><span>Chuỗi ngày</span></div><div><b>${P.rank ? "#" + P.rank : "–"}</b><span>${plabel[JP]}</span></div><div><b style="font-size:18px;padding-top:4px">${esc(me.tier)}</b><span>${nextTxt}</span></div></div></div>
+  <div class="j-grid">
+    <div class="j-card"><h3>Nhiệm vụ hôm nay <small>${doneN}/3 xong · ${fmtN(d.today.xp)} XP</small></h3>
+      <div class="j-mis">${ms.map(m => `<a class="j-m ${d.today[m.k] ? "done" : ""}" href="${m.href}"><span class="ck">${d.today[m.k] ? "✓" : ""}</span><span><b>${m.t}</b><small>${esc(m.d)}</small></span><span class="xp">${m.x}</span></a>`).join("")}</div>
+      <div class="j-bar"><i style="width:${Math.min(100, d.today.xp / d.today.cap * 100)}%"></i></div><div class="j-note">Tự học online tối đa ${d.today.cap} XP mỗi ngày. Đủ 3 nhiệm vụ được thưởng thêm 20 XP.</div>
+      ${d.recent.length ? `<ul class="j-feed">${d.recent.slice(0, 5).map(r => `<li><b>+${r.xp}</b> · ${esc(r.note)} <span class="j-note">${esc(vnDate(r.day))}</span></li>`).join("")}</ul>` : ""}</div>
+    <div class="j-card"><h3>Bảng xếp hạng · chặng ${esc(L[0])}</h3>
+      <div class="j-tabs" role="group">${["week", "month", "quarter"].map(p => `<button type="button" data-jp="${p}" aria-pressed="${p === JP}">${plabel[p]}</button>`).join("")}</div>
+      <div class="j-rank">${P.rank ? `Bạn đứng <b>#${P.rank}</b> trên ${P.of} bạn · <b>${fmtN(P.xp)} XP</b>` : `Bạn chưa có XP trong ${plabel[JP].toLowerCase()}. Làm một nhiệm vụ để vào bảng.`}</div>
+      <ol class="j-lb">${P.top.length ? P.top.map(r => `<li class="${r.me ? "me" : ""}"><span class="n">${r.n}</span><span>${esc(r.nick)}${r.me ? " (bạn)" : ""}</span><span class="x">${fmtN(r.xp)}</span></li>`).join("") : `<li class="j-note">Chưa có ai trong bảng.</li>`}</ol>
+      <div class="j-note" style="margin-top:8px">${JP === "quarter" ? "Thưởng quý (tiền mặt) xét 40% học trên lớp + 40% tự học online + 20% tiến bộ thi thử." : "Top 3 mỗi chặng nhận quà và giấy chứng nhận."}</div></div>
+  </div>
+  <div class="j-pass">
+    <div class="pp"><div class="t1">AZENGLISH · NHA TRANG</div><div class="t2">AZIELTS Passport</div><div class="glb">AZ</div><div class="nm">${esc(me.name)}</div><div class="j-note" style="color:#C9CFDA">Chặng ${me.lvl} · ${esc(L[0])}${me.cls ? " · Lớp " + esc(me.cls) : ""}</div><span class="tier">${esc(me.tier)} · ${fmtN(me.xp)} XP</span><div class="chip"></div></div>
+    <div class="j-card"><h3>Visa và con dấu <small>${Object.keys(me.stamps).length} con dấu</small></h3>
+      <div class="visas">${[1, 2, 3, 4].map(v => `<div class="visa ${me.stamps["VISA-" + v] ? "on" : ""}"><b>Visa ${v}</b>${esc(JLV[v][0])}</div>`).join("")}</div>
+      <div class="stamps">${JAUTO.map(k => `<span class="stamp ${me.stamps[k] ? "on" : ""}" title="${me.stamps[k] ? "Đạt ngày " + esc(vnDate(me.stamps[k])) : "Chưa đạt"}">${me.stamps[k] ? "✓ " : ""}${esc(d.catalog[k].n)}</span>`).join("")}</div>
+      ${Object.entries(grp).map(([sk, ks]) => `<div class="j-note" style="margin:12px 0 6px;font-weight:700;color:var(--ink-2)">I CAN · ${esc(sk)} (giáo viên đóng dấu tại lớp)</div><div class="stamps">${ks.map(k => `<span class="stamp ican ${me.stamps[k] ? "on" : ""}">${me.stamps[k] ? "✓ " : ""}${esc(d.catalog[k].n.replace(/^I CAN /, ""))}</span>`).join("")}</div>`).join("")}
+    </div>
+  </div>
+  <details class="j-rules"><summary>Cách tính XP</summary><table>${JRULES.map(r => `<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join("")}</table><p>Không bao giờ bị trừ điểm. Làm lại đề cũ chỉ tính phần câu đúng tăng thêm.</p></details>`;
+  box.querySelectorAll("[data-jp]").forEach(b => b.onclick = () => { JP = b.dataset.jp; renderJourney(); });
+}
+
+/* ----- trang giáo viên: #gv-journey (mật khẩu giáo viên ở tab "Cài đặt" của Sheet lớp học) ----- */
+const GVK = "az_gvj";
+let GV = { cls: null, data: null };
+function gvKey() { try { return sessionStorage.getItem(GVK) || ""; } catch (e) { return ""; } }
+async function gvApi(b) { return api(Object.assign({ key: gvKey() }, b)); }
+function gvMsg(id, m, err) { const e = $(id); if (e) { e.textContent = m; e.className = "msg" + (err ? " err" : ""); } }
+async function renderGV() {
+  const host = $("#gvj .wrap");
+  if (!gvKey()) {
+    host.innerHTML = `<h1>Journey · Trang giáo viên</h1><div class="box"><h2>Nhập mật khẩu giáo viên</h2><form class="row" id="gvLogin"><input id="gvK" type="password" autocomplete="off" placeholder="Mật khẩu ở tab Cài đặt của Sheet lớp học" style="min-width:280px"><button class="btn" type="submit">Mở</button><span class="msg" id="gvM"></span></form></div>`;
+    $("#gvLogin").onsubmit = async e => { e.preventDefault(); try { sessionStorage.setItem(GVK, $("#gvK").value.trim()); } catch (x) {} renderGV(); };
+    return;
+  }
+  host.innerHTML = `<h1>Journey · Trang giáo viên</h1><p class="j-note">Điểm danh khoảng 30 giây mỗi buổi. Bài về nhà, đề Reading/Listening và từ vựng được hệ thống tự cộng.</p><div id="gvBody"><div class="box">Đang tải lớp…</div></div>`;
+  let j; try { j = await gvApi({ t: "jcls" }); } catch (e) { $("#gvBody").innerHTML = `<div class="box msg err">Không kết nối được máy chủ.</div>`; return; }
+  if (!j || !j.ok) { try { sessionStorage.removeItem(GVK); } catch (e) {} $("#gvBody").innerHTML = `<div class="box"><p class="msg err">${esc((j && j.error) || "Lỗi.")}</p><button class="btn line" type="button" onclick="renderGV()">Nhập lại mật khẩu</button></div>`; return; }
+  GV.data = j; if (!GV.cls && j.classes.length) GV.cls = j.classes[0].code;
+  const all = j.classes.flatMap(c => c.members.map(m => Object.assign({ code: c.code }, m)));
+  const stampOpts = Object.entries(j.catalog).filter(([k, v]) => v.k !== "auto").map(([k, v]) => `<option value="${esc(k)}">${esc(v.k)} · ${esc(v.n)}</option>`).join("");
+  const stuOpts = all.map(m => `<option value="${esc(m.user)}">${esc(m.name)} · ${esc(m.code)}</option>`).join("");
+  $("#gvBody").innerHTML = `
+  <div class="box"><h2>1 · Điểm danh buổi học</h2>
+    <div class="row"><label>Lớp<br><select id="gvCls">${j.classes.map(c => `<option value="${esc(c.code)}" ${c.code === GV.cls ? "selected" : ""}>${esc(c.cls)} · ${esc(c.code)} (${c.members.length})</option>`).join("")}</select></label>
+      <label>Ngày học<br><input type="date" id="gvDay" value="${todayStr()}"></label></div>
+    <div class="tbl" style="margin-top:12px"><table><thead><tr><th>Có mặt</th><th>Học viên</th><th>Chặng</th><th>Ngôi sao (tối đa 3)</th><th>Tổng XP</th></tr></thead><tbody id="gvRows"></tbody></table></div>
+    <div class="row" style="margin-top:12px"><button class="btn" type="button" id="gvSave">Lưu buổi học</button><span class="msg" id="gvM1"></span></div>
+    <p class="j-note">Có mặt +20 XP · Ngôi sao +30 XP. Lưu lại cùng buổi sẽ thay bản cũ, không cộng trùng.</p></div>
+  <div class="box"><h2>2 · Bảng công bố</h2>
+    <div class="row"><label>Kỳ<br><select id="gvP"><option value="week">Tuần</option><option value="month">Tháng</option><option value="quarter">Quý (thưởng tiền mặt)</option></select></label><label>Ngày trong kỳ<br><input type="date" id="gvPD" value="${todayStr()}"></label><button class="btn dark" type="button" id="gvB">Tạo bảng</button><button class="btn line" type="button" id="gvCopy">Sao chép</button><span class="msg" id="gvM2"></span></div>
+    <textarea id="gvTxt" style="margin-top:12px" placeholder="Bấm Tạo bảng để có nội dung dán vào nhóm Zalo lớp."></textarea></div>
+  <div class="box"><h2>3 · Thi thử và con dấu Passport</h2>
+    <div class="row"><label>Học viên<br><select id="gvU">${stuOpts}</select></label><label>Band thi thử<br><input id="gvBand" type="number" step="0.5" min="0" max="9" style="width:110px"></label><label>Band lần trước<br><input id="gvPrev" type="number" step="0.5" min="0" max="9" style="width:110px"></label><button class="btn" type="button" id="gvMock">Ghi thi thử</button></div>
+    <div class="row" style="margin-top:12px"><label>Con dấu<br><select id="gvS">${stampOpts}</select></label><button class="btn dark" type="button" id="gvStamp">Đóng dấu</button><span class="msg" id="gvM3"></span></div>
+    <p class="j-note">Thi thử: mỗi 0.5 band tăng so với lần trước được +100 XP (tính vào 20% "tiến bộ" khi xét thưởng quý).</p></div>`;
+  const rows = () => {
+    const c = j.classes.find(x => x.code === GV.cls) || { members: [] };
+    $("#gvRows").innerHTML = c.members.length ? c.members.map(m => `<tr><td><input type="checkbox" class="gvPr" value="${esc(m.user)}" checked></td><td>${esc(m.name)}<br><span class="j-note">${esc(m.user)}</span></td>
+      <td><select class="gvLv" data-u="${esc(m.user)}">${["", 1, 2, 3, 4].map(l => `<option value="${l}" ${String(m.lvl) === String(l) ? "selected" : ""}>${l === "" ? "chưa chọn" : l + " · " + JLV[l][0]}</option>`).join("")}</select></td>
+      <td><button type="button" class="star" data-u="${esc(m.user)}" aria-pressed="false" title="Ngôi sao buổi học">★</button></td><td>${fmtN(m.xp)}</td></tr>`).join("") : `<tr><td colspan="5">Lớp chưa có học viên đăng ký bằng mã lớp này.</td></tr>`;
+    document.querySelectorAll("#gvRows .star").forEach(b => b.onclick = () => { const on = b.classList.contains("on"); if (!on && document.querySelectorAll("#gvRows .star.on").length >= 3) { gvMsg("#gvM1", "Tối đa 3 ngôi sao mỗi buổi.", true); return; } b.classList.toggle("on", !on); b.setAttribute("aria-pressed", String(!on)); });
+    document.querySelectorAll("#gvRows .gvLv").forEach(s => s.onchange = async () => { if (s.value === "") return; const r = await gvApi({ t: "jlvl", user: s.dataset.u, lvl: +s.value }); gvMsg("#gvM1", r && r.ok ? "Đã đổi chặng." : (r && r.error) || "Lỗi.", !(r && r.ok)); });
+  };
+  rows(); $("#gvCls").onchange = e => { GV.cls = e.target.value; rows(); };
+  $("#gvSave").onclick = async () => { const b = $("#gvSave"); b.disabled = true;
+    const present = [...document.querySelectorAll(".gvPr:checked")].map(x => x.value), all = [...document.querySelectorAll(".gvPr")].map(x => x.value), stars = [...document.querySelectorAll("#gvRows .star.on")].map(x => x.dataset.u).filter(u => present.includes(u));
+    try { const r = await gvApi({ t: "jatt", cls: GV.cls, day: $("#gvDay").value, present, stars, all }); gvMsg("#gvM1", r && r.ok ? `Đã lưu buổi ${vnDate(r.day)}: ${r.present} có mặt, ${r.stars} ngôi sao.` : (r && r.error) || "Lỗi.", !(r && r.ok)); }
+    catch (e) { gvMsg("#gvM1", "Không kết nối được máy chủ.", true); } b.disabled = false; };
+  $("#gvB").onclick = async () => { const p = $("#gvP").value; let r; try { r = await gvApi({ t: "jboard", period: p, day: $("#gvPD").value }); } catch (e) { gvMsg("#gvM2", "Không kết nối được máy chủ.", true); return; }
+    if (!r || !r.ok) { gvMsg("#gvM2", (r && r.error) || "Lỗi.", true); return; }
+    const kn = { week: "tuần bắt đầu " + vnDate(r.key), month: "tháng " + r.key.split("-").reverse().join("/"), quarter: "quý " + r.key.replace("-Q", " · Q") }[p], md = ["🥇", "🥈", "🥉"];
+    let t = `🏆 AZIELTS Journey · Bảng vinh danh ${kn}\n`;
+    Object.keys(r.groups).sort().forEach(l => { const g = r.groups[l]; if (!g.length) return; t += `\n✈️ Chặng ${l} · ${JLV[l] ? JLV[l][0] : ""}\n`;
+      g.slice(0, p === "quarter" ? 3 : 3).forEach((x, i) => { t += `${md[i]} ${x.name} (${x.nick}) · ${p === "quarter" ? x.score + " điểm xét thưởng · " : ""}${fmtN(x.total)} XP\n`; });
+      if (g.length > 3) t += `   Tiếp theo: ${g.slice(3, 8).map(x => x.nick).join(", ")}\n`; });
+    t += p === "quarter" ? `\nĐiểm xét thưởng quý = 40% học trên lớp + 40% tự học online + 20% tiến bộ thi thử. Chúc mừng các bạn!` : `\nTop 3 mỗi chặng nhận quà và giấy chứng nhận. Hẹn gặp các bạn trên bảng ${p === "week" ? "tuần" : "tháng"} sau!`;
+    $("#gvTxt").value = Object.keys(r.groups).length ? t : "Chưa có XP nào trong kỳ này."; gvMsg("#gvM2", "Đã tạo bảng."); };
+  $("#gvCopy").onclick = async () => { const t = $("#gvTxt"); try { await navigator.clipboard.writeText(t.value); gvMsg("#gvM2", "Đã sao chép."); } catch (e) { t.select(); gvMsg("#gvM2", "Bấm Ctrl/Cmd + C để sao chép."); } };
+  $("#gvMock").onclick = async () => { const r = await gvApi({ t: "jmock", user: $("#gvU").value, band: +$("#gvBand").value, prev: +$("#gvPrev").value || 0 }); gvMsg("#gvM3", r && r.ok ? `Đã ghi thi thử (+${r.xp} XP).` : (r && r.error) || "Lỗi.", !(r && r.ok)); };
+  $("#gvStamp").onclick = async () => { const r = await gvApi({ t: "jstamp", user: $("#gvU").value, stamp: $("#gvS").value }); gvMsg("#gvM3", r && r.ok ? "Đã đóng dấu." : (r && r.error) || "Lỗi.", !(r && r.ok)); };
+}
+
+addEventListener("hashchange", () => { if (location.hash === "#gv-journey" || !$("#gvj").hidden) render(); });
 renderGuest(); renderResults(); render();
 if (!getS() && (nextUrl() || $("#eLogin").textContent)) openAuth("login");
 if (TCH) { $("#tchImg").src = TCH; $("#heroImg").src = TCH; } else { $("#tchImg").remove(); $("#heroImg").remove(); }
