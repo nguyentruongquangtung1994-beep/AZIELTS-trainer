@@ -358,7 +358,7 @@ function renderPart(p){
   };
   $("#tx").oninput = e => { if(e.target.tagName==="INPUT"){ state[e.target.id] = e.target.value; storeSet(`c21t${DATA.test}-choices`, state); paint(p);} };
   $("#tx").querySelectorAll("input").forEach(i => i.value = state[i.id] || "");
-  $("#chk").onclick = () => { checked[p.num]=true; paint(p); $("#sc").scrollIntoView({block:"nearest"}); };
+  $("#chk").onclick = () => { checked[p.num]=true; paint(p); $("#sc").scrollIntoView({block:"nearest"}); journeyLab(p); };
   $("#rst").onclick = () => { p.segs.forEach(s=>{ if(typeof s!=="string") delete state[s.kind==="write" ? "w"+s.n : s.n]; }); $("#tx").querySelectorAll("input").forEach(i=>i.value=""); storeSet(`c21t${DATA.test}-choices`, state); checked[p.num]=false; paint(p); };
   paint(p);
 }
@@ -386,6 +386,24 @@ function paint(p){
   $("#prog").textContent = `Đã làm ${done}/${gaps.length} trắc nghiệm · ${wd}/${writes.length} tự viết`;
   const sc = $("#sc"); sc.hidden = !isC;
   if (isC) sc.textContent = `Trắc nghiệm ${right}/${gaps.length} · Tự viết ${wr}/${writes.length} · Tổng ${Math.round((right+wr)/(gaps.length+writes.length)*100)}%`;
+}
+
+/* ---------- AZIELTS Journey: chấm một Part → gửi kết quả để cộng XP ----------
+   Điểm quy về thang 10 mỗi Part (tối đa 20 XP/Part, 80 XP/bài, ngang một đề Listening). Máy chủ tự tính XP và chỉ cộng phần tăng thêm khi làm lại. */
+const AZ_JAPI = "https://script.google.com/macros/s/AKfycbyPyrWqg-HzFSAJar9ZPFr_e9hb5R8duczv2N5tTUufixSu0P69SD9REpyJyBERUA0P/exec";
+function journeyLab(p){
+  let s = null; try { s = JSON.parse(localStorage.getItem("az_acad") || "null"); } catch(e) {}
+  if (!s || !s.u || !s.tok) return;
+  const gs = p.segs.filter(x => typeof x !== "string"); if (!gs.length) return;
+  const ok = gs.filter(x => x.opts ? state[x.n] === x.ans : normW(state["w" + x.n]) === normW(x.ans)).length;
+  const ref = "lab-" + (location.pathname.split("/").pop() || "lab").replace(/\.html$/, "").replace("listening-gapfill-", "") + "-p" + p.num;
+  fetch(AZ_JAPI, { method: "POST", body: JSON.stringify({ t: "jev", u: s.u, tok: s.tok, act: "L", ref, score: Math.round(ok / gs.length * 10), total: 10 }) })
+    .then(r => r.json()).then(j => {
+      if (!j || !j.ok) return; const sc = $("#sc"); if (!sc) return;
+      let m = $("#jmsg"); if (!m) { m = document.createElement("p"); m.id = "jmsg"; m.style.cssText = "margin:12px 0 0;padding:10px 14px;border-radius:10px;background:#0B1424;color:#F4F1EA;font-size:14px;line-height:1.5"; sc.closest(".actions").after(m); }
+      const why = (j.items || []).filter(i => i.why).map(i => (i.xp ? "+" + i.xp + " " : "") + i.why).join(" · ");
+      m.innerHTML = '<b style="color:#D9B36A">AZIELTS Journey: ' + (j.gained > 0 ? "+" + j.gained + " XP" : "chưa cộng thêm XP") + "</b> · " + esc(why) + (j.capped ? "<br>Đã đạt trần XP tự học hôm nay." : "") + ' <a href="academy.html#journey" style="color:#D9B36A;font-weight:700">Xem hành trình →</a>';
+    }).catch(() => {});
 }
 
 /* ---------- Chép chính tả ---------- */
