@@ -609,7 +609,7 @@ html body a.card > .tn{display:flex;align-items:center}
       </div>
     </section>
 
-    <div class="wrap"><div class="stats" id="stats"><div><b>6</b><span>chương trình trong một tài khoản</span></div><div><b>2.295</b><span>cụm từ học thuật theo chủ đề</span></div><div><b>65</b><span>bài mẫu Writing Task 1 và 2</span></div><div><b>240</b><span>buổi theo lộ trình chuẩn</span></div></div></div>
+    <div class="wrap"><div class="stats" id="stats"><div><b>7</b><span>chương trình trong một tài khoản</span></div><div><b>2.295</b><span>cụm từ học thuật theo chủ đề</span></div><div><b>65</b><span>bài mẫu Writing Task 1 và 2</span></div><div><b>240</b><span>buổi theo lộ trình chuẩn</span></div></div></div>
 
     <section class="sec" id="thanh-tich">
       <div class="wrap">
@@ -818,10 +818,11 @@ const APPS = [
   { id: "writing", cv: "Writing", sub: "Task 1 · Task 2", name: "Writing Studio", hue: "#D7192D", ic: "pen", href: "writing-studio.html", desc: "Nhiệm vụ mỗi ngày, công thức theo dạng đề Task 1 và Task 2, chấm band ngay sau khi nộp.", badge: "Mới" },
   { id: "rl", cv: "Reading", sub: "Cambridge 16 – 21 · Actual Test", name: "Reading & Listening", hue: "#1D4ED8", ic: "book", href: "index.html", desc: "Đề Cambridge IELTS 16–21, Reading Actual Test 5 và Listening Actual Test Vol 7: bấm giờ, chấm điểm, chỉ vị trí đáp án trong bài." },
   { id: "gap", cv: "Listening", sub: "Cambridge 19 – 21", name: "Listening Lab", hue: "#6D28D9", ic: "head", href: "listening-gapfill.html", desc: "Nghe transcript khoét lỗ Cambridge 19–21: chọn đáp án và chép chính tả với audio gốc." },
+  { id: "vocab", cv: "Vocabulary", sub: "TOEIC · IELTS theo chủ đề", name: "AZ Vocabulary", hue: "#0F1B2D", ic: "book", href: "vocabulary.html", open: true, desc: "Lướt thẻ từ vựng TOEIC và IELTS theo chủ đề: nhìn từ, chọn nghĩa, thẻ tự chuyển; xong lượt mới chữa bài và ôn lại từ sai. Học thử 10 từ không cần đăng nhập.", badge: "Học thử miễn phí" },
   { id: "test", cv: "Placement", sub: "Đầu vào 4 kỹ năng", name: "Kiểm tra trình độ", hue: "#B7851A", ic: "target", href: "#kiem-tra", desc: "Bài kiểm tra đầu vào 4 kỹ năng: Listening, Reading đề Cambridge 21, Writing tự chọn đề, Speaking tại trung tâm.", badge: "Đầu vào" },
 ];
 const PLANS = [
-  { k: "trial", name: "Dùng thử", lvl: "Miễn phí", price: "7 ngày trải nghiệm nền tảng, không cần thanh toán.", items: ["Mở đầy đủ 6 chương trình luyện tập", "Chấm band Writing tự động", "Đề Cambridge Reading và Listening", "Học cụm từ, thử thách 60 giây"] },
+  { k: "trial", name: "Dùng thử", lvl: "Miễn phí", price: "7 ngày trải nghiệm nền tảng, không cần thanh toán.", items: ["Mở đầy đủ 7 chương trình luyện tập", "Chấm band Writing tự động", "Đề Cambridge Reading và Listening", "Học cụm từ, thử thách 60 giây"] },
   { k: "standard", name: "Lộ trình 240 buổi", lvl: "Standard", price: "240 buổi × 90 phút, 2 buổi mỗi tuần.", rate: "150.000đ", items: ["Lớp tối đa 12 học viên", "Thi thử định kỳ, báo cáo band cho phụ huynh", "Chưa đạt mốc: học bổ trợ 4 buổi", "CLB Tiếng Anh, CLB Public Speaking & Debate hằng tuần", "Giải đáp thắc mắc 24/7", "Tài khoản AZIELTS Academy suốt khoá học"] },
   { k: "elite", name: "Elite 6.5+", lvl: "Kèm sát · cam kết đầu ra", price: "240 buổi lớp + 5 buổi kèm 1-1, tổng 367,5 giờ.", rate: "250.000đ", seats: "Chỉ 7 học viên mỗi lớp", items: ["5 buổi kèm riêng 1-1 cho mỗi học viên", "Lộ trình cá nhân do thầy Quang Tùng xây dựng", "Giáo viên chấm từng bài Writing, thi thử 4 kỹ năng hằng tháng", "Phòng thi Speaking mô phỏng trước kỳ thi thật", "Cam kết bằng điểm thi thật, tặng 1 lần lệ phí thi", "Đủ điều kiện mà chưa đạt 6.5: học lại miễn phí, tối đa 6 tháng", "Tặng Public Speaking 4 buổi kèm riêng, có chứng nhận", "Toàn bộ quyền lợi gói Lộ trình 240 buổi"] }
 ];
@@ -865,8 +866,8 @@ function appCard(a, guest, n) {
   const no = String(n + 1).padStart(2, "0");
   const inner = `<span class="cv" style="--hue:${a.hue}"><span class="cv-n">${no}</span><span class="cv-t">${esc(a.cv)}</span><span class="cv-s">${esc(a.sub)}</span></span><span class="app-b"><h3>${esc(a.name)}</h3><p>${esc(a.desc)}</p>`;
   const tag = a.badge ? `<span class="tagx new">${esc(a.badge)}</span>` : "";
-  if (guest) return `<button type="button" class="app" data-auth="login">${tag}${inner}<span class="go">Đăng nhập để học ${azi("arrow")}</span></span></button>`;
-  return `<a class="app" href="${a.href}">${tag}${inner}<span class="go">Vào học ${azi("arrow")}</span></span></a>`;
+  if (guest && !a.open) return `<button type="button" class="app" data-auth="login">${tag}${inner}<span class="go">Đăng nhập để học ${azi("arrow")}</span></span></button>`;
+  return `<a class="app" href="${a.href}">${tag}${inner}<span class="go">${guest ? "Học thử 10 từ" : "Vào học"} ${azi("arrow")}</span></span></a>`;
 }
 function renderGuest() {
   $("#appsGuest").innerHTML = APPS.map((a, n) => appCard(a, true, n)).join("");
