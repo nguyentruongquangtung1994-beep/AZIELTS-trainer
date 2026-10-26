@@ -37,7 +37,7 @@ Trong app Claude: launch `az-vocabulary` (.claude/launch.json).
 ## Luồng học và mở khoá
 
 1. Lần đầu: bấm **TOEIC** hoặc **IELTS** là học ngay 10 từ (tổng hợp, mọi mức, Anh → Việt, chuyển thẻ nhanh 0,35 giây).
-2. Chọn đáp án → đánh dấu trung tính "đã chọn" → khoá 4 lựa chọn → tự chuyển thẻ. Không có nút Tiếp, không lộ đúng/sai. Chưa chọn thì không tự chuyển. Phím 1–4 dùng được.
+2. Thẻ hiện ra → tự đọc từ tiếng Anh (giọng có sẵn của thiết bị, cao và tươi; nút **Nghe** để nghe lại; chiều Việt → Anh thì đọc sau khi chọn để không lộ đáp án). Mỗi từ có **đồng hồ 8 giây** (chỉnh 5/8/12 trong Tùy chỉnh; tab bị ẩn thì đồng hồ dừng). Chọn đáp án → tiếng "ting" nếu đúng, "bụp" nếu sai → khoá lựa chọn → tự chuyển thẻ. Hết giờ chưa chọn → ghi **Hết giờ**, tính như sai, vào danh sách ôn. Đáp án đúng vẫn chỉ hiện khi chữa bài cuối lượt. Nút loa trên thanh học để tắt/bật tiếng; Tùy chỉnh có 3 mức: Tiếng + đọc từ / Chỉ tiếng đúng sai / Tắt. Phím 1–4 dùng được. Trên điện thoại, 4 lựa chọn nằm ở nửa dưới màn hình cho dễ bấm bằng ngón cái.
 3. Hết lượt: điểm, tỉ lệ, thời gian, số từ cần ôn, nhận xét; lọc **Tất cả / Từ chọn sai**; mỗi từ có phiên âm, từ loại, nghĩa, đáp án đã chọn, ví dụ + dịch, cách dùng, lưu ý dễ nhầm.
 4. **Cổng mở khoá:** khách chưa đăng nhập được học miễn phí **1 lượt 10 từ** và xem trọn kết quả. Muốn ôn từ sai, học lượt mới, chọn lượt 20/30 từ hay ôn theo lịch → điền Họ tên + SĐT + Email + mật khẩu ngay trên trang. Hệ thống tạo **tài khoản AZIELTS Academy dùng thử 7 ngày** (tên đăng nhập = SĐT) bằng chính máy chủ Academy (lệnh `register`), nên lead vào tab **Tài khoản** của Google Sheet lớp học như học viên đăng ký ở Academy. Đã đăng nhập Academy còn hạn → mở toàn bộ, không hỏi lại.
 5. Lượt ôn chỉ gồm từ sai, xáo lại; kết quả **lượt đầu giữ nguyên**, lượt ôn ghi riêng ("đã trả lời đúng khi ôn", không phải "đã nhớ lâu").
@@ -89,5 +89,5 @@ Quy ước: làm trên nhánh `feature/az-vocabulary`, Anh Tùng duyệt Pull Re
 ## Giới hạn hiện tại
 
 - Học liệu 200 mục là **bản thử AZ tự soạn, chưa được giáo viên duyệt**.
-- Chưa có audio thật; tiến độ chưa đồng bộ giữa thiết bị; không có thông báo nhắc ôn.
+- Chưa có audio giáo viên thu: đang dùng giọng đọc của trình duyệt — chất lượng và giọng khác nhau theo máy (iPhone/Mac: Samantha; Android/Chrome: Google US English; Windows: Aria/Jenny), giọng đọc không thể hiện cảm xúc thật. Tiến độ chưa đồng bộ giữa thiết bị; không có thông báo nhắc ôn.
 - Nhận diện đúng nghĩa không có nghĩa là đã dùng được từ khi nói/viết.
