@@ -10,6 +10,9 @@
   const FREE_COUNT = 10, DUE_MAX = 30, MIN_GAP = 120;
 
   let ITEMS = [], BYID = {}, TOPICS = { toeic: [], ielts: [] }, P = null;
+  let armed = {};
+  // xác nhận bằng bấm lần 2 trong 4 giây (khung artifact và vài webview chặn hộp thoại xác nhận của trình duyệt)
+  function twice(key, msg) { if (armed[key]) { delete armed[key]; return true; } armed[key] = true; toast(msg); setTimeout(() => { delete armed[key]; }, 4000); return false; }
   let advT = null, tStart = null, lockQ = false, shownAt = 0, resultTab = "all", pendingImport = null, toastT = null;
 
   /* ---------- tiện ích DOM an toàn ---------- */
@@ -153,7 +156,7 @@
     if (locked()) { renderHome(); focusGate(); return; }
     const p = P.prefs, acc = access();
     if (!p.exam) { $("setup").open = true; toast("Chọn TOEIC hoặc IELTS trước."); return; }
-    if (P.active && P.active.answers.length && !confirm("Bạn đang dở một lượt. Bỏ lượt đó để học lượt mới?")) return;
+    if (P.active && P.active.answers.length && !twice("new", "Bạn đang dở một lượt. Bấm lần nữa để bỏ lượt đó và học lượt mới.")) return;
     let count = countOverride || p.count;
     if (!acc.full) count = Math.min(count, FREE_COUNT);
     const res = C.buildRound(ITEMS, { exam: p.exam, topic: p.topic, level: p.level, dir: p.dir, count, kind: "main" });
@@ -178,7 +181,7 @@
   function resumeRound() { if (P.active) openLearn(); }
   function abandonRound() {
     if (!P.active) return;
-    if (P.active.answers.length && !confirm("Bỏ lượt đang dở? Các câu đã trả lời trong lượt này sẽ không được tính.")) return;
+    if (P.active.answers.length && !twice("drop", "Bấm \"Bỏ lượt\" lần nữa để bỏ. Các câu đã trả lời trong lượt này sẽ không được tính.")) return;
     P.active = null; save(); renderHome();
   }
 

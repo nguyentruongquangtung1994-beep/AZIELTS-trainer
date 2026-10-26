@@ -11,7 +11,8 @@
     ["audioUrl", "audioUrl (tuỳ chọn, ví dụ audio/toeic/agenda.mp3)", true], ["sourceUrl", "sourceUrl (tuỳ chọn, https://…)", true],
     ["reviewer", "Người duyệt (chỉ điền khi đã duyệt thật)", true], ["reviewedAt", "Ngày duyệt YYYY-MM-DD", true]
   ];
-  let bank = null, sel = null, toastT;
+  let bank = null, sel = null, toastT, armed = {};
+  function twice(key, msg) { if (armed[key]) { delete armed[key]; return true; } armed[key] = true; toast(msg); setTimeout(() => { delete armed[key]; }, 4000); return false; }
 
   function h(tag, attrs, ...kids) {
     const el = document.createElement(tag);
@@ -117,7 +118,7 @@
   }
   function delItem() {
     const it = bank.items.find(x => x.id === sel);
-    if (!it || !confirm("Xoá mục \"" + it.term + "\" khỏi bản nháp? Học viên đang có lượt chứa mục này sẽ phải bắt đầu lượt mới.")) return;
+    if (!it || !twice("del" + it.id, "Bấm \"Xoá mục\" lần nữa để xoá \"" + it.term + "\" khỏi bản nháp.")) return;
     bank.items = bank.items.filter(x => x.id !== sel); sel = null; persist(); renderList(); renderForm(); toast("Đã xoá khỏi bản nháp.");
   }
   function newItem() {
@@ -138,7 +139,7 @@
   }
   function exportJson() {
     const v = checkAll();
-    if (v.errors.length && !confirm("Bộ học liệu còn " + v.errors.length + " lỗi. Trang học sẽ tự ẩn các mục lỗi. Vẫn xuất file?")) return;
+    if (v.errors.length && !twice("exp", "Còn " + v.errors.length + " lỗi (trang học sẽ ẩn các mục lỗi). Bấm \"Xuất JSON\" lần nữa để vẫn xuất.")) return;
     const blob = new Blob([JSON.stringify(bank, null, 1) + "\n"], { type: "application/json" });
     const a = h("a", { href: URL.createObjectURL(blob), download: "vocabulary-" + bank.exam + ".json" });
     document.body.append(a); a.click(); a.remove();
