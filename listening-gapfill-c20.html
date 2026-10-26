@@ -83,7 +83,7 @@ html body .nb-strategy .i svg,html body .azp-ico{width:22px;height:22px;fill:non
 html body .azp-ico{width:18px;height:18px;vertical-align:-3px;margin-right:8px;color:var(--gold,#B8913A)}
 html body .nb-strategy .i svg{margin:0!important;color:inherit!important}
 html body a.card > .tn{display:flex;align-items:center}
-</style><script>window.AZP_ACAD="academy.html";window.AZP_HOST="header.top";/* AZIELTS PREMIUM — dùng chung cho trang học tĩnh: nạp font, luôn sáng, nút về Academy + huy hiệu gói */
+</style><script>window.AZP_ACAD="academy.html";window.AZP_HOST=".masthead";/* AZIELTS PREMIUM — dùng chung cho trang học tĩnh: nạp font, luôn sáng, nút về Academy + huy hiệu gói */
 (function () {
   try {
     var l = document.createElement("link"); l.rel = "stylesheet";
@@ -127,5 +127,34 @@ html body a.card > .tn{display:flex;align-items:center}
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", mount); else mount();
   setTimeout(mount, 600); setTimeout(mount, 2000);
+})();
+;window.AZR={"b":".panel-head,.steps","s":".grid,.books,.dgroup","x":".player,.transcript"};/* AZIELTS · hiệu ứng hiện dần khi kéo trang (dùng chung mọi trang, quyết định 26/10/2026).
+   Khối (AZR.b) trượt lên khi tới nơi; nhóm nhiều ô (AZR.s) cho các ô con hiện LẦN LƯỢT. Mỗi khối chạy 1 lần.
+   Bỏ qua: máy bật giảm chuyển động, phần nằm trong AZR.x, và khối chứa ô gõ bài (textarea) — màn làm bài không có hiệu ứng.
+   Cấu hình trước khi nạp: window.AZR = { b: "selector khối", s: "selector nhóm ô", x: "selector vùng loại trừ" }. Nội dung vẽ sau (innerHTML) tự được gắn. */
+(function () {
+  var C = window.AZR || {}, B = C.b || "", S = C.s || "", X = C.x || "";
+  if (!("IntersectionObserver" in window) || !window.matchMedia || matchMedia("(prefers-reduced-motion: reduce)").matches || (!B && !S)) return;
+  var st = document.createElement("style");
+  st.textContent = ".azr{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)!important}.azr.azin{opacity:1;transform:none}";
+  document.head.appendChild(st);
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (!e.isIntersecting) return; var el = e.target; io.unobserve(el); el.classList.add("azin");
+      setTimeout(function () { el.classList.remove("azr", "azin"); el.style.transitionDelay = ""; }, 700 + (parseInt(el.style.transitionDelay) || 0)); });
+  }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+  function skip(el) { return el.dataset.azr || (X && el.closest(X)) || el.querySelector("textarea"); }
+  function mark(el, delay) { el.dataset.azr = "1"; el.classList.add("azr"); if (delay) el.style.transitionDelay = delay + "ms"; io.observe(el); }
+  function tag(root) {
+    if (!root || !root.querySelectorAll) return;
+    if (B) root.querySelectorAll(B).forEach(function (el) { if (!skip(el)) mark(el, 0); });
+    if (S) root.querySelectorAll(S).forEach(function (p) { var i = 0; Array.prototype.forEach.call(p.children, function (c) { if (!skip(c)) mark(c, Math.min(i++, 8) * 70); }); });
+  }
+  function start() {
+    tag(document);
+    var q = new Set(), on = false;   // gộp các lần trang vẽ lại vào 1 nhịp khung hình
+    new MutationObserver(function (ms) { ms.forEach(function (m) { if (m.addedNodes.length) q.add(m.target); });
+      if (!on && q.size) { on = true; requestAnimationFrame(function () { on = false; var t = Array.from(q); q.clear(); t.forEach(function (r) { if (r.isConnected) tag(r); }); }); } }).observe(document.body, { childList: true, subtree: true });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
 })();
 </script><!--AZP:end--></head><body><a href="listening-gapfill.html#c20">Mở Cambridge Listening Lab</a></body></html>
