@@ -1062,14 +1062,14 @@ function renderJourney() {
   const grp = {}; Object.entries(d.catalog).forEach(([k, v]) => { if (v.k !== "auto" && v.k !== "Visa") (grp[v.k] = grp[v.k] || []).push(k); });
   box.innerHTML = `<div class="j-head"><div><span class="eyebrow">AZIELTS Journey · Chặng ${me.lvl || "khách"} · ${esc(L[0])}</span><h2>Hành trình của ${esc(String(me.name).split(/\s+/).pop())}</h2><p>${esc(L[1])}. Mỗi ngày hoàn thành Day Mission để tích XP, giữ chuỗi ngày học và leo bảng xếp hạng cùng chặng. Giáo viên công bố người thắng mỗi tuần, tháng và quý.</p></div>
     <div class="j-kpi"><div><b>${fmtN(me.xp)}</b><span>Tổng XP</span></div><div><b>${me.streak}</b><span>Chuỗi ngày</span></div><div><b>${P.rank ? "#" + P.rank : "–"}</b><span>${plabel[JP]}</span></div><div><b style="font-size:18px;padding-top:4px">${esc(me.tier)}</b><span>${nextTxt}</span></div></div></div>
-  <div class="j-grid">
+  ${jBoard(P, L, plabel)}
+  <div class="j-grid" style="margin-top:16px">
     <div class="j-card"><h3>Nhiệm vụ hôm nay <small>${doneN}/3 xong · ${fmtN(d.today.xp)} XP</small></h3>
       <div class="j-mis">${ms.map(m => `<a class="j-m ${d.today[m.k] ? "done" : ""} ${m.main ? "main" : ""}" href="${m.href}"><span class="ck">${d.today[m.k] ? "✓" : ""}</span><span><b>${m.t}</b><small>${esc(m.d)}</small></span><span class="xp">${m.x}</span></a>`).join("")}</div>
       <div class="j-bar"><i style="width:${Math.min(100, d.today.xp / d.today.cap * 100)}%"></i></div><div class="j-note">Mỗi ngày: Day Mission (từ vựng) + Skill Mission (bài nhỏ Đọc/Nghe) + Viết kỹ năng nhỏ. Tự học online tối đa ${d.today.cap} XP mỗi ngày; xong cả 3 mục được thưởng thêm 20 XP.</div>
       <a class="j-mock" href="index.html"><b>📅 Thi thử tháng ${new Date().getMonth() + 1}</b><span>Reading ${me.mock && me.mock.R ? "✓ đã làm" : "chưa làm"} · Listening ${me.mock && me.mock.L ? "✓ đã làm" : "chưa làm"}</span><small>Mỗi tháng làm 1 đề full mỗi kỹ năng để đo band (được XP 1 lần/tháng)</small></a>
       ${d.recent.length ? `<ul class="j-feed">${d.recent.slice(0, 5).map(r => `<li><b>+${r.xp}</b> · ${esc(String(r.note).replace(/\b[RL]-[a-z]+\b/, m => TYN[m] || m))} <span class="j-note">${esc(vnDate(r.day))}</span></li>`).join("")}</ul>` : ""}</div>
   </div>
-  ${jBoard(P, L, plabel)}
   <div class="j-card j-res"><h3>Kết quả học tập của bạn <small>${fmtN(me.classDays)} buổi có mặt trên lớp</small></h3>${jResults(me)}</div>
   <details class="j-rules"><summary>Cách tính XP</summary><table>${JRULES.map(r => `<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join("")}</table><p>Không bao giờ bị trừ điểm. Làm lại đề cũ chỉ tính phần câu đúng tăng thêm.</p></details>`;
   box.querySelectorAll("[data-jp]").forEach(b => b.onclick = () => { JP = b.dataset.jp; renderJourney(); });
