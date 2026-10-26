@@ -132,7 +132,9 @@
       p.count = v; save(); renderHome();
     });
     segButtons($("fDir"), C.DIRS.map(d => ({ v: d, label: DIR_NAME[d], sub: d === "en-vi" ? "mặc định" : "chọn từ tiếng Anh" })), p.dir, v => { p.dir = v; save(); renderHome(); });
+    segButtons($("fTimer"), C.TIMERS.map(t => ({ v: t, label: t + " giây", sub: t === 8 ? "mặc định" : t === 5 ? "gấp" : "thoải mái" })), p.timer, v => { p.timer = v; save(); renderHome(); });
     segButtons($("fSpeed"), Object.keys(SPEED_NAME).map(k => ({ v: k, label: SPEED_NAME[k][0], sub: SPEED_NAME[k][1] })), p.speed, v => { p.speed = v; save(); renderHome(); });
+    segButtons($("fSound"), [{ v: "both", label: "Tiếng + đọc từ" }, { v: "sound", label: "Chỉ tiếng đúng/sai" }, { v: "off", label: "Tắt tiếng" }], p.sound && p.speak ? "both" : p.sound ? "sound" : "off", v => { p.sound = v !== "off"; p.speak = v === "both"; save(); renderHome(); if (p.sound) tone(true); });
     // số từ phù hợp
     const av = $("avail");
     av.classList.remove("short");
@@ -195,56 +197,147 @@
     if (!r) { show("scrHome"); renderHome(); return; }
     const i = r.answers.length, n = r.questions.length;
     if (i >= n) { finishRound(); return; }
-    const q = r.questions[i], it = BYID[q.itemId], viEn = r.dir === "vi-en";
+    const q = r.questions[i], it = BYID[q.itemId], viEn = r.dir === "vi-en", secs = P.prefs.timer || 8;
     $("lTitle").textContent = roundTitle(r);
     $("lSub").textContent = roundSub(r);
     $("lCount").textContent = (i + 1) + "/" + n;
     $("lFill").style.width = (i / n * 100) + "%";
     $("lBar").setAttribute("aria-valuemax", n); $("lBar").setAttribute("aria-valuenow", i);
-    $("hint").textContent = viEn ? "Chọn từ/cụm tiếng Anh đúng · phím 1–4 · tự chuyển, chữa bài khi xong lượt" : "Chạm vào nghĩa đúng · phím 1–4 · tự chuyển, chữa bài khi xong lượt";
+    renderMute();
+    $("hint").textContent = "Mỗi từ " + secs + " giây · phím 1–4 · chữa bài khi xong lượt";
     const card = $("qcard");
     const prompt = h("h2", { class: viEn ? "term vi" : "term", tabindex: "-1", lang: viEn ? "vi" : "en", id: "qTerm", text: viEn ? it.meaningVi : it.term });
-    const audio = !viEn && C.isSafeAudioUrl(it.audioUrl) ? h("button", { type: "button", class: "say", onclick: () => play(it.audioUrl), "aria-label": "Nghe phát âm " + it.term, text: "Nghe" }) : null;
+    const say = !viEn && canSay(it) ? h("button", { type: "button", class: "say", onclick: () => sayItem(it, true), "aria-label": "Nghe lại phát âm " + it.term }, speakerIcon(), "Nghe") : null;
     fill(card,
-      it.contextLabel ? h("span", { class: "ctx", text: "Ngữ cảnh: " + it.contextLabel }) : null,
+      h("div", { class: "qhead" },
+        it.contextLabel ? h("span", { class: "ctx", text: "Ngữ cảnh: " + it.contextLabel }) : h("span"),
+        h("span", { class: "qsec", id: "qSec", "aria-hidden": "true", text: secs + "s" })),
+      h("div", { class: "qtime", "aria-hidden": "true" }, h("i", { id: "qTime" })),
       prompt,
-      viEn ? null : h("p", { class: "ipa" }, h("span", { lang: "en", text: it.ipa }), audio),
+      viEn ? null : h("p", { class: "ipa" }, h("span", { lang: "en", text: it.ipa }), say),
       h("p", { class: "ask", text: viEn ? "Từ/cụm tiếng Anh nào mang nghĩa này?" : "Nghĩa phù hợp nhất:" }),
       h("div", { class: "opts", id: "opts", role: "group", "aria-label": "Bốn lựa chọn" }, q.options.map((o, k) =>
         h("button", { type: "button", class: "opt", lang: viEn ? "en" : "vi", "aria-pressed": "false", onclick: () => choose(k) }, h("span", { class: "k", "aria-hidden": "true", text: String(k + 1) }), h("span", { text: o })))));
     if (anim) { card.classList.remove("enter"); void card.offsetWidth; card.classList.add("enter"); }
     lockQ = false; shownAt = performance.now();
-    $("live").textContent = "Câu " + (i + 1) + " trên " + n;
+    $("live").textContent = "Câu " + (i + 1) + " trên " + n + ", " + secs + " giây";
     prompt.focus({ preventScroll: true });
     tickStart();
+    qStart(secs * 1000);
+    if (!viEn && P.prefs.speak) sayItem(it, false);
   }
 
-  function choose(k) {
+  /* ---------- đồng hồ mỗi từ: dừng khi tab ẩn, hết giờ = tính sai ---------- */
+  let qT = null, qRaf = 0, qEnd = 0, qLeft = 0, qTotal = 0;
+  function qStart(ms) { qStop(); qTotal = qLeft = ms; qResume(); }
+  function qResume() {
+    if (qT || !qLeft || lockQ || !P.active || $("scrLearn").hidden || document.visibilityState !== "visible") return;
+    qEnd = performance.now() + qLeft;
+    qT = setTimeout(() => { qT = null; qLeft = 0; choose(C.TIMEOUT, true); }, qLeft);
+    const draw = () => {
+      const left = Math.max(0, qEnd - performance.now()), bar = $("qTime"), sec = $("qSec");
+      if (bar) { bar.style.width = (left / qTotal * 100) + "%"; bar.classList.toggle("low", left < 3000); }
+      if (sec) { sec.textContent = Math.ceil(left / 1000) + "s"; sec.classList.toggle("low", left < 3000); }
+    };
+    draw(); clearInterval(qRaf); qRaf = setInterval(draw, 200);
+  }
+  function qPause() { if (qT) { clearTimeout(qT); qT = null; clearInterval(qRaf); qLeft = Math.max(0, qEnd - performance.now()); } }
+  function qStop() { if (qT) clearTimeout(qT); qT = null; clearInterval(qRaf); qLeft = 0; }
+
+  function choose(k, timeout) {
     const r = P.active;
-    if (!r || lockQ || $("scrLearn").hidden || performance.now() - shownAt < MIN_GAP) return;
-    const i = r.answers.length;
+    if (!r || lockQ || $("scrLearn").hidden || (!timeout && performance.now() - shownAt < MIN_GAP)) return;
+    const i = r.answers.length, q = r.questions[i];
     if (!C.recordAnswer(r, i, k)) return;
     lockQ = true;
-    tickStop();
+    qStop(); tickStop();
     save();                                   // lưu ngay: tải lại lúc đang chuyển thẻ không ghi trùng
     const opts = $("opts");
     opts.classList.add("locked");
     opts.querySelectorAll(".opt").forEach((b, j) => { b.disabled = true; if (j === k) { b.classList.add("picked"); b.setAttribute("aria-pressed", "true"); } });
-    $("live").textContent = "Đã chọn";
+    if (timeout) { const sec = $("qSec"); if (sec) sec.textContent = "Hết giờ"; }
+    tone(k === q.answer);                     // tiếng đúng/sai ngay sau mỗi câu (đáp án đúng vẫn để cuối lượt mới chữa)
+    $("live").textContent = timeout ? "Hết giờ" : "Đã chọn";
+    let wait = C.SPEEDS[P.prefs.speed] || C.SPEEDS.fast;
+    if (r.dir === "vi-en" && P.prefs.speak && canSay(BYID[q.itemId])) { sayItem(BYID[q.itemId], false); wait = Math.max(wait, 900); }   // Việt → Anh: đọc sau khi chọn để không lộ đáp án
     clearTimeout(advT);
-    advT = setTimeout(() => { advT = null; if (P.active !== r) return; if (C.isComplete(r)) finishRound(); else renderQuestion(true); }, C.SPEEDS[P.prefs.speed] || C.SPEEDS.fast);
+    advT = setTimeout(() => { advT = null; if (P.active !== r) return; if (C.isComplete(r)) finishRound(); else renderQuestion(true); }, wait);
   }
-  function play(url) { try { const a = new Audio(url); a.play().catch(() => toast("Chưa phát được âm thanh.")); } catch (e) { toast("Chưa phát được âm thanh."); } }
+
+  /* ---------- âm thanh: tiếng đúng/sai tổng hợp tại máy, đọc từ bằng giọng có sẵn của thiết bị (không gọi dịch vụ ngoài) ---------- */
+  let actx = null;
+  function audioCtx() {
+    if (!actx) { const A = window.AudioContext || window.webkitAudioContext; if (!A) return null; try { actx = new A(); } catch (e) { return null; } }
+    if (actx.state === "suspended") actx.resume().catch(() => {});
+    return actx;
+  }
+  function tone(ok) {
+    if (!P.prefs.sound) return;
+    const ctx = audioCtx(); if (!ctx) return;
+    const notes = ok ? [[784, 0, .09], [1175, .08, .16]] : [[220, 0, .2], [175, .1, .26]];
+    notes.forEach(([f, start, end]) => {
+      const o = ctx.createOscillator(), g = ctx.createGain(), t = ctx.currentTime + start;
+      o.type = ok ? "sine" : "triangle"; o.frequency.setValueAtTime(f, t);
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(ok ? 0.18 : 0.22, t + 0.015); g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + end);
+      o.connect(g).connect(ctx.destination); o.start(t); o.stop(ctx.currentTime + end + 0.02);
+    });
+  }
+  const hasTTS = () => "speechSynthesis" in window && typeof SpeechSynthesisUtterance === "function";
+  const canSay = it => !!it && (C.isSafeAudioUrl(it.audioUrl) || hasTTS());
+  let voice = null;
+  function pickVoice() {
+    if (!hasTTS()) return null;
+    const vs = speechSynthesis.getVoices().filter(v => /^en[-_]/i.test(v.lang));
+    // giọng nữ, sáng, vui thường có sẵn: iPhone/Mac (Samantha…), Android/Chrome (Google US English), Windows (Aria, Jenny)
+    const BRIGHT = [/aria.*natural|aria online/i, /jenny/i, /samantha/i, /google us english/i, /ava|allison|susan|zira|karen|moira|tessa/i, /female/i];
+    for (const re of BRIGHT) { voice = vs.find(v => re.test(v.name)); if (voice) return voice; }
+    voice = vs.find(v => /en[-_]US/i.test(v.lang) && v.localService) || vs.find(v => /en[-_](US|GB)/i.test(v.lang)) || vs[0] || null;
+    return voice;
+  }
+  if (hasTTS()) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+  // Ưu tiên audio giáo viên thu (audioUrl); chưa có thì dùng giọng đọc của trình duyệt.
+  function sayItem(it, manual) {
+    if (!it || (!manual && !P.prefs.speak)) return;
+    if (C.isSafeAudioUrl(it.audioUrl)) { try { const a = new Audio(it.audioUrl); a.play().catch(() => { if (manual) toast("Chưa phát được âm thanh."); }); } catch (e) {} return; }
+    if (!hasTTS()) { if (manual) toast("Thiết bị này chưa hỗ trợ đọc phát âm."); return; }
+    try {
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(it.term);
+      u.lang = (voice && voice.lang) || "en-US"; if (voice) u.voice = voice;
+      u.pitch = 1.35; u.rate = 1.0; u.volume = 1;   // giọng cao, tươi, phấn khích nhưng vẫn rõ để học viên nghe kịp
+      speechSynthesis.speak(u);
+    } catch (e) { if (manual) toast("Chưa đọc được phát âm."); }
+  }
+  function speakerIcon(off) {
+    const s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    s.setAttribute("viewBox", "0 0 24 24"); s.setAttribute("aria-hidden", "true"); s.setAttribute("class", "spk");
+    const d = off ? ["M4 9h4l5-4v14l-5-4H4z", "M17 9l4 6M21 9l-4 6"] : ["M4 9h4l5-4v14l-5-4H4z", "M16.5 8.5a5 5 0 0 1 0 7", "M19 6a8.5 8.5 0 0 1 0 12"];
+    d.forEach(x => { const p = document.createElementNS("http://www.w3.org/2000/svg", "path"); p.setAttribute("d", x); s.appendChild(p); });
+    return s;
+  }
+  function renderMute() {
+    const on = P.prefs.sound || P.prefs.speak, b = $("mute");
+    fill(b, speakerIcon(!on));
+    b.setAttribute("aria-pressed", String(!on));
+    b.setAttribute("aria-label", on ? "Tắt tiếng và tự đọc" : "Bật tiếng và tự đọc");
+  }
+  function toggleMute() {
+    const on = !(P.prefs.sound || P.prefs.speak);
+    P.prefs.sound = P.prefs.speak = on; save(); renderMute();
+    if (!on && hasTTS()) speechSynthesis.cancel();
+    toast(on ? "Đã bật tiếng đúng/sai và tự đọc từ." : "Đã tắt tiếng.");
+  }
 
   function quitLearn() {
-    clearTimeout(advT); advT = null; tickStop(); save();
+    clearTimeout(advT); advT = null; qStop(); tickStop(); save();
+    if (hasTTS()) speechSynthesis.cancel();
     show("scrHome"); renderHome();
     toast("Đã lưu. Bấm Tiếp tục để học nốt lượt.");
   }
 
   function finishRound() {
     const r = P.active; if (!r) return;
-    clearTimeout(advT); advT = null; tickStop();
+    clearTimeout(advT); advT = null; qStop(); tickStop();
     r.finishedAt = Date.now();
     const d = today();
     P.history.push(r); P.active = null;
@@ -300,8 +393,10 @@
     if (!it) return h("div", { class: "card ritem", text: "Mục " + x.itemId + " không còn trong học liệu." });
     const viEn = r.dir === "vi-en";
     return h("article", { class: "card ritem" + (x.correct ? "" : " bad") },
-      h("div", { class: "rt" }, h("b", { lang: "en", text: it.term }), h("span", { class: "ipa2", lang: "en", text: it.ipa }), h("span", { class: "pos", text: it.partOfSpeech }),
-        h("span", { class: "mark", text: x.correct ? "Đúng" : (x.chosenText == null ? "Chưa trả lời" : "Sai") })),
+      h("div", { class: "rt" }, h("b", { lang: "en", text: it.term }), h("span", { class: "ipa2", lang: "en", text: it.ipa }),
+        canSay(it) ? h("button", { type: "button", class: "say sm", onclick: () => sayItem(it, true), "aria-label": "Nghe phát âm " + it.term }, speakerIcon()) : null,
+        h("span", { class: "pos", text: it.partOfSpeech }),
+        h("span", { class: "mark", text: x.correct ? "Đúng" : x.timedOut ? "Hết giờ" : (x.chosenText == null ? "Chưa trả lời" : "Sai") })),
       h("dl", null,
         h("dt", { text: "Nghĩa" }), h("dd", { text: it.meaningVi + (it.contextLabel ? " (ngữ cảnh: " + it.contextLabel + ")" : "") }),
         !x.correct && x.chosenText != null ? [h("dt", { text: "Bạn chọn" }), h("dd", { class: "you", lang: viEn ? "en" : "vi", text: x.chosenText })] : null,
@@ -413,12 +508,13 @@
   /* ---------- sự kiện chung ---------- */
   function bindGlobal() {
     $("quit").onclick = quitLearn;
+    $("mute").onclick = toggleMute;
     document.addEventListener("keydown", e => {
       if ($("scrLearn").hidden || e.altKey || e.ctrlKey || e.metaKey) return;
       const t = e.target; if (t && /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return;
       if (/^[1-4]$/.test(e.key)) { e.preventDefault(); choose(Number(e.key) - 1); }
     });
-    document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") { if (tStart != null) { tickStop(); save(); } } else tickStart(); });
+    document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") { qPause(); if (tStart != null) { tickStop(); save(); } } else { tickStart(); qResume(); } });
     window.addEventListener("pagehide", () => { if (tStart != null) { tickStop(); save(); } });
     window.addEventListener("storage", e => {
       if (e.key === "az_acad") { renderWho(); if (!$("scrHome").hidden) renderHome(); }

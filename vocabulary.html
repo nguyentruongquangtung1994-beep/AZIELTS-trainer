@@ -34,13 +34,15 @@
       <div class="status" id="status"></div>
 
       <details class="setup card" id="setup">
-        <summary><span><b id="hHome">Tùy chỉnh lượt học</b><small>Chương trình, chủ đề, độ khó, số từ, chiều luyện</small></span><span class="chev" aria-hidden="true"></span></summary>
+        <summary><span><b id="hHome">Tùy chỉnh lượt học</b><small>Chủ đề, độ khó, số từ, thời gian, âm thanh</small></span><span class="chev" aria-hidden="true"></span></summary>
         <div class="setup-in">
           <fieldset><legend>Chương trình</legend><div class="seg" id="fExam"></div></fieldset>
           <fieldset><legend>Chủ đề</legend><div class="chips" id="fTopic"></div></fieldset>
           <fieldset><legend>Độ khó <small>(mức học liệu do AZ phân loại, không quy đổi ra điểm thi)</small></legend><div class="seg" id="fLevel"></div></fieldset>
           <fieldset><legend>Số từ mỗi lượt</legend><div class="seg" id="fCount"></div></fieldset>
           <fieldset><legend>Chiều luyện</legend><div class="seg" id="fDir"></div></fieldset>
+          <fieldset><legend>Thời gian mỗi từ <small>(hết giờ tính là sai)</small></legend><div class="seg" id="fTimer"></div></fieldset>
+          <fieldset><legend>Âm thanh <small>(đọc bằng giọng có sẵn của thiết bị)</small></legend><div class="seg" id="fSound"></div></fieldset>
           <fieldset><legend>Tốc độ chuyển thẻ</legend><div class="seg" id="fSpeed"></div></fieldset>
           <div class="avail" id="avail" role="status" aria-live="polite"></div>
         </div>
@@ -59,6 +61,7 @@
       <button type="button" class="icon-btn" id="quit" aria-label="Thoát lượt, tiến độ vẫn được lưu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
       <div class="lmeta"><b id="lTitle"></b><span id="lSub"></span></div>
       <span class="lcount" id="lCount"></span>
+      <button type="button" class="icon-btn" id="mute" aria-pressed="false" aria-label="Tắt tiếng và tự đọc"></button>
     </div>
     <div class="bar" role="progressbar" aria-label="Tiến độ lượt học" aria-valuemin="0" id="lBar"><i id="lFill"></i></div>
     <div class="qwrap"><article class="qcard" id="qcard"></article></div>

@@ -14,6 +14,8 @@
   const DIRS = ["en-vi", "vi-en"];
   const COUNTS = [10, 20, 30];
   const SPEEDS = { fast: 350, medium: 650, slow: 1000 };
+  const TIMERS = [5, 8, 12];            // giây cho mỗi từ
+  const TIMEOUT = -1;                    // lựa chọn đặc biệt: hết giờ, tính như sai
   const INTERVALS = [1, 3, 7];           // gợi ý ôn sau 1, 3, 7 ngày
   const REQ_STR = ["id", "exam", "topic", "level", "term", "ipa", "partOfSpeech", "meaningVi",
     "exampleEn", "exampleVi", "usageNoteVi", "contentVersion", "sourceType", "reviewStatus"];
@@ -152,12 +154,12 @@
       answers: [], elapsedMs: 0, startedAt: Date.now(), finishedAt: null
     };
   }
-  // Ghi đáp án cho câu qIndex. Chỉ nhận khi đúng là câu đang chờ (chặn bấm 2 lần / tải lại lúc chuyển thẻ).
+  // Ghi đáp án cho câu qIndex (choice = TIMEOUT khi hết giờ). Chỉ nhận khi đúng là câu đang chờ (chặn bấm 2 lần / tải lại lúc chuyển thẻ).
   function recordAnswer(round, qIndex, choice) {
     if (!round || round.finishedAt) return false;
     if (qIndex !== round.answers.length || qIndex >= round.questions.length) return false;
     const q = round.questions[qIndex];
-    if (!Number.isInteger(choice) || choice < 0 || choice >= q.options.length) return false;
+    if (!Number.isInteger(choice) || choice < TIMEOUT || choice >= q.options.length) return false;
     round.answers.push({ itemId: q.itemId, choice });
     return true;
   }
@@ -165,7 +167,7 @@
   function scoreRound(round) {
     const rows = round.questions.map((q, i) => {
       const a = round.answers[i];
-      return { itemId: q.itemId, chosenText: a ? q.options[a.choice] : null, correctText: q.options[q.answer], correct: !!a && a.choice === q.answer };
+      return { itemId: q.itemId, chosenText: a && a.choice >= 0 ? q.options[a.choice] : null, timedOut: !!a && a.choice === TIMEOUT, correctText: q.options[q.answer], correct: !!a && a.choice === q.answer };
     });
     const total = rows.length, correct = rows.filter(r => r.correct).length;
     return { total, correct, pct: total ? Math.round(correct / total * 100) : 0, rows, wrongIds: rows.filter(r => !r.correct).map(r => r.itemId) };
@@ -196,12 +198,12 @@
 
   /* ---------- tiến độ: kiểm tra, gộp ---------- */
   function emptyProgress() {
-    return { schema: "azv-progress", version: 1, updatedAt: null, prefs: { exam: null, topic: "all", level: "all", count: 10, dir: "en-vi", speed: "fast" }, active: null, history: [], words: {}, days: [], lastPracticed: null };
+    return { schema: "azv-progress", version: 1, updatedAt: null, prefs: { exam: null, topic: "all", level: "all", count: 10, dir: "en-vi", speed: "fast", timer: 8, sound: true, speak: true }, active: null, history: [], words: {}, days: [], lastPracticed: null };
   }
   function validRound(r) {
     return r && typeof r === "object" && typeof r.id === "string" && Array.isArray(r.questions) && Array.isArray(r.answers) &&
       r.questions.every(q => q && typeof q.itemId === "string" && Array.isArray(q.options) && q.options.length === 4 && q.options.every(o => typeof o === "string") && Number.isInteger(q.answer) && q.answer >= 0 && q.answer < 4) &&
-      r.answers.length <= r.questions.length && r.answers.every((a, i) => a && a.itemId === r.questions[i].itemId && Number.isInteger(a.choice) && a.choice >= 0 && a.choice < 4) && !hasDuplicateItems(r);
+      r.answers.length <= r.questions.length && r.answers.every((a, i) => a && a.itemId === r.questions[i].itemId && Number.isInteger(a.choice) && a.choice >= TIMEOUT && a.choice < 4) && !hasDuplicateItems(r);
   }
   function validateProgress(p) {
     const errors = [];
@@ -237,7 +239,7 @@
     return "Nhiều từ trong lượt này còn mới với bạn, điều đó bình thường ở lần đầu. Đọc ví dụ và lưu ý dễ nhầm bên dưới, rồi ôn lại từ sai.";
   }
 
-  return { EXAMS, LEVELS, LEVEL_VI, DIRS, COUNTS, SPEEDS, INTERVALS, norm, makeRng, shuffle, localDate, addDays, streak,
+  return { EXAMS, LEVELS, LEVEL_VI, DIRS, COUNTS, SPEEDS, TIMERS, TIMEOUT, INTERVALS, norm, makeRng, shuffle, localDate, addDays, streak,
     validateItem, validateBank, isSafeAudioUrl, filterItems, makeQuestion, buildRound, recordAnswer, isComplete, scoreRound,
     buildReviewRound, hasDuplicateItems, applySchedule, dueIds, emptyProgress, validateProgress, validRound, mergeProgress, comment };
 });

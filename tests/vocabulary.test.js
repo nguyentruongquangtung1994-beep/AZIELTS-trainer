@@ -155,3 +155,19 @@ test("kiểm tra file tiến độ và gộp khi nhập", () => {
   const broken = clone(b); broken.history[0].answers = [{ itemId: "sai", choice: 0 }];
   assert.equal(C.validateProgress(broken).ok, false);
 });
+
+test("hết giờ: ghi TIMEOUT, tính như sai, vào danh sách ôn, file tiến độ vẫn hợp lệ", () => {
+  const r = C.buildRound(ITEMS, { exam: "ielts", count: 10 }, C.makeRng(51)).round;
+  assert.equal(C.recordAnswer(r, 0, C.TIMEOUT), true);
+  assert.equal(C.recordAnswer(r, 1, -2), false, "giá trị lạ bị từ chối");
+  r.questions.slice(1).forEach((q, i) => C.recordAnswer(r, i + 1, q.answer));
+  const s = C.scoreRound(r);
+  assert.equal(s.correct, 9);
+  assert.equal(s.rows[0].timedOut, true);
+  assert.equal(s.rows[0].chosenText, null);
+  assert.deepEqual(s.wrongIds, [r.questions[0].itemId]);
+  const p = C.emptyProgress(); p.history.push(r);
+  assert.ok(C.validateProgress(JSON.parse(JSON.stringify(p))).ok);
+  assert.equal(p.prefs.timer, 8);
+  assert.deepEqual(C.TIMERS, [5, 8, 12]);
+});
