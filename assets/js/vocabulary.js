@@ -408,7 +408,7 @@
   /* ---------- cổng mở khoá sau 10 từ miễn phí ---------- */
   function focusGate() { const f = document.querySelector(".gate input, .gate a"); const g = document.querySelector(".gate"); if (g) g.scrollIntoView({ block: "start", behavior: "smooth" }); if (f) setTimeout(() => f.focus({ preventScroll: true }), 300); }
   function gateCard(where) {
-    const acc = access(), academy = (CFG.academy || "academy.html") + "?next=" + encodeURIComponent("vocabulary.html");
+    const acc = access(), academy = (CFG.academy || "academy.html") + "?next=" + encodeURIComponent(location.pathname);   // Academy chỉ chuyển về trang cùng tên miền
     if (acc.acad.state === "expired") {
       return h("div", { class: "card gate" }, h("h2", { text: "Tài khoản dùng thử đã hết hạn" }),
         h("p", { class: "sub", text: "Bạn đã học xong lượt miễn phí. Để học tiếp AZ Vocabulary và các chương trình trong AZIELTS Academy, liên hệ AZEnglish để đăng ký khoá học hoặc gia hạn." }),
@@ -524,6 +524,8 @@
   }
 
   async function init() {
+    const logo = document.querySelector(".logo");
+    if (CFG.home) { logo.href = CFG.home; logo.setAttribute("aria-label", CFG.homeLabel || "Về trang chủ"); } else if (CFG.academy) logo.href = CFG.academy;
     bindGlobal(); bindData();
     const st = S.load(); P = st.progress;
     renderWho();
