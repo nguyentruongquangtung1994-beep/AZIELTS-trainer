@@ -493,27 +493,33 @@ body{background:#FDFCF9}
 .j-rank b{color:var(--ink)}
 .j-res{margin-top:16px}
 .j-mock{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-top:12px;padding:12px 14px;border-radius:12px;border:1px dashed var(--gold);background:var(--gold-soft);color:var(--ink);text-decoration:none}.j-mock span{font-weight:700;color:#7A5B12}.j-mock small{flex-basis:100%;color:var(--ink-3)}
-.rp td,.rp th{text-align:center}.rp td:first-child,.rp th:first-child{text-align:left}.rp .hi{color:var(--ok);font-weight:800}.rp .mid{color:#B7791F;font-weight:800}.rp .lo{color:var(--bad);font-weight:800}.rp tr.all td{background:var(--gold-soft);font-weight:700}
+.rp td,.rp th{text-align:center}.rp td:first-child,.rp th:first-child{text-align:left}.rp .hi{color:var(--ok);font-weight:800}.rp .mid{color:#B7791F;font-weight:800}.rp .lo{color:var(--red-d);font-weight:800}.rp tr.all td{background:var(--gold-soft);font-weight:700}
 .j-board{margin-top:16px;padding:24px;border-radius:18px;background:linear-gradient(165deg,#13233B,#0B1424);border:1px solid rgba(217,179,106,.35);color:#F4F1EA}
 .jb-h{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:18px}.jb-h h3{font-family:var(--serif);font-size:24px;margin:4px 0 0;color:#fff}
 .j-board .j-tabs button{background:rgba(255,255,255,.06);border-color:rgba(217,179,106,.4);color:#F4F1EA}.j-board .j-tabs button[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#fff}
-.podium{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:end;max-width:640px;margin:0 auto}
-.pd{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;min-width:0}
-.pd .md{font-size:28px;line-height:1}.pd .av{display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:#1E3354;border:2px solid #C9A24B;font-weight:800;font-size:22px;color:#F3D99A}
-.pd.p1 .av{width:72px;height:72px;font-size:28px;border-width:3px;box-shadow:0 0 0 6px rgba(217,179,106,.18)}
-.pd b{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:15px;color:#fff}.pd .px{font-size:13px;font-weight:700;color:#E9C77A}
-.pd .st{width:100%;margin-top:6px;border-radius:12px 12px 0 0;display:grid;place-items:center;font-family:var(--serif);font-size:28px;font-weight:700;color:#0B1424;background:linear-gradient(180deg,#E9C77A,#B8913A)}
-.pd.p1 .st{height:110px}.pd.p2 .st{height:78px;background:linear-gradient(180deg,#E5E7EB,#AEB4BF)}.pd.p3 .st{height:58px;background:linear-gradient(180deg,#E8B98A,#B07745)}
-.pd.me b{color:#F3D99A}.pd.empty{opacity:.45}
-.jb-list{list-style:none;margin:16px auto 0;padding:0;display:grid;gap:6px;max-width:640px}
-.jb-list li{display:grid;grid-template-columns:28px 34px minmax(0,1fr) minmax(60px,30%) 72px;align-items:center;gap:10px;padding:8px 12px;border-radius:12px;background:rgba(255,255,255,.05)}
-.jb-list li.me{background:rgba(217,179,106,.2);outline:1px solid rgba(217,179,106,.6)}
-.jb-list .n{font-weight:800;color:#C9CFDA;text-align:center}.jb-list .av{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#1E3354;color:#F3D99A;font-weight:800}
-.jb-list .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}.jb-list .bar{height:6px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}.jb-list .bar i{display:block;height:100%;background:linear-gradient(90deg,#B8913A,#E9C77A)}
-.jb-list .jx{font-weight:700;font-variant-numeric:tabular-nums;color:#E9C77A;text-align:right;white-space:nowrap}
+.jb-list{list-style:none;margin:0 auto;padding:0;display:grid;gap:6px;max-width:720px}
+.jb-list li{display:grid;grid-template-columns:34px 34px minmax(0,1fr) auto;grid-template-areas:"n av nm jx" "n av bar bar";align-items:center;column-gap:10px;row-gap:5px;padding:9px 12px;border-radius:12px;background:rgba(255,255,255,.05)}
+.jb-list li.t1{background:rgba(217,179,106,.16)}.jb-list li.t2,.jb-list li.t3{background:rgba(255,255,255,.08)}
+.jb-list li.me{background:rgba(217,179,106,.24);outline:1.5px solid rgba(233,199,122,.8)}
+.jb-list .n{grid-area:n;font-weight:800;color:#C9CFDA;text-align:center;font-variant-numeric:tabular-nums}.jb-list li.t1 .n,.jb-list li.t2 .n,.jb-list li.t3 .n{font-size:22px}
+.jb-list .av{grid-area:av;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#1E3354;border:1.5px solid rgba(201,162,75,.6);color:#F3D99A;font-weight:800}
+.jb-list .nm{grid-area:nm;min-width:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px}.jb-list .nm b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700;color:#fff;max-width:100%}
+.jb-list .nm small{font-size:12px;color:#AEB6C4;min-width:0}.jb-list .nm small>*{white-space:nowrap}.jb-list .nm small em{font-style:normal;color:#8FD3A8;font-weight:700}.jb-list .nm small .full{color:#E9C77A;font-weight:700}
+.jb-list .bar{grid-area:bar;height:10px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}.jb-list .bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#8A6A22,#E9C77A)}
+.jb-list li.me .bar i{background:linear-gradient(90deg,#C8102E,#F06A7A)}
+.jb-list .jx{grid-area:jx;font-weight:800;font-variant-numeric:tabular-nums;color:#E9C77A;text-align:right;white-space:nowrap}
+.jb-list li.gap{display:block;text-align:center;background:none;padding:0;color:#7F8AA0;letter-spacing:4px}
+.jb-empty{margin:0;padding:18px;border-radius:12px;background:rgba(255,255,255,.05);text-align:center;color:#C9CFDA}
+.jb-all{display:block;margin:12px auto 0;padding:8px 16px;border-radius:999px;border:1px solid rgba(217,179,106,.5);background:transparent;color:#F3D99A;font-weight:700;cursor:pointer}
 .jb-f{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.1);font-size:13.5px;color:#C9CFDA}.jb-f p{margin:0}.jb-f b{color:#fff}
 .j-board .j-tabs button{white-space:nowrap}
-@media (max-width:560px){.jb-h{display:block}.jb-h h3{font-size:20px}.j-board .j-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:12px}.j-board .j-tabs button{padding:8px 6px;font-size:13px}.j-board{padding:18px}.pd .av{width:44px;height:44px;font-size:18px}.pd.p1 .av{width:56px;height:56px}.pd.p1 .st{height:84px}.pd.p2 .st{height:60px}.pd.p3 .st{height:44px}.jb-list li{grid-template-columns:24px 30px minmax(0,1fr) 68px}.jb-list .bar{display:none}}
+@media (max-width:560px){.jb-h{display:block}.jb-h h3{font-size:20px}.j-board .j-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:12px}.j-board .j-tabs button{padding:8px 6px;font-size:13px}.j-board{padding:18px 12px}.jb-list li{grid-template-columns:26px 30px minmax(0,1fr) auto;column-gap:8px;padding:8px 10px}.jb-list .av{width:30px;height:30px}.jb-list li.t1 .n,.jb-list li.t2 .n,.jb-list li.t3 .n{font-size:19px}}
+.j-remind{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;margin-top:16px;padding:18px 20px;border-radius:16px;border:1.5px solid var(--red);background:var(--red-soft)}
+.j-remind .eyebrow{color:var(--red-d)}.j-remind h3{margin:4px 0 4px;font-family:var(--serif);font-size:21px;color:var(--ink)}.j-remind p{margin:0;color:var(--ink-2);font-size:14.5px}.j-remind p b{color:var(--red-d)}
+.j-rb{display:flex;flex-wrap:wrap;gap:8px}.j-rb .btn{min-height:42px;padding:8px 16px;font-size:14px}
+.j-ok{margin-top:16px;padding:12px 16px;border-radius:14px;border:1px solid #BFE3CC;background:#EEF8F1;color:#1E5B36;font-size:14.5px}.j-ok span{color:var(--ink-2)}
+.j-m .req{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:999px;background:var(--red);color:#fff;font-size:11px;font-weight:700;font-style:normal;vertical-align:2px}.j-m.done .req{background:var(--ok)}
+@media (max-width:560px){.j-remind{padding:16px}.j-rb,.j-rb .btn{width:100%}}
 
 .stamps{display:flex;flex-wrap:wrap;gap:8px}
 .stamp{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;font-size:12.5px;font-weight:700;border:1.5px dashed var(--line-2);color:var(--ink-3)}
@@ -609,7 +615,7 @@ html body a.card > .tn{display:flex;align-items:center}
       </div>
     </section>
 
-    <div class="wrap"><div class="stats" id="stats"><div><b>6</b><span>chương trình trong một tài khoản</span></div><div><b>2.295</b><span>cụm từ học thuật theo chủ đề</span></div><div><b>65</b><span>bài mẫu Writing Task 1 và 2</span></div><div><b>240</b><span>buổi theo lộ trình chuẩn</span></div></div></div>
+    <div class="wrap"><div class="stats" id="stats"><div><b>7</b><span>chương trình trong một tài khoản</span></div><div><b>2.295</b><span>cụm từ học thuật theo chủ đề</span></div><div><b>65</b><span>bài mẫu Writing Task 1 và 2</span></div><div><b>240</b><span>buổi theo lộ trình chuẩn</span></div></div></div>
 
     <section class="sec" id="thanh-tich">
       <div class="wrap">
@@ -818,10 +824,11 @@ const APPS = [
   { id: "writing", cv: "Writing", sub: "Task 1 · Task 2", name: "Writing Studio", hue: "#D7192D", ic: "pen", href: "writing-studio.html", desc: "Nhiệm vụ mỗi ngày, công thức theo dạng đề Task 1 và Task 2, chấm band ngay sau khi nộp.", badge: "Mới" },
   { id: "rl", cv: "Reading", sub: "Cambridge 16 – 21 · Actual Test", name: "Reading & Listening", hue: "#1D4ED8", ic: "book", href: "index.html", desc: "Đề Cambridge IELTS 16–21, Reading Actual Test 5 và Listening Actual Test Vol 7: bấm giờ, chấm điểm, chỉ vị trí đáp án trong bài." },
   { id: "gap", cv: "Listening", sub: "Cambridge 19 – 21", name: "Listening Lab", hue: "#6D28D9", ic: "head", href: "listening-gapfill.html", desc: "Nghe transcript khoét lỗ Cambridge 19–21: chọn đáp án và chép chính tả với audio gốc." },
+  { id: "vocab", cv: "Vocabulary", sub: "TOEIC · IELTS theo chủ đề", name: "AZ Vocabulary", hue: "#0F1B2D", ic: "book", href: "vocabulary.html", open: true, desc: "Lướt thẻ từ vựng TOEIC và IELTS theo chủ đề: nhìn từ, chọn nghĩa, thẻ tự chuyển; xong lượt mới chữa bài và ôn lại từ sai. Học thử 10 từ không cần đăng nhập.", badge: "Học thử miễn phí" },
   { id: "test", cv: "Placement", sub: "Đầu vào 4 kỹ năng", name: "Kiểm tra trình độ", hue: "#B7851A", ic: "target", href: "#kiem-tra", desc: "Bài kiểm tra đầu vào 4 kỹ năng: Listening, Reading đề Cambridge 21, Writing tự chọn đề, Speaking tại trung tâm.", badge: "Đầu vào" },
 ];
 const PLANS = [
-  { k: "trial", name: "Dùng thử", lvl: "Miễn phí", price: "7 ngày trải nghiệm nền tảng, không cần thanh toán.", items: ["Mở đầy đủ 6 chương trình luyện tập", "Chấm band Writing tự động", "Đề Cambridge Reading và Listening", "Học cụm từ, thử thách 60 giây"] },
+  { k: "trial", name: "Dùng thử", lvl: "Miễn phí", price: "7 ngày trải nghiệm nền tảng, không cần thanh toán.", items: ["Mở đầy đủ 7 chương trình luyện tập", "Chấm band Writing tự động", "Đề Cambridge Reading và Listening", "Học cụm từ, thử thách 60 giây"] },
   { k: "standard", name: "Lộ trình 240 buổi", lvl: "Standard", price: "240 buổi × 90 phút, 2 buổi mỗi tuần.", rate: "150.000đ", items: ["Lớp tối đa 12 học viên", "Thi thử định kỳ, báo cáo band cho phụ huynh", "Chưa đạt mốc: học bổ trợ 4 buổi", "CLB Tiếng Anh, CLB Public Speaking & Debate hằng tuần", "Giải đáp thắc mắc 24/7", "Tài khoản AZIELTS Academy suốt khoá học"] },
   { k: "elite", name: "Elite 6.5+", lvl: "Kèm sát · cam kết đầu ra", price: "240 buổi lớp + 5 buổi kèm 1-1, tổng 367,5 giờ.", rate: "250.000đ", seats: "Chỉ 7 học viên mỗi lớp", items: ["5 buổi kèm riêng 1-1 cho mỗi học viên", "Lộ trình cá nhân do thầy Quang Tùng xây dựng", "Giáo viên chấm từng bài Writing, thi thử 4 kỹ năng hằng tháng", "Phòng thi Speaking mô phỏng trước kỳ thi thật", "Cam kết bằng điểm thi thật, tặng 1 lần lệ phí thi", "Đủ điều kiện mà chưa đạt 6.5: học lại miễn phí, tối đa 6 tháng", "Tặng Public Speaking 4 buổi kèm riêng, có chứng nhận", "Toàn bộ quyền lợi gói Lộ trình 240 buổi"] }
 ];
@@ -865,8 +872,8 @@ function appCard(a, guest, n) {
   const no = String(n + 1).padStart(2, "0");
   const inner = `<span class="cv" style="--hue:${a.hue}"><span class="cv-n">${no}</span><span class="cv-t">${esc(a.cv)}</span><span class="cv-s">${esc(a.sub)}</span></span><span class="app-b"><h3>${esc(a.name)}</h3><p>${esc(a.desc)}</p>`;
   const tag = a.badge ? `<span class="tagx new">${esc(a.badge)}</span>` : "";
-  if (guest) return `<button type="button" class="app" data-auth="login">${tag}${inner}<span class="go">Đăng nhập để học ${azi("arrow")}</span></span></button>`;
-  return `<a class="app" href="${a.href}">${tag}${inner}<span class="go">Vào học ${azi("arrow")}</span></span></a>`;
+  if (guest && !a.open) return `<button type="button" class="app" data-auth="login">${tag}${inner}<span class="go">Đăng nhập để học ${azi("arrow")}</span></span></button>`;
+  return `<a class="app" href="${a.href}">${tag}${inner}<span class="go">${guest ? "Học thử 10 từ" : "Vào học"} ${azi("arrow")}</span></span></a>`;
 }
 function renderGuest() {
   $("#appsGuest").innerHTML = APPS.map((a, n) => appCard(a, true, n)).join("");
@@ -977,7 +984,7 @@ const JRULES = [["Day Mission: hoàn thành một ngày học (lần đầu)", "
   ["Nộp bài Writing được chấm band (tối đa 2 bài mỗi ngày)", "40 + 10 / 20 / 30 khi band ≥ 5 / 6 / 7"], ["Đủ 3 nhiệm vụ trong ngày", "+20"], ["Chuỗi ngày học liên tiếp", "+2 × số ngày (tối đa +20)"],
   ["Có mặt buổi học trên lớp", "20"], ["Ngôi sao buổi học (giáo viên chọn)", "+30"], ["Thi thử 4 kỹ năng hằng tháng (giáo viên nhập): mỗi 0.5 band tăng thêm", "+100"]];
 const JAUTO = ["R1", "R30", "L1", "L30", "W1", "W6", "S7", "S30", "X1K", "STAR", "C16"];
-let JD = null, JP = "week", JLOAD = false;
+let JD = null, JP = "week", JLOAD = false, JSCROLL = false;
 const fmtN = n => Number(n || 0).toLocaleString("vi-VN");
 const SKTY = {"1":[["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-match"],["R","R-mfeat"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-fill"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-fill"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-fill"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-fill"],["R","R-tfng"],["L","L-fill"],["R","R-fill"],["L","L-fill"],["R","R-fill"],["R","R-fill"],["R","R-fill"],["R","R-fill"],["R","R-fill"]],"2":[["L","L-fill"],["R","R-fill"],["L","L-match"],["R","R-tfng"],["L","L-map"],["R","R-bank"],["L","L-multi"],["R","R-ynng"],["L","L-match"],["R","R-mcq"],["L","L-map"],["R","R-mfeat"],["L","L-multi"],["R","R-multi"],["L","L-match"],["R","R-minfo"],["L","L-map"],["R","R-fill"],["L","L-multi"],["R","R-bank"],["L","L-match"],["R","R-ynng"],["L","L-map"],["R","R-mcq"],["L","L-multi"],["R","R-mfeat"],["L","L-match"],["R","R-multi"],["L","L-map"],["R","R-minfo"],["L","L-multi"],["R","R-fill"],["L","L-match"],["R","R-bank"],["L","L-map"],["R","R-ynng"],["L","L-multi"],["R","R-mcq"],["L","L-match"],["R","R-mfeat"],["L","L-multi"],["R","R-multi"],["L","L-match"],["R","R-fill"],["L","L-multi"],["R","R-bank"],["L","L-match"],["R","R-ynng"],["L","L-multi"],["R","R-mcq"],["L","L-multi"],["R","R-mfeat"],["L","L-multi"],["R","R-fill"],["L","L-multi"],["R","R-ynng"],["L","L-multi"],["R","R-mcq"],["L","L-multi"],["R","R-mfeat"],["L","L-multi"],["R","R-fill"],["L","L-multi"],["R","R-mcq"],["L","L-multi"],["R","R-fill"],["L","L-multi"],["R","R-mcq"],["L","L-multi"],["R","R-fill"],["L","L-multi"],["R","R-fill"],["L","L-multi"],["R","R-fill"],["R","R-fill"],["R","R-fill"],["R","R-fill"]],"3":[["L","L-fill"],["R","R-fill"],["L","L-mcq"],["R","R-tfng"],["L","L-match"],["R","R-bank"],["L","L-multi"],["R","R-multi"],["L","L-fill"],["R","R-minfo"],["L","L-mcq"],["R","R-head"],["L","L-match"],["R","R-fill"],["L","L-multi"],["R","R-tfng"],["L","L-mcq"],["R","R-bank"],["L","L-match"],["R","R-multi"],["L","L-multi"],["R","R-minfo"],["L","L-mcq"],["R","R-head"],["L","L-match"],["R","R-fill"],["L","L-multi"],["R","R-tfng"],["L","L-mcq"],["R","R-bank"],["L","L-match"],["R","R-multi"],["L","L-multi"],["R","R-minfo"],["L","L-mcq"],["R","R-head"],["L","L-match"],["R","R-fill"],["L","L-multi"],["R","R-bank"],["L","L-mcq"],["R","R-multi"],["L","L-match"],["R","R-minfo"],["L","L-multi"],["R","R-fill"],["L","L-mcq"],["R","R-bank"],["L","L-match"],["R","R-multi"],["L","L-mcq"],["R","R-minfo"],["L","L-match"],["R","R-bank"],["L","L-mcq"],["R","R-multi"],["L","L-match"],["R","R-minfo"],["L","L-mcq"],["R","R-bank"],["L","L-match"],["R","R-multi"],["L","L-mcq"],["R","R-minfo"],["L","L-match"],["R","R-bank"],["L","L-mcq"],["R","R-multi"],["L","L-match"],["R","R-minfo"],["L","L-mcq"],["R","R-bank"],["L","L-match"],["R","R-multi"],["R","R-minfo"],["R","R-multi"],["R","R-minfo"],["R","R-multi"]],"4":[["L","L-fill"],["R","R-ynng"],["L","L-multi"],["R","R-mcq"],["L","L-fill"],["R","R-mfeat"],["L","L-multi"],["R","R-minfo"],["L","L-fill"],["R","R-head"],["L","L-multi"],["R","R-ynng"],["L","L-fill"],["R","R-mcq"],["L","L-multi"],["R","R-mfeat"],["L","L-fill"],["R","R-minfo"],["L","L-multi"],["R","R-ynng"],["L","L-fill"],["R","R-mcq"],["L","L-multi"],["R","R-mfeat"],["L","L-fill"],["R","R-minfo"],["L","L-multi"],["R","R-ynng"],["L","L-fill"],["R","R-mcq"],["L","L-multi"],["R","R-mfeat"],["L","L-fill"],["R","R-ynng"],["L","L-multi"],["R","R-mcq"],["L","L-fill"],["R","R-mfeat"],["L","L-multi"],["R","R-ynng"],["L","L-fill"],["R","R-mcq"],["L","L-multi"],["R","R-mfeat"],["L","L-fill"],["R","R-ynng"],["L","L-multi"],["R","R-mcq"],["L","L-fill"],["R","R-mfeat"],["L","L-multi"],["R","R-ynng"],["L","L-fill"],["R","R-mcq"],["L","L-multi"],["R","R-mfeat"],["L","L-fill"],["R","R-ynng"],["L","L-multi"],["R","R-mcq"],["L","L-fill"],["R","R-ynng"],["L","L-multi"],["R","R-mcq"],["L","L-fill"],["R","R-ynng"],["L","L-multi"],["R","R-mcq"],["L","L-multi"],["R","R-ynng"],["L","L-multi"],["R","R-mcq"],["L","L-multi"],["R","R-mcq"],["R","R-mcq"],["R","R-mcq"],["R","R-mcq"]]}, SKLEN = { 1: 78, 2: 77, 3: 78, 4: 77 };
 const TYN = { "R-tfng": "True/False/Not Given", "R-ynng": "Yes/No/Not Given", "R-fill": "Điền từ", "R-bank": "Tóm tắt chọn từ", "R-mcq": "Trắc nghiệm", "R-multi": "Chọn 2–3 đáp án", "R-head": "Nối tiêu đề đoạn", "R-minfo": "Nối thông tin với đoạn", "R-mfeat": "Nối đặc điểm",
@@ -1021,18 +1028,32 @@ function jResults(me) {
     <div><h4>Writing</h4>${wr.length ? `<ul class="jr-list">${wr.map(r => `<li><span>${esc(vnDate(r.day))}</span><b>${esc((r.note.match(/band [\d.]+/i) || ["đã nộp"])[0])}</b></li>`).join("")}</ul>` : `<p class="j-note">Chưa nộp bài Writing nào để chấm band.</p>`}</div>
   </div>`;
 }
-/* bảng xếp hạng riêng: bục top 3 + danh sách 4–10 có thanh XP + khoảng cách tới người phía trên */
-function jBoard(P, L, plabel) {
-  const top = P.top || [], max = Math.max(1, ...top.map(r => +r.xp || 0)), ini = s => esc(String(s || "?").trim().charAt(0).toUpperCase());
-  const pod = [top[1], top[0], top[2]].map((r, k) => { const n = [2, 1, 3][k]; return r ? `<div class="pd p${n}${r.me ? " me" : ""}"><span class="md">${["🥇", "🥈", "🥉"][n - 1]}</span><span class="av">${ini(r.nick)}</span><b>${esc(r.nick)}${r.me ? " (bạn)" : ""}</b><span class="px">${fmtN(r.xp)} XP</span><div class="st">${n}</div></div>` : `<div class="pd p${n} empty"><span class="av">?</span><b>Còn trống</b><div class="st">${n}</div></div>`; }).join("");
-  const rest = top.slice(3).map(r => `<li class="${r.me ? "me" : ""}"><span class="n">${r.n}</span><span class="av">${ini(r.nick)}</span><span class="nm">${esc(r.nick)}${r.me ? " (bạn)" : ""}</span><span class="bar"><i style="width:${Math.round((+r.xp || 0) / max * 100)}%"></i></span><span class="jx">${fmtN(r.xp)} XP</span></li>`).join("");
-  const above = P.rank > 1 ? top[Math.min(P.rank, top.length) - 2] : null, gap = above ? (+above.xp || 0) - (+P.xp || 0) + 1 : 0;
+/* bảng xếp hạng thanh ngang: cả chặng, mỗi người 1 thanh dài theo XP so với người dẫn đầu; chặng đông thì rút gọn quanh vị trí của bạn */
+let JBALL = false;
+function jBoard(P, L, plabel, me) {
+  const list = P.list || P.top || [], max = Math.max(1, ...list.map(r => +r.xp || 0)), ini = s => esc(String(s || "?").trim().charAt(0).toUpperCase());
+  const wk = JP === "week", need = me.weekMin || 5, mi = list.findIndex(r => r.me);
+  let show = list;
+  if (!JBALL && list.length > 15) show = mi < 12 ? list.slice(0, 12) : list.slice(0, 10).concat([null], list.slice(mi - 2, mi + 3));
+  const row = r => !r ? `<li class="gap" aria-hidden="true">•••</li>` : `<li class="${r.me ? "me " : ""}${r.n <= 3 ? "t" + r.n : ""}"><span class="n">${r.n <= 3 ? ["🥇", "🥈", "🥉"][r.n - 1] : r.n}</span><span class="av">${ini(r.nick)}</span>
+    <span class="nm"><b>${esc(r.nick)}${r.me ? " (bạn)" : ""}</b><small>${r.days == null ? "" : wk ? `<span class="${r.days >= need ? "full" : ""}">học ${r.days}/${need} ngày${r.days >= need ? " ✓" : ""}</span>` : `<span>${r.days} ngày học</span>`}${r.ok ? ` · <em>✓ xong hôm nay</em>` : ""}</small></span>
+    <span class="jx">${fmtN(r.xp)} XP</span><span class="bar"><i style="width:${Math.max(3, Math.round((+r.xp || 0) / max * 100))}%"></i></span></li>`;
+  const above = P.rank > 1 ? list[P.rank - 2] : null, gap = above ? (+above.xp || 0) - (+P.xp || 0) + 1 : 0;
   const tip = !P.rank ? `Bạn chưa có XP trong ${plabel[JP].toLowerCase()}. Làm Day Mission hôm nay để vào bảng.` : P.rank === 1 ? `Bạn đang dẫn đầu chặng ${esc(L[0])}. Giữ vững nhé!` : `Bạn đứng <b>#${P.rank}</b>/${P.of}. Còn <b>${fmtN(Math.max(1, gap))} XP</b> để vượt ${esc(above ? String(above.nick).replace(/\.$/, "") : "bạn phía trên")}.`;
-  return `<section class="j-board"><div class="jb-h"><div><span class="eyebrow">Bảng xếp hạng · chặng ${esc(L[0])}</span><h3>${plabel[JP]}: ai đang dẫn đầu?</h3></div>
+  return `<section class="j-board"><div class="jb-h"><div><span class="eyebrow">Bảng xếp hạng · chặng ${esc(L[0])}${list.length ? ` · ${list.length} bạn` : ""}</span><h3>${plabel[JP]}: ai đang dẫn đầu?</h3></div>
       <div class="j-tabs" role="group">${["week", "month", "quarter"].map(p => `<button type="button" data-jp="${p}" aria-pressed="${p === JP}">${plabel[p]}</button>`).join("")}</div></div>
-    <div class="podium">${pod}</div>
-    ${rest ? `<ol class="jb-list">${rest}</ol>` : ""}
-    <div class="jb-f"><p>${tip}</p><span>${JP === "quarter" ? "🏆 Thưởng quý (tiền mặt): 40% học trên lớp + 40% tự học online + 20% tiến bộ thi thử." : "🎁 Top 3 mỗi chặng nhận quà và giấy chứng nhận, giáo viên công bố."}</span></div></section>`;
+    ${list.length ? `<ol class="jb-list">${show.map(row).join("")}</ol>` : `<p class="jb-empty">Chưa có ai có XP trong ${plabel[JP].toLowerCase()}. Làm nhiệm vụ hôm nay để đứng đầu bảng!</p>`}
+    ${list.length > 15 ? `<button type="button" class="jb-all" data-jball>${JBALL ? "Thu gọn" : `Xem tất cả ${list.length} bạn`}</button>` : ""}
+    <div class="jb-f"><p>${tip}</p><span>${JP === "quarter" ? "🏆 Thưởng quý (tiền mặt): 40% học trên lớp + 40% tự học online + 20% tiến bộ thi thử." : JP === "week" ? `🎁 Top 3 mỗi chặng nhận quà và giấy chứng nhận, cần tự học ít nhất ${need} ngày trong tuần.` : "🎁 Top 3 mỗi chặng nhận quà và giấy chứng nhận, giáo viên công bố."}</span></div></section>`;
+}
+/* nhắc học: Day Mission + Skill Mission là 2 nhiệm vụ bắt buộc mỗi ngày */
+function jRemind(d, ms) {
+  const me = d.me, need = ms.filter(m => m.main && !d.today[m.k]);
+  if (!need.length) return `<div class="j-ok">✅ <b>Đã xong 2 nhiệm vụ bắt buộc hôm nay.</b> <span>Chuỗi ${me.streak} ngày học. Hẹn bạn ngày mai!</span></div>`;
+  const now = new Date(), left = 24 * 60 - now.getHours() * 60 - now.getMinutes(), learned = me.last != null ? me.last === todayStr() : d.today.xp > 0;
+  const warn = learned ? `Bạn đã học hôm nay, còn ${need.length} nhiệm vụ nữa là đủ.` : me.streak > 0 ? `Chuỗi <b>${me.streak} ngày học</b> sẽ về 0 lúc 0:00 nếu hôm nay chưa học.` : me.missed > 0 ? `Bạn đã nghỉ <b>${me.missed} ngày</b> liền. Học hôm nay để bắt đầu chuỗi mới.` : `Hoàn thành hôm nay để bắt đầu chuỗi ngày học đầu tiên.`;
+  return `<div class="j-remind" role="status"><div><span class="eyebrow">Nhiệm vụ bắt buộc · còn ${Math.floor(left / 60)} giờ ${left % 60} phút trong hôm nay</span><h3>Bạn còn ${need.length}/2 nhiệm vụ chưa xong</h3><p>${warn}</p></div>
+    <div class="j-rb">${need.map(m => `<a class="btn" href="${m.href}">${m.k === "DM" ? "Làm Day Mission" : "Làm Skill Mission"} →</a>`).join("")}</div></div>`;
 }
 async function loadJourney() {
   const s = getS(), box = $("#journey"); if (!box || !s || !API) return;
@@ -1060,19 +1081,22 @@ function renderJourney() {
   const nextTxt = me.next ? `Còn ${fmtN(me.next.at - me.xp)} XP lên hạng ${esc(me.next.name)}` : "Hạng cao nhất";
   const plabel = { week: "Tuần này", month: "Tháng này", quarter: "Quý này" };
   const grp = {}; Object.entries(d.catalog).forEach(([k, v]) => { if (v.k !== "auto" && v.k !== "Visa") (grp[v.k] = grp[v.k] || []).push(k); });
-  box.innerHTML = `<div class="j-head"><div><span class="eyebrow">AZIELTS Journey · Chặng ${me.lvl || "khách"} · ${esc(L[0])}</span><h2>Hành trình của ${esc(String(me.name).split(/\s+/).pop())}</h2><p>${esc(L[1])}. Mỗi ngày hoàn thành Day Mission để tích XP, giữ chuỗi ngày học và leo bảng xếp hạng cùng chặng. Giáo viên công bố người thắng mỗi tuần, tháng và quý.</p></div>
+  box.innerHTML = `<div class="j-head"><div><span class="eyebrow">AZIELTS Journey · Chặng ${me.lvl || "khách"} · ${esc(L[0])}</span><h2>Hành trình của ${esc(String(me.name).split(/\s+/).pop())}</h2><p>${esc(L[1])}. Mỗi ngày bắt buộc hoàn thành Day Mission và Skill Mission để tích XP, giữ chuỗi ngày học và leo bảng xếp hạng cùng chặng. Giáo viên công bố người thắng mỗi tuần, tháng và quý.</p></div>
     <div class="j-kpi"><div><b>${fmtN(me.xp)}</b><span>Tổng XP</span></div><div><b>${me.streak}</b><span>Chuỗi ngày</span></div><div><b>${P.rank ? "#" + P.rank : "–"}</b><span>${plabel[JP]}</span></div><div><b style="font-size:18px;padding-top:4px">${esc(me.tier)}</b><span>${nextTxt}</span></div></div></div>
-  ${jBoard(P, L, plabel)}
+  ${jRemind(d, ms)}
+  ${jBoard(P, L, plabel, me)}
   <div class="j-grid" style="margin-top:16px">
     <div class="j-card"><h3>Nhiệm vụ hôm nay <small>${doneN}/3 xong · ${fmtN(d.today.xp)} XP</small></h3>
-      <div class="j-mis">${ms.map(m => `<a class="j-m ${d.today[m.k] ? "done" : ""} ${m.main ? "main" : ""}" href="${m.href}"><span class="ck">${d.today[m.k] ? "✓" : ""}</span><span><b>${m.t}</b><small>${esc(m.d)}</small></span><span class="xp">${m.x}</span></a>`).join("")}</div>
-      <div class="j-bar"><i style="width:${Math.min(100, d.today.xp / d.today.cap * 100)}%"></i></div><div class="j-note">Mỗi ngày: Day Mission (từ vựng) + Skill Mission (bài nhỏ Đọc/Nghe) + Viết kỹ năng nhỏ. Tự học online tối đa ${d.today.cap} XP mỗi ngày; xong cả 3 mục được thưởng thêm 20 XP.</div>
+      <div class="j-mis">${ms.map(m => `<a class="j-m ${d.today[m.k] ? "done" : ""} ${m.main ? "main" : ""}" href="${m.href}"><span class="ck">${d.today[m.k] ? "✓" : ""}</span><span><b>${m.t}${m.main ? `<em class="req">${d.today[m.k] ? "Bắt buộc ✓" : "Bắt buộc"}</em>` : ""}</b><small>${esc(m.d)}</small></span><span class="xp">${m.x}</span></a>`).join("")}</div>
+      <div class="j-bar"><i style="width:${Math.min(100, d.today.xp / d.today.cap * 100)}%"></i></div><div class="j-note">Bắt buộc mỗi ngày: Day Mission (từ vựng) + Skill Mission (bài nhỏ Đọc/Nghe). Thêm Viết kỹ năng nhỏ để tích XP. Tự học online tối đa ${d.today.cap} XP mỗi ngày; xong cả 3 mục được thưởng thêm 20 XP.</div>
       <a class="j-mock" href="index.html"><b>📅 Thi thử tháng ${new Date().getMonth() + 1}</b><span>Reading ${me.mock && me.mock.R ? "✓ đã làm" : "chưa làm"} · Listening ${me.mock && me.mock.L ? "✓ đã làm" : "chưa làm"}</span><small>Mỗi tháng làm 1 đề full mỗi kỹ năng để đo band (được XP 1 lần/tháng)</small></a>
       ${d.recent.length ? `<ul class="j-feed">${d.recent.slice(0, 5).map(r => `<li><b>+${r.xp}</b> · ${esc(String(r.note).replace(/\b[RL]-[a-z]+\b/, m => TYN[m] || m))} <span class="j-note">${esc(vnDate(r.day))}</span></li>`).join("")}</ul>` : ""}</div>
   </div>
   <div class="j-card j-res"><h3>Kết quả học tập của bạn <small>${fmtN(me.classDays)} buổi có mặt trên lớp</small></h3>${jResults(me)}</div>
   <details class="j-rules"><summary>Cách tính XP</summary><table>${JRULES.map(r => `<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join("")}</table><p>Không bao giờ bị trừ điểm. Làm lại đề cũ chỉ tính phần câu đúng tăng thêm.</p></details>`;
-  box.querySelectorAll("[data-jp]").forEach(b => b.onclick = () => { JP = b.dataset.jp; renderJourney(); });
+  box.querySelectorAll("[data-jp]").forEach(b => b.onclick = () => { JP = b.dataset.jp; JBALL = false; renderJourney(); });
+  box.querySelectorAll("[data-jball]").forEach(b => b.onclick = () => { JBALL = !JBALL; renderJourney(); });
+  if (location.hash === "#journey" && !JSCROLL) { JSCROLL = true; box.scrollIntoView({ block: "start" }); }
 }
 
 /* ----- trang giáo viên: #gv-journey (mật khẩu giáo viên ở tab "Cài đặt" của Sheet lớp học) ----- */
@@ -1081,6 +1105,13 @@ let GV = { cls: null, data: null };
 function gvKey() { try { return sessionStorage.getItem(GVK) || ""; } catch (e) { return ""; } }
 async function gvApi(b) { return api(Object.assign({ key: gvKey() }, b)); }
 function gvMsg(id, m, err) { const e = $(id); if (e) { e.textContent = m; e.className = "msg" + (err ? " err" : ""); } }
+/* trạng thái tự học của 1 học viên cho bảng điểm danh: Day Mission / Skill Mission hôm nay + số ngày nghỉ liền */
+function gvToday(m) {
+  if (m.dm === undefined) return "–";
+  const t = (on, n) => `<span class="${on ? "hi" : "lo"}">${on ? "✓" : "✗"} ${n}</span>`;
+  const st = m.missed < 0 ? `<span class="lo">chưa học ngày nào</span>` : m.missed === 0 ? `chuỗi ${m.streak} ngày` : `<span class="${m.missed >= 2 ? "lo" : "mid"}">nghỉ ${m.missed} ngày</span>`;
+  return `<span class="rp">${t(m.dm, "Day")} · ${t(m.sk, "Skill")}</span><br><span class="j-note rp">${st}</span>`;
+}
 async function renderGV() {
   const host = $("#gvj .wrap");
   if (!gvKey()) {
@@ -1099,7 +1130,8 @@ async function renderGV() {
   <div class="box"><h2>1 · Điểm danh buổi học</h2>
     <div class="row"><label>Lớp<br><select id="gvCls">${j.classes.map(c => `<option value="${esc(c.code)}" ${c.code === GV.cls ? "selected" : ""}>${esc(c.cls)} · ${esc(c.code)} (${c.members.length})</option>`).join("")}</select></label>
       <label>Ngày học<br><input type="date" id="gvDay" value="${todayStr()}"></label></div>
-    <div class="tbl" style="margin-top:12px"><table><thead><tr><th>Có mặt</th><th>Học viên</th><th>Chặng</th><th>Ngôi sao (tối đa 3)</th><th>Tổng XP</th></tr></thead><tbody id="gvRows"></tbody></table></div>
+    <div class="gv-sum rp" id="gvSum"></div>
+    <div class="tbl" style="margin-top:12px"><table><thead><tr><th>Có mặt</th><th>Học viên</th><th>Chặng</th><th>Hôm nay</th><th>Ngôi sao (tối đa 3)</th><th>Tổng XP</th></tr></thead><tbody id="gvRows"></tbody></table></div>
     <div class="row" style="margin-top:12px"><button class="btn" type="button" id="gvSave">Lưu buổi học</button><span class="msg" id="gvM1"></span></div>
     <p class="j-note">Có mặt +20 XP · Ngôi sao +30 XP. Lưu lại cùng buổi sẽ thay bản cũ, không cộng trùng.</p></div>
   <div class="box"><h2>2 · Bảng công bố</h2>
@@ -1114,10 +1146,12 @@ async function renderGV() {
     <div id="gvRepOut" style="margin-top:12px"></div>
     <p class="j-note">% đúng theo từng dạng câu hỏi trong các bài nhỏ học viên đã làm. Xanh ≥ 75% · vàng 55–74% · đỏ &lt; 55%: dạng đỏ nên chữa ở buổi học tới.</p></div>`;
   const rows = () => {
-    const c = j.classes.find(x => x.code === GV.cls) || { members: [] };
+    const c = j.classes.find(x => x.code === GV.cls) || { members: [] }, ok = c.members.filter(m => m.dm && m.sk), off = c.members.filter(m => m.missed >= 2 || m.missed < 0);
+    $("#gvSum").innerHTML = c.members.length && c.members[0].dm !== undefined ? `<p><b>Hôm nay ${ok.length}/${c.members.length} bạn đã xong 2 nhiệm vụ bắt buộc.</b>${off.length ? ` <span class="lo">Cần nhắc (nghỉ từ 2 ngày hoặc chưa học ngày nào): ${off.map(m => esc(m.name)).join(", ")}.</span>` : ""}</p>` : "";
     $("#gvRows").innerHTML = c.members.length ? c.members.map(m => `<tr><td><input type="checkbox" class="gvPr" value="${esc(m.user)}" checked></td><td>${esc(m.name)}<br><span class="j-note">${esc(m.user)}</span></td>
       <td><select class="gvLv" data-u="${esc(m.user)}">${["", 1, 2, 3, 4].map(l => `<option value="${l}" ${String(m.lvl) === String(l) ? "selected" : ""}>${l === "" ? "chưa chọn" : l + " · " + JLV[l][0]}</option>`).join("")}</select></td>
-      <td><button type="button" class="star" data-u="${esc(m.user)}" aria-pressed="false" title="Ngôi sao buổi học">★</button></td><td>${fmtN(m.xp)}</td></tr>`).join("") : `<tr><td colspan="5">Lớp chưa có học viên đăng ký bằng mã lớp này.</td></tr>`;
+      <td>${gvToday(m)}</td>
+      <td><button type="button" class="star" data-u="${esc(m.user)}" aria-pressed="false" title="Ngôi sao buổi học">★</button></td><td>${fmtN(m.xp)}</td></tr>`).join("") : `<tr><td colspan="6">Lớp chưa có học viên đăng ký bằng mã lớp này.</td></tr>`;
     document.querySelectorAll("#gvRows .star").forEach(b => b.onclick = () => { const on = b.classList.contains("on"); if (!on && document.querySelectorAll("#gvRows .star.on").length >= 3) { gvMsg("#gvM1", "Tối đa 3 ngôi sao mỗi buổi.", true); return; } b.classList.toggle("on", !on); b.setAttribute("aria-pressed", String(!on)); });
     document.querySelectorAll("#gvRows .gvLv").forEach(s => s.onchange = async () => { if (s.value === "") return; const r = await gvApi({ t: "jlvl", user: s.dataset.u, lvl: +s.value }); gvMsg("#gvM1", r && r.ok ? "Đã đổi chặng." : (r && r.error) || "Lỗi.", !(r && r.ok)); });
   };
@@ -1131,9 +1165,10 @@ async function renderGV() {
     const kn = { week: "tuần bắt đầu " + vnDate(r.key), month: "tháng " + r.key.split("-").reverse().join("/"), quarter: "quý " + r.key.replace("-Q", " · Q") }[p], md = ["🥇", "🥈", "🥉"];
     let t = `🏆 AZIELTS Journey · Bảng vinh danh ${kn}\n`;
     Object.keys(r.groups).sort().forEach(l => { const g = r.groups[l]; if (!g.length) return; t += `\n✈️ Chặng ${l} · ${JLV[l] ? JLV[l][0] : ""}\n`;
-      g.slice(0, p === "quarter" ? 3 : 3).forEach((x, i) => { t += `${md[i]} ${x.name} (${x.nick}) · ${p === "quarter" ? x.score + " điểm xét thưởng · " : ""}${fmtN(x.total)} XP\n`; });
-      if (g.length > 3) t += `   Tiếp theo: ${g.slice(3, 8).map(x => x.nick).join(", ")}\n`; });
-    t += p === "quarter" ? `\nĐiểm xét thưởng quý = 40% học trên lớp + 40% tự học online + 20% tiến bộ thi thử. Chúc mừng các bạn!` : `\nTop 3 mỗi chặng nhận quà và giấy chứng nhận. Hẹn gặp các bạn trên bảng ${p === "week" ? "tuần" : "tháng"} sau!`;
+      const okW = x => p !== "week" || x.days == null || x.days >= (r.weekMin || 5), win = g.filter(okW).slice(0, 3), rest = g.filter(x => !win.includes(x));
+      win.forEach((x, i) => { t += `${md[i]} ${x.name} (${x.nick}) · ${p === "quarter" ? x.score + " điểm xét thưởng · " : ""}${fmtN(x.total)} XP${p === "week" && x.days != null ? ` · ${x.days} ngày tự học` : ""}\n`; });
+      if (rest.length) t += `   Tiếp theo: ${rest.slice(0, 5).map(x => x.nick + (okW(x) ? "" : " (chưa đủ " + (r.weekMin || 5) + " ngày)")).join(", ")}\n`; });
+    t += p === "quarter" ? `\nĐiểm xét thưởng quý = 40% học trên lớp + 40% tự học online + 20% tiến bộ thi thử. Chúc mừng các bạn!` : `\nTop 3 mỗi chặng nhận quà và giấy chứng nhận${p === "week" ? ` (cần tự học ít nhất ${r.weekMin || 5} ngày trong tuần)` : ""}. Hẹn gặp các bạn trên bảng ${p === "week" ? "tuần" : "tháng"} sau!`;
     $("#gvTxt").value = Object.keys(r.groups).length ? t : "Chưa có XP nào trong kỳ này."; gvMsg("#gvM2", "Đã tạo bảng."); };
   $("#gvCopy").onclick = async () => { const t = $("#gvTxt"); try { await navigator.clipboard.writeText(t.value); gvMsg("#gvM2", "Đã sao chép."); } catch (e) { t.select(); gvMsg("#gvM2", "Bấm Ctrl/Cmd + C để sao chép."); } };
   $("#gvRep").onclick = async () => {
@@ -1159,7 +1194,7 @@ if (TCH) { $("#tchImg").src = TCH; $("#heroImg").src = TCH; } else { $("#tchImg"
 /* đã đăng nhập: làm mới quyền (gói, hạn) mỗi lần mở; từ trang học quay về với ?next= thì làm mới rồi trả về */
 if (getS()) refresh(true);
 </script>
-<script>window.AZR={"b": ".sec-h,.place-h,.pgoal,.box,.j-head,.jb-h,.jb-f,.j-card,.tv-pane,.elite-box,.res-note,.contact,.trust,.banner", "s": ".perks,.pgrid,.apps,.stats,.res,.steps,.podium,.jb-list,.jr-grid,.j-kpi,.j-mis,.tv-nums,.tv-grid,.j-pick", "x": "#gvj,.modal,dialog"};/* AZIELTS · hiệu ứng hiện dần khi kéo trang (dùng chung mọi trang, quyết định 26/10/2026).
+<script>window.AZR={"b": ".sec-h,.place-h,.pgoal,.box,.j-head,.jb-h,.jb-f,.j-card,.j-remind,.tv-pane,.elite-box,.res-note,.contact,.trust,.banner", "s": ".perks,.pgrid,.apps,.stats,.res,.steps,.jb-list,.jr-grid,.j-kpi,.j-mis,.tv-nums,.tv-grid,.j-pick", "x": "#gvj,.modal,dialog"};/* AZIELTS · hiệu ứng hiện dần khi kéo trang (dùng chung mọi trang, quyết định 26/10/2026).
    Khối (AZR.b) trượt lên khi tới nơi; nhóm nhiều ô (AZR.s) cho các ô con hiện LẦN LƯỢT. Mỗi khối chạy 1 lần.
    Bỏ qua: máy bật giảm chuyển động, phần nằm trong AZR.x, và khối chứa ô gõ bài (textarea) — màn làm bài không có hiệu ứng.
    Cấu hình trước khi nạp: window.AZR = { b: "selector khối", s: "selector nhóm ô", x: "selector vùng loại trừ" }. Nội dung vẽ sau (innerHTML) tự được gắn. */
