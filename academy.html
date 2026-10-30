@@ -530,6 +530,7 @@ body{background:#FDFCF9}
 .j-pick button:hover{background:rgba(255,255,255,.1)}
 .j-pick b{display:block;font-size:16px;color:#fff}
 .j-pick small{color:#C9CFDA;font-size:12.5px}
+.j-ov{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:16px;background:rgba(6,12,24,.74);overflow:auto}.j-ov>.jny{width:min(780px,100%);margin:auto;box-shadow:0 30px 80px rgba(0,0,0,.45)}
 .j-nick{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:14px}
 .j-nick input{min-height:40px;border-radius:10px;border:1px solid rgba(217,179,106,.4);background:rgba(255,255,255,.08);color:#fff;padding:6px 12px;width:200px}
 .j-rules{margin-top:14px;color:#C9CFDA;font-size:13.5px}
@@ -972,7 +973,7 @@ async function refresh(silent) {
   } catch (e) { if (!silent) toast("Chưa kết nối được máy chủ, dùng thông tin đã lưu."); }
   render(); const n = nextUrl(); if (n && getS()) location.replace(n);
 }
-async function logout() { const s = getS(); try { localStorage.removeItem(SK); } catch (e) {} JD = null; JLOAD = false; render(); toast("Đã đăng xuất."); if (s) try { await api({ t: "logout", u: s.u, tok: s.tok, dev: dev() }); } catch (e) {} }
+async function logout() { const s = getS(); try { localStorage.removeItem(SK); } catch (e) {} JD = null; JLOAD = false; const ov = $("#jPickOv"); if (ov) ov.remove(); render(); toast("Đã đăng xuất."); if (s) try { await api({ t: "logout", u: s.u, tok: s.tok, dev: dev() }); } catch (e) {} }
 $("#xAuth").onclick = closeAuth;
 $("#authModal").onclick = e => { if (e.target.id === "authModal") closeAuth(); };
 document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#authModal").hidden) closeAuth(); });
@@ -1063,15 +1064,19 @@ async function loadJourney() {
 }
 function jPick() {
   const s = getS();
-  return `<div class="j-head"><div><span class="eyebrow">AZIELTS Journey · bắt đầu hành trình</span><h2>Bạn đang ở chặng nào?</h2><p>Chọn chặng đúng với buổi học hoặc band hiện tại. Bạn chỉ thi đua với những bạn cùng chặng. Giáo viên có thể chỉnh lại sau.</p></div></div>
+  return `<div class="j-head"><div><span class="eyebrow">AZIELTS Journey · bắt đầu hành trình</span><h2>Bạn đang ở chặng nào?</h2><p>Chặng quyết định toàn bộ hành trình của bạn: Day Mission, Skill Mission và bảng xếp hạng. Đang học trên lớp thì chọn đúng chặng của lớp (hỏi giáo viên nếu chưa rõ). Bạn chỉ chọn 1 lần, chọn nhầm thì báo giáo viên đổi giúp.</p></div></div>
     <div class="j-pick">${[1, 2, 3, 4].map(l => `<button type="button" data-lv="${l}"><small>Chặng ${l}</small><b>${JLV[l][0]}</b><small>${JLV[l][1]}</small></button>`).join("")}</div>
     <div class="j-nick"><label for="jNick">Biệt danh trên bảng xếp hạng</label><input id="jNick" maxlength="20" value="${esc(JD.me.nick || "")}"><span class="j-note" style="color:#C9CFDA">Không bắt buộc dùng tên thật.</span></div><p class="j-err" id="jErr"></p>`;
 }
 function renderJourney() {
   const box = $("#journey"), d = JD; if (!box || !d) return;
+  /* chưa có chặng: hỏi ngay sau khi đăng nhập (khung che cả trang, bắt buộc chọn) — mọi phần Journey dựng theo chặng này */
+  const ov = $("#jPickOv"); if (ov && d.me.lvl != null) ov.remove();
   if (d.me.lvl == null) {
-    box.innerHTML = jPick();
-    box.querySelectorAll("[data-lv]").forEach(b => b.onclick = async () => { const s = getS(); b.disabled = true;
+    box.innerHTML = `<div class="j-head"><div><span class="eyebrow">AZIELTS Journey</span><h2>Chọn chặng để bắt đầu</h2></div></div>`;
+    const o = ov || document.body.appendChild(Object.assign(document.createElement("div"), { id: "jPickOv", className: "j-ov" }));
+    o.setAttribute("role", "dialog"); o.setAttribute("aria-modal", "true"); o.innerHTML = `<div class="jny">${jPick()}</div>`;
+    o.querySelectorAll("[data-lv]").forEach(b => b.onclick = async () => { const s = getS(); b.disabled = true;
       try { const j = await api({ t: "jset", u: s.u, tok: s.tok, lvl: +b.dataset.lv, nick: $("#jNick").value.trim() || JD.me.nick });
         if (j && j.ok) { JD = j; renderJourney(); toast("Đã vào chặng " + JLV[j.me.lvl][0] + ". Chúc bạn một hành trình thật vui!"); } else { $("#jErr").textContent = (j && j.error) || "Chưa lưu được."; b.disabled = false; } }
       catch (e) { $("#jErr").textContent = "Không kết nối được máy chủ."; b.disabled = false; } });
