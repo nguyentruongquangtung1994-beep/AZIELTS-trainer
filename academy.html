@@ -559,6 +559,10 @@ body{background:#FDFCF9}
 .gvj .star.on{opacity:1}
 .gvj textarea{width:100%;min-height:220px;font-size:14px;line-height:1.5}
 .gvj .msg{font-size:14px;font-weight:600;color:var(--ok)} .gvj .msg.err{color:var(--red)}
+/* khu nhân sự tư vấn (#nhan-su): mở bằng mã nhân sự, trang slide tư vấn chạy trong khung toàn màn hình */
+.ns-box{max-width:440px}
+.ns-box input{width:100%;margin:6px 0 12px}
+.tvf{position:fixed;inset:0;width:100%;height:100%;border:0;z-index:60;background:#FDFCF9}
 </style>
 <style id="azsync">/* ===== AZIELTS SYNC — một thang chung cho Academy · Writing Studio · Reading & Listening · Listening Lab =====
    Bo góc: 10px nút & ô nhập · 12px khối nhỏ bên trong thẻ · 16px thẻ & bảng · 20px khung lớn · 999px viên thuốc (chip, nhãn gói).
@@ -630,7 +634,7 @@ html body a.card > .tn{display:flex;align-items:center}
       <div class="wrap">
         <div class="sec-h"><span class="k">Cam kết với phụ huynh</span><h2>Học phí đi kèm kết quả đo được bằng con số</h2><p>Phụ huynh luôn biết bạn đang ở band nào, đạt được gì sau mỗi chặng và AZEnglish chịu trách nhiệm ra sao nếu bạn chưa đạt.</p></div>
         <div class="pgrid">
-          <div class="pc"><span class="n">01</span><h3>Báo cáo band định kỳ</h3><p>Bạn làm bài kiểm tra sau mỗi 16 buổi. Phụ huynh nhận band từng kỹ năng và nhận xét của giáo viên khoảng 2 tháng một lần.</p></div>
+          <div class="pc"><span class="n">01</span><h3>Báo cáo qua email 2 tuần/lần</h3><p>Phụ huynh nhận email báo cáo chuyên cần, bài tập và nhận xét của giáo viên 2 tuần một lần. Sau mỗi 16 buổi có thêm band từng kỹ năng từ bài kiểm tra.</p></div>
           <div class="pc"><span class="n">02</span><h3>Cam kết đầu ra từng chặng</h3><p>Lộ trình 240 buổi chia 4 chặng, mỗi chặng một mốc band. Đạt khi band tổng bằng mức cam kết và không kỹ năng nào thấp hơn quá 0.5.</p></div>
           <div class="pc"><span class="n">03</span><h3>Chưa đạt thì học bổ trợ</h3><p>Bạn chưa đạt mốc được học bổ trợ 4 buổi đúng phần còn yếu trước khi lên chặng tiếp theo.</p></div>
           <div class="pc"><span class="n">04</span><h3>Lớp nhỏ, chữa từng bài</h3><p>Lớp thường tối đa 12 học viên, khoá Elite tối đa 8 và thêm đến 5 buổi kèm riêng 1-1. Writing, Speaking chấm theo 4 tiêu chí IELTS.</p></div>
@@ -647,7 +651,7 @@ html body a.card > .tn{display:flex;align-items:center}
         <h3 class="perk-h">Dành cho mọi học viên</h3>
         <div class="perks">
           <div class="perk"><span class="n">01</span><h3>Tài khoản AZIELTS Academy</h3><p>Writing Studio chấm band ngay, đề Cambridge 16–21 và Actual Test Reading, Listening, Listening Lab, 2.295 cụm từ học thuật. Dùng suốt khoá học.</p></div>
-          <div class="perk"><span class="n">02</span><h3>Thi thử và báo cáo liên tục</h3><p>Thi thử định kỳ theo đúng định dạng IELTS. Phụ huynh nhận band từng kỹ năng và nhận xét của giáo viên sau mỗi chặng 16 buổi.</p></div>
+          <div class="perk"><span class="n">02</span><h3>Thi thử và báo cáo liên tục</h3><p>Thi thử định kỳ theo đúng định dạng IELTS. Phụ huynh nhận email báo cáo 2 tuần/lần và band từng kỹ năng sau mỗi chặng 16 buổi.</p></div>
           <div class="perk"><span class="n">03</span><h3>Giải đáp thắc mắc 24/7</h3><p>Học viên hỏi bài bất cứ lúc nào, giáo viên AZEnglish phản hồi để bạn không bị kẹt khi tự học.</p></div>
           <div class="perk"><span class="n">04</span><h3>Hội thảo IELTS</h3><p>Hội thảo chiến lược làm bài từng kỹ năng, cập nhật xu hướng đề thi dành cho học viên AZEnglish.</p></div>
           <div class="perk"><span class="n">05</span><h3>CLB Tiếng Anh</h3><p>Sinh hoạt CLB Tiếng Anh cùng học viên AZEnglish để dùng tiếng Anh thật, ngoài giờ học trên lớp.</p></div>
@@ -729,6 +733,7 @@ html body a.card > .tn{display:flex;align-items:center}
           <details><summary>Dùng được trên mấy thiết bị?</summary><p>Tối đa 2 thiết bị (ví dụ điện thoại và máy tính). Muốn đổi máy, bấm Đăng xuất ở máy cũ hoặc nhờ giáo viên mở lại.</p></details>
           <details><summary>Học phí tính thế nào?</summary><p>Mỗi buổi học 90 phút. Gói Lộ trình 240 buổi chỉ từ 150.000đ/giờ, gói Elite 6.5+ chỉ từ 200.000đ/giờ. Học viên vào từ giai đoạn nào thì chỉ đóng học phí từ giai đoạn đó. Học phí chi tiết được trình bày khi tư vấn trực tiếp. Học phí thu sau tuần học đầu tiên. Gọi hoặc Zalo 0971 882 096 để đặt lịch tư vấn.</p></details>
           <details><summary>Có được bảo lưu hoặc hoàn học phí không?</summary><p>Tuần đầu là tuần học thử: không tiếp tục thì không thu phí. Học viên được bảo lưu tối đa 2 lần, mỗi lần không quá 3 tháng, giữ nguyên mức giá đã đóng, và được chuyển phần học phí còn lại cho anh chị em ruột. Điều kiện hoàn phí ghi rõ trong hợp đồng khoá học.</p></details>
+          <details><summary>Con nghỉ học thì có được học bù không?</summary><p>Có. Mỗi tháng học viên được học bù miễn phí 1 buổi cho buổi đã nghỉ. Khoá học có hợp đồng và hoá đơn đầy đủ.</p></details>
           <details><summary>Quên mật khẩu thì sao?</summary><p>Nhắn giáo viên hoặc fanpage AZEnglish. Giáo viên đặt mật khẩu tạm mới để bạn đăng nhập lại.</p></details>
         </div>
       </div>
@@ -769,6 +774,8 @@ html body a.card > .tn{display:flex;align-items:center}
     </div>
   </section>
   <section class="gvj" id="gvj" hidden><div class="wrap"></div></section>
+  <section class="gvj" id="ns" hidden><div class="wrap"><h1>Tư vấn lộ trình IELTS</h1><p class="j-note">Khu vực dành cho nhân sự tư vấn AZEnglish: nhập kết quả test, trình bày lộ trình, học phí và xuất báo cáo gửi phụ huynh.</p>
+    <form class="box ns-box" id="nsForm" autocomplete="off"><h2>Nhập mã nhân sự</h2><input id="nsCode" type="password" placeholder="Mã nhân sự" aria-label="Mã nhân sự"><button class="btn" type="submit" id="nsBtn">Mở trang tư vấn</button><p class="msg err" id="nsErr" role="alert"></p></form></div></section>
 </main>
 
 <footer class="foot" id="lien-he">
@@ -776,7 +783,7 @@ html body a.card > .tn{display:flex;align-items:center}
     <div><b>AZEnglish Nha Trang</b><p>English for everyone. Đào tạo IELTS, TOEIC, giao tiếp và AZDebate Junior.</p></div>
     <div><b>Liên hệ</b><p>100 Hà Thanh, Nha Trang</p><p>Điện thoại / Zalo: <span class="sel">0971 882 096</span></p><p>Email: <span class="sel">nguyentruongquangtung1994@gmail.com</span></p></div>
     <div><b>Kênh AZEnglish</b><p>Facebook: AZEnglishForEveryone</p><p>TikTok: @azenglishcenter</p><p>YouTube: @AZ_English_Center</p></div>
-    <p class="copy">© AZEnglish · Nội dung dành cho học viên đã đăng ký. Không chia sẻ tài khoản.</p>
+    <p class="copy">© AZEnglish · Nội dung dành cho học viên đã đăng ký. Không chia sẻ tài khoản. · <a href="#nhan-su" style="color:inherit">Nhân sự tư vấn</a></p>
   </div>
 </footer>
 <div class="modal" id="authModal" hidden role="dialog" aria-modal="true" aria-labelledby="authTitle">
@@ -892,6 +899,9 @@ function setTab(t) {
   $("#authSub").textContent = t === "reg" ? "Nhập mã lớp nếu bạn đang học tại AZEnglish." : "Dùng tài khoản AZEnglish của bạn.";
 }
 function render() {
+  const ns = location.hash === "#nhan-su"; $("#ns").hidden = !ns;
+  if (ns) { $("#guest").hidden = true; $("#dash").hidden = true; $("#gvj").hidden = true; $("#nav").hidden = true; renderNS(); return; }
+  if ($("#tvFrame")) closeTV();
   const gv = location.hash === "#gv-journey"; $("#gvj").hidden = !gv;
   if (gv) { $("#guest").hidden = true; $("#dash").hidden = true; $("#nav").hidden = true; renderGV(); return; }
   const s = getS(), valid = s && s.u && daysLeft(s.exp) > 0;
@@ -1192,7 +1202,34 @@ async function renderGV() {
   $("#gvStamp").onclick = async () => { const r = await gvApi({ t: "jstamp", user: $("#gvU").value, stamp: $("#gvS").value }); gvMsg("#gvM3", r && r.ok ? "Đã đóng dấu." : (r && r.error) || "Lỗi.", !(r && r.ok)); };
 }
 
-addEventListener("hashchange", () => { if (location.hash === "#gv-journey" || !$("#gvj").hidden) render(); });
+addEventListener("hashchange", () => { if (location.hash === "#gv-journey" || location.hash === "#nhan-su" || !$("#gvj").hidden || !$("#ns").hidden) render(); });
+/* ===== Nhân sự tư vấn (#nhan-su): tải tu-van/nhan-su.json (mã hoá AES-GCM bằng mã nhân sự, đóng gói bởi tools/pack_tuvan.js) ===== */
+const NSK = "az_tuvan_code";
+function u8(b) { const s = atob(b), a = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) a[i] = s.charCodeAt(i); return a; }
+function closeTV() { const f = $("#tvFrame"); if (f) { URL.revokeObjectURL(f.src); f.remove(); } document.body.style.overflow = ""; }
+async function openTV(code) {
+  const D = await (await fetch("tu-van/nhan-su.json", { cache: "no-cache" })).json();
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(code.trim().toLowerCase()), "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey({ name: "PBKDF2", salt: u8(D.s), iterations: D.n, hash: "SHA-256" }, base, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+  const html = new TextDecoder().decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: u8(D.i) }, key, u8(D.d)));
+  closeTV(); const f = document.createElement("iframe"); f.id = "tvFrame"; f.className = "tvf"; f.title = "Tư vấn lộ trình IELTS"; f.setAttribute("allow", "clipboard-write");
+  f.src = URL.createObjectURL(new Blob([html], { type: "text/html;charset=utf-8" })); document.body.appendChild(f); document.body.style.overflow = "hidden";
+}
+addEventListener("message", e => { if (e.data === "az-tv-exit" && $("#tvFrame")) { closeTV(); location.hash = ""; } });
+let NSBUSY = false;
+async function renderNS() {
+  const er = $("#nsErr"), b = $("#nsBtn");
+  async function tryOpen(code, auto) {
+    if (NSBUSY) return; NSBUSY = true; er.textContent = ""; b.disabled = true; b.textContent = "Đang mở…";
+    try { await openTV(code); try { localStorage.setItem(NSK, code); } catch (x) {} }
+    catch (x) { if (!auto) er.textContent = x instanceof SyntaxError || x instanceof TypeError ? "Không tải được trang tư vấn. Kiểm tra mạng rồi thử lại." : "Mã nhân sự không đúng."; try { localStorage.removeItem(NSK); } catch (y) {} }
+    NSBUSY = false; b.disabled = false; b.textContent = "Mở trang tư vấn";
+  }
+  $("#nsForm").onsubmit = e => { e.preventDefault(); const c = $("#nsCode").value; if (c.trim()) tryOpen(c, false); };
+  if ($("#tvFrame")) return;
+  let saved = null; try { saved = localStorage.getItem(NSK); } catch (x) {}
+  if (saved) tryOpen(saved, true); else setTimeout(() => $("#nsCode").focus(), 50);
+}
 renderGuest(); renderResults(); render();
 if (!getS() && (nextUrl() || $("#eLogin").textContent)) openAuth("login");
 if (TCH) { $("#tchImg").src = TCH; $("#heroImg").src = TCH; } else { $("#tchImg").remove(); $("#heroImg").remove(); }
