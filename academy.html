@@ -561,7 +561,10 @@ body{background:#FDFCF9}
 .gvj .msg{font-size:14px;font-weight:600;color:var(--ok)} .gvj .msg.err{color:var(--red)}
 /* khu nhân sự tư vấn (#nhan-su): mở bằng mã nhân sự, trang slide tư vấn chạy trong khung toàn màn hình */
 .ns-box{max-width:440px}
-.ns-box input{width:100%;margin:6px 0 12px}
+.ns-box label{display:block;font-size:13px;font-weight:700;color:var(--ink-2)}
+.ns-box input:not([type=checkbox]){width:100%;margin:6px 0 12px}
+.ns-box .ns-rem{display:flex;align-items:center;justify-content:flex-start;gap:8px;font-weight:500;margin:0 0 14px}
+.ns-box .ns-rem input{width:18px!important;height:18px;min-height:0;margin:0;padding:0;flex:none;accent-color:var(--navy,#0F1B2D)}
 .tvf{position:fixed;inset:0;width:100%;height:100%;border:0;z-index:60;background:#FDFCF9}
 </style>
 <style id="azsync">/* ===== AZIELTS SYNC — một thang chung cho Academy · Writing Studio · Reading & Listening · Listening Lab =====
@@ -775,7 +778,7 @@ html body a.card > .tn{display:flex;align-items:center}
   </section>
   <section class="gvj" id="gvj" hidden><div class="wrap"></div></section>
   <section class="gvj" id="ns" hidden><div class="wrap"><h1>Tư vấn lộ trình IELTS</h1><p class="j-note">Khu vực dành cho nhân sự tư vấn AZEnglish: nhập kết quả test, trình bày lộ trình, học phí và xuất báo cáo gửi phụ huynh.</p>
-    <form class="box ns-box" id="nsForm" autocomplete="off"><h2>Nhập mã nhân sự</h2><input id="nsCode" type="password" placeholder="Mã nhân sự" aria-label="Mã nhân sự"><button class="btn" type="submit" id="nsBtn">Mở trang tư vấn</button><p class="msg err" id="nsErr" role="alert"></p></form></div></section>
+    <form class="box ns-box" id="nsForm" autocomplete="on"><h2>Đăng nhập nhân sự</h2><label for="nsUser">Tên đăng nhập</label><input id="nsUser" autocomplete="username" autocapitalize="off" spellcheck="false"><label for="nsPass">Mật khẩu</label><input id="nsPass" type="password" autocomplete="current-password"><label class="ns-rem"><input type="checkbox" id="nsRem" checked> Ghi nhớ trên máy này</label><button class="btn" type="submit" id="nsBtn">Mở trang tư vấn</button><p class="msg err" id="nsErr" role="alert"></p><p class="j-note" id="nsOut" hidden></p></form></div></section>
 </main>
 
 <footer class="foot" id="lien-he">
@@ -796,6 +799,7 @@ html body a.card > .tn{display:flex;align-items:center}
             <button class="btn lg" type="submit" id="bLogin">Đăng nhập</button>
             <p class="err" id="eLogin" role="alert"></p>
             <p class="note">Quên mật khẩu? Nhắn giáo viên AZEnglish để được đặt lại.</p>
+            <p class="note">Nhân sự tư vấn AZEnglish? <a href="#nhan-su" id="toNS">Đăng nhập khu nhân sự</a></p>
           </form>
           <form id="fReg" hidden autocomplete="on">
             <label for="rn">Họ và tên</label><input id="rn" autocomplete="name" required>
@@ -986,6 +990,7 @@ async function refresh(silent) {
 async function logout() { const s = getS(); try { localStorage.removeItem(SK); } catch (e) {} JD = null; JLOAD = false; const ov = $("#jPickOv"); if (ov) ov.remove(); render(); toast("Đã đăng xuất."); if (s) try { await api({ t: "logout", u: s.u, tok: s.tok, dev: dev() }); } catch (e) {} }
 $("#xAuth").onclick = closeAuth;
 $("#authModal").onclick = e => { if (e.target.id === "authModal") closeAuth(); };
+$("#toNS").onclick = () => closeAuth();
 document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#authModal").hidden) closeAuth(); });
 $("#home").onclick = e => { e.preventDefault(); scrollTo({ top: 0, behavior: "smooth" }); };
 
@@ -1204,31 +1209,48 @@ async function renderGV() {
 
 addEventListener("hashchange", () => { if (location.hash === "#gv-journey" || location.hash === "#nhan-su" || !$("#gvj").hidden || !$("#ns").hidden) render(); });
 /* ===== Nhân sự tư vấn (#nhan-su): tải tu-van/nhan-su.json (mã hoá AES-GCM bằng mã nhân sự, đóng gói bởi tools/pack_tuvan.js) ===== */
-const NSK = "az_tuvan_code";
+const NSK = "az_tuvan_login";   // nhớ trên máy: {u, k} = tên + khoá nội dung đã mở (không lưu mật khẩu); đóng gói lại = khoá đổi → phải đăng nhập lại
 function u8(b) { const s = atob(b), a = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) a[i] = s.charCodeAt(i); return a; }
+function b64u(a) { let s = ""; a.forEach(x => s += String.fromCharCode(x)); return btoa(s); }
 function closeTV() { const f = $("#tvFrame"); if (f) { URL.revokeObjectURL(f.src); f.remove(); } document.body.style.overflow = ""; }
-async function openTV(code) {
-  const D = await (await fetch("tu-van/nhan-su.json", { cache: "no-cache" })).json();
-  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(code.trim().toLowerCase()), "PBKDF2", false, ["deriveKey"]);
-  const key = await crypto.subtle.deriveKey({ name: "PBKDF2", salt: u8(D.s), iterations: D.n, hash: "SHA-256" }, base, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
-  const html = new TextDecoder().decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: u8(D.i) }, key, u8(D.d)));
+async function tvData() { const r = await fetch("tu-van/nhan-su.json", { cache: "no-cache" }); if (!r.ok) throw new TypeError("net"); return r.json(); }
+async function tvUnwrap(D, u, p) {   // tài khoản → khoá nội dung (raw bytes)
+  const h = Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(u.trim().toLowerCase())))).map(x => x.toString(16).padStart(2, "0")).join("");
+  const A = D.a && D.a[h]; if (!A) throw new Error("acc");
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(p), "PBKDF2", false, ["deriveKey"]);
+  const wk = await crypto.subtle.deriveKey({ name: "PBKDF2", salt: u8(A.s), iterations: D.n, hash: "SHA-256" }, base, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+  return new Uint8Array(await crypto.subtle.decrypt({ name: "AES-GCM", iv: u8(A.i) }, wk, u8(A.w)));
+}
+async function openTV(D, K) {
+  const ck = await crypto.subtle.importKey("raw", K, "AES-GCM", false, ["decrypt"]);
+  const html = new TextDecoder().decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: u8(D.i) }, ck, u8(D.d)));
   closeTV(); const f = document.createElement("iframe"); f.id = "tvFrame"; f.className = "tvf"; f.title = "Tư vấn lộ trình IELTS"; f.setAttribute("allow", "clipboard-write");
   f.src = URL.createObjectURL(new Blob([html], { type: "text/html;charset=utf-8" })); document.body.appendChild(f); document.body.style.overflow = "hidden";
 }
-addEventListener("message", e => { if (e.data === "az-tv-exit" && $("#tvFrame")) { closeTV(); location.hash = ""; } });
+function nsSaved() { try { return JSON.parse(localStorage.getItem(NSK) || "null"); } catch (x) { return null; } }
+let NSEXIT = false;   // đã bấm thoát → không tự mở lại tới khi tải lại trang (để còn bấm Đăng xuất)
+addEventListener("message", e => { if (e.data === "az-tv-exit" && $("#tvFrame")) { NSEXIT = true; closeTV(); location.hash = ""; } });
 let NSBUSY = false;
 async function renderNS() {
-  const er = $("#nsErr"), b = $("#nsBtn");
-  async function tryOpen(code, auto) {
-    if (NSBUSY) return; NSBUSY = true; er.textContent = ""; b.disabled = true; b.textContent = "Đang mở…";
-    try { await openTV(code); try { localStorage.setItem(NSK, code); } catch (x) {} }
-    catch (x) { if (!auto) er.textContent = x instanceof SyntaxError || x instanceof TypeError ? "Không tải được trang tư vấn. Kiểm tra mạng rồi thử lại." : "Mã nhân sự không đúng."; try { localStorage.removeItem(NSK); } catch (y) {} }
-    NSBUSY = false; b.disabled = false; b.textContent = "Mở trang tư vấn";
-  }
-  $("#nsForm").onsubmit = e => { e.preventDefault(); const c = $("#nsCode").value; if (c.trim()) tryOpen(c, false); };
-  if ($("#tvFrame")) return;
-  let saved = null; try { saved = localStorage.getItem(NSK); } catch (x) {}
-  if (saved) tryOpen(saved, true); else setTimeout(() => $("#nsCode").focus(), 50);
+  const er = $("#nsErr"), b = $("#nsBtn"), out = $("#nsOut");
+  function busy(on) { NSBUSY = on; b.disabled = on; b.textContent = on ? "Đang mở…" : "Mở trang tư vấn"; }
+  function showSaved() { const sv = nsSaved(); out.hidden = !sv; if (sv) { out.innerHTML = `Máy này đang nhớ tài khoản <b>${esc(sv.u)}</b>. <a href="#" id="nsLogout">Đăng xuất</a>`; $("#nsLogout").onclick = e => { e.preventDefault(); try { localStorage.removeItem(NSK); } catch (x) {} showSaved(); }; } }
+  $("#nsForm").onsubmit = async e => {
+    e.preventDefault(); if (NSBUSY) return; const u = $("#nsUser").value.trim(), p = $("#nsPass").value; er.textContent = "";
+    if (!u || !p) { er.textContent = "Nhập tên đăng nhập và mật khẩu."; return; }
+    busy(true);
+    try { const D = await tvData(); let K; try { K = await tvUnwrap(D, u, p); } catch (x) { throw new Error("acc"); }
+      await openTV(D, K); $("#nsPass").value = "";
+      try { if ($("#nsRem").checked) localStorage.setItem(NSK, JSON.stringify({ u, k: b64u(K) })); else localStorage.removeItem(NSK); } catch (x) {}
+      showSaved(); }
+    catch (x) { er.textContent = x.message === "acc" ? "Tên đăng nhập hoặc mật khẩu không đúng." : "Không tải được trang tư vấn. Kiểm tra mạng rồi thử lại."; }
+    busy(false);
+  };
+  showSaved();
+  if ($("#tvFrame") || NSBUSY) return;
+  const sv = nsSaved();
+  if (sv && sv.k && !NSEXIT) { busy(true); try { await openTV(await tvData(), u8(sv.k)); } catch (x) { try { localStorage.removeItem(NSK); } catch (y) {} showSaved(); er.textContent = "Phiên đăng nhập đã hết hạn, đăng nhập lại."; } busy(false); }
+  else setTimeout(() => $("#nsUser").focus(), 50);
 }
 renderGuest(); renderResults(); render();
 if (!getS() && (nextUrl() || $("#eLogin").textContent)) openAuth("login");
