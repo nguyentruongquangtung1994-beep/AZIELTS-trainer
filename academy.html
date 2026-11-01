@@ -146,6 +146,9 @@ button.app{font:inherit;text-align:left;cursor:pointer}
 .app.soon .ic{filter:grayscale(.6);opacity:.7}
 /* thành tích */
 .res{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.vfb{padding-block:6px 30px}.vfb-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;padding:16px 20px;border-radius:16px;border:1px solid var(--line);background:var(--bg)}
+.vfb-bar .k{display:block;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:2px}.vfb-bar b{font-family:var(--serif);font-size:20px;font-weight:700}
+.vfb .vids{margin-top:18px}
 .vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,250px));gap:18px}
 .vc{display:flex;flex-direction:column;gap:2px}.vc b{margin-top:10px;font-size:16px}.vc>span{font-size:13.5px;color:var(--ink-3)}
 .vc .vp,.vc iframe{position:relative;display:block;width:100%;aspect-ratio:9/16;border:1px solid rgba(184,145,58,.55);border-radius:16px;overflow:hidden;background:#0B1424;padding:0;cursor:pointer;box-shadow:0 16px 32px -22px rgba(11,20,36,.6)}
@@ -639,10 +642,10 @@ html body a.card > .tn{display:flex;align-items:center}
       </div>
     </section>
 
-    <section class="sec" id="video-feedback">
+    <section class="vfb" id="video-feedback">
       <div class="wrap">
-        <div class="sec-h"><span class="k">Video feedback</span><h2>Học viên AZEnglish kể về hành trình IELTS</h2><p>Nghe chính các bạn chia sẻ cách học, khó khăn và kết quả. Bấm vào video để xem.</p></div>
-        <div class="vids" id="vids"></div>
+        <div class="vfb-bar"><div><span class="k">Video feedback</span><b>Học viên AZEnglish kể về hành trình IELTS</b></div><button type="button" class="btn line" id="vfbBtn" aria-expanded="false" aria-controls="vids">Xem video học viên</button></div>
+        <div class="vids" id="vids" hidden></div>
       </div>
     </section>
 
@@ -892,6 +895,10 @@ const VIDEOS = [
 function renderVideos() {
   const box = $("#vids"); if (!box) return;
   const sec = $("#video-feedback"); if (sec) sec.hidden = !VIDEOS.length;
+  const btn = $("#vfbBtn"), open = on => { box.hidden = !on; btn.setAttribute("aria-expanded", String(on)); btn.textContent = on ? "Thu gọn" : `Xem video học viên (${VIDEOS.length})`; };
+  open(false); btn.onclick = () => open(box.hidden);
+  document.querySelectorAll('a[href="#video-feedback"]').forEach(a => a.addEventListener("click", e => { e.preventDefault(); open(true); sec.scrollIntoView({ behavior: "smooth", block: "start" }); try { history.replaceState(null, "", "#video-feedback"); } catch (x) {} }));   // bấm "Video" trên menu: mở luôn và cuộn tới
+  if (location.hash === "#video-feedback") open(true);
   box.innerHTML = VIDEOS.map(v => `<div class="vc"><button type="button" class="vp" data-yt="${esc(v.id)}" aria-label="Phát video chia sẻ của ${esc(v.name)}"><img src="https://i.ytimg.com/vi/${esc(v.id)}/oar2.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${esc(v.id)}/hqdefault.jpg'" alt="" loading="lazy"><span class="pl" aria-hidden="true"></span></button><b>${esc(v.name)}</b><span>${esc(v.note)}</span></div>`).join("");
   box.querySelectorAll("[data-yt]").forEach(b => b.onclick = () => { const f = document.createElement("iframe"); f.src = "https://www.youtube-nocookie.com/embed/" + b.dataset.yt + "?autoplay=1&playsinline=1&rel=0"; f.title = b.getAttribute("aria-label"); f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true; b.replaceWith(f); });
 }
@@ -1282,7 +1289,7 @@ if (TCH) { $("#tchImg").src = TCH; $("#heroImg").src = TCH; } else { $("#tchImg"
 /* đã đăng nhập: làm mới quyền (gói, hạn) mỗi lần mở; từ trang học quay về với ?next= thì làm mới rồi trả về */
 if (getS()) refresh(true);
 </script>
-<script>window.AZR={"b": ".sec-h,.place-h,.pgoal,.box,.j-head,.jb-h,.jb-f,.j-card,.j-remind,.tv-pane,.elite-box,.res-note,.contact,.trust,.banner", "s": ".perks,.pgrid,.apps,.stats,.res,.vids,.steps,.jb-list,.jr-grid,.j-kpi,.j-mis,.tv-nums,.tv-grid,.j-pick", "x": "#gvj,.modal,dialog"};/* AZIELTS · hiệu ứng hiện dần khi kéo trang (dùng chung mọi trang, quyết định 26/10/2026).
+<script>window.AZR={"b": ".sec-h,.vfb-bar,.place-h,.pgoal,.box,.j-head,.jb-h,.jb-f,.j-card,.j-remind,.tv-pane,.elite-box,.res-note,.contact,.trust,.banner", "s": ".perks,.pgrid,.apps,.stats,.res,.vids,.steps,.jb-list,.jr-grid,.j-kpi,.j-mis,.tv-nums,.tv-grid,.j-pick", "x": "#gvj,.modal,dialog"};/* AZIELTS · hiệu ứng hiện dần khi kéo trang (dùng chung mọi trang, quyết định 26/10/2026).
    Khối (AZR.b) trượt lên khi tới nơi; nhóm nhiều ô (AZR.s) cho các ô con hiện LẦN LƯỢT. Mỗi khối chạy 1 lần.
    Bỏ qua: máy bật giảm chuyển động, phần nằm trong AZR.x, và khối chứa ô gõ bài (textarea) — màn làm bài không có hiệu ứng.
    Cấu hình trước khi nạp: window.AZR = { b: "selector khối", s: "selector nhóm ô", x: "selector vùng loại trừ" }. Nội dung vẽ sau (innerHTML) tự được gắn. */
