@@ -146,6 +146,13 @@ button.app{font:inherit;text-align:left;cursor:pointer}
 .app.soon .ic{filter:grayscale(.6);opacity:.7}
 /* thành tích */
 .res{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.vh{margin:34px 0 14px}.vh .k{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}.vh h3{font-family:var(--serif);font-size:24px;margin:6px 0 0}
+.vids{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,250px));gap:18px}
+.vc{display:flex;flex-direction:column;gap:2px}.vc b{margin-top:10px;font-size:16px}.vc>span{font-size:13.5px;color:var(--ink-3)}
+.vc .vp,.vc iframe{position:relative;display:block;width:100%;aspect-ratio:9/16;border:1px solid rgba(184,145,58,.55);border-radius:16px;overflow:hidden;background:#0B1424;padding:0;cursor:pointer;box-shadow:0 16px 32px -22px rgba(11,20,36,.6)}
+.vc .vp img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}.vc .vp:hover img{transform:scale(1.04)}
+.vc .pl{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:var(--red);box-shadow:0 0 0 8px rgba(215,25,45,.25)}
+.vc .pl::after{content:"";position:absolute;left:26px;top:20px;border-style:solid;border-width:12px 0 12px 19px;border-color:transparent transparent transparent #fff}
 .rc{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:22px;align-items:center;padding:20px;border-radius:18px;background:var(--bg);border:1px solid var(--line);box-shadow:var(--sh-2)}
 .rc a.ph{display:block;border-radius:12px;overflow:hidden;border:1px solid rgba(184,145,58,.55);background:#0B1424;padding:6px;aspect-ratio:4/5;box-shadow:0 12px 28px -20px rgba(11,20,36,.6)}
 .rc a.ph img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;border-radius:7px;filter:saturate(.88) contrast(1.03);transition:transform .3s}
@@ -630,6 +637,8 @@ html body a.card > .tn{display:flex;align-items:center}
         <div class="sec-h"><span class="k">Thành tích</span><h2>Kết quả thật của học viên AZEnglish</h2><p>Phiếu điểm IELTS chính thức. Thông tin cá nhân đã được che. Bấm vào ảnh để xem rõ.</p></div>
         <div class="res" id="res"></div>
         <p class="res-note">Kết quả có thể kiểm chứng tại ielts.org/verify theo quy định của IELTS.</p>
+        <div class="vh"><span class="k">Học viên chia sẻ</span><h3>Nghe chính học viên kể về hành trình IELTS</h3></div>
+        <div class="vids" id="vids"></div>
       </div>
     </section>
 
@@ -872,7 +881,17 @@ const RESULTS = [
   { img: RES2, name: "Mỹ Hoài", ov: "7.0", when: "IELTS Academic · tháng 3/2025 · CEFR C1", sk: [["Listening", "8.0"], ["Reading", "7.5"], ["Writing", "6.5"], ["Speaking", "6.5"]] },
   { img: RES3, name: "Minh Anh", ov: "6.0", when: "IELTS Academic · tháng 5/2025 · CEFR B2", sk: [["Listening", "6.5"], ["Reading", "6.5"], ["Writing", "6.0"], ["Speaking", "5.5"]] }
 ];
+/* Video cảm nhận học viên (YouTube Shorts). Thêm video: thêm 1 dòng { id: mã sau /shorts/, name, note }. Chỉ tải YouTube khi người xem bấm phát. */
+const VIDEOS = [
+  { id: "mUxadxXrJ98", name: "Như Mai", note: "Học viên IELTS AZEnglish" }
+];
+function renderVideos() {
+  const box = $("#vids"); if (!box) return;
+  box.innerHTML = VIDEOS.map(v => `<div class="vc"><button type="button" class="vp" data-yt="${esc(v.id)}" aria-label="Phát video chia sẻ của ${esc(v.name)}"><img src="https://i.ytimg.com/vi/${esc(v.id)}/oar2.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/${esc(v.id)}/hqdefault.jpg'" alt="" loading="lazy"><span class="pl" aria-hidden="true"></span></button><b>${esc(v.name)}</b><span>${esc(v.note)}</span></div>`).join("");
+  box.querySelectorAll("[data-yt]").forEach(b => b.onclick = () => { const f = document.createElement("iframe"); f.src = "https://www.youtube-nocookie.com/embed/" + b.dataset.yt + "?autoplay=1&playsinline=1&rel=0"; f.title = b.getAttribute("aria-label"); f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true; b.replaceWith(f); });
+}
 function renderResults() {
+  renderVideos();
   $("#res").innerHTML = RESULTS.map((r, i) => `<div class="rc">${r.img ? `<a class="ph" href="#" data-lb="${i}" aria-label="Xem phiếu điểm của ${esc(r.name)}"><img src="${r.img}" alt="Phiếu điểm IELTS ${esc(r.ov)} của học viên ${esc(r.name)}" loading="lazy"></a>` : ""}
     <div><div class="ov"><b>${esc(r.ov)}</b><span>Overall</span></div><h3>${esc(r.name)}</h3><p class="when">${esc(r.when)}</p>
     <div class="sk">${r.sk.map(([k, v]) => `<div><b>${esc(v)}</b>${esc(k)}</div>`).join("")}</div></div></div>`).join("");
@@ -1258,7 +1277,7 @@ if (TCH) { $("#tchImg").src = TCH; $("#heroImg").src = TCH; } else { $("#tchImg"
 /* đã đăng nhập: làm mới quyền (gói, hạn) mỗi lần mở; từ trang học quay về với ?next= thì làm mới rồi trả về */
 if (getS()) refresh(true);
 </script>
-<script>window.AZR={"b": ".sec-h,.place-h,.pgoal,.box,.j-head,.jb-h,.jb-f,.j-card,.j-remind,.tv-pane,.elite-box,.res-note,.contact,.trust,.banner", "s": ".perks,.pgrid,.apps,.stats,.res,.steps,.jb-list,.jr-grid,.j-kpi,.j-mis,.tv-nums,.tv-grid,.j-pick", "x": "#gvj,.modal,dialog"};/* AZIELTS · hiệu ứng hiện dần khi kéo trang (dùng chung mọi trang, quyết định 26/10/2026).
+<script>window.AZR={"b": ".sec-h,.vh,.place-h,.pgoal,.box,.j-head,.jb-h,.jb-f,.j-card,.j-remind,.tv-pane,.elite-box,.res-note,.contact,.trust,.banner", "s": ".perks,.pgrid,.apps,.stats,.res,.vids,.steps,.jb-list,.jr-grid,.j-kpi,.j-mis,.tv-nums,.tv-grid,.j-pick", "x": "#gvj,.modal,dialog"};/* AZIELTS · hiệu ứng hiện dần khi kéo trang (dùng chung mọi trang, quyết định 26/10/2026).
    Khối (AZR.b) trượt lên khi tới nơi; nhóm nhiều ô (AZR.s) cho các ô con hiện LẦN LƯỢT. Mỗi khối chạy 1 lần.
    Bỏ qua: máy bật giảm chuyển động, phần nằm trong AZR.x, và khối chứa ô gõ bài (textarea) — màn làm bài không có hiệu ứng.
    Cấu hình trước khi nạp: window.AZR = { b: "selector khối", s: "selector nhóm ô", x: "selector vùng loại trừ" }. Nội dung vẽ sau (innerHTML) tự được gắn. */
