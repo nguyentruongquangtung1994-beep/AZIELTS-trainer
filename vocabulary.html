@@ -6,18 +6,166 @@
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#FFFAF3">
 <title>AZ Vocabulary · AZEnglish</title>
-<meta name="description" content="Từ vựng IELTS Writing theo 16 chủ đề hay ra trong đề Task 2 + ngôn ngữ Task 1: nhìn từ, chọn nghĩa, chữa bài khi xong lượt.">
-<meta property="og:title" content="AZ Vocabulary · Từ vựng IELTS Writing theo chủ đề">
+<meta name="description" content="Từ vựng IELTS Writing (16 chủ đề Task 2 + Task 1) và Speaking (11 nhóm chủ đề hay ra): nhìn từ, chọn nghĩa, chữa bài khi xong lượt.">
+<meta property="og:title" content="AZ Vocabulary · Từ vựng IELTS Writing & Speaking theo chủ đề">
 <meta property="og:description" content="Lướt thẻ từ vựng theo chủ đề, chữa bài và ôn lại từ sai. Một sản phẩm của AZEnglish.">
 <meta property="og:image" content="https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/og-azielts-v2.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/css/vocabulary.css">
-</head>
+<!--AZP:start--><style id="azp">/* ===== AZIELTS PREMIUM — AZ Vocabulary (bản trong Academy) =====
+   Đè token của assets/css/vocabulary.css (bản Arena giữ giao diện mềm Baloo + nền kem).
+   Xanh đêm #0B1424 cho trạng thái chọn/khung đậm · vàng #B8913A điểm nhấn · đỏ AZ chỉ cho nút chính và lỗi · luôn sáng. */
+html:root{
+  color-scheme:light;
+  --bg:#FDFCF9;--card:#FFFFFF;--ink:#111827;--ink-2:#4B5563;--ink-3:#6B7280;--line:#E8E4DA;--line-2:#DCD5C6;
+  --red:#D7192D;--red-d:#B01322;--red-soft:#FDEDEF;--navy:#0B1424;--navy-2:#16263F;--navy-soft:#EEF1F6;
+  --ok:#1F7A4D;--ok-soft:#E8F3EC;--gold:#B8913A;--gold-soft:#F7F0E1;
+  --f:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --fd:"Playfair Display",Georgia,serif;
+  --sh:0 1px 3px rgba(16,24,40,.06),0 12px 28px -16px rgba(16,24,40,.18);
+  --r-btn:10px;--r-card:16px;
+}
+body{background:var(--bg)}
+h1,h2,h3,.score,.term,.lmeta b,.ritem .rt b,.setup summary b,.logo b{font-family:var(--fd)!important;font-weight:700!important;letter-spacing:-.01em;font-variant-numeric:lining-nums}
+.term{font-weight:700!important}
+/* thanh trên: trắng mờ như Academy, logo đỏ phẳng */
+.top{background:rgba(255,255,255,.92)}
+.mk{border-radius:10px;box-shadow:none}
+.logo small{color:var(--gold);letter-spacing:.04em;text-transform:uppercase;font-size:10.5px;font-weight:700}
+.tag{background:var(--gold-soft);color:#7A5B1C}
+/* nút: phẳng, chữ thường đậm 700 */
+.btn{font:700 16px/1.2 var(--f);box-shadow:0 1px 2px rgba(176,19,34,.25)}
+.btn:active{transform:translateY(1px);box-shadow:none}
+.btn.line{box-shadow:none;border-color:var(--line-2)}
+.btn.navy{box-shadow:none}
+/* thẻ Học nhanh = khung xanh đêm có viền vàng, như hero Academy */
+.quick:not(:has(.gate)){background:radial-gradient(120% 140% at 100% 0%,#1B2C48 0%,var(--navy) 55%);border-color:#22324D;color:#F3F4F6;border-radius:20px}
+.quick:not(:has(.gate)) h1{color:#fff}
+.quick:not(:has(.gate)) p,.quick:not(:has(.gate)) .swap{color:#C9D1DE}
+.quick:not(:has(.gate)) .sum span{background:rgba(255,255,255,.08);border:1px solid rgba(227,194,122,.35);color:#E3C27A}
+.quick:not(:has(.gate)) .swap .link{color:#E3C27A}
+/* lựa chọn & chip */
+.seg button,.chips button{font-weight:600;border-color:var(--line-2)}
+.chips button .lk{color:var(--gold);font-weight:700}
+.chips button[aria-pressed="true"] .lk,.seg button[aria-pressed="true"] .lk{color:#E3C27A}
+.opt{border-width:1px;box-shadow:none;border-radius:12px}
+.opt .k{border-radius:8px;background:var(--navy-soft);color:var(--navy-2)}
+.ctx,.qsec{background:var(--gold-soft);color:#7A5B1C}
+.qsec.low{background:var(--red);color:#fff}
+.qtime i{background:var(--gold)}
+.bar i{background:linear-gradient(90deg,var(--gold),#E3C27A)}
+.avail{background:#F7F5F0;border-radius:12px}
+.avail.short{background:var(--gold-soft)}
+/* kết quả */
+.rhead .eyebrow{color:var(--gold)}
+.kpis div{background:#F7F5F0}
+.ritem{border-left-width:3px}
+.ritem .pos{background:#F7F5F0}
+.gate{border:1px solid var(--line);border-top:3px solid var(--red);background:var(--card)}
+.gtabs{background:#F7F5F0}
+.toast{background:var(--navy)}
+.resume{background:var(--navy-soft);border-color:#DCE2EC}
+
+/* ===== AZIELTS SYNC — một thang chung cho Academy · Writing Studio · Reading & Listening · Listening Lab =====
+   Bo góc: 10px nút & ô nhập · 12px khối nhỏ bên trong thẻ · 16px thẻ & bảng · 20px khung lớn · 999px viên thuốc (chip, nhãn gói).
+   Nút: chữ thường, đậm 700, không giãn chữ. Biểu tượng: nét mảnh 1.8. */
+:root{--r-btn:10px;--r-in:12px;--r-card:16px;--r-xl:20px}
+/* nút & ô nhập */
+html body :is(.btn,.ghost,.nb-btn,.opt,#chk,#rst,.ws-steps button,#tabs button,select,textarea,input:not([type=checkbox]):not([type=radio]):not([type=range])):not(.mchip):not(.avatar):not(.tab):not(.azp-home){border-radius:var(--r-btn)!important}
+html body :is(.btn,.ghost,.nb-btn,#chk,#rst):not(.tab){font-weight:700!important;letter-spacing:0!important;text-transform:none!important}
+html body .ws-steps button{font-weight:700!important}
+/* khối nhỏ bên trong thẻ */
+html body :is(.nb-book,.ph,.how,.board-note,.essay-raw,details.faq-i,.faq details,.ico,.ti){border-radius:var(--r-in)!important}
+/* thẻ & bảng */
+html body :is(.panel,.wk-it,.figure,nav#tabs,.ws-steps,.jmap,.rc,.pgrid,.tch,.plan,.perk,.stats,.float,.acct,.auth,.place,.step,.nb-skill,.nb-writing,.nb-strategy,.nb-stats,.nb-panel,.bk,.card,.steps,.player,.transcript,.app){border-radius:var(--r-card)!important}
+/* khung lớn */
+html body :is(aside.side,.frame,.nb-hero,.az-hero,header.top,.hello,.hero-card){border-radius:var(--r-xl)!important}
+/* biểu tượng nét mảnh */
+html body :is(.azi,.nb-skill .ico svg,.nb-strategy .i svg,.azp-ico){stroke-width:1.8!important}
+html body .nb-strategy .i svg,html body .azp-ico{width:22px;height:22px;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+html body .azp-ico{width:18px;height:18px;vertical-align:-3px;margin-right:8px;color:var(--gold,#B8913A)}
+html body .nb-strategy .i svg{margin:0!important;color:inherit!important}
+html body a.card > .tn{display:flex;align-items:center}
+</style><script>window.AZP_ACAD="academy.html";window.AZP_HOST=".who";/* AZIELTS PREMIUM — dùng chung cho trang học tĩnh: nạp font, luôn sáng, nút về Academy + huy hiệu gói */
+(function () {
+  try {
+    var l = document.createElement("link"); l.rel = "stylesheet";
+    l.href = "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Source+Serif+4:wght@400;600&display=swap";
+    document.head.appendChild(l);
+  } catch (e) {}
+  var root = document.documentElement;
+  function light() { if (root.getAttribute("data-theme") === "dark") root.setAttribute("data-theme", "light"); }
+  light(); try { new MutationObserver(light).observe(root, { attributes: true, attributeFilter: ["data-theme"] }); } catch (e) {}
+  /* EMOJI: bỏ biểu tượng emoji còn sót trong nội dung cũ (đồng hồ ⏱, tiêu đề 📋 🎯 📌…) để giao diện premium */
+  try {
+    var EM = /(?:[\u{1F000}-\u{1FAFF}]|[⏩-⏺]|[☀-⛿]|⭐|[✅❌❎✨])️?\s?/gu;
+    var strip = function (root) { var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), n; while ((n = w.nextNode())) { if (n.parentElement && /^(SCRIPT|STYLE|TEXTAREA)$/.test(n.parentElement.tagName)) continue; if (EM.test(n.textContent)) { EM.lastIndex = 0; n.textContent = n.textContent.replace(EM, ""); } EM.lastIndex = 0; } };
+    var go = function () { strip(document.body); new MutationObserver(function (ms) { ms.forEach(function (m) { m.addedNodes.forEach(function (x) { if (x.nodeType === 1) strip(x); else if (x.nodeType === 3 && x.parentNode) strip(x.parentNode); }); }); }).observe(document.body, { childList: true, subtree: true }); };
+    if (document.body) go(); else document.addEventListener("DOMContentLoaded", go);
+  } catch (e) {}
+  /* BIỂU TƯỢNG: bộ nét mảnh chung với Academy & Writing Studio (thay ô "!" thẻ Chiến lược, thêm tai nghe / mẹo cho Listening Lab) */
+  try {
+    var SVG = function (d) { return '<svg class="azp-ico" viewBox="0 0 24 24" aria-hidden="true">' + d + "</svg>"; };
+    var ICO = { compass: '<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/>',
+      phones: '<path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/>',
+      tip: '<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/>' };
+    var deco = function () {
+      document.querySelectorAll(".nb-strategy .i").forEach(function (e) { if (e.textContent.trim() === "!") e.innerHTML = SVG(ICO.compass).replace("azp-ico", "azp-ico azp-big"); });
+      document.querySelectorAll("a.card > .tn").forEach(function (e) { if (!e.querySelector(".azp-ico")) e.insertAdjacentHTML("afterbegin", SVG(ICO.phones)); });
+      document.querySelectorAll(".steps > b:first-child").forEach(function (e) { if (!e.querySelector(".azp-ico")) e.insertAdjacentHTML("afterbegin", SVG(ICO.tip)); });
+    };
+    var goDeco = function () { deco(); new MutationObserver(function () { deco(); }).observe(document.body, { childList: true, subtree: true }); };
+    if (document.body) goDeco(); else document.addEventListener("DOMContentLoaded", goDeco);
+  } catch (e) {}
+  var s = null; try { s = JSON.parse(localStorage.getItem("az_acad") || "null"); } catch (e) {}
+  if (!s || !s.u) return;
+  var TIER = { elite: "Elite", standard: "Standard", trial: "Dùng thử" };
+  var ACAD = (window.AZP_ACAD || "academy.html");
+  function mount() {
+    if (document.querySelector(".azp-bar")) return;
+    var host = document.querySelector(window.AZP_HOST || ".masthead"); if (!host) return;
+    var bar = document.createElement("div"); bar.className = "azp-bar";
+    bar.innerHTML = '<a class="azp-home" href="' + ACAD + '" title="Về AZIELTS Academy">← Academy</a>' + (TIER[s.tier] ? '<span class="azp-tier ' + s.tier + '">' + TIER[s.tier] + "</span>" : "");
+    host.appendChild(bar);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", mount); else mount();
+  setTimeout(mount, 600); setTimeout(mount, 2000);
+})();
+;window.AZR={"b":".quick,.setup,.rhead,.foot","s":".rlist","x":"#scrLearn,.gate"};/* AZIELTS · hiệu ứng hiện dần khi kéo trang (dùng chung mọi trang, quyết định 26/10/2026).
+   Khối (AZR.b) trượt lên khi tới nơi; nhóm nhiều ô (AZR.s) cho các ô con hiện LẦN LƯỢT. Mỗi khối chạy 1 lần.
+   Bỏ qua: máy bật giảm chuyển động, phần nằm trong AZR.x, và khối chứa ô gõ bài (textarea) — màn làm bài không có hiệu ứng.
+   Cấu hình trước khi nạp: window.AZR = { b: "selector khối", s: "selector nhóm ô", x: "selector vùng loại trừ" }. Nội dung vẽ sau (innerHTML) tự được gắn. */
+(function () {
+  var C = window.AZR || {}, B = C.b || "", S = C.s || "", X = C.x || "";
+  if (!("IntersectionObserver" in window) || !window.matchMedia || matchMedia("(prefers-reduced-motion: reduce)").matches || (!B && !S)) return;
+  var st = document.createElement("style");
+  st.textContent = ".azr{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)!important}.azr.azin{opacity:1;transform:none}";
+  document.head.appendChild(st);
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (!e.isIntersecting) return; var el = e.target; io.unobserve(el); el.classList.add("azin");
+      setTimeout(function () { el.classList.remove("azr", "azin"); el.style.transitionDelay = ""; }, 700 + (parseInt(el.style.transitionDelay) || 0)); });
+  }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+  function skip(el) { return el.dataset.azr || (X && el.closest(X)) || el.querySelector("textarea"); }
+  function mark(el, delay) { el.dataset.azr = "1"; el.classList.add("azr"); if (delay) el.style.transitionDelay = delay + "ms"; io.observe(el); }
+  function tag(root) {
+    if (!root || !root.querySelectorAll) return;
+    if (B) root.querySelectorAll(B).forEach(function (el) { if (!skip(el)) mark(el, 0); });
+    if (S) root.querySelectorAll(S).forEach(function (p) { var i = 0; Array.prototype.forEach.call(p.children, function (c) { if (!skip(c)) mark(c, Math.min(i++, 8) * 70); }); });
+  }
+  function start() {
+    tag(document);
+    var q = new Set(), on = false;   // gộp các lần trang vẽ lại vào 1 nhịp khung hình
+    new MutationObserver(function (ms) { ms.forEach(function (m) { if (m.addedNodes.length) q.add(m.target); });
+      if (!on && q.size) { on = true; requestAnimationFrame(function () { on = false; var t = Array.from(q); q.clear(); t.forEach(function (r) { if (r.isConnected) tag(r); }); }); } }).observe(document.body, { childList: true, subtree: true });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
+})();
+</script><!--AZP:end--></head>
 <body>
 <header class="top">
   <div class="top-in">
-    <a class="logo" href="academy.html" aria-label="Về AZIELTS Academy"><span class="mk">AZ</span><span><b>AZ Vocabulary</b><small>IELTS Writing</small></span></a>
+    <a class="logo" href="academy.html" aria-label="Về AZIELTS Academy"><span class="mk">AZ</span><span><b>AZ Vocabulary</b><small>IELTS Writing · Speaking</small></span></a>
     <span class="sp"></span>
     <span class="who" id="who"></span>
   </div>
@@ -37,6 +185,7 @@
         <summary><span><b id="hHome">Tùy chỉnh lượt học</b><small>Chủ đề, độ khó, số từ, thời gian, âm thanh</small></span><span class="chev" aria-hidden="true"></span></summary>
         <div class="setup-in">
           <fieldset><legend>Chương trình</legend><div class="seg" id="fExam"></div></fieldset>
+          <fieldset hidden><legend>Kỹ năng</legend><div class="seg" id="fSkill"></div></fieldset>
           <fieldset><legend>Chủ đề</legend><div class="chips" id="fTopic"></div></fieldset>
           <fieldset><legend>Độ khó <small>(mức học liệu do AZ phân loại, không quy đổi ra điểm thi)</small></legend><div class="seg" id="fLevel"></div></fieldset>
           <fieldset><legend>Số từ mỗi lượt</legend><div class="seg" id="fCount"></div></fieldset>
@@ -49,7 +198,7 @@
       </details>
 
       <footer class="foot">
-        <p>Học liệu là <b>bản thử do AZEnglish tự biên soạn</b>, đang chờ giáo viên duyệt nghĩa và độ tự nhiên. Kho từ lấy từ AZIELTS Writing Studio, chủ đề xếp theo số đề Task 2 trong các sách Writing AZ đang dùng. Không phải tài liệu chính thức của IELTS, Cambridge hay IDP. Nhãn band ở mức độ giống Writing Studio, chỉ để tham khảo.</p>
+        <p>Học liệu là <b>bản thử do AZEnglish tự biên soạn</b>, đang chờ giáo viên duyệt nghĩa và độ tự nhiên. Từ Writing lấy từ kho AZIELTS Writing Studio, chủ đề xếp theo số đề Task 2 trong sách Writing; từ Speaking AZ tự soạn, nhóm chủ đề gộp từ các sách Speaking đang dùng. Không phải tài liệu chính thức của IELTS, Cambridge hay IDP. Nhãn band ở mức độ giống Writing Studio, chỉ để tham khảo.</p>
         <p>Tiến độ chỉ lưu trên thiết bị và trình duyệt này, chưa đồng bộ giữa các thiết bị. <button type="button" class="link" id="openData">Xuất, nhập hoặc xoá tiến độ</button></p>
       </footer>
     </div>
