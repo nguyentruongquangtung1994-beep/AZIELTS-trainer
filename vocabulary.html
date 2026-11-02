@@ -6,66 +6,122 @@
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#FFFAF3">
 <title>AZ Vocabulary · AZEnglish</title>
-<meta name="description" content="Từ vựng IELTS Writing (16 chủ đề Task 2 + Task 1) và Speaking (11 nhóm chủ đề hay ra): nhìn từ, chọn nghĩa, chữa bài khi xong lượt.">
-<meta property="og:title" content="AZ Vocabulary · Từ vựng IELTS Writing & Speaking theo chủ đề">
+<meta name="description" content="Từ vựng IELTS Writing theo 16 chủ đề hay ra trong đề Task 2 + ngôn ngữ Task 1: nhìn từ, chọn nghĩa, chữa bài khi xong lượt.">
+<meta property="og:title" content="AZ Vocabulary · Từ vựng IELTS Writing theo chủ đề">
 <meta property="og:description" content="Lướt thẻ từ vựng theo chủ đề, chữa bài và ôn lại từ sai. Một sản phẩm của AZEnglish.">
 <meta property="og:image" content="https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/og-azielts-v2.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="assets/css/vocabulary.css">
 <!--AZP:start--><style id="azp">/* ===== AZIELTS PREMIUM — AZ Vocabulary (bản trong Academy) =====
-   Đè token của assets/css/vocabulary.css (bản Arena giữ giao diện mềm Baloo + nền kem).
-   Xanh đêm #0B1424 cho trạng thái chọn/khung đậm · vàng #B8913A điểm nhấn · đỏ AZ chỉ cho nút chính và lỗi · luôn sáng. */
+   Khung giống Day Mission / Skill Mission: thanh đầu + dải hero xanh đêm, thẻ trắng nổi đè lên dải, khung 920px;
+   màn học có dải xanh chứa tiêu đề + tiến độ, thẻ câu hỏi nổi bên dưới.
+   Xanh đêm #0B1424 · vàng #B8913A · đỏ AZ chỉ cho nút chính và lỗi · Playfair Display + Be Vietnam Pro · luôn sáng.
+   Đè token của assets/css/vocabulary.css (bản Arena giữ giao diện mềm Baloo + nền kem). */
 html:root{
   color-scheme:light;
-  --bg:#FDFCF9;--card:#FFFFFF;--ink:#111827;--ink-2:#4B5563;--ink-3:#6B7280;--line:#E8E4DA;--line-2:#DCD5C6;
-  --red:#D7192D;--red-d:#B01322;--red-soft:#FDEDEF;--navy:#0B1424;--navy-2:#16263F;--navy-soft:#EEF1F6;
-  --ok:#1F7A4D;--ok-soft:#E8F3EC;--gold:#B8913A;--gold-soft:#F7F0E1;
+  --bg:#FAF8F4;--card:#FFFFFF;--ink:#111827;--ink-2:#4B5563;--ink-3:#8A93A3;--line:#E4E7EC;--line-2:#D3D8E0;
+  --red:#D7192D;--red-d:#B01322;--red-soft:#FDECEC;--navy:#0B1424;--navy-2:#13233B;--navy-soft:#EEF1F6;
+  --ok:#15803D;--ok-soft:#E8F5EC;--gold:#B8913A;--gold-2:#D9B36A;--gold-soft:#FBF3E0;
   --f:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --fd:"Playfair Display",Georgia,serif;
-  --sh:0 1px 3px rgba(16,24,40,.06),0 12px 28px -16px rgba(16,24,40,.18);
-  --r-btn:10px;--r-card:16px;
+  --sh:0 2px 6px rgba(16,24,40,.06),0 24px 48px -24px rgba(11,20,36,.35);
+  --r-btn:12px;--r-card:22px;
+  --band:linear-gradient(160deg,#0B1424,#13233B 60%,#0E1A2E);
 }
-body{background:var(--bg)}
-h1,h2,h3,.score,.term,.lmeta b,.ritem .rt b,.setup summary b,.logo b{font-family:var(--fd)!important;font-weight:700!important;letter-spacing:-.01em;font-variant-numeric:lining-nums}
-.term{font-weight:700!important}
-/* thanh trên: trắng mờ như Academy, logo đỏ phẳng */
-.top{background:rgba(255,255,255,.92)}
-.mk{border-radius:10px;box-shadow:none}
-.logo small{color:var(--gold);letter-spacing:.04em;text-transform:uppercase;font-size:10.5px;font-weight:700}
-.tag{background:var(--gold-soft);color:#7A5B1C}
-/* nút: phẳng, chữ thường đậm 700 */
-.btn{font:700 16px/1.2 var(--f);box-shadow:0 1px 2px rgba(176,19,34,.25)}
+body{background:var(--bg);font-size:15.5px}
+h1,h2,h3,.score,.term,.ritem .rt b,.setup summary b,.logo b{font-family:var(--fd)!important;font-weight:700!important;letter-spacing:0;font-variant-numeric:lining-nums}
+
+/* ---------- khung 920px ---------- */
+.wrap,.top-in{max-width:920px}
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* ---------- thanh đầu xanh đêm ---------- */
+.top{background:var(--band);border-bottom:0;backdrop-filter:none;color:#F4F1EA;position:relative}
+.top-in{height:60px}
+.logo,.logo b{color:#fff}
+.logo b{font-family:var(--f)!important;font-weight:800!important;font-size:17px}
+.logo small{color:var(--gold-2);letter-spacing:.08em;text-transform:uppercase;font-size:10.5px;font-weight:700}
+.mk{width:34px;height:34px;border-radius:10px;box-shadow:none;font-size:13px}
+.who{color:#C9CFDA}
+.who .nm{color:#F4F1EA}
+.who a,button.back,.who .back{color:var(--gold-2)!important}
+button.back.out{color:#C9CFDA!important}
+.tag{background:rgba(217,179,106,.16);color:var(--gold-2);border:1px solid rgba(217,179,106,.35)}
+.tag.guest{background:rgba(255,255,255,.06)}
+
+/* ---------- dải hero ---------- */
+.azv-hero{display:block;color:#F4F1EA;margin-top:-1px;
+  background:radial-gradient(900px 420px at 90% -10%,rgba(215,25,45,.22),transparent 60%),radial-gradient(700px 400px at 0% 120%,rgba(184,145,58,.18),transparent 60%),var(--band)}
+.hero-in{max-width:920px;margin:0 auto;padding:18px max(16px,env(safe-area-inset-left,0px)) 86px}
+.azv-hero .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-2);font-weight:700}
+.azv-hero h1{font-size:clamp(28px,4.4vw,40px);line-height:1.12;margin:8px 0 6px;color:#fff;text-wrap:balance}
+.azv-hero p{margin:0;color:#C9CFDA;max-width:62ch}
+#app.wrap{margin-top:-62px;position:relative;padding-top:0}
+/* màn học: dải thấp, chỉ chứa thanh tiêu đề + tiến độ */
+body:has(#scrLearn:not([hidden])) .hero-in{padding-bottom:118px}
+body:has(#scrLearn:not([hidden])) .hero-in>*{display:none}
+body:has(#scrLearn:not([hidden])) #app.wrap{margin-top:-118px}
+#scrLearn{max-width:780px;margin:0 auto}
+.lbar .lmeta b{color:#fff;font-family:var(--fd)!important}
+.lbar .lmeta span,.lbar .lcount{color:#E9DDBF}
+.lbar .icon-btn{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22)}
+.lbar .icon-btn svg,.lbar .icon-btn .spk{stroke:#F4F1EA}
+.lbar .icon-btn[aria-pressed="true"] .spk{stroke:var(--gold-2)}
+.bar{background:rgba(255,255,255,.14);height:8px}
+.bar i{background:linear-gradient(90deg,var(--gold),var(--gold-2))}
+@media (max-width:640px){#scrLearn:not([hidden]){min-height:calc(100dvh - 60px - 40px)}}
+
+/* ---------- thẻ ---------- */
+.card,.qcard{border-radius:var(--r-card);box-shadow:var(--sh);border-color:var(--line)}
+.quick{padding:clamp(22px,4vw,34px)}
+.quick h1{font-size:clamp(28px,4vw,40px);color:var(--navy);line-height:1.08}
+.quick p{color:var(--ink-2)}
+.quick .sum span{background:#F3F4F6;color:var(--ink-2);border-radius:10px;font-weight:600}
+.quick .btn.block{max-width:420px;min-height:54px;font-size:17px}
+.quick .swap{text-align:left}
+.status{padding:14px 4px}
+.setup summary b{font-size:19px;color:var(--navy)}
+.resume{background:var(--card);border:1px solid var(--line);box-shadow:var(--sh)}
+
+/* ---------- nút ---------- */
+.btn{font:700 15.5px/1.2 var(--f);border-radius:12px;box-shadow:none}
+.btn:hover{background:var(--red-d)}
 .btn:active{transform:translateY(1px);box-shadow:none}
-.btn.line{box-shadow:none;border-color:var(--line-2)}
-.btn.navy{box-shadow:none}
-/* thẻ Học nhanh = khung xanh đêm có viền vàng, như hero Academy */
-.quick:not(:has(.gate)){background:radial-gradient(120% 140% at 100% 0%,#1B2C48 0%,var(--navy) 55%);border-color:#22324D;color:#F3F4F6;border-radius:20px}
-.quick:not(:has(.gate)) h1{color:#fff}
-.quick:not(:has(.gate)) p,.quick:not(:has(.gate)) .swap{color:#C9D1DE}
-.quick:not(:has(.gate)) .sum span{background:rgba(255,255,255,.08);border:1px solid rgba(227,194,122,.35);color:#E3C27A}
-.quick:not(:has(.gate)) .swap .link{color:#E3C27A}
-/* lựa chọn & chip */
-.seg button,.chips button{font-weight:600;border-color:var(--line-2)}
+.btn.line{background:#fff;color:var(--ink);border-color:var(--line-2);box-shadow:none}
+.btn.line:hover{background:#F3F4F6}
+.btn.navy{background:var(--navy);border-color:var(--navy);box-shadow:none}
+.link{color:var(--red)}
+
+/* ---------- lựa chọn ---------- */
+.seg button,.chips button{font-weight:600;border-color:var(--line-2);background:#fff}
+.seg button[aria-pressed="true"],.chips button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy)}
 .chips button .lk{color:var(--gold);font-weight:700}
-.chips button[aria-pressed="true"] .lk,.seg button[aria-pressed="true"] .lk{color:#E3C27A}
-.opt{border-width:1px;box-shadow:none;border-radius:12px}
-.opt .k{border-radius:8px;background:var(--navy-soft);color:var(--navy-2)}
-.ctx,.qsec{background:var(--gold-soft);color:#7A5B1C}
+.chips button[aria-pressed="true"] .lk,.seg button[aria-pressed="true"] .lk{color:var(--gold-2)}
+.opt{border-width:1px;box-shadow:0 1px 2px rgba(16,24,40,.04);border-radius:14px;min-height:60px}
+.opt .k{border-radius:8px;background:var(--navy-soft);color:var(--navy)}
+.opt.picked{border-color:var(--navy);background:var(--navy-soft)}
+.term{color:var(--navy);font-size:clamp(32px,6vw,52px)!important}
+.ctx,.qsec{background:var(--gold-soft);color:#7A5B12}
 .qsec.low{background:var(--red);color:#fff}
 .qtime i{background:var(--gold)}
-.bar i{background:linear-gradient(90deg,var(--gold),#E3C27A)}
-.avail{background:#F7F5F0;border-radius:12px}
+.say{color:var(--navy)}
+.avail{background:#F7F5F0;border-radius:14px}
 .avail.short{background:var(--gold-soft)}
-/* kết quả */
-.rhead .eyebrow{color:var(--gold)}
-.kpis div{background:#F7F5F0}
+
+/* ---------- kết quả ---------- */
+.rhead .eyebrow{color:var(--gold);letter-spacing:.14em}
+.score{color:var(--navy)}
+.kpis div{background:#F7F5F0;border-radius:14px}
+.kpis b{font-family:var(--fd);color:var(--navy);font-size:22px}
 .ritem{border-left-width:3px}
-.ritem .pos{background:#F7F5F0}
+.ritem .rt b{color:var(--navy)}
+.ritem .pos{background:#F3F4F6}
 .gate{border:1px solid var(--line);border-top:3px solid var(--red);background:var(--card)}
-.gtabs{background:#F7F5F0}
+.gtabs{background:#F3F4F6}
 .toast{background:var(--navy)}
-.resume{background:var(--navy-soft);border-color:#DCE2EC}
+.foot{color:var(--ink-3)}
+.azv-hero p a{color:var(--gold-2);font-weight:700}
 
 /* ===== AZIELTS SYNC — một thang chung cho Academy · Writing Studio · Reading & Listening · Listening Lab =====
    Bo góc: 10px nút & ô nhập · 12px khối nhỏ bên trong thẻ · 16px thẻ & bảng · 20px khung lớn · 999px viên thuốc (chip, nhãn gói).
@@ -165,11 +221,14 @@ html body a.card > .tn{display:flex;align-items:center}
 <body>
 <header class="top">
   <div class="top-in">
-    <a class="logo" href="academy.html" aria-label="Về AZIELTS Academy"><span class="mk">AZ</span><span><b>AZ Vocabulary</b><small>IELTS Writing · Speaking</small></span></a>
+    <a class="logo" href="academy.html" aria-label="Về AZIELTS Academy"><span class="mk">AZ</span><span><b>AZ Vocabulary</b><small>IELTS Writing</small></span></a>
     <span class="sp"></span>
     <span class="who" id="who"></span>
   </div>
 </header>
+
+<!-- Dải hero: chỉ hiện ở bản Academy (giao diện Premium, tools/premium/vocab.css); bản Arena ẩn -->
+<section class="azv-hero"><div class="hero-in"><span class="eyebrow" id="heroEye">AZIELTS Academy · Từ vựng Writing</span><h1 id="heroTitle">Từ vựng IELTS Writing theo chủ đề</h1><p id="heroSub">16 chủ đề hay ra trong đề Task 2 và ngôn ngữ Task 1, chia 3 mức band. Nhìn từ, chọn nghĩa; xong lượt mới chữa bài và ôn lại từ sai. Từ vựng và bài mẫu Speaking nằm ở <a href="speaking.html">AZ Speaking</a>.</p></div></section>
 
 <main id="app" class="wrap" tabindex="-1">
   <!-- Màn chọn bài -->
@@ -198,7 +257,7 @@ html body a.card > .tn{display:flex;align-items:center}
       </details>
 
       <footer class="foot">
-        <p>Học liệu là <b>bản thử do AZEnglish tự biên soạn</b>, đang chờ giáo viên duyệt nghĩa và độ tự nhiên. Từ Writing lấy từ kho AZIELTS Writing Studio, chủ đề xếp theo số đề Task 2 trong sách Writing; từ Speaking AZ tự soạn, nhóm chủ đề gộp từ các sách Speaking đang dùng. Không phải tài liệu chính thức của IELTS, Cambridge hay IDP. Nhãn band ở mức độ giống Writing Studio, chỉ để tham khảo.</p>
+        <p>Học liệu là <b>bản thử do AZEnglish tự biên soạn</b>, đang chờ giáo viên duyệt nghĩa và độ tự nhiên. Kho từ lấy từ AZIELTS Writing Studio, chủ đề xếp theo số đề Task 2 trong các sách Writing AZ đang dùng. Từ vựng Speaking và bài mẫu nằm ở trang AZ Speaking. Không phải tài liệu chính thức của IELTS, Cambridge hay IDP. Nhãn band ở mức độ giống Writing Studio, chỉ để tham khảo.</p>
         <p>Tiến độ chỉ lưu trên thiết bị và trình duyệt này, chưa đồng bộ giữa các thiết bị. <button type="button" class="link" id="openData">Xuất, nhập hoặc xoá tiến độ</button></p>
       </footer>
     </div>
