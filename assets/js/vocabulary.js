@@ -9,6 +9,10 @@
   const SOLO = EXAMS.length === 1;
   const EXAMS_TXT = EXAMS.map(e => EXAM_NAME[e]).join(" hoặc ");
   const SKILL_NAME = { writing: "Writing", speaking: "Speaking" };
+  // Speaking là phần riêng (trang AZ Speaking): trang này mặc định chỉ dạy Writing; ?skill=speaking&topic=<id> mở từ vựng Speaking
+  const URLQ = new URLSearchParams(location.search);
+  const SKILL_LOCK = C.SKILLS.includes(URLQ.get("skill")) ? URLQ.get("skill") : null;
+  const SPEAKING_HOME = CFG.speaking || "speaking.html";
   const LEVEL_SUB = { ielts: { basic: "band 4–5", intermediate: "band 5.5–6.5", advanced: "band 7+" } };
   const DIR_NAME = { "en-vi": "Anh → Việt", "vi-en": "Việt → Anh" };
   const SPEED_NAME = { fast: ["Nhanh", "0,35 giây"], medium: ["Vừa", "0,65 giây"], slow: ["Chậm", "1 giây"] };
@@ -104,9 +108,12 @@
   function normPrefs() {
     const p = P.prefs, sks = p.exam ? skillsOf(p.exam) : [];
     if (sks.length < 2) { if (p.topic && p.topic.slice(0, 6) === "skill:") p.topic = "all"; return; }
-    if (!sks.includes(p.skill)) p.skill = sks[0];
+    p.skill = SKILL_LOCK || "writing";
+    const want = URLQ.get("topic"), wt = (TOPICS[p.exam] || []).find(x => x.id === want && x.skill === p.skill);
+    if (wt && !normPrefs.done) p.topic = wt.id;   // chỉ áp chủ đề trên link lần đầu, sau đó học viên tự đổi
+    normPrefs.done = true;
     const t = (TOPICS[p.exam] || []).find(x => x.id === p.topic);
-    if (t) p.skill = t.skill; else p.topic = "skill:" + p.skill;
+    if (!t || t.skill !== p.skill) p.topic = "skill:" + p.skill;
   }
   function renderHome() {
     renderWho(); normPrefs();
@@ -141,7 +148,8 @@
           h("button", { class: "link", type: "button", onclick: () => { const d = $("setup"); d.open = true; d.scrollIntoView({ block: "start", behavior: "smooth" }); }, text: "Tùy chỉnh lượt học" })));
     }
     // chuỗi ngày + lịch ôn
-    const st = $("status"), due = C.dueIds(P.words, today()).filter(id => BYID[id]), strk = C.streak(P.days, today());
+    const sk = skillsOf(p.exam).length > 1 ? p.skill : null;
+    const st = $("status"), due = C.dueIds(P.words, today()).filter(id => BYID[id] && (!sk || BYID[id].skill === sk)), strk = C.streak(P.days, today());
     const last = P.history.length ? P.history[P.history.length - 1] : null;
     fill(st,
       P.history.length ? h("span", null, "Chuỗi ", h("b", { text: strk + " ngày" }), " · luyện gần nhất " + vnDate(P.lastPracticed)) : h("span", { text: "Học xong lượt đầu sẽ có lịch ôn gợi ý sau 1, 3 và 7 ngày." }),
@@ -156,7 +164,7 @@
     $("fExam").closest("fieldset").hidden = SOLO;
     segButtons($("fExam"), EXAMS.map(e => ({ v: e, label: EXAM_NAME[e] })), p.exam, v => { if (p.exam !== v) { p.exam = v; p.topic = "all"; } save(); renderHome(); });
     const sks = p.exam ? skillsOf(p.exam) : [];
-    $("fSkill").closest("fieldset").hidden = sks.length < 2;
+    $("fSkill").closest("fieldset").hidden = true;   // kỹ năng do trang quyết định (Writing ở đây, Speaking từ AZ Speaking)
     if (sks.length > 1) {
       segButtons($("fSkill"), sks.map(k => ({ v: k, label: SKILL_NAME[k], sub: TOPICS[p.exam].filter(t => t.skill === k).length + " chủ đề" })), p.skill, v => { if (p.skill !== v) { p.skill = v; p.topic = "skill:" + v; } save(); renderHome(); });
     }
@@ -205,7 +213,8 @@
   }
   function startDue() {
     if (locked()) { renderHome(); focusGate(); return; }
-    const ids = C.dueIds(P.words, today()).filter(id => BYID[id]);
+    const sk = skillsOf(P.prefs.exam).length > 1 ? P.prefs.skill : null;
+    const ids = C.dueIds(P.words, today()).filter(id => BYID[id] && (!sk || BYID[id].skill === sk));
     if (!ids.length) { toast("Hôm nay chưa có từ đến hạn ôn."); return; }
     const terms = new Set();   // cùng một cụm ở cả Writing và Speaking → chỉ hỏi 1 lần
     const pool = C.shuffle(ids).filter(id => { const k = C.norm(BYID[id].term); if (terms.has(k)) return false; terms.add(k); return true; }).slice(0, DUE_MAX).map(id => BYID[id]);
@@ -634,6 +643,11 @@
     logo.href = "./"; logo.setAttribute("aria-label", "Về màn chọn bài AZ Vocabulary");
     logo.addEventListener("click", e => { e.preventDefault(); goHome(); });
     bindGlobal(); bindData();
+    if (SKILL_LOCK === "speaking") {
+      $("heroEye").textContent = "AZ Speaking · Từ vựng";
+      $("heroTitle").textContent = "Từ vựng Speaking theo chủ đề";
+      fill($("heroSub"), "Luyện nhanh các cụm hay dùng khi nói. Xem bài mẫu và phân tích ở ", h("a", { href: SPEAKING_HOME, text: "AZ Speaking" }), ".");
+    }
     const st = S.load(); P = st.progress;
     if (P.prefs.exam && !EXAMS.includes(P.prefs.exam)) { P.prefs.exam = null; P.prefs.topic = "all"; }
     if (SOLO && !P.prefs.exam) P.prefs.exam = EXAMS[0];
