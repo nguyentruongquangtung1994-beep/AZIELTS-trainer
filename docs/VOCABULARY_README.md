@@ -6,6 +6,12 @@ Chương trình luyện từ vựng TOEIC / IELTS theo chủ đề của AZEngli
 - Link thật (sau khi gộp vào main): https://nguyentruongquangtung1994-beep.github.io/AZIELTS-trainer/vocabulary.html
 - Vào từ Academy: thẻ **AZ Vocabulary** trong mục Chương trình (khách chưa đăng nhập cũng bấm vào học thử được).
 
+## Bản Academy = chỉ IELTS Writing (từ 02/11/2026)
+
+- Bản đóng gói cho AZIELTS-trainer (`python3 tools/build_deploy.py`, không có `arena`) chỉ dạy **IELTS**: cấu hình `exams: ["ielts"]`, ẩn mục chọn chương trình, không đưa file TOEIC lên. Bản Vocab Arena (`arena`) vẫn có TOEIC + IELTS.
+- `data/vocabulary-ielts.json` sinh bằng `node tools/build_ielts_from_writing.js`: kho từ Writing Studio (`vocab_a–d.js`, `content_plus.js`, Writing Lab `content.js`, VOCAB_T1) + 100 mục soạn tay cũ (giữ id, lưu ở `tools/seed/ielts-pilot.json`). 17 chủ đề = 16 chủ đề Task 2 + Ngôn ngữ Task 1, xếp theo số đề trong ngân hàng đề Writing Lab (`bank.json`, đề Task 2 trong sách mẫu) + nhóm "Vocabulary for common topics" của sách thầy Mike; 6 chủ đề đầu có nhãn "hay ra". Mức B1/B2/B3 của Writing Studio → Cơ bản/Trung cấp/Nâng cao (hiện kèm band 4–5 / 5.5–6.5 / 7+). Phương án nhiễu tự chọn trong cùng chủ đề, loại phương án trùng/na ná nghĩa. Mục từ kho Writing chưa có IPA và dịch câu ví dụ (để null, trang tự ẩn).
+- Thêm từ: sửa kho ở Writing Studio rồi chạy lại script (đừng sửa tay `vocabulary-ielts.json` — lần chạy sau ghi đè).
+
 ## Cấu trúc file
 
 | File | Vai trò |
