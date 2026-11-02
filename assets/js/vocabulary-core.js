@@ -12,6 +12,7 @@
   const LEVEL_VI = { basic: "Cơ bản", intermediate: "Trung cấp", advanced: "Nâng cao" };
   const REVIEW_STATUS = ["draft", "reviewed", "needs-fix"];
   const DIRS = ["en-vi", "vi-en"];
+  const SKILLS = ["writing", "speaking"];   // kỹ năng của mục từ IELTS (tuỳ chọn); topic "skill:<kỹ năng>" = tổng hợp theo kỹ năng
   const COUNTS = [10, 20, 30];
   const SPEEDS = { fast: 350, medium: 650, slow: 1000 };
   const TIMERS = [5, 8, 12];            // giây cho mỗi từ
@@ -19,7 +20,7 @@
   const INTERVALS = [1, 3, 7];           // gợi ý ôn sau 1, 3, 7 ngày
   const REQ_STR = ["id", "exam", "topic", "level", "term", "partOfSpeech", "meaningVi",
     "exampleEn", "usageNoteVi", "contentVersion", "sourceType", "reviewStatus"];
-  const OPT_STR = ["ipa", "exampleVi", "contextLabel", "confusionNoteVi", "audioUrl", "sourceUrl", "reviewer", "reviewedAt"];
+  const OPT_STR = ["skill", "ipa", "exampleVi", "contextLabel", "confusionNoteVi", "audioUrl", "sourceUrl", "reviewer", "reviewedAt"];
   const ITEM_KEYS = REQ_STR.concat(OPT_STR, ["distractorsVi", "reverseDistractorsEn"]);
 
   /* ---------- tiện ích ---------- */
@@ -60,6 +61,7 @@
     if (typeof it.id === "string" && !/^[a-z0-9][a-z0-9-]{2,80}$/.test(it.id)) E("id chỉ gồm chữ thường không dấu, số, gạch nối");
     if (it.exam != null && !EXAMS.includes(it.exam)) E("exam không hợp lệ: " + it.exam);
     if (it.level != null && !LEVELS.includes(it.level)) E("level không hợp lệ: " + it.level);
+    if (it.skill != null && !SKILLS.includes(it.skill)) E("skill không hợp lệ: " + it.skill);
     if (it.reviewStatus != null && !REVIEW_STATUS.includes(it.reviewStatus)) E("reviewStatus không hợp lệ: " + it.reviewStatus);
     if (topicIds && typeof it.topic === "string" && !topicIds.includes(it.topic)) E("chủ đề chưa khai báo: " + it.topic);
     if (it.reviewStatus === "reviewed" && (!it.reviewer || !it.reviewedAt)) E("đã duyệt thì phải có reviewer và reviewedAt");
@@ -131,7 +133,7 @@
 
   /* ---------- tạo lượt học ---------- */
   function filterItems(items, f) {
-    return items.filter(it => (!f.exam || it.exam === f.exam) && (!f.topic || f.topic === "all" || it.topic === f.topic) && (!f.level || f.level === "all" || it.level === f.level));
+    return items.filter(it => (!f.exam || it.exam === f.exam) && (!f.topic || f.topic === "all" || it.topic === f.topic || (f.topic.slice(0, 6) === "skill:" && it.skill === f.topic.slice(6))) && (!f.level || f.level === "all" || it.level === f.level));
   }
   function makeQuestion(it, dir, rng) {
     const correct = dir === "vi-en" ? it.term : it.meaningVi;
@@ -198,7 +200,7 @@
 
   /* ---------- tiến độ: kiểm tra, gộp ---------- */
   function emptyProgress() {
-    return { schema: "azv-progress", version: 1, updatedAt: null, prefs: { exam: null, topic: "all", level: "all", count: 10, dir: "en-vi", speed: "fast", timer: 8, sound: true, speak: true }, active: null, history: [], words: {}, days: [], lastPracticed: null };
+    return { schema: "azv-progress", version: 1, updatedAt: null, prefs: { exam: null, skill: "all", topic: "all", level: "all", count: 10, dir: "en-vi", speed: "fast", timer: 8, sound: true, speak: true }, active: null, history: [], words: {}, days: [], lastPracticed: null };
   }
   function validRound(r) {
     return r && typeof r === "object" && typeof r.id === "string" && Array.isArray(r.questions) && Array.isArray(r.answers) &&
@@ -239,7 +241,7 @@
     return "Nhiều từ trong lượt này còn mới với bạn, điều đó bình thường ở lần đầu. Đọc ví dụ và lưu ý dễ nhầm bên dưới, rồi ôn lại từ sai.";
   }
 
-  return { EXAMS, LEVELS, LEVEL_VI, DIRS, COUNTS, SPEEDS, TIMERS, TIMEOUT, INTERVALS, norm, makeRng, shuffle, localDate, addDays, streak,
+  return { EXAMS, LEVELS, LEVEL_VI, DIRS, SKILLS, COUNTS, SPEEDS, TIMERS, TIMEOUT, INTERVALS, norm, makeRng, shuffle, localDate, addDays, streak,
     validateItem, validateBank, isSafeAudioUrl, filterItems, makeQuestion, buildRound, recordAnswer, isComplete, scoreRound,
     buildReviewRound, hasDuplicateItems, applySchedule, dueIds, emptyProgress, validateProgress, validRound, mergeProgress, comment };
 });
