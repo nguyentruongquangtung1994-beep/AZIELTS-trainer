@@ -8,6 +8,7 @@
   const EXAMS = (CFG.exams || C.EXAMS).filter(e => C.EXAMS.includes(e));
   const SOLO = EXAMS.length === 1;
   const EXAMS_TXT = EXAMS.map(e => EXAM_NAME[e]).join(" hoặc ");
+  const SKILL_NAME = { writing: "Writing", speaking: "Speaking" };
   const LEVEL_SUB = { ielts: { basic: "band 4–5", intermediate: "band 5.5–6.5", advanced: "band 7+" } };
   const DIR_NAME = { "en-vi": "Anh → Việt", "vi-en": "Việt → Anh" };
   const SPEED_NAME = { fast: ["Nhanh", "0,35 giây"], medium: ["Vừa", "0,65 giây"], slow: ["Chậm", "1 giây"] };
@@ -67,13 +68,18 @@
   }
 
   /* ---------- màn chọn bài ---------- */
-  function topicName(exam, t) { if (!t || t === "all") return "Tổng hợp"; const x = (TOPICS[exam] || []).find(z => z.id === t); return x ? x.nameVi : t; }
+  // kỹ năng có trong bộ từ của kỳ thi (IELTS: writing, speaking); rỗng = bộ từ không chia kỹ năng
+  const skillsOf = exam => C.SKILLS.filter(k => (TOPICS[exam] || []).some(t => t.skill === k));
+  function topicName(exam, t) {
+    if (!t || t === "all") return "Tổng hợp";
+    if (t.slice(0, 6) === "skill:") return "Tổng hợp " + SKILL_NAME[t.slice(6)]; const x = (TOPICS[exam] || []).find(z => z.id === t); return x ? x.nameVi : t; }
   function roundTitle(r) {
     if (r.kind === "review") return "Ôn lại từ sai";
     if (r.kind === "due") return "Ôn theo lịch";
-    return (r.topic === "all" ? "Tổng hợp " + EXAM_NAME[r.exam] : topicName(r.exam, r.topic));
+    return (r.topic === "all" ? "Tổng hợp " + EXAM_NAME[r.exam] : (r.topic.slice(0, 6) === "skill:" ? EXAM_NAME[r.exam] + " " : "") + topicName(r.exam, r.topic));
   }
-  const roundSub = r => [r.exam ? EXAM_NAME[r.exam] : null, r.level && r.level !== "all" ? C.LEVEL_VI[r.level] : null, DIR_NAME[r.dir]].filter(Boolean).join(" · ");
+  function roundSkill(r) { if (!r.exam || !r.topic) return null; if (r.topic.slice(0, 6) === "skill:") return SKILL_NAME[r.topic.slice(6)]; const t = (TOPICS[r.exam] || []).find(x => x.id === r.topic); return t && t.skill ? SKILL_NAME[t.skill] : null; }
+  const roundSub = r => [r.exam ? EXAM_NAME[r.exam] : null, r.topic && r.topic.slice(0, 6) === "skill:" ? null : roundSkill(r), r.level && r.level !== "all" ? C.LEVEL_VI[r.level] : null, DIR_NAME[r.dir]].filter(Boolean).join(" · ");
 
   function renderWho() {
     const a = S.academy(), w = $("who");
@@ -94,8 +100,16 @@
   }
   function availableCount() { const p = P.prefs; return p.exam ? C.filterItems(ITEMS, p).length : 0; }
 
+  // bộ từ chia kỹ năng: lượt học luôn thuộc 1 kỹ năng (cùng một cụm có thể nằm ở cả Writing lẫn Speaking)
+  function normPrefs() {
+    const p = P.prefs, sks = p.exam ? skillsOf(p.exam) : [];
+    if (sks.length < 2) { if (p.topic && p.topic.slice(0, 6) === "skill:") p.topic = "all"; return; }
+    if (!sks.includes(p.skill)) p.skill = sks[0];
+    const t = (TOPICS[p.exam] || []).find(x => x.id === p.topic);
+    if (t) p.skill = t.skill; else p.topic = "skill:" + p.skill;
+  }
   function renderHome() {
-    renderWho();
+    renderWho(); normPrefs();
     const acc = access(), p = P.prefs;
     if (!acc.full && p.count > FREE_COUNT) p.count = FREE_COUNT;
     // lượt đang dở
@@ -121,7 +135,7 @@
           h("span", { class: "emo", "aria-hidden": "true", text: e === "toeic" ? "💼" : "🎓" }), EXAM_NAME[e], h("small", { text: e === "toeic" ? "Công việc · đời sống" : "Speaking · Writing" })))));
     } else {
       fill(q, h("h1", { text: "Học nhanh " + p.count + " từ" }),
-        h("div", { class: "sum" }, [EXAM_NAME[p.exam], topicName(p.exam, p.topic), p.level === "all" ? "Mọi mức" : C.LEVEL_VI[p.level], DIR_NAME[p.dir]].map(t => h("span", { text: t }))),
+        h("div", { class: "sum" }, [EXAM_NAME[p.exam], skillsOf(p.exam).length > 1 && p.topic.slice(0, 6) !== "skill:" ? SKILL_NAME[p.skill] : null, topicName(p.exam, p.topic)].filter(Boolean).concat([ p.level === "all" ? "Mọi mức" : C.LEVEL_VI[p.level], DIR_NAME[p.dir]]).map(t => h("span", { text: t }))),
         h("button", { class: "btn block", type: "button", onclick: () => startMain(), text: "Học ngay" }),
         h("p", { class: "swap" }, SOLO ? null : [h("button", { class: "link", type: "button", onclick: () => { p.exam = null; save(); renderHome(); window.scrollTo(0, 0); }, text: "Đổi " + EXAMS.map(e => EXAM_NAME[e]).join(" / ") }), " · "],
           h("button", { class: "link", type: "button", onclick: () => { const d = $("setup"); d.open = true; d.scrollIntoView({ block: "start", behavior: "smooth" }); }, text: "Tùy chỉnh lượt học" })));
@@ -141,7 +155,13 @@
     const p = P.prefs, acc = access();
     $("fExam").closest("fieldset").hidden = SOLO;
     segButtons($("fExam"), EXAMS.map(e => ({ v: e, label: EXAM_NAME[e] })), p.exam, v => { if (p.exam !== v) { p.exam = v; p.topic = "all"; } save(); renderHome(); });
-    const tops = p.exam ? [{ v: "all", label: "Tổng hợp" }].concat(TOPICS[p.exam].map(t => ({ v: t.id, label: t.nameVi, sub: t.hot ? "hay ra" : null }))) : [];
+    const sks = p.exam ? skillsOf(p.exam) : [];
+    $("fSkill").closest("fieldset").hidden = sks.length < 2;
+    if (sks.length > 1) {
+      segButtons($("fSkill"), sks.map(k => ({ v: k, label: SKILL_NAME[k], sub: TOPICS[p.exam].filter(t => t.skill === k).length + " chủ đề" })), p.skill, v => { if (p.skill !== v) { p.skill = v; p.topic = "skill:" + v; } save(); renderHome(); });
+    }
+    const skTops = sks.length > 1 ? TOPICS[p.exam].filter(t => t.skill === p.skill) : (TOPICS[p.exam] || []);
+    const tops = p.exam ? [{ v: sks.length > 1 ? "skill:" + p.skill : "all", label: "Tổng hợp" }].concat(skTops.map(t => ({ v: t.id, label: t.nameVi, sub: t.hot ? "hay ra" : null }))) : [];
     if (tops.length) segButtons($("fTopic"), tops, p.topic, v => { p.topic = v; save(); renderHome(); });
     else fill($("fTopic"), h("p", { class: "muted small", text: "Chọn chương trình trước." }));
     segButtons($("fLevel"), [{ v: "all", label: "Mọi mức" }].concat(C.LEVELS.map(l => ({ v: l, label: C.LEVEL_VI[l], sub: (LEVEL_SUB[p.exam] || {})[l] }))), p.level, v => { p.level = v; save(); renderHome(); });
@@ -187,7 +207,8 @@
     if (locked()) { renderHome(); focusGate(); return; }
     const ids = C.dueIds(P.words, today()).filter(id => BYID[id]);
     if (!ids.length) { toast("Hôm nay chưa có từ đến hạn ôn."); return; }
-    const pool = C.shuffle(ids).slice(0, DUE_MAX).map(id => BYID[id]);
+    const terms = new Set();   // cùng một cụm ở cả Writing và Speaking → chỉ hỏi 1 lần
+    const pool = C.shuffle(ids).filter(id => { const k = C.norm(BYID[id].term); if (terms.has(k)) return false; terms.add(k); return true; }).slice(0, DUE_MAX).map(id => BYID[id]);
     const res = C.buildRound(pool, { exam: null, dir: P.prefs.dir, count: pool.length, kind: "due" });
     P.active = res.round; save(); openLearn();
   }
@@ -616,6 +637,7 @@
     const st = S.load(); P = st.progress;
     if (P.prefs.exam && !EXAMS.includes(P.prefs.exam)) { P.prefs.exam = null; P.prefs.topic = "all"; }
     if (SOLO && !P.prefs.exam) P.prefs.exam = EXAMS[0];
+    if (!P.prefs.skill) P.prefs.skill = "all";
     renderWho();
     const res = await loadBanks();
     const ls = $("loadState");
