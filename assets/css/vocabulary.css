@@ -244,3 +244,6 @@ button.back{background:none;border:0;font:inherit;color:var(--red);font-weight:7
 button.back.out{color:var(--ink-3);font-weight:600}
 @media (max-width:420px){.who .tag.guest{display:none}.who .nm{display:none}}
 .gate{scroll-margin-top:calc(72px + env(safe-area-inset-top,0px))}
+
+/* dải hero chỉ dùng ở giao diện Premium của Academy */
+.azv-hero{display:none}
