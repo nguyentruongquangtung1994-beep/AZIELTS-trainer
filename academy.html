@@ -927,11 +927,18 @@ function renderGuest() {
     <div class="cta">${p.k === "trial" ? `<button class="btn" type="button" data-auth="reg">Bắt đầu dùng thử</button>` : `<a class="btn ${p.k === "elite" ? "dark" : "line"}" href="#lien-he">Liên hệ tư vấn</a><span class="phone">Gọi / Zalo <b>${PHONE}</b></span>`}</div></div>`).join("");
   document.querySelectorAll("[data-auth]").forEach(b => b.onclick = () => openAuth(b.dataset.auth));
 }
-function openAuth(t) { setTab(t || "login"); $("#authModal").hidden = false; document.body.style.overflow = "hidden"; setTimeout(() => (t === "reg" ? $("#rn") : $("#lu")).focus(), 60); }
+// Hồ sơ dùng chung az_me (trang Đăng ký / Test trình độ cùng tên miền): điền sẵn form tạo tài khoản
+function azMeAc() { try { return JSON.parse(localStorage.getItem("az_me") || "null") || {}; } catch (e) { return {}; } }
+function prefillReg() {
+  const m = azMeAc(), set = (id, v) => { const el = $(id); if (el && !el.value && v) el.value = v; };
+  set("#rn", m.name); set("#rph", m.phone); set("#re", m.email);
+  if (m.name && m.phone && !$("#ru").value) $("#ru").value = String(m.name).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/gi, "d").toLowerCase().split(/\s+/).slice(-2).join("").replace(/[^a-z0-9]/g, "") + String(m.phone).slice(-3);
+}
+function openAuth(t) { setTab(t || "login"); $("#authModal").hidden = false; document.body.style.overflow = "hidden"; setTimeout(() => (t === "reg" ? (["#rn", "#rph", "#re", "#ru", "#rp"].map(x => $(x)).find(x => x && !x.value) || $("#rn")) : $("#lu")).focus(), 60); }
 function closeAuth() { $("#authModal").hidden = true; document.body.style.overflow = ""; }
 function setTab(t) {
   document.querySelectorAll(".seg button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === t));
-  $("#fLogin").hidden = t !== "login"; $("#fReg").hidden = t !== "reg";
+  $("#fLogin").hidden = t !== "login"; $("#fReg").hidden = t !== "reg"; if (t === "reg") prefillReg();
   $("#authTitle").textContent = t === "reg" ? "Tạo tài khoản học" : "Đăng nhập để vào học";
   $("#authSub").textContent = t === "reg" ? "Nhập mã lớp nếu bạn đang học tại AZEnglish." : "Dùng tài khoản AZEnglish của bạn.";
 }
@@ -980,7 +987,13 @@ document.querySelectorAll(".tv-open").forEach(b => b.onclick = () => { const p =
   const f = document.getElementById("pgoal"); if (!f) return;
   const msg = document.getElementById("pgMsg"), get = () => { try { return JSON.parse(localStorage.getItem("az_place") || "null"); } catch (e) { return null; } };
   { const s = $("#pgDl"), d = new Date(); for (let i = 1; i <= 30; i++) { const x = new Date(d.getFullYear(), d.getMonth() + i, 1), v = x.getFullYear() + "-" + String(x.getMonth() + 1).padStart(2, "0"); s.add(new Option("Tháng " + (x.getMonth() + 1) + "/" + x.getFullYear(), v)); } }
-  const cur = get(); if (cur) { $("#pgGrade").value = cur.grade || ""; $("#pgTarget").value = cur.target ? Number(cur.target).toFixed(1) : ""; $("#pgDl").value = cur.deadline || ""; $("#pgConsent").checked = !!cur.consent; msg.textContent = "Đã lưu mục tiêu."; }
+  const cur = get(), azm = azMeAc();
+  if (!cur && azm.goal && azm.goal.k === "ielts") { // mục tiêu đã chọn ở bài test 20 phút
+    const t = Number(azm.goal.t); if ([...$("#pgTarget").options].some(o => o.value === t.toFixed(1))) $("#pgTarget").value = t.toFixed(1);
+    const h = Number(azm.goal.h); if (h) { const d = new Date(); const x = new Date(d.getFullYear(), d.getMonth() + Math.min(h, 30), 1); $("#pgDl").value = x.getFullYear() + "-" + String(x.getMonth() + 1).padStart(2, "0"); }
+    if (azm.consent) $("#pgConsent").checked = true;
+  }
+  if (cur) { $("#pgGrade").value = cur.grade || ""; $("#pgTarget").value = cur.target ? Number(cur.target).toFixed(1) : ""; $("#pgDl").value = cur.deadline || ""; $("#pgConsent").checked = !!cur.consent; msg.textContent = "Đã lưu mục tiêu."; }
   f.onsubmit = e => { e.preventDefault(); msg.className = "pg-msg";
     if (!$("#pgTarget").value) { msg.className = "pg-msg err"; msg.textContent = "Chọn band mục tiêu."; return; }
     if (!$("#pgConsent").checked) { msg.className = "pg-msg err"; msg.textContent = "Đánh dấu đồng ý để nhận kết quả qua email."; return; }
@@ -1287,6 +1300,7 @@ async function renderNS() {
 }
 renderGuest(); renderResults(); render();
 if (!getS() && (nextUrl() || $("#eLogin").textContent)) openAuth("login");
+else if (!getS() && /[?&]dk=1/.test(location.search)) openAuth("reg"); // đến từ nút Full Test của trang Test trình độ: mở sẵn form tạo tài khoản (đã điền từ hồ sơ)
 if (TCH) { $("#tchImg").src = TCH; $("#heroImg").src = TCH; } else { $("#tchImg").remove(); $("#heroImg").remove(); }
 /* đã đăng nhập: làm mới quyền (gói, hạn) mỗi lần mở; từ trang học quay về với ?next= thì làm mới rồi trả về */
 if (getS()) refresh(true);
